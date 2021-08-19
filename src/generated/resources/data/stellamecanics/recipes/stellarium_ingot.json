@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "stellamecanics:stellarium_block"
+    }
+  ],
+  "result": {
+    "item": "stellamecanics:stellarium_ingot",
+    "count": 9
+  }
+}

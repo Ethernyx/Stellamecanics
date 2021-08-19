@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "III",
+    "III",
+    "III"
+  ],
+  "key": {
+    "I": {
+      "item": "stellamecanics:stellarium_ingot"
+    }
+  },
+  "result": {
+    "item": "stellamecanics:stellarium_block"
+  }
+}
