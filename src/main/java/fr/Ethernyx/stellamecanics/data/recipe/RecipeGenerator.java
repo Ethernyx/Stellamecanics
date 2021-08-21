@@ -76,6 +76,66 @@ public class RecipeGenerator extends RecipeProvider {
         blockToIngot(consumer, ModBlocks.OSMIRIDIUM_BLOCK.get(), ModItems.OSMIRIDIUM_INGOT.get(), "osmiridium_ingot");
         /* *** craft osmiridium block *** */
         ingotToBlock(consumer, ModItems.OSMIRIDIUM_INGOT.get(), ModBlocks.OSMIRIDIUM_BLOCK.get(), "osmiridium_block");
+
+        /* *** craft stellarium armor *** */
+        helmetArmor(consumer, ModItems.STELLARIUM_INGOT.get(), ModItems.STELLARIUM_HELMET.get(), "stellarium_helmet");
+        chesplateArmor(consumer, ModItems.STELLARIUM_INGOT.get(), ModItems.STELLARIUM_CHESTPLATE.get(), "stellarium_chesplate");
+        leggingsArmor(consumer, ModItems.STELLARIUM_INGOT.get(), ModItems.STELLARIUM_LEGGINGS.get(), "stellarium_leggings");
+        bootsArmor(consumer, ModItems.STELLARIUM_INGOT.get(), ModItems.STELLARIUM_BOOTS.get(), "stellarium_boots");
+        /* *** craft stellarium tools *** */
+        pickaxeTool(consumer, ModItems.STELLARIUM_INGOT.get(), ModItems.STELLARIUM_PICKAXE.get(), "stellarium_pickaxe");
+        shovelTool(consumer, ModItems.STELLARIUM_INGOT.get(), ModItems.STELLARIUM_SHOVEL.get(), "stellarium_shovel");
+        axeTool(consumer, ModItems.STELLARIUM_INGOT.get(), ModItems.STELLARIUM_AXE.get(), "stellarium_axe");
+        hoeTool(consumer, ModItems.STELLARIUM_INGOT.get(), ModItems.STELLARIUM_HOE.get(), "stellarium_hoe");
+        swordTool(consumer, ModItems.STELLARIUM_INGOT.get(), ModItems.STELLARIUM_SWORD.get(), "stellarium_sword");
+
+        /* *** craft zirconium armor *** */
+        helmetArmor(consumer, ModItems.ZIRCONIUM_INGOT.get(), ModItems.ZIRCONIUM_HELMET.get(), "zirconium_helmet");
+        chesplateArmor(consumer, ModItems.ZIRCONIUM_INGOT.get(), ModItems.ZIRCONIUM_CHESTPLATE.get(), "zirconium_chesplate");
+        leggingsArmor(consumer, ModItems.ZIRCONIUM_INGOT.get(), ModItems.ZIRCONIUM_LEGGINGS.get(), "zirconium_leggings");
+        bootsArmor(consumer, ModItems.ZIRCONIUM_INGOT.get(), ModItems.ZIRCONIUM_BOOTS.get(), "zirconium_boots");
+        /* *** craft zirconium tools *** */
+        pickaxeTool(consumer, ModItems.ZIRCONIUM_INGOT.get(), ModItems.ZIRCONIUM_PICKAXE.get(), "zirconium_pickaxe");
+        shovelTool(consumer, ModItems.ZIRCONIUM_INGOT.get(), ModItems.ZIRCONIUM_SHOVEL.get(), "zirconium_shovel");
+        axeTool(consumer, ModItems.ZIRCONIUM_INGOT.get(), ModItems.ZIRCONIUM_AXE.get(), "zirconium_axe");
+        hoeTool(consumer, ModItems.ZIRCONIUM_INGOT.get(), ModItems.ZIRCONIUM_HOE.get(), "zirconium_hoe");
+        swordTool(consumer, ModItems.ZIRCONIUM_INGOT.get(), ModItems.ZIRCONIUM_SWORD.get(), "zirconium_sword");
+
+        /* *** craft iridium armor *** */
+        helmetArmor(consumer, ModItems.IRIDIUM_INGOT.get(), ModItems.IRIDIUM_HELMET.get(), "iridium_helmet");
+        chesplateArmor(consumer, ModItems.IRIDIUM_INGOT.get(), ModItems.IRIDIUM_CHESTPLATE.get(), "iridium_chesplate");
+        leggingsArmor(consumer, ModItems.IRIDIUM_INGOT.get(), ModItems.IRIDIUM_LEGGINGS.get(), "iridium_leggings");
+        bootsArmor(consumer, ModItems.IRIDIUM_INGOT.get(), ModItems.IRIDIUM_BOOTS.get(), "iridium_boots");
+        /* *** craft iridium tools *** */
+        pickaxeTool(consumer, ModItems.IRIDIUM_INGOT.get(), ModItems.IRIDIUM_PICKAXE.get(), "iridium_pickaxe");
+        shovelTool(consumer, ModItems.IRIDIUM_INGOT.get(), ModItems.IRIDIUM_SHOVEL.get(), "iridium_shovel");
+        axeTool(consumer, ModItems.IRIDIUM_INGOT.get(), ModItems.IRIDIUM_AXE.get(), "iridium_axe");
+        hoeTool(consumer, ModItems.IRIDIUM_INGOT.get(), ModItems.IRIDIUM_HOE.get(), "iridium_hoe");
+        swordTool(consumer, ModItems.IRIDIUM_INGOT.get(), ModItems.IRIDIUM_SWORD.get(), "iridium_sword");
+
+        /* *** craft zircaloy armor *** */
+        helmetArmor(consumer, ModItems.ZIRCALOY_INGOT.get(), ModItems.ZIRCALOY_HELMET.get(), "zircaloy_helmet");
+        chesplateArmor(consumer, ModItems.ZIRCALOY_INGOT.get(), ModItems.ZIRCALOY_CHESTPLATE.get(), "zircaloy_chesplate");
+        leggingsArmor(consumer, ModItems.ZIRCALOY_INGOT.get(), ModItems.ZIRCALOY_LEGGINGS.get(), "zircaloy_leggings");
+        bootsArmor(consumer, ModItems.ZIRCALOY_INGOT.get(), ModItems.ZIRCALOY_BOOTS.get(), "zircaloy_boots");
+        /* *** craft zircaloy tools *** */
+        pickaxeTool(consumer, ModItems.ZIRCALOY_INGOT.get(), ModItems.ZIRCALOY_PICKAXE.get(), "zircaloy_pickaxe");
+        shovelTool(consumer, ModItems.ZIRCALOY_INGOT.get(), ModItems.ZIRCALOY_SHOVEL.get(), "zircaloy_shovel");
+        axeTool(consumer, ModItems.ZIRCALOY_INGOT.get(), ModItems.ZIRCALOY_AXE.get(), "zircaloy_axe");
+        hoeTool(consumer, ModItems.ZIRCALOY_INGOT.get(), ModItems.ZIRCALOY_HOE.get(), "zircaloy_hoe");
+        swordTool(consumer, ModItems.ZIRCALOY_INGOT.get(), ModItems.ZIRCALOY_SWORD.get(), "zircaloy_sword");
+
+        /* *** craft osmiridium armor *** */
+        helmetArmor(consumer, ModItems.OSMIRIDIUM_INGOT.get(), ModItems.OSMIRIDIUM_HELMET.get(), "osmiridium_helmet");
+        chesplateArmor(consumer, ModItems.OSMIRIDIUM_INGOT.get(), ModItems.OSMIRIDIUM_CHESTPLATE.get(), "osmiridium_chesplate");
+        leggingsArmor(consumer, ModItems.OSMIRIDIUM_INGOT.get(), ModItems.OSMIRIDIUM_LEGGINGS.get(), "osmiridium_leggings");
+        bootsArmor(consumer, ModItems.OSMIRIDIUM_INGOT.get(), ModItems.OSMIRIDIUM_BOOTS.get(), "osmiridium_boots");
+        /* *** craft osmiridium tools *** */
+        pickaxeTool(consumer, ModItems.OSMIRIDIUM_INGOT.get(), ModItems.OSMIRIDIUM_PICKAXE.get(), "osmiridium_pickaxe");
+        shovelTool(consumer, ModItems.OSMIRIDIUM_INGOT.get(), ModItems.OSMIRIDIUM_SHOVEL.get(), "osmiridium_shovel");
+        axeTool(consumer, ModItems.OSMIRIDIUM_INGOT.get(), ModItems.OSMIRIDIUM_AXE.get(), "osmiridium_axe");
+        hoeTool(consumer, ModItems.OSMIRIDIUM_INGOT.get(), ModItems.OSMIRIDIUM_HOE.get(), "osmiridium_hoe");
+        swordTool(consumer, ModItems.OSMIRIDIUM_INGOT.get(), ModItems.OSMIRIDIUM_SWORD.get(), "osmiridium_sword");
     }
     private void furnaceIngot(Consumer<IFinishedRecipe> consumer, IItemProvider input, IItemProvider output, String name) {
         CookingRecipeBuilder.smelting(Ingredient.of(input), output, 0.2f, 200)
