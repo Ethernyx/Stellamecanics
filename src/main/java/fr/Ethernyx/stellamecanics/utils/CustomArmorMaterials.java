@@ -17,7 +17,12 @@ import java.util.function.Supplier;
 public enum CustomArmorMaterials implements IArmorMaterial {
 
     SOLARIUM_ARMOR(Main.MOD_ID + ":solarium", 50, new int[]{3, 6, 8, 3}, 10, SoundEvents.ARMOR_EQUIP_DIAMOND, 2.0F, 0.2F, () -> { return Ingredient.of(ModItems.SOLARIUM_INGOT.get()); }),
-    LUNARIUM_ARMOR(Main.MOD_ID + ":lunarium", 50, new int[]{4, 7, 9, 4}, 10, SoundEvents.ARMOR_EQUIP_DIAMOND, 3.5F, 0.3F, () -> { return Ingredient.of(ModItems.LUNARIUM_INGOT.get()); });
+    LUNARIUM_ARMOR(Main.MOD_ID + ":lunarium", 50, new int[]{4, 7, 9, 4}, 10, SoundEvents.ARMOR_EQUIP_DIAMOND, 3.5F, 0.3F, () -> { return Ingredient.of(ModItems.LUNARIUM_INGOT.get()); }),
+    ZIRCONIUM_ARMOR(Main.MOD_ID + ":zirconium", 50, new int[]{3, 7, 9, 3}, 10, SoundEvents.ARMOR_EQUIP_DIAMOND, 2.0F, 0.2F, () -> { return Ingredient.of(ModItems.ZIRCONIUM_INGOT.get()); }),
+    IRIDIUM_ARMOR(Main.MOD_ID + ":iridium", 50, new int[]{2, 5, 7, 2}, 10, SoundEvents.ARMOR_EQUIP_DIAMOND, 0F, 0F, () -> { return Ingredient.of(ModItems.IRIDIUM_INGOT.get()); }),
+    ZIRCALOY_ARMOR(Main.MOD_ID + ":zircaloy", 50, new int[]{4, 7, 9, 3}, 10, SoundEvents.ARMOR_EQUIP_DIAMOND, 4.5F, 0.3F, () -> {  return Ingredient.of(ModItems.ZIRCALOY_INGOT.get()); }),
+    OSMIRIDIUM_ARMOR(Main.MOD_ID + ":osmiridium", 50, new int[]{3, 7, 9, 3}, 10, SoundEvents.ARMOR_EQUIP_DIAMOND, 2.0F, 0.2F, () -> { return Ingredient.of(ModItems.OSMIRIDIUM_INGOT.get()); }),
+    STELLARIUM_ARMOR(Main.MOD_ID + ":stellarium", 50, new int[]{ 4, 7, 9, 3}, 10, SoundEvents.ARMOR_EQUIP_DIAMOND, 4.5F, 0.4F, () -> { return Ingredient.of(ModItems.STELLARIUM_INGOT.get()); });
 
     private static final int[] HEALTH_PER_SLOT = new int[]{13, 15, 16, 11};
     private final String name;

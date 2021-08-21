@@ -10,8 +10,13 @@ import java.util.function.Supplier;
 
 public enum CustomItemTiers implements IItemTier {
 
-    SOLARIUM(4, 2031, 4.8f, 2f, 10, () -> { return Ingredient.of(ModItems.SOLARIUM_INGOT.get()); }),
-    LUNARIUM(5, 4200, 6f, 1.5f, 10, () -> { return Ingredient.of(ModItems.LUNARIUM_INGOT.get()); })
+    SOLARIUM(4, 3360, 4.8f, 2f, 10, () -> { return Ingredient.of(ModItems.SOLARIUM_INGOT.get()); }),
+    LUNARIUM(5, 4200, 6f, 1.5f, 10, () -> { return Ingredient.of(ModItems.LUNARIUM_INGOT.get()); }),
+    ZIRCONIUM(2, 1680, 2.4f, 1.5f, 10, () -> { return Ingredient.of(ModItems.ZIRCONIUM_INGOT.get()); }),
+    IRIDIUM(4, 3360, 4.8f, 1.5f, 10, () -> { return Ingredient.of(ModItems.IRIDIUM_INGOT.get()); }),
+    ZIRCALOY(4, 3360, 4.8f, 1.5f, 10, () -> { return Ingredient.of(ModItems.ZIRCALOY_INGOT.get()); }),
+    OSMIRIDIUM(6, 5040, 7.2f, 1.5f, 10, () -> { return Ingredient.of(ModItems.OSMIRIDIUM_INGOT.get()); }),
+    STELLARIUM(6, 5040, 7.2f, 1.5f, 10, () -> { return Ingredient.of(ModItems.STELLARIUM_INGOT.get()); })
     ;
 
     private final int level;
