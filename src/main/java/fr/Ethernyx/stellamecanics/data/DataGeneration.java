@@ -1,5 +1,6 @@
 package fr.Ethernyx.stellamecanics.data;
 
+import fr.Ethernyx.stellamecanics.data.lang.LangGenerator;
 import fr.Ethernyx.stellamecanics.data.recipe.RecipeGenerator;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -16,6 +17,8 @@ public class DataGeneration {
         DataGenerator generator = e.getGenerator();
         if (e.includeServer()) {
             generator.addProvider(new RecipeGenerator(generator));
+            generator.addProvider(new LangGenerator(generator, Main.MOD_ID, "en_us"));
+            generator.addProvider(new LangGenerator(generator, Main.MOD_ID, "fr_fr"));
         }
     }
 }

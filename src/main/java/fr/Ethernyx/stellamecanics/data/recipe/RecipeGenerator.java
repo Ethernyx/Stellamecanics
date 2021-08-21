@@ -4,13 +4,10 @@ import fr.Ethernyx.stellamecanics.Main;
 import fr.Ethernyx.stellamecanics.init.ModBlocks;
 import fr.Ethernyx.stellamecanics.init.ModItems;
 import net.minecraft.advancements.criterion.InventoryChangeTrigger;
-import net.minecraft.block.Block;
 import net.minecraft.data.*;
-import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.util.IItemProvider;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.RegistryObject;
 
 import java.util.function.Consumer;
 
