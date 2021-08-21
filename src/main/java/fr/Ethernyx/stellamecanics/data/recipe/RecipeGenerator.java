@@ -6,6 +6,7 @@ import fr.Ethernyx.stellamecanics.init.ModItems;
 import net.minecraft.advancements.criterion.InventoryChangeTrigger;
 import net.minecraft.data.*;
 import net.minecraft.item.Items;
+import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.IItemProvider;
 import net.minecraft.util.ResourceLocation;
 
@@ -55,9 +56,35 @@ public class RecipeGenerator extends RecipeProvider {
         axeTool(consumer, ModItems.LUNARIUM_INGOT.get(), ModItems.LUNARIUM_AXE.get(), "lunarium_axe");
         hoeTool(consumer, ModItems.LUNARIUM_INGOT.get(), ModItems.LUNARIUM_HOE.get(), "lunarium_hoe");
         swordTool(consumer, ModItems.LUNARIUM_INGOT.get(), ModItems.LUNARIUM_SWORD.get(), "lunarium_sword");
-
+        /* *** craft iridium ingot *** */
+        blockToIngot(consumer, ModBlocks.IRIDIUM_BLOCK.get(), ModItems.IRIDIUM_INGOT.get(), "iridium_ingot");
+        furnaceIngot(consumer, ModBlocks.IRIDIUM_ORE.get(), ModItems.IRIDIUM_INGOT.get(), "ore_to_iridium_ingot");
+        furnaceIngot(consumer, ModItems.IRIDIUM_RAW.get(), ModItems.IRIDIUM_INGOT.get(), "raw_to_iridium_ingot");
+        /* *** craft iridium block *** */
+        ingotToBlock(consumer, ModItems.IRIDIUM_INGOT.get(), ModBlocks.IRIDIUM_BLOCK.get(), "iridium_block");
+        /* *** craft zirconium ingot *** */
+        blockToIngot(consumer, ModBlocks.ZIRCONIUM_BLOCK.get(), ModItems.ZIRCONIUM_INGOT.get(), "zirconium_ingot");
+        furnaceIngot(consumer, ModBlocks.ZIRCONIUM_ORE.get(), ModItems.ZIRCONIUM_INGOT.get(), "ore_to_zirconium_ingot");
+        furnaceIngot(consumer, ModItems.ZIRCONIUM_RAW.get(), ModItems.ZIRCONIUM_INGOT.get(), "raw_to_zirconium_ingot");
+        /* *** craft zirconium block *** */
+        ingotToBlock(consumer, ModItems.ZIRCONIUM_INGOT.get(), ModBlocks.ZIRCONIUM_BLOCK.get(), "zirconium_block");
+        /* *** craft zircaloy ingot *** */
+        blockToIngot(consumer, ModBlocks.ZIRCALOY_BLOCK.get(), ModItems.ZIRCALOY_INGOT.get(), "zircaloy_ingot");
+        /* *** craft zircaloy block *** */
+        ingotToBlock(consumer, ModItems.ZIRCALOY_INGOT.get(), ModBlocks.ZIRCALOY_BLOCK.get(), "zircaloy_block");
+        /* *** craft osmiridium ingot *** */
+        blockToIngot(consumer, ModBlocks.OSMIRIDIUM_BLOCK.get(), ModItems.OSMIRIDIUM_INGOT.get(), "osmiridium_ingot");
+        /* *** craft osmiridium block *** */
+        ingotToBlock(consumer, ModItems.OSMIRIDIUM_INGOT.get(), ModBlocks.OSMIRIDIUM_BLOCK.get(), "osmiridium_block");
     }
-
+    private void furnaceIngot(Consumer<IFinishedRecipe> consumer, IItemProvider input, IItemProvider output, String name) {
+        CookingRecipeBuilder.smelting(Ingredient.of(input), output, 0.2f, 200)
+                .unlockedBy("unlock", InventoryChangeTrigger.Instance.hasItems(input))
+                .save(consumer, new ResourceLocation(Main.MOD_ID, name + "_smelting"));
+        CookingRecipeBuilder.blasting(Ingredient.of(input), output, 0.2f, 100)
+                .unlockedBy("unlock", InventoryChangeTrigger.Instance.hasItems(input))
+                .save(consumer, new ResourceLocation(Main.MOD_ID, name + "_blasting"));
+    }
     private void ingotToBlock(Consumer<IFinishedRecipe> consumer, IItemProvider ingot, IItemProvider block, String name) {
         ShapedRecipeBuilder.shaped(block)
                 .define('I', ingot)

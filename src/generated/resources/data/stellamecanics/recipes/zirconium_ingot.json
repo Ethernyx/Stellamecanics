@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "stellamecanics:zirconium_block"
+    }
+  ],
+  "result": {
+    "item": "stellamecanics:zirconium_ingot",
+    "count": 9
+  }
+}

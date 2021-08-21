@@ -50,6 +50,8 @@ public class LangGenerator extends LanguageProvider {
         this.tab.add(new LangKey(ModItems.LUNARIUM_INGOT.get(), "Lingot de lunarium", "Lunarium Ingot"));
         this.tab.add(new LangKey(ModItems.STELLARIUM_INGOT.get(), "Lingot de stellarium", "Stellarium Ingot"));
         this.tab.add(new LangKey(ModItems.MAGNETITE_RAW.get(), "Magnetite brute", "Magnetite Raw"));
+        this.tab.add(new LangKey(ModItems.ZIRCONIUM_RAW.get(), "Zirconium brut", "Zirconium Raw"));
+        this.tab.add(new LangKey(ModItems.IRIDIUM_RAW.get(), "Iridium brut", "Iridium Raw"));
         this.tab.add(new LangKey(ModItems.ZIRCONIUM_INGOT.get(), "Lingot de zirconium", "Zirconium Ingot"));
         this.tab.add(new LangKey(ModItems.IRIDIUM_INGOT.get(), "Lingot d'iridium", "Iridium Ingot"));
         this.tab.add(new LangKey(ModItems.ZIRCALOY_INGOT.get(), "Lingot de zircaloy", "Zircaloy Ingot"));

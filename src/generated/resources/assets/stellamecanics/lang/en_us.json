@@ -10,6 +10,7 @@
   "block.stellamecanics.zirconium_block": "Zirconium Block",
   "block.stellamecanics.zirconium_ore": "Zirconium Ore",
   "item.stellamecanics.iridium_ingot": "Iridium Ingot",
+  "item.stellamecanics.iridium_raw": "Iridium Raw",
   "item.stellamecanics.lunarium_axe": "Lunarium Axe",
   "item.stellamecanics.lunarium_boots": "Lunarium Boots",
   "item.stellamecanics.lunarium_chestplate": "Lunarium Chesplate",
@@ -35,5 +36,6 @@
   "item.stellamecanics.stellarium_ingot": "Stellarium Ingot",
   "item.stellamecanics.zircaloy_ingot": "Zircaloy Ingot",
   "item.stellamecanics.zirconium_ingot": "Zirconium Ingot",
+  "item.stellamecanics.zirconium_raw": "Zirconium Raw",
   "itemGroup.stellamecanics_tab": "Stellamecanics"
 }

@@ -10,6 +10,7 @@
   "block.stellamecanics.zirconium_block": "Bloc de zirconium",
   "block.stellamecanics.zirconium_ore": "Minerai de zirconium",
   "item.stellamecanics.iridium_ingot": "Lingot d'iridium",
+  "item.stellamecanics.iridium_raw": "Iridium brut",
   "item.stellamecanics.lunarium_axe": "Hache en lunarium",
   "item.stellamecanics.lunarium_boots": "Bottes en lunarium",
   "item.stellamecanics.lunarium_chestplate": "Plastron en lunarium",
@@ -35,5 +36,6 @@
   "item.stellamecanics.stellarium_ingot": "Lingot de stellarium",
   "item.stellamecanics.zircaloy_ingot": "Lingot de zircaloy",
   "item.stellamecanics.zirconium_ingot": "Lingot de zirconium",
+  "item.stellamecanics.zirconium_raw": "Zirconium brut",
   "itemGroup.stellamecanics_tab": "Stellamecanics"
 }
