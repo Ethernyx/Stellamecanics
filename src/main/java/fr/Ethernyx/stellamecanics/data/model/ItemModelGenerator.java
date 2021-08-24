@@ -1,0 +1,77 @@
+package fr.Ethernyx.stellamecanics.data.model;
+
+import fr.Ethernyx.stellamecanics.Main;
+import fr.Ethernyx.stellamecanics.data.lang.LangGenerator;
+import fr.Ethernyx.stellamecanics.init.ModItems;
+import net.minecraft.data.DataGenerator;
+import net.minecraftforge.client.model.generators.ItemModelBuilder;
+import net.minecraftforge.client.model.generators.ItemModelProvider;
+import net.minecraftforge.client.model.generators.ModelFile;
+import net.minecraftforge.common.data.ExistingFileHelper;
+import net.minecraftforge.fml.common.Mod;
+
+import javax.print.DocFlavor;
+import java.util.ArrayList;
+
+
+public class ItemModelGenerator extends ItemModelProvider {
+    static class JsonItem {
+        String name;
+        ModelFile type;
+
+        JsonItem(String name, ModelFile type) {
+            this.name = name;
+            this.type = type;
+        }
+    }
+    private ArrayList<String> BLOCKS = new ArrayList<>();
+    private ArrayList<JsonItem> ITEMS = new ArrayList<>();
+    public ItemModelGenerator(DataGenerator generator, ExistingFileHelper existingFileHelper) {
+        super(generator, Main.MOD_ID, existingFileHelper);
+    }
+
+    @Override
+    protected void registerModels() {
+
+        if (this.BLOCKS.size() == 0) this.indexBlocks();
+        if (this.ITEMS.size() == 0) this.indexItems();
+
+        for (String block : this.BLOCKS) withExistingParent(block, modLoc("block/" + block));
+
+
+
+        for (JsonItem item : this.ITEMS) builder(item.type, item.name);
+    }
+
+    private ItemModelBuilder builder(ModelFile itemGenerated, String name) {
+        return getBuilder(name).parent(itemGenerated).texture("layer0", "item/" + name);
+    }
+
+    private void indexBlocks() {
+        this.BLOCKS.add("solarium_block");
+        this.BLOCKS.add("lunarium_block");
+        this.BLOCKS.add("stellarium_block");
+        this.BLOCKS.add("zirconium_block");
+        this.BLOCKS.add("iridium_block");
+        this.BLOCKS.add("zircaloy_block");
+        this.BLOCKS.add("osmiridium_block");
+        this.BLOCKS.add("magnetite_ore");
+        this.BLOCKS.add("zirconium_ore");
+        this.BLOCKS.add("iridium_ore");
+    }
+
+    private void indexItems() {
+        final ModelFile itemGenerated = getExistingFile(mcLoc("item/generated"));
+        final ModelFile itemHandeld = getExistingFile(mcLoc("item/handheld"));
+
+        this.ITEMS.add(new JsonItem("solarium_ingot", itemGenerated));
+        this.ITEMS.add(new JsonItem("lunarium_ingot", itemGenerated));
+        this.ITEMS.add(new JsonItem("stellarium_ingot", itemGenerated));
+        this.ITEMS.add(new JsonItem("magnetite_raw", itemGenerated));
+        this.ITEMS.add(new JsonItem("zirconium_ingot", itemGenerated));
+        this.ITEMS.add(new JsonItem("iridium_ingot", itemGenerated));
+        this.ITEMS.add(new JsonItem("zircaloy_ingot", itemGenerated));
+        this.ITEMS.add(new JsonItem("osmiridium_ingot", itemGenerated));
+    }
+
+}
