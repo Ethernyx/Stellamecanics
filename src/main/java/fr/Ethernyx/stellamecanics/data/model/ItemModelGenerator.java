@@ -3,6 +3,8 @@ package fr.Ethernyx.stellamecanics.data.model;
 import fr.Ethernyx.stellamecanics.Main;
 import fr.Ethernyx.stellamecanics.data.lang.LangGenerator;
 import fr.Ethernyx.stellamecanics.init.ModItems;
+import fr.Ethernyx.stellamecanics.utils.generator.AidInfoGenerator;
+import fr.Ethernyx.stellamecanics.utils.generator.SerealizerGenerator;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
@@ -43,6 +45,20 @@ public class ItemModelGenerator extends ItemModelProvider {
 
 
         for (JsonItem item : this.ITEMS) builder(item.type, item.name);
+
+        for (AidInfoGenerator model : new SerealizerGenerator().getDatas()) {
+            switch (model.getType()) {
+                case ITEM:
+                case ENCHANTMENT:
+                    builder(getExistingFile(mcLoc(model.getModelType())), model.getId());
+                    break;
+                case BLOCK:
+                    withExistingParent(model.getId(), modLoc("block/" + model.getId()));
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 
     private ItemModelBuilder builder(ModelFile itemGenerated, String name) {
@@ -67,7 +83,7 @@ public class ItemModelGenerator extends ItemModelProvider {
         final ModelFile itemHandeld = getExistingFile(mcLoc("item/handheld"));
 
         this.ITEMS.add(new JsonItem("solarium_ingot", itemGenerated));
-        this.ITEMS.add(new JsonItem("lunarium_ingot", itemGenerated));
+       // this.ITEMS.add(new JsonItem("lunarium_ingot", itemGenerated));
         this.ITEMS.add(new JsonItem("stellarium_ingot", itemGenerated));
         this.ITEMS.add(new JsonItem("magnetite_raw", itemGenerated));
         this.ITEMS.add(new JsonItem("zirconium_raw", itemGenerated));
