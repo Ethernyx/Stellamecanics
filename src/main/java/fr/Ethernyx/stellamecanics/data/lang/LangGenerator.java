@@ -1,13 +1,14 @@
 package fr.Ethernyx.stellamecanics.data.lang;
 
+import fr.Ethernyx.stellamecanics.Main;
 import fr.Ethernyx.stellamecanics.init.ModBlocks;
 import fr.Ethernyx.stellamecanics.init.ModItems;
-import fr.Ethernyx.stellamecanics.utils.ModItemGroups;
+import fr.Ethernyx.stellamecanics.utils.generator.AidInfoGenerator;
+import fr.Ethernyx.stellamecanics.utils.generator.SerealizerGenerator;
 import net.minecraft.block.Block;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.IItemProvider;
 import net.minecraftforge.common.data.LanguageProvider;
 
@@ -40,6 +41,19 @@ public class LangGenerator extends LanguageProvider {
             if (langKey.item instanceof Block) add((Block) langKey.item, (this.getName().contains("fr_fr") ? langKey.fr : langKey.en));
             if (langKey.item instanceof Item) add((Item) langKey.item, (this.getName().contains("fr_fr") ? langKey.fr : langKey.en));
             if (langKey.item instanceof Enchantment) add((Enchantment) langKey.item, (this.getName().contains("fr_fr") ? langKey.fr : langKey.en));
+        }
+
+        for (AidInfoGenerator trans : new SerealizerGenerator().getDatas()){
+            switch (trans.getType()) {
+                case ITEM:
+                    add("item." + Main.MOD_ID + "." + trans.getId(), trans.getTranslate(this.getName()));
+                    break;
+                case BLOCK:
+                    add("block." + Main.MOD_ID + "." + trans.getId(), trans.getTranslate(this.getName()));
+                    break;
+                default:
+                    break;
+            }
         }
 
         add("itemGroup.stellamecanics_tab", "Stellamecanics");

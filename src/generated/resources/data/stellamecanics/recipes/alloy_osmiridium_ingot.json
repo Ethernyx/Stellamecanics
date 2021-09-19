@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:smithing",
+  "base": {
+    "item": "stellamecanics:solarium_ingot"
+  },
+  "addition": {
+    "item": "stellamecanics:iridium_ingot"
+  },
+  "result": {
+    "item": "stellamecanics:osmiridium_ingot"
+  }
+}

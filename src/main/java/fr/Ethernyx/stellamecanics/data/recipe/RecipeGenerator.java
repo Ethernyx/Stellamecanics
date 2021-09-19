@@ -3,6 +3,9 @@ package fr.Ethernyx.stellamecanics.data.recipe;
 import fr.Ethernyx.stellamecanics.Main;
 import fr.Ethernyx.stellamecanics.init.ModBlocks;
 import fr.Ethernyx.stellamecanics.init.ModItems;
+import fr.Ethernyx.stellamecanics.utils.generator.AidInfoGenerator;
+import fr.Ethernyx.stellamecanics.utils.recipe.RecipeBuilder;
+import fr.Ethernyx.stellamecanics.utils.generator.SerealizerGenerator;
 import net.minecraft.advancements.criterion.InventoryChangeTrigger;
 import net.minecraft.data.*;
 import net.minecraft.item.Item;
@@ -11,6 +14,7 @@ import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.IItemProvider;
 import net.minecraft.util.ResourceLocation;
 
+import java.util.Map;
 import java.util.function.Consumer;
 
 public class RecipeGenerator extends RecipeProvider {
@@ -143,6 +147,64 @@ public class RecipeGenerator extends RecipeProvider {
         hoeTool(consumer, ModItems.OSMIRIDIUM_INGOT.get(), ModItems.OSMIRIDIUM_HOE.get(), "osmiridium_hoe");
         swordTool(consumer, ModItems.OSMIRIDIUM_INGOT.get(), ModItems.OSMIRIDIUM_SWORD.get(), "osmiridium_sword");
 
+        for (AidInfoGenerator item : new SerealizerGenerator().getDatas()) {
+            if (item.getRecipe().size() > 0) {
+                for (Map.Entry<String, RecipeBuilder> entry : item.getRecipe().entrySet()) {
+                   switch (entry.getValue().getType()) {
+                       case TOOLS:
+                           if (entry.getValue().getInput().size() > 0 && entry.getValue().getOutput().size() > 3) {
+                               axeTool(consumer, entry.getValue().getInput().get(0), entry.getValue().getOutput().get(0).getItem(), entry.getKey() + "_axe");
+                               axeTool(consumer, entry.getValue().getInput().get(0), entry.getValue().getOutput().get(1).getItem(), entry.getKey() + "_hoe");
+                               pickaxeTool(consumer, entry.getValue().getInput().get(0), entry.getValue().getOutput().get(2).getItem(), entry.getKey() + "_pickaxe");
+                               pickaxeTool(consumer, entry.getValue().getInput().get(0), entry.getValue().getOutput().get(3).getItem(), entry.getKey() + "_shovel");
+                           }
+                           break;
+                       case SHAPELLESS:
+                           ShapelessRecipeBuilder.shapeless(entry.getValue().getOutput().get(0).getItem(), entry.getValue().getOutput().get(0).getNb())
+                                   .requires(entry.getValue().getInput().get(0))
+                                   .unlockedBy("unlock", InventoryChangeTrigger.Instance.hasItems(entry.getValue().getInput().get(0)))
+                                   .save(consumer, new ResourceLocation(Main.MOD_ID, entry.getKey()));
+                           break;
+                       case SHAPE:
+                           ShapedRecipeBuilder tmp = ShapedRecipeBuilder.shaped(entry.getValue().getOutput().get(0).getItem(), entry.getValue().getOutput().get(0).getNb());
+                           for (int i = 0; i < entry.getValue().getInput().size(); i++) {
+                               tmp.define((char)(i + '0'), entry.getValue().getInput().get(i));
+                           }
+                           for (String pattern : entry.getValue().getPattern()) {
+                               tmp.pattern(pattern);
+                           }
+
+                           tmp.unlockedBy("unlock", InventoryChangeTrigger.Instance.hasItems(entry.getValue().getUnlock().toArray(new IItemProvider[0])));
+                           break;
+                       case ORE:
+                           furnaceIngot(consumer, entry.getValue().getInput().get(0), entry.getValue().getOutput().get(0).getItem(), entry.getKey());
+                       case SMITH:
+                           if (entry.getValue().getInput().size() > 1) alloyIngot(consumer, entry.getValue().getInput().get(0), entry.getValue().getInput().get(1), entry.getValue().getOutput().get(0).getItem(), entry.getKey());
+                           break;
+                       case BLAST:
+                           CookingRecipeBuilder.blasting(Ingredient.of(entry.getValue().getInput().get(0)), entry.getValue().getOutput().get(0).getItem(), 0.2f, 100)
+                                   .unlockedBy("unlock", InventoryChangeTrigger.Instance.hasItems(entry.getValue().getInput().get(0)))
+                                   .save(consumer, new ResourceLocation(Main.MOD_ID, entry.getKey() + "_blasting"));
+                           break;
+                       case SMELT:
+                           CookingRecipeBuilder.smelting(Ingredient.of(entry.getValue().getInput().get(0)), entry.getValue().getOutput().get(0).getItem(), 0.2f, 200)
+                                   .unlockedBy("unlock", InventoryChangeTrigger.Instance.hasItems(entry.getValue().getInput().get(0)))
+                                   .save(consumer, new ResourceLocation(Main.MOD_ID, entry.getKey() + "_smelting"));
+                           break;
+                       case ARMOR:
+                           if (entry.getValue().getInput().size() > 0 && entry.getValue().getOutput().size() > 3) {
+                               bootsArmor(consumer, entry.getValue().getInput().get(0), entry.getValue().getOutput().get(0).getItem(), entry.getKey() + "chesplate");
+                               chesplateArmor(consumer, entry.getValue().getInput().get(0), entry.getValue().getOutput().get(1).getItem(), entry.getKey() + "chesplate");
+                               helmetArmor(consumer, entry.getValue().getInput().get(0), entry.getValue().getOutput().get(2).getItem(), entry.getKey() + "chesplate");
+                               leggingsArmor(consumer, entry.getValue().getInput().get(0), entry.getValue().getOutput().get(3).getItem(), entry.getKey() + "chesplate");
+                           }
+                           break;
+                       default:
+                           break;
+                   }
+                }
+            }
+        }
     }
     private void furnaceIngot(Consumer<IFinishedRecipe> consumer, IItemProvider input, IItemProvider output, String name) {
         CookingRecipeBuilder.smelting(Ingredient.of(input), output, 0.2f, 200)

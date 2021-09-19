@@ -1,6 +1,7 @@
 package fr.Ethernyx.stellamecanics.init;
 
 import fr.Ethernyx.stellamecanics.Main;
+import fr.Ethernyx.stellamecanics.item.LunariumIngot;
 import fr.Ethernyx.stellamecanics.utils.CustomArmorMaterials;
 import fr.Ethernyx.stellamecanics.utils.CustomItemTiers;
 import fr.Ethernyx.stellamecanics.utils.ModItemGroups;
@@ -14,7 +15,10 @@ public class ModItems {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, Main.MOD_ID);
 
     public static final RegistryObject<Item> SOLARIUM_INGOT = ITEMS.register("solarium_ingot", () -> new Item(new Item.Properties().tab(ModItemGroups.STELLAMECANICS_TAB)));
-    public static final RegistryObject<Item> LUNARIUM_INGOT = ITEMS.register("lunarium_ingot", () -> new Item(new Item.Properties().tab(ModItemGroups.STELLAMECANICS_TAB)));
+  /*  public static final RegistryObject<Item> LUNARIUM_INGOT = ITEMS.register("lunarium_ingot", () -> new Item(new Item.Properties().tab(ModItemGroups.STELLAMECANICS_TAB)));*/
+    public static final  RegistryObject<Item> LUNARIUM_INGOT = ITEMS.register(new LunariumIngot().getData().getId(), LunariumIngot::new);
+
+
     public static final RegistryObject<Item> STELLARIUM_INGOT = ITEMS.register("stellarium_ingot", () -> new Item(new Item.Properties().tab(ModItemGroups.STELLAMECANICS_TAB)));
     public static final RegistryObject<Item> MAGNETITE_RAW = ITEMS.register("magnetite_raw", () -> new Item(new Item.Properties().tab(ModItemGroups.STELLAMECANICS_TAB)));
     public static final RegistryObject<Item> ZIRCONIUM_RAW = ITEMS.register("zirconium_raw", () -> new Item(new Item.Properties().tab(ModItemGroups.STELLAMECANICS_TAB)));
