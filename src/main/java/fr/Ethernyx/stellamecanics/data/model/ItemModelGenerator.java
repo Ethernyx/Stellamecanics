@@ -16,16 +16,18 @@ import java.util.ArrayList;
 
 public class ItemModelGenerator extends ItemModelProvider {
     static class JsonItem {
-        String name;
-        ModelFile type;
+        final String name;
+        final ModelFile type;
 
         JsonItem(String name, ModelFile type) {
             this.name = name;
             this.type = type;
         }
     }
+
     private ArrayList<String> BLOCKS = new ArrayList<>();
     private ArrayList<JsonItem> ITEMS = new ArrayList<>();
+
     public ItemModelGenerator(DataGenerator generator, ExistingFileHelper existingFileHelper) {
         super(generator, Main.MOD_ID, existingFileHelper);
     }
@@ -68,10 +70,51 @@ public class ItemModelGenerator extends ItemModelProvider {
         this.ITEMS.add(new JsonItem("lunarium_ingot", itemGenerated));
         this.ITEMS.add(new JsonItem("stellarium_ingot", itemGenerated));
         this.ITEMS.add(new JsonItem("magnetite_raw", itemGenerated));
+        this.ITEMS.add(new JsonItem("zirconium_raw", itemGenerated));
+        this.ITEMS.add(new JsonItem("iridium_raw", itemGenerated));
         this.ITEMS.add(new JsonItem("zirconium_ingot", itemGenerated));
         this.ITEMS.add(new JsonItem("iridium_ingot", itemGenerated));
         this.ITEMS.add(new JsonItem("zircaloy_ingot", itemGenerated));
         this.ITEMS.add(new JsonItem("osmiridium_ingot", itemGenerated));
+        this.ITEMS.add(new JsonItem("solarium_pickaxe", itemHandeld));
+        this.ITEMS.add(new JsonItem("solarium_axe", itemHandeld));
+        this.ITEMS.add(new JsonItem("solarium_shovel", itemHandeld));
+        this.ITEMS.add(new JsonItem("solarium_sword", itemHandeld));
+       // this.ITEMS.add(new JsonItem("solarium_hoe", itemHandeld));
+        this.ITEMS.add(new JsonItem("lunarium_pickaxe", itemHandeld));
+        this.ITEMS.add(new JsonItem("lunarium_axe", itemHandeld));
+        this.ITEMS.add(new JsonItem("lunarium_shovel", itemHandeld));
+        this.ITEMS.add(new JsonItem("lunarium_sword", itemHandeld));
+        // this.ITEMS.add(new JsonItem("lunarium_hoe", itemHandeld));
+        this.ITEMS.add(new JsonItem("stellarium_pickaxe", itemHandeld));
+        this.ITEMS.add(new JsonItem("stellarium_axe", itemHandeld));
+        this.ITEMS.add(new JsonItem("stellarium_shovel", itemHandeld));
+        this.ITEMS.add(new JsonItem("stellarium_sword", itemHandeld));
+        // this.ITEMS.add(new JsonItem("stellarium_hoe", itemHandeld));
+        this.ITEMS.add(new JsonItem("zirconium_pickaxe", itemHandeld));
+        this.ITEMS.add(new JsonItem("zirconium_axe", itemHandeld));
+        this.ITEMS.add(new JsonItem("zirconium_shovel", itemHandeld));
+        this.ITEMS.add(new JsonItem("zirconium_sword", itemHandeld));
+        this.ITEMS.add(new JsonItem("zirconium_hoe", itemHandeld));
+        this.ITEMS.add(new JsonItem("zirconium_boots", itemGenerated));
+        this.ITEMS.add(new JsonItem("zirconium_leggings", itemGenerated));
+        this.ITEMS.add(new JsonItem("zirconium_chestplate", itemGenerated));
+        this.ITEMS.add(new JsonItem("zirconium_helmet", itemGenerated));
+        this.ITEMS.add(new JsonItem("iridium_pickaxe", itemHandeld));
+        this.ITEMS.add(new JsonItem("iridium_axe", itemHandeld));
+        this.ITEMS.add(new JsonItem("iridium_shovel", itemHandeld));
+        this.ITEMS.add(new JsonItem("iridium_sword", itemHandeld));
+        // this.ITEMS.add(new JsonItem("iridium_hoe", itemHandeld));
+        this.ITEMS.add(new JsonItem("zircaloy_pickaxe", itemHandeld));
+        this.ITEMS.add(new JsonItem("zircaloy_axe", itemHandeld));
+        this.ITEMS.add(new JsonItem("zircaloy_shovel", itemHandeld));
+        this.ITEMS.add(new JsonItem("zircaloy_sword", itemHandeld));
+        // this.ITEMS.add(new JsonItem("zircaloy_hoe", itemHandeld));
+        this.ITEMS.add(new JsonItem("osmiridium_pickaxe", itemHandeld));
+        this.ITEMS.add(new JsonItem("osmiridium_axe", itemHandeld));
+        this.ITEMS.add(new JsonItem("osmiridium_shovel", itemHandeld));
+        this.ITEMS.add(new JsonItem("osmiridium_sword", itemHandeld));
+        // this.ITEMS.add(new JsonItem("osmiridium_hoe", itemHandeld));
     }
 
 }
