@@ -44,22 +44,19 @@ public class LootTableGenerator extends LootTableProvider {
     static class BlockLootTable extends BlockLootTables {
         @Override
         protected void addTables() {
-            this.add(ModBlocks.MAGNETITE_ORE.get(), (p_218568_0_) -> {
-                return createOreDrop(p_218568_0_, ModItems.MAGNETITE_RAW.get());
-            });
-            this.add(ModBlocks.ZIRCONIUM_ORE.get(), (p_218568_0_) -> {
-                return createOreDrop(p_218568_0_, ModItems.ZIRCONIUM_RAW.get());
-            });
-            this.add(ModBlocks.IRIDIUM_ORE.get(), (p_218568_0_) -> {
-                return createOreDrop(p_218568_0_, ModItems.IRIDIUM_RAW.get());
-            });
-            dropSelf(ModBlocks.SOLARIUM_BLOCK.get());
-            dropSelf(ModBlocks.LUNARIUM_BLOCK.get());
-            dropSelf(ModBlocks.STELLARIUM_BLOCK.get());
-            dropSelf(ModBlocks.ZIRCONIUM_BLOCK.get());
-            dropSelf(ModBlocks.IRIDIUM_BLOCK.get());
-            dropSelf(ModBlocks.ZIRCALOY_BLOCK.get());
-            dropSelf(ModBlocks.OSMIRIDIUM_BLOCK.get());
+            this.add(ModBlocks.MAGNETITE_ORE.get(), (p_218568_0_) -> createOreDrop(p_218568_0_, ModItems.MAGNETITE_RAW.get()));
+            this.add(ModBlocks.ZIRCONIUM_ORE.get(), (p_218568_0_) -> createOreDrop(p_218568_0_, ModItems.ZIRCONIUM_RAW.get()));
+            this.add(ModBlocks.IRIDIUM_ORE.get(), (p_218568_0_) -> createOreDrop(p_218568_0_, ModItems.IRIDIUM_RAW.get()));
+            this.add(ModBlocks.SOLARIUM_ORE.get(), (p_218568_0_) -> createOreDrop(p_218568_0_, ModItems.SOLARIUM_RAW.get()));
+            this.add(ModBlocks.LUNARIUM_ORE.get(), (p_218568_0_) -> createOreDrop(p_218568_0_, ModItems.LUNARIUM_RAW.get()));
+            this.dropSelf(ModBlocks.SOLARIUM_BLOCK.get());
+            this.dropSelf(ModBlocks.LUNARIUM_BLOCK.get());
+            this.dropSelf(ModBlocks.STELLARIUM_BLOCK.get());
+            this.dropSelf(ModBlocks.ZIRCONIUM_BLOCK.get());
+            this.dropSelf(ModBlocks.IRIDIUM_BLOCK.get());
+            this.dropSelf(ModBlocks.ZIRCALOY_BLOCK.get());
+            this.dropSelf(ModBlocks.OSMIRIDIUM_BLOCK.get());
+            this.dropSelf(ModBlocks.FORGE_STELLAIRE.get());
         }
 
         @Override

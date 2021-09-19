@@ -1,8 +1,7 @@
 package fr.Ethernyx.stellamecanics;
 
-import fr.Ethernyx.stellamecanics.init.ModBlocks;
-import fr.Ethernyx.stellamecanics.init.ModFluids;
-import fr.Ethernyx.stellamecanics.init.ModItems;
+import fr.Ethernyx.stellamecanics.init.*;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -21,14 +20,14 @@ public class Main {
 
         ModItems.ITEMS.register(bus);
         ModBlocks.BLOCKS.register(bus);
-        //ModTileEntities.TILE_ENTITIES.register(bus);
+        ModTileEntities.TILE_ENTITIES.register(bus);
         //ModEnchantments.ENCHANTMENTS.register(bus);
         ModFluids.FLUIDS.register(bus);
     }
     private void setup(FMLCommonSetupEvent e) {
-        /*ModFeatures features = new ModFeatures();
+        ModGenerationWorld features = new ModGenerationWorld();
         features.init();
-        MinecraftForge.EVENT_BUS.register(features);*/
+        MinecraftForge.EVENT_BUS.register(features);
     }
 
     private void clientSetup(FMLClientSetupEvent e) {

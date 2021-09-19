@@ -5,6 +5,7 @@ import fr.Ethernyx.stellamecanics.init.ModBlocks;
 import fr.Ethernyx.stellamecanics.init.ModItems;
 import net.minecraft.advancements.criterion.InventoryChangeTrigger;
 import net.minecraft.data.*;
+import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.IItemProvider;
@@ -24,10 +25,14 @@ public class RecipeGenerator extends RecipeProvider {
 
         /* *** craft solarium ingot *** */
         blockToIngot(consumer, ModBlocks.SOLARIUM_BLOCK.get(), ModItems.SOLARIUM_INGOT.get(), "solarium_ingot");
+        furnaceIngot(consumer, ModItems.SOLARIUM_RAW.get(), ModItems.SOLARIUM_INGOT.get(), "raw_to_solarium_ingot");
+        furnaceIngot(consumer, ModBlocks.SOLARIUM_ORE.get(), ModItems.SOLARIUM_INGOT.get(), "ore_to_solarium_ingot");
         /* *** craft solarium block *** */
         ingotToBlock(consumer, ModItems.SOLARIUM_INGOT.get(), ModBlocks.SOLARIUM_BLOCK.get(), "solarium_block");
         /* *** craft lunarium ingot *** */
         blockToIngot(consumer, ModBlocks.LUNARIUM_BLOCK.get(), ModItems.LUNARIUM_INGOT.get(), "lunarium_ingot");
+        furnaceIngot(consumer, ModItems.LUNARIUM_RAW.get(), ModItems.LUNARIUM_INGOT.get(), "raw_to_lunarium_ingot");
+        furnaceIngot(consumer, ModBlocks.LUNARIUM_ORE.get(), ModItems.LUNARIUM_INGOT.get(), "ore_to_lunarium_ingot");
         /* *** craft lunarium block *** */
         ingotToBlock(consumer, ModItems.LUNARIUM_INGOT.get(), ModBlocks.LUNARIUM_BLOCK.get(), "lunarium_block");
         /* *** craft stellarium ingot *** */
@@ -74,6 +79,7 @@ public class RecipeGenerator extends RecipeProvider {
         ingotToBlock(consumer, ModItems.ZIRCALOY_INGOT.get(), ModBlocks.ZIRCALOY_BLOCK.get(), "zircaloy_block");
         /* *** craft osmiridium ingot *** */
         blockToIngot(consumer, ModBlocks.OSMIRIDIUM_BLOCK.get(), ModItems.OSMIRIDIUM_INGOT.get(), "osmiridium_ingot");
+        alloyIngot(consumer, ModItems.SOLARIUM_INGOT.get(), ModItems.IRIDIUM_INGOT.get(), ModItems.OSMIRIDIUM_INGOT.get(), "alloy_osmiridium_ingot");
         /* *** craft osmiridium block *** */
         ingotToBlock(consumer, ModItems.OSMIRIDIUM_INGOT.get(), ModBlocks.OSMIRIDIUM_BLOCK.get(), "osmiridium_block");
 
@@ -136,6 +142,7 @@ public class RecipeGenerator extends RecipeProvider {
         axeTool(consumer, ModItems.OSMIRIDIUM_INGOT.get(), ModItems.OSMIRIDIUM_AXE.get(), "osmiridium_axe");
         hoeTool(consumer, ModItems.OSMIRIDIUM_INGOT.get(), ModItems.OSMIRIDIUM_HOE.get(), "osmiridium_hoe");
         swordTool(consumer, ModItems.OSMIRIDIUM_INGOT.get(), ModItems.OSMIRIDIUM_SWORD.get(), "osmiridium_sword");
+
     }
     private void furnaceIngot(Consumer<IFinishedRecipe> consumer, IItemProvider input, IItemProvider output, String name) {
         CookingRecipeBuilder.smelting(Ingredient.of(input), output, 0.2f, 200)
@@ -254,4 +261,9 @@ public class RecipeGenerator extends RecipeProvider {
                 .save(consumer, new ResourceLocation(Main.MOD_ID, name));
     }
 
+    private void alloyIngot(Consumer<IFinishedRecipe> consumer, IItemProvider input1, IItemProvider input2, IItemProvider output, String name) {
+        SmithingRecipeBuilder.smithing(Ingredient.of(input1), Ingredient.of(input2), (Item) output)
+                .unlocks("unlock", InventoryChangeTrigger.Instance.hasItems(input1, input2))
+                .save(consumer, new ResourceLocation(Main.MOD_ID, name));
+    }
 }

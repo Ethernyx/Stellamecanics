@@ -19,6 +19,8 @@ public class ModItems {
     public static final RegistryObject<Item> MAGNETITE_RAW = ITEMS.register("magnetite_raw", () -> new Item(new Item.Properties().tab(ModItemGroups.STELLAMECANICS_TAB)));
     public static final RegistryObject<Item> ZIRCONIUM_RAW = ITEMS.register("zirconium_raw", () -> new Item(new Item.Properties().tab(ModItemGroups.STELLAMECANICS_TAB)));
     public static final RegistryObject<Item> IRIDIUM_RAW = ITEMS.register("iridium_raw", () -> new Item(new Item.Properties().tab(ModItemGroups.STELLAMECANICS_TAB)));
+    public static final RegistryObject<Item> SOLARIUM_RAW = ITEMS.register("solarium_raw", () -> new Item(new Item.Properties().tab(ModItemGroups.STELLAMECANICS_TAB)));
+    public static final RegistryObject<Item> LUNARIUM_RAW = ITEMS.register("lunarium_raw", () -> new Item(new Item.Properties().tab(ModItemGroups.STELLAMECANICS_TAB)));
     public static final RegistryObject<Item> ZIRCONIUM_INGOT = ITEMS.register("zirconium_ingot", () -> new Item(new Item.Properties().tab(ModItemGroups.STELLAMECANICS_TAB)));
     public static final RegistryObject<Item> IRIDIUM_INGOT = ITEMS.register("iridium_ingot", () -> new Item(new Item.Properties().tab(ModItemGroups.STELLAMECANICS_TAB)));
     public static final RegistryObject<Item> ZIRCALOY_INGOT = ITEMS.register("zircaloy_ingot", () -> new Item(new Item.Properties().tab(ModItemGroups.STELLAMECANICS_TAB)));
@@ -87,6 +89,4 @@ public class ModItems {
     public static final RegistryObject<Item> OSMIRIDIUM_AXE = ITEMS.register("osmiridium_axe", () -> new AxeItem(CustomItemTiers.OSMIRIDIUM, 0, -2.4f, new Item.Properties().stacksTo(1).tab(ModItemGroups.STELLAMECANICS_TAB)));
     public static final RegistryObject<Item> OSMIRIDIUM_SWORD = ITEMS.register("osmiridium_sword", () -> new SwordItem(CustomItemTiers.OSMIRIDIUM, 0, -2.4f, new Item.Properties().stacksTo(1).tab(ModItemGroups.STELLAMECANICS_TAB)));
     public static final RegistryObject<Item> OSMIRIDIUM_HOE = ITEMS.register("osmiridium_hoe", () -> new HoeItem(CustomItemTiers.OSMIRIDIUM, 0, -2.4f, new Item.Properties().stacksTo(1).tab(ModItemGroups.STELLAMECANICS_TAB)));
-
-
 }

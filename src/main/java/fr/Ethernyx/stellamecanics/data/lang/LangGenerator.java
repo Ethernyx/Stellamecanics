@@ -52,6 +52,8 @@ public class LangGenerator extends LanguageProvider {
         this.tab.add(new LangKey(ModItems.MAGNETITE_RAW.get(), "Magnetite brute", "Magnetite Raw"));
         this.tab.add(new LangKey(ModItems.ZIRCONIUM_RAW.get(), "Zirconium brut", "Zirconium Raw"));
         this.tab.add(new LangKey(ModItems.IRIDIUM_RAW.get(), "Iridium brut", "Iridium Raw"));
+        this.tab.add(new LangKey(ModItems.SOLARIUM_RAW.get(), "Solarium brut", "Solarium Raw"));
+        this.tab.add(new LangKey(ModItems.LUNARIUM_RAW.get(), "Lunarium brut", "Lunarium Raw"));
         this.tab.add(new LangKey(ModItems.ZIRCONIUM_INGOT.get(), "Lingot de zirconium", "Zirconium Ingot"));
         this.tab.add(new LangKey(ModItems.IRIDIUM_INGOT.get(), "Lingot d'iridium", "Iridium Ingot"));
         this.tab.add(new LangKey(ModItems.ZIRCALOY_INGOT.get(), "Lingot de zircaloy", "Zircaloy Ingot"));
@@ -123,6 +125,8 @@ public class LangGenerator extends LanguageProvider {
         this.tab.add(new LangKey(ModBlocks.MAGNETITE_ORE.get(), "Minerai de magnetite", "Magnetite Ore"));
         this.tab.add(new LangKey(ModBlocks.ZIRCONIUM_ORE.get(), "Minerai de zirconium", "Zirconium Ore"));
         this.tab.add(new LangKey(ModBlocks.IRIDIUM_ORE.get(), "Minerai d'iridium", "Iridium Ore"));
+        this.tab.add(new LangKey(ModBlocks.SOLARIUM_ORE.get(), "Minerai de solarium", "Solarium Ore"));
+        this.tab.add(new LangKey(ModBlocks.LUNARIUM_ORE.get(), "Minerai de lunarium", "Lunarium Ore"));
         this.tab.add(new LangKey(ModBlocks.ZIRCONIUM_BLOCK.get(), "Bloc de zirconium", "Zirconium Block"));
         this.tab.add(new LangKey(ModBlocks.IRIDIUM_BLOCK.get(), "Bloc d'iridium", "Iridium Block"));
         this.tab.add(new LangKey(ModBlocks.ZIRCALOY_BLOCK.get(), "Bloc de zircaloy", "Zircaloy Block"));

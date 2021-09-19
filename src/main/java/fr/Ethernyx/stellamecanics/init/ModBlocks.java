@@ -1,6 +1,7 @@
 package fr.Ethernyx.stellamecanics.init;
 
 import fr.Ethernyx.stellamecanics.Main;
+import fr.Ethernyx.stellamecanics.block.ForgeStellaireBlock;
 import fr.Ethernyx.stellamecanics.utils.ModItemGroups;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
@@ -22,6 +23,8 @@ public class ModBlocks {
     public static final RegistryObject<Block> MAGNETITE_ORE = createBlock("magnetite_ore", () -> new Block(AbstractBlock.Properties.of(Material.STONE).strength(3f, 15f).harvestTool(ToolType.PICKAXE).harvestLevel(2).requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> ZIRCONIUM_ORE = createBlock("zirconium_ore", () -> new Block(AbstractBlock.Properties.of(Material.STONE).strength(3f, 15f).harvestTool(ToolType.PICKAXE).harvestLevel(2).requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> IRIDIUM_ORE = createBlock("iridium_ore", () -> new Block(AbstractBlock.Properties.of(Material.STONE).strength(3f, 15f).harvestTool(ToolType.PICKAXE).harvestLevel(2).requiresCorrectToolForDrops()));
+    public static final RegistryObject<Block> SOLARIUM_ORE = createBlock("solarium_ore", () -> new Block(AbstractBlock.Properties.of(Material.STONE).strength(3f, 15f).harvestTool(ToolType.PICKAXE).harvestLevel(2).requiresCorrectToolForDrops()));
+    public static final RegistryObject<Block> LUNARIUM_ORE = createBlock("lunarium_ore", () -> new Block(AbstractBlock.Properties.of(Material.STONE).strength(3f, 15f).harvestTool(ToolType.PICKAXE).harvestLevel(2).requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> ZIRCONIUM_BLOCK = createBlock("zirconium_block", () -> new Block(AbstractBlock.Properties.of(Material.STONE).strength(3f, 15f).harvestTool(ToolType.PICKAXE)));
     public static final RegistryObject<Block> IRIDIUM_BLOCK = createBlock("iridium_block", () -> new Block(AbstractBlock.Properties.of(Material.STONE).strength(3f, 15f).harvestTool(ToolType.PICKAXE)));
     public static final RegistryObject<Block> ZIRCALOY_BLOCK = createBlock("zircaloy_block", () -> new Block(AbstractBlock.Properties.of(Material.STONE).strength(3f, 15f).harvestTool(ToolType.PICKAXE)));
@@ -29,6 +32,7 @@ public class ModBlocks {
     public static final RegistryObject<Block> SOLARIUM_BLOCK = createBlock("solarium_block", () -> new Block(AbstractBlock.Properties.of(Material.STONE).strength(3f, 15f).harvestTool(ToolType.PICKAXE)));
     public static final RegistryObject<Block> LUNARIUM_BLOCK = createBlock("lunarium_block", () -> new Block(AbstractBlock.Properties.of(Material.STONE).strength(3f, 15f).harvestTool(ToolType.PICKAXE)));
     public static final RegistryObject<Block> STELLARIUM_BLOCK = createBlock("stellarium_block", () -> new Block(AbstractBlock.Properties.of(Material.STONE).strength(3f, 15f).harvestTool(ToolType.PICKAXE)));
+    public static final RegistryObject<Block> FORGE_STELLAIRE = createBlock("forge_stellaire", ForgeStellaireBlock::new);
 
     public static RegistryObject<Block> createBlock(String name, Supplier<? extends Block> supplier) {
         RegistryObject<Block> block = BLOCKS.register(name, supplier);

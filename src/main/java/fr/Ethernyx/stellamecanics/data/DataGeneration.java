@@ -19,14 +19,17 @@ public class DataGeneration {
     @SubscribeEvent
     public static void gatherData(final GatherDataEvent e) {
         DataGenerator generator = e.getGenerator();
-        if (e.includeServer()) {
+        if (e.includeClient())
+        {
             ExistingFileHelper existingFileHelper = e.getExistingFileHelper();
             generator.addProvider(new BlockStatesGenerator(generator, Main.MOD_ID, existingFileHelper));
             generator.addProvider(new ItemModelGenerator(generator, existingFileHelper));
-            generator.addProvider(new LootTableGenerator(generator));
-            generator.addProvider(new RecipeGenerator(generator));
             generator.addProvider(new LangGenerator(generator, Main.MOD_ID, "en_us"));
             generator.addProvider(new LangGenerator(generator, Main.MOD_ID, "fr_fr"));
+        }
+        if (e.includeServer()) {
+            generator.addProvider(new LootTableGenerator(generator));
+            generator.addProvider(new RecipeGenerator(generator));
         }
     }
 }
