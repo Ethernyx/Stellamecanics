@@ -1,7 +1,7 @@
 package fr.Ethernyx.stellamecanics.init;
 
 import fr.Ethernyx.stellamecanics.Main;
-import fr.Ethernyx.stellamecanics.item.LunariumIngot;
+import fr.Ethernyx.stellamecanics.item.*;
 import fr.Ethernyx.stellamecanics.utils.CustomArmorMaterials;
 import fr.Ethernyx.stellamecanics.utils.CustomItemTiers;
 import fr.Ethernyx.stellamecanics.utils.ModItemGroups;
@@ -14,21 +14,27 @@ import net.minecraftforge.registries.ForgeRegistries;
 public class ModItems {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, Main.MOD_ID);
 
-    public static final RegistryObject<Item> SOLARIUM_INGOT = ITEMS.register("solarium_ingot", () -> new Item(new Item.Properties().tab(ModItemGroups.STELLAMECANICS_TAB)));
+   /* public static final RegistryObject<Item> SOLARIUM_INGOT = ITEMS.register("solarium_ingot", () -> new Item(new Item.Properties().tab(ModItemGroups.STELLAMECANICS_TAB)));*/
+    public static final RegistryObject<Item> SOLARIUM_INGOT = ITEMS.register(new SolariumIngot().getId(), SolariumIngot::new);
   /*  public static final RegistryObject<Item> LUNARIUM_INGOT = ITEMS.register("lunarium_ingot", () -> new Item(new Item.Properties().tab(ModItemGroups.STELLAMECANICS_TAB)));*/
     public static final  RegistryObject<Item> LUNARIUM_INGOT = ITEMS.register(new LunariumIngot().getId(), LunariumIngot::new);
 
 
-    public static final RegistryObject<Item> STELLARIUM_INGOT = ITEMS.register("stellarium_ingot", () -> new Item(new Item.Properties().tab(ModItemGroups.STELLAMECANICS_TAB)));
+   /* public static final RegistryObject<Item> STELLARIUM_INGOT = ITEMS.register("stellarium_ingot", () -> new Item(new Item.Properties().tab(ModItemGroups.STELLAMECANICS_TAB)));*/
+    public static final RegistryObject<Item> STELLARIUM_INGOT = ITEMS.register(new StellariumIngot().getId(), StellariumIngot::new);
     public static final RegistryObject<Item> MAGNETITE_RAW = ITEMS.register("magnetite_raw", () -> new Item(new Item.Properties().tab(ModItemGroups.STELLAMECANICS_TAB)));
     public static final RegistryObject<Item> ZIRCONIUM_RAW = ITEMS.register("zirconium_raw", () -> new Item(new Item.Properties().tab(ModItemGroups.STELLAMECANICS_TAB)));
     public static final RegistryObject<Item> IRIDIUM_RAW = ITEMS.register("iridium_raw", () -> new Item(new Item.Properties().tab(ModItemGroups.STELLAMECANICS_TAB)));
     public static final RegistryObject<Item> SOLARIUM_RAW = ITEMS.register("solarium_raw", () -> new Item(new Item.Properties().tab(ModItemGroups.STELLAMECANICS_TAB)));
     public static final RegistryObject<Item> LUNARIUM_RAW = ITEMS.register("lunarium_raw", () -> new Item(new Item.Properties().tab(ModItemGroups.STELLAMECANICS_TAB)));
-    public static final RegistryObject<Item> ZIRCONIUM_INGOT = ITEMS.register("zirconium_ingot", () -> new Item(new Item.Properties().tab(ModItemGroups.STELLAMECANICS_TAB)));
-    public static final RegistryObject<Item> IRIDIUM_INGOT = ITEMS.register("iridium_ingot", () -> new Item(new Item.Properties().tab(ModItemGroups.STELLAMECANICS_TAB)));
-    public static final RegistryObject<Item> ZIRCALOY_INGOT = ITEMS.register("zircaloy_ingot", () -> new Item(new Item.Properties().tab(ModItemGroups.STELLAMECANICS_TAB)));
-    public static final RegistryObject<Item> OSMIRIDIUM_INGOT = ITEMS.register("osmiridium_ingot", () -> new Item(new Item.Properties().tab(ModItemGroups.STELLAMECANICS_TAB)));
+   /* public static final RegistryObject<Item> ZIRCONIUM_INGOT = ITEMS.register("zirconium_ingot", () -> new Item(new Item.Properties().tab(ModItemGroups.STELLAMECANICS_TAB)));*/
+    public static final RegistryObject<Item> ZIRCONIUM_INGOT = ITEMS.register(new ZirconiumIngot().getId(), ZirconiumIngot::new);
+   /* public static final RegistryObject<Item> IRIDIUM_INGOT = ITEMS.register("iridium_ingot", () -> new Item(new Item.Properties().tab(ModItemGroups.STELLAMECANICS_TAB)));*/
+    public static final RegistryObject<Item> IRIDIUM_INGOT = ITEMS.register(new IridiumIngot().getId(), IridiumIngot::new);
+    /*public static final RegistryObject<Item> ZIRCALOY_INGOT = ITEMS.register("zircaloy_ingot", () -> new Item(new Item.Properties().tab(ModItemGroups.STELLAMECANICS_TAB)));*/
+    public static final RegistryObject<Item> ZIRCALOY_INGOT = ITEMS.register(new ZircaloyIngot().getId(), ZircaloyIngot::new);
+   /* public static final RegistryObject<Item> OSMIRIDIUM_INGOT = ITEMS.register("osmiridium_ingot", () -> new Item(new Item.Properties().tab(ModItemGroups.STELLAMECANICS_TAB)));*/
+    public static final RegistryObject<Item> OSMIRIDIUM_INGOT = ITEMS.register(new OsmiridiumIngot().getId(), OsmiridiumIngot::new);
 
     public static final RegistryObject<Item> SOLARIUM_HELMET = ITEMS.register("solarium_helmet", () -> new ArmorItem(CustomArmorMaterials.SOLARIUM_ARMOR, EquipmentSlotType.HEAD, new Item.Properties().tab(ModItemGroups.STELLAMECANICS_TAB)));
     public static final RegistryObject<Item> SOLARIUM_CHESTPLATE = ITEMS.register("solarium_chestplate", () -> new ArmorItem(CustomArmorMaterials.SOLARIUM_ARMOR, EquipmentSlotType.CHEST, new Item.Properties().tab(ModItemGroups.STELLAMECANICS_TAB)));

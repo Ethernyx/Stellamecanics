@@ -63,18 +63,18 @@ public class LangGenerator extends LanguageProvider {
     }
 
     private void mapTranslation() {
-        this.tab.add(new LangKey(ModItems.SOLARIUM_INGOT.get(), "Lingot de solarium", "Solarium Ingot"));
+     //   this.tab.add(new LangKey(ModItems.SOLARIUM_INGOT.get(), "Lingot de solarium", "Solarium Ingot"));
      //   this.tab.add(new LangKey(ModItems.LUNARIUM_INGOT.get(), "Lingot de lunarium", "Lunarium Ingot"));
-        this.tab.add(new LangKey(ModItems.STELLARIUM_INGOT.get(), "Lingot de stellarium", "Stellarium Ingot"));
+     //   this.tab.add(new LangKey(ModItems.STELLARIUM_INGOT.get(), "Lingot de stellarium", "Stellarium Ingot"));
         this.tab.add(new LangKey(ModItems.MAGNETITE_RAW.get(), "Magnetite brute", "Magnetite Raw"));
         this.tab.add(new LangKey(ModItems.ZIRCONIUM_RAW.get(), "Zirconium brut", "Zirconium Raw"));
         this.tab.add(new LangKey(ModItems.IRIDIUM_RAW.get(), "Iridium brut", "Iridium Raw"));
         this.tab.add(new LangKey(ModItems.SOLARIUM_RAW.get(), "Solarium brut", "Solarium Raw"));
         this.tab.add(new LangKey(ModItems.LUNARIUM_RAW.get(), "Lunarium brut", "Lunarium Raw"));
-        this.tab.add(new LangKey(ModItems.ZIRCONIUM_INGOT.get(), "Lingot de zirconium", "Zirconium Ingot"));
-        this.tab.add(new LangKey(ModItems.IRIDIUM_INGOT.get(), "Lingot d'iridium", "Iridium Ingot"));
-        this.tab.add(new LangKey(ModItems.ZIRCALOY_INGOT.get(), "Lingot de zircaloy", "Zircaloy Ingot"));
-        this.tab.add(new LangKey(ModItems.OSMIRIDIUM_INGOT.get(), "Lingot d'osmiridium", "Osmiridium Ingot"));
+      //  this.tab.add(new LangKey(ModItems.ZIRCONIUM_INGOT.get(), "Lingot de zirconium", "Zirconium Ingot"));
+      //  this.tab.add(new LangKey(ModItems.IRIDIUM_INGOT.get(), "Lingot d'iridium", "Iridium Ingot"));
+      //  this.tab.add(new LangKey(ModItems.ZIRCALOY_INGOT.get(), "Lingot de zircaloy", "Zircaloy Ingot"));
+      //  this.tab.add(new LangKey(ModItems.OSMIRIDIUM_INGOT.get(), "Lingot d'osmiridium", "Osmiridium Ingot"));
         this.tab.add(new LangKey(ModItems.SOLARIUM_HELMET.get(), "Casque en solarium", "Solarium Helmet"));
         this.tab.add(new LangKey(ModItems.SOLARIUM_CHESTPLATE.get(), "Plastron en solarium", "Solarium Chesplate"));
         this.tab.add(new LangKey(ModItems.SOLARIUM_LEGGINGS.get(), "Pantalon en solarium", "Solarium Leggings"));

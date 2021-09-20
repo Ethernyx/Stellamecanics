@@ -85,16 +85,16 @@ public class ItemModelGenerator extends ItemModelProvider {
         final ModelFile itemGenerated = getExistingFile(mcLoc("item/generated"));
         final ModelFile itemHandeld = getExistingFile(mcLoc("item/handheld"));
 
-        this.ITEMS.add(new JsonItem("solarium_ingot", itemGenerated));
+       // this.ITEMS.add(new JsonItem("solarium_ingot", itemGenerated));
        // this.ITEMS.add(new JsonItem("lunarium_ingot", itemGenerated));
-        this.ITEMS.add(new JsonItem("stellarium_ingot", itemGenerated));
+       // this.ITEMS.add(new JsonItem("stellarium_ingot", itemGenerated));
         this.ITEMS.add(new JsonItem("magnetite_raw", itemGenerated));
         this.ITEMS.add(new JsonItem("zirconium_raw", itemGenerated));
         this.ITEMS.add(new JsonItem("iridium_raw", itemGenerated));
-        this.ITEMS.add(new JsonItem("zirconium_ingot", itemGenerated));
-        this.ITEMS.add(new JsonItem("iridium_ingot", itemGenerated));
-        this.ITEMS.add(new JsonItem("zircaloy_ingot", itemGenerated));
-        this.ITEMS.add(new JsonItem("osmiridium_ingot", itemGenerated));
+     //   this.ITEMS.add(new JsonItem("zirconium_ingot", itemGenerated));
+     //   this.ITEMS.add(new JsonItem("iridium_ingot", itemGenerated));
+    //    this.ITEMS.add(new JsonItem("zircaloy_ingot", itemGenerated));
+    //    this.ITEMS.add(new JsonItem("osmiridium_ingot", itemGenerated));
         this.ITEMS.add(new JsonItem("solarium_pickaxe", itemHandeld));
         this.ITEMS.add(new JsonItem("solarium_axe", itemHandeld));
         this.ITEMS.add(new JsonItem("solarium_shovel", itemHandeld));
