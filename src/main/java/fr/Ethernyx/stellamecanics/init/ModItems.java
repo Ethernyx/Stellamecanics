@@ -16,7 +16,7 @@ public class ModItems {
 
     public static final RegistryObject<Item> SOLARIUM_INGOT = ITEMS.register("solarium_ingot", () -> new Item(new Item.Properties().tab(ModItemGroups.STELLAMECANICS_TAB)));
   /*  public static final RegistryObject<Item> LUNARIUM_INGOT = ITEMS.register("lunarium_ingot", () -> new Item(new Item.Properties().tab(ModItemGroups.STELLAMECANICS_TAB)));*/
-    public static final  RegistryObject<Item> LUNARIUM_INGOT = ITEMS.register(new LunariumIngot().getData().getId(), LunariumIngot::new);
+    public static final  RegistryObject<Item> LUNARIUM_INGOT = ITEMS.register(new LunariumIngot().getId(), LunariumIngot::new);
 
 
     public static final RegistryObject<Item> STELLARIUM_INGOT = ITEMS.register("stellarium_ingot", () -> new Item(new Item.Properties().tab(ModItemGroups.STELLAMECANICS_TAB)));

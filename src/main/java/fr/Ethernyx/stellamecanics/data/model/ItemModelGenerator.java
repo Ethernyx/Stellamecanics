@@ -14,6 +14,7 @@ import net.minecraftforge.fml.common.Mod;
 
 import javax.print.DocFlavor;
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class ItemModelGenerator extends ItemModelProvider {
@@ -29,9 +30,11 @@ public class ItemModelGenerator extends ItemModelProvider {
 
     private ArrayList<String> BLOCKS = new ArrayList<>();
     private ArrayList<JsonItem> ITEMS = new ArrayList<>();
+    private final List<AidInfoGenerator> aids;
 
-    public ItemModelGenerator(DataGenerator generator, ExistingFileHelper existingFileHelper) {
+    public ItemModelGenerator(DataGenerator generator, ExistingFileHelper existingFileHelper, List<AidInfoGenerator> aids) {
         super(generator, Main.MOD_ID, existingFileHelper);
+        this.aids = aids;
     }
 
     @Override
@@ -46,7 +49,7 @@ public class ItemModelGenerator extends ItemModelProvider {
 
         for (JsonItem item : this.ITEMS) builder(item.type, item.name);
 
-        for (AidInfoGenerator model : new SerealizerGenerator().getDatas()) {
+        for (AidInfoGenerator model : this.aids) {
             switch (model.getType()) {
                 case ITEM:
                 case ENCHANTMENT:

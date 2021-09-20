@@ -2,7 +2,7 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "stellamecanics:lunarium_pickaxe"
+      "stellamecanics:lunarium_tool_pickaxe"
     ]
   },
   "criteria": {
@@ -19,7 +19,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "stellamecanics:lunarium_pickaxe"
+        "recipe": "stellamecanics:lunarium_tool_pickaxe"
       }
     }
   },

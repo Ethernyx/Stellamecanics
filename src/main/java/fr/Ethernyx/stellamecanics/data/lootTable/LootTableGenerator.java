@@ -4,6 +4,7 @@ import com.google.common.collect.ImmutableList;
 import com.mojang.datafixers.util.Pair;
 import fr.Ethernyx.stellamecanics.init.ModBlocks;
 import fr.Ethernyx.stellamecanics.init.ModItems;
+import fr.Ethernyx.stellamecanics.utils.generator.AidInfoGenerator;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.data.DataGenerator;
@@ -25,8 +26,11 @@ import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 public class LootTableGenerator extends LootTableProvider {
-    public LootTableGenerator(DataGenerator p_i50789_1_) {
+    private final List<AidInfoGenerator> aids;
+
+    public LootTableGenerator(DataGenerator p_i50789_1_, List<AidInfoGenerator> aids) {
         super(p_i50789_1_);
+        this.aids = aids;
     }
 
     @Override

@@ -1,7 +1,6 @@
 package fr.Ethernyx.stellamecanics.utils.generator;
 
 import fr.Ethernyx.stellamecanics.item.LunariumIngot;
-import net.minecraft.util.IItemProvider;
 
 import java.util.ArrayList;
 import java.util.List;

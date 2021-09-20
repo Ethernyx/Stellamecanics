@@ -24,15 +24,17 @@ public class LunariumIngot extends Item {
 
     public LunariumIngot() {
         super(new Item.Properties().tab(ModItemGroups.STELLAMECANICS_TAB));
+    }
 
+    public AidInfoGenerator getData(){
         this.data = new AidInfoGenerator(this.id, this.modelType, this.translate, InstanceType.ITEM);
         // block
         this.data.recipe.put("lunarium_block",
                 new RecipeBuilder(RecipeType.SHAPE,
                         new ArrayList<>(Collections.singletonList(ModItems.LUNARIUM_INGOT.get())),
-                new ArrayList<>(Collections.singletonList(new RecipeIngredient(ModBlocks.LUNARIUM_BLOCK.get(), 1))),
-                new ArrayList<>(Arrays.asList("000", "000", "000")),
-                new ArrayList<>(Collections.singletonList(ModBlocks.LUNARIUM_BLOCK.get()))));
+                        new ArrayList<>(Collections.singletonList(new RecipeIngredient(ModBlocks.LUNARIUM_BLOCK.get(), 1))),
+                        new ArrayList<>(Arrays.asList("000", "000", "000")),
+                        new ArrayList<>(Collections.singletonList(ModBlocks.LUNARIUM_BLOCK.get()))));
         // tools
         this.data.recipe.put("lunarium_tool", new RecipeBuilder(RecipeType.TOOLS,
                 new ArrayList<>(Collections.singletonList(ModItems.LUNARIUM_INGOT.get())),
@@ -47,11 +49,11 @@ public class LunariumIngot extends Item {
                         new RecipeIngredient(ModItems.LUNARIUM_CHESTPLATE.get(), 1),
                         new RecipeIngredient(ModItems.LUNARIUM_HELMET.get(), 1),
                         new RecipeIngredient(ModItems.LUNARIUM_LEGGINGS.get(), 1)))));
-
+        return this.data;
     }
 
-    public AidInfoGenerator getData(){
-        return this.data;
+    public String getId() {
+        return this.id;
     }
 
 

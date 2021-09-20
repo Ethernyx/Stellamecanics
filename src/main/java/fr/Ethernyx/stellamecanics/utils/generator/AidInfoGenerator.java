@@ -12,7 +12,7 @@ public class AidInfoGenerator {
     protected final Map<String, String> translate;
     public Map<String, RecipeBuilder> recipe = new HashMap<>();
 
-    public AidInfoGenerator(String id, String modelType, Map<String, String> translate, InstanceType type ) {
+    public AidInfoGenerator(String id, String modelType, Map<String, String> translate, InstanceType type) {
         this.id = id;
         this.modelType = modelType;
         this.translate = translate;

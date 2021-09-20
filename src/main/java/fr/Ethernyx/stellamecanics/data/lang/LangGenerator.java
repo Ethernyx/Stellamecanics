@@ -4,7 +4,6 @@ import fr.Ethernyx.stellamecanics.Main;
 import fr.Ethernyx.stellamecanics.init.ModBlocks;
 import fr.Ethernyx.stellamecanics.init.ModItems;
 import fr.Ethernyx.stellamecanics.utils.generator.AidInfoGenerator;
-import fr.Ethernyx.stellamecanics.utils.generator.SerealizerGenerator;
 import net.minecraft.block.Block;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.enchantment.Enchantment;
@@ -13,13 +12,12 @@ import net.minecraft.util.IItemProvider;
 import net.minecraftforge.common.data.LanguageProvider;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class LangGenerator extends LanguageProvider {
 
     private ArrayList<LangKey> tab = new ArrayList<>();
-    public LangGenerator(DataGenerator gen, String modid, String locale) {
-        super(gen, modid, locale);
-    }
+    private final List<AidInfoGenerator> aids;
 
     static class LangKey {
         public final String fr;
@@ -33,6 +31,11 @@ public class LangGenerator extends LanguageProvider {
         }
     }
 
+    public LangGenerator(DataGenerator gen, String modid, String locale, List<AidInfoGenerator> aids) {
+        super(gen, modid, locale);
+        this.aids = aids;
+    }
+
     @Override
     protected void addTranslations() {
         if (this.tab.size() == 0) this.mapTranslation();
@@ -43,13 +46,13 @@ public class LangGenerator extends LanguageProvider {
             if (langKey.item instanceof Enchantment) add((Enchantment) langKey.item, (this.getName().contains("fr_fr") ? langKey.fr : langKey.en));
         }
 
-        for (AidInfoGenerator trans : new SerealizerGenerator().getDatas()){
-            switch (trans.getType()) {
+        for (AidInfoGenerator item : this.aids){
+            switch (item.getType()) {
                 case ITEM:
-                    add("item." + Main.MOD_ID + "." + trans.getId(), trans.getTranslate(this.getName()));
+                    add("item." + Main.MOD_ID + "." + item.getId(), item.getTranslate(this.getName().substring("Languages: ".length())));
                     break;
                 case BLOCK:
-                    add("block." + Main.MOD_ID + "." + trans.getId(), trans.getTranslate(this.getName()));
+                    add("block." + Main.MOD_ID + "." + item.getId(), item.getTranslate(this.getName().substring("Languages: ".length())));
                     break;
                 default:
                     break;
@@ -61,7 +64,7 @@ public class LangGenerator extends LanguageProvider {
 
     private void mapTranslation() {
         this.tab.add(new LangKey(ModItems.SOLARIUM_INGOT.get(), "Lingot de solarium", "Solarium Ingot"));
-        this.tab.add(new LangKey(ModItems.LUNARIUM_INGOT.get(), "Lingot de lunarium", "Lunarium Ingot"));
+     //   this.tab.add(new LangKey(ModItems.LUNARIUM_INGOT.get(), "Lingot de lunarium", "Lunarium Ingot"));
         this.tab.add(new LangKey(ModItems.STELLARIUM_INGOT.get(), "Lingot de stellarium", "Stellarium Ingot"));
         this.tab.add(new LangKey(ModItems.MAGNETITE_RAW.get(), "Magnetite brute", "Magnetite Raw"));
         this.tab.add(new LangKey(ModItems.ZIRCONIUM_RAW.get(), "Zirconium brut", "Zirconium Raw"));

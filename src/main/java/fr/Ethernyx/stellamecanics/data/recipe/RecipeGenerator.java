@@ -14,13 +14,16 @@ import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.IItemProvider;
 import net.minecraft.util.ResourceLocation;
 
+import java.util.List;
 import java.util.Map;
 import java.util.function.Consumer;
 
 public class RecipeGenerator extends RecipeProvider {
+    private final List<AidInfoGenerator> aids;
 
-    public RecipeGenerator(DataGenerator p_i48262_1_) {
+    public RecipeGenerator(DataGenerator p_i48262_1_, List<AidInfoGenerator> aids) {
         super(p_i48262_1_);
+        this.aids = aids;
     }
 
 
@@ -38,7 +41,7 @@ public class RecipeGenerator extends RecipeProvider {
         furnaceIngot(consumer, ModItems.LUNARIUM_RAW.get(), ModItems.LUNARIUM_INGOT.get(), "raw_to_lunarium_ingot");
         furnaceIngot(consumer, ModBlocks.LUNARIUM_ORE.get(), ModItems.LUNARIUM_INGOT.get(), "ore_to_lunarium_ingot");
         /* *** craft lunarium block *** */
-        ingotToBlock(consumer, ModItems.LUNARIUM_INGOT.get(), ModBlocks.LUNARIUM_BLOCK.get(), "lunarium_block");
+   //     ingotToBlock(consumer, ModItems.LUNARIUM_INGOT.get(), ModBlocks.LUNARIUM_BLOCK.get(), "lunarium_block");
         /* *** craft stellarium ingot *** */
         blockToIngot(consumer, ModBlocks.STELLARIUM_BLOCK.get(), ModItems.STELLARIUM_INGOT.get(), "stellarium_ingot");
         /* *** craft stellarium block *** */
@@ -49,10 +52,10 @@ public class RecipeGenerator extends RecipeProvider {
         leggingsArmor(consumer, ModItems.SOLARIUM_INGOT.get(), ModItems.SOLARIUM_LEGGINGS.get(), "solarium_leggings");
         bootsArmor(consumer, ModItems.SOLARIUM_INGOT.get(), ModItems.SOLARIUM_BOOTS.get(), "solarium_boots");
         /* *** craft lunarium armor *** */
-        helmetArmor(consumer, ModItems.LUNARIUM_INGOT.get(), ModItems.LUNARIUM_HELMET.get(), "lunarium_helmet");
+    /*    helmetArmor(consumer, ModItems.LUNARIUM_INGOT.get(), ModItems.LUNARIUM_HELMET.get(), "lunarium_helmet");
         chesplateArmor(consumer, ModItems.LUNARIUM_INGOT.get(), ModItems.LUNARIUM_CHESTPLATE.get(), "lunarium_chesplate");
         leggingsArmor(consumer, ModItems.LUNARIUM_INGOT.get(), ModItems.LUNARIUM_LEGGINGS.get(), "lunarium_leggings");
-        bootsArmor(consumer, ModItems.LUNARIUM_INGOT.get(), ModItems.LUNARIUM_BOOTS.get(), "lunarium_boots");
+        bootsArmor(consumer, ModItems.LUNARIUM_INGOT.get(), ModItems.LUNARIUM_BOOTS.get(), "lunarium_boots");*/
         /* *** craft solarium tools *** */
         pickaxeTool(consumer, ModItems.SOLARIUM_INGOT.get(), ModItems.SOLARIUM_PICKAXE.get(), "solarium_pickaxe");
         shovelTool(consumer, ModItems.SOLARIUM_INGOT.get(), ModItems.SOLARIUM_SHOVEL.get(), "solarium_shovel");
@@ -60,11 +63,11 @@ public class RecipeGenerator extends RecipeProvider {
         hoeTool(consumer, ModItems.SOLARIUM_INGOT.get(), ModItems.SOLARIUM_HOE.get(), "solarium_hoe");
         swordTool(consumer, ModItems.SOLARIUM_INGOT.get(), ModItems.SOLARIUM_SWORD.get(), "solarium_sword");
         /* *** craft lunarium tools *** */
-        pickaxeTool(consumer, ModItems.LUNARIUM_INGOT.get(), ModItems.LUNARIUM_PICKAXE.get(), "lunarium_pickaxe");
+  /*      pickaxeTool(consumer, ModItems.LUNARIUM_INGOT.get(), ModItems.LUNARIUM_PICKAXE.get(), "lunarium_pickaxe");
         shovelTool(consumer, ModItems.LUNARIUM_INGOT.get(), ModItems.LUNARIUM_SHOVEL.get(), "lunarium_shovel");
         axeTool(consumer, ModItems.LUNARIUM_INGOT.get(), ModItems.LUNARIUM_AXE.get(), "lunarium_axe");
         hoeTool(consumer, ModItems.LUNARIUM_INGOT.get(), ModItems.LUNARIUM_HOE.get(), "lunarium_hoe");
-        swordTool(consumer, ModItems.LUNARIUM_INGOT.get(), ModItems.LUNARIUM_SWORD.get(), "lunarium_sword");
+        swordTool(consumer, ModItems.LUNARIUM_INGOT.get(), ModItems.LUNARIUM_SWORD.get(), "lunarium_sword");*/
         /* *** craft iridium ingot *** */
         blockToIngot(consumer, ModBlocks.IRIDIUM_BLOCK.get(), ModItems.IRIDIUM_INGOT.get(), "iridium_ingot");
         furnaceIngot(consumer, ModBlocks.IRIDIUM_ORE.get(), ModItems.IRIDIUM_INGOT.get(), "ore_to_iridium_ingot");
@@ -146,17 +149,17 @@ public class RecipeGenerator extends RecipeProvider {
         axeTool(consumer, ModItems.OSMIRIDIUM_INGOT.get(), ModItems.OSMIRIDIUM_AXE.get(), "osmiridium_axe");
         hoeTool(consumer, ModItems.OSMIRIDIUM_INGOT.get(), ModItems.OSMIRIDIUM_HOE.get(), "osmiridium_hoe");
         swordTool(consumer, ModItems.OSMIRIDIUM_INGOT.get(), ModItems.OSMIRIDIUM_SWORD.get(), "osmiridium_sword");
-
-        for (AidInfoGenerator item : new SerealizerGenerator().getDatas()) {
+        for (AidInfoGenerator item : this.aids) {
             if (item.getRecipe().size() > 0) {
                 for (Map.Entry<String, RecipeBuilder> entry : item.getRecipe().entrySet()) {
                    switch (entry.getValue().getType()) {
                        case TOOLS:
                            if (entry.getValue().getInput().size() > 0 && entry.getValue().getOutput().size() > 3) {
                                axeTool(consumer, entry.getValue().getInput().get(0), entry.getValue().getOutput().get(0).getItem(), entry.getKey() + "_axe");
-                               axeTool(consumer, entry.getValue().getInput().get(0), entry.getValue().getOutput().get(1).getItem(), entry.getKey() + "_hoe");
+                               hoeTool(consumer, entry.getValue().getInput().get(0), entry.getValue().getOutput().get(1).getItem(), entry.getKey() + "_hoe");
                                pickaxeTool(consumer, entry.getValue().getInput().get(0), entry.getValue().getOutput().get(2).getItem(), entry.getKey() + "_pickaxe");
-                               pickaxeTool(consumer, entry.getValue().getInput().get(0), entry.getValue().getOutput().get(3).getItem(), entry.getKey() + "_shovel");
+                               shovelTool(consumer, entry.getValue().getInput().get(0), entry.getValue().getOutput().get(3).getItem(), entry.getKey() + "_shovel");
+                               swordTool(consumer, entry.getValue().getInput().get(0), entry.getValue().getOutput().get(3).getItem(), entry.getKey() + "_sword");
                            }
                            break;
                        case SHAPELLESS:
@@ -167,6 +170,7 @@ public class RecipeGenerator extends RecipeProvider {
                            break;
                        case SHAPE:
                            ShapedRecipeBuilder tmp = ShapedRecipeBuilder.shaped(entry.getValue().getOutput().get(0).getItem(), entry.getValue().getOutput().get(0).getNb());
+
                            for (int i = 0; i < entry.getValue().getInput().size(); i++) {
                                tmp.define((char)(i + '0'), entry.getValue().getInput().get(i));
                            }
@@ -175,6 +179,7 @@ public class RecipeGenerator extends RecipeProvider {
                            }
 
                            tmp.unlockedBy("unlock", InventoryChangeTrigger.Instance.hasItems(entry.getValue().getUnlock().toArray(new IItemProvider[0])));
+                           tmp.save(consumer, new ResourceLocation(Main.MOD_ID, entry.getKey()));
                            break;
                        case ORE:
                            furnaceIngot(consumer, entry.getValue().getInput().get(0), entry.getValue().getOutput().get(0).getItem(), entry.getKey());
@@ -193,10 +198,10 @@ public class RecipeGenerator extends RecipeProvider {
                            break;
                        case ARMOR:
                            if (entry.getValue().getInput().size() > 0 && entry.getValue().getOutput().size() > 3) {
-                               bootsArmor(consumer, entry.getValue().getInput().get(0), entry.getValue().getOutput().get(0).getItem(), entry.getKey() + "chesplate");
-                               chesplateArmor(consumer, entry.getValue().getInput().get(0), entry.getValue().getOutput().get(1).getItem(), entry.getKey() + "chesplate");
-                               helmetArmor(consumer, entry.getValue().getInput().get(0), entry.getValue().getOutput().get(2).getItem(), entry.getKey() + "chesplate");
-                               leggingsArmor(consumer, entry.getValue().getInput().get(0), entry.getValue().getOutput().get(3).getItem(), entry.getKey() + "chesplate");
+                               bootsArmor(consumer, entry.getValue().getInput().get(0), entry.getValue().getOutput().get(0).getItem(), entry.getKey() + "_boots");
+                               chesplateArmor(consumer, entry.getValue().getInput().get(0), entry.getValue().getOutput().get(1).getItem(), entry.getKey() + "_chesplate");
+                               helmetArmor(consumer, entry.getValue().getInput().get(0), entry.getValue().getOutput().get(2).getItem(), entry.getKey() + "_helmet");
+                               leggingsArmor(consumer, entry.getValue().getInput().get(0), entry.getValue().getOutput().get(3).getItem(), entry.getKey() + "_leggings");
                            }
                            break;
                        default:
