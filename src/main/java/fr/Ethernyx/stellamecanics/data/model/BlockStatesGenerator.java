@@ -23,5 +23,7 @@ public class BlockStatesGenerator extends BlockStateProvider {
         simpleBlock(ModBlocks.MAGNETITE_ORE.get());
         simpleBlock(ModBlocks.ZIRCONIUM_ORE.get());
         simpleBlock(ModBlocks.IRIDIUM_ORE.get());
+        simpleBlock(ModBlocks.SOLARIUM_ORE.get());
+        simpleBlock(ModBlocks.LUNARIUM_ORE.get());
     }
 }
