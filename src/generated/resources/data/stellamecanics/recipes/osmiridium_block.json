@@ -1,12 +1,12 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "III",
-    "III",
-    "III"
+    "000",
+    "000",
+    "000"
   ],
   "key": {
-    "I": {
+    "0": {
       "item": "stellamecanics:osmiridium_ingot"
     }
   },
