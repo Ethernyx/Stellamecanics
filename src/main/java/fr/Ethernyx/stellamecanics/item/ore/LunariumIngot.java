@@ -1,4 +1,4 @@
-package fr.Ethernyx.stellamecanics.item;
+package fr.Ethernyx.stellamecanics.item.ore;
 
 import fr.Ethernyx.stellamecanics.init.ModBlocks;
 import fr.Ethernyx.stellamecanics.init.ModItems;
@@ -41,7 +41,8 @@ public class LunariumIngot extends Item {
                 new ArrayList<>(Arrays.asList(new RecipeIngredient(ModItems.LUNARIUM_AXE.get(), 1),
                         new RecipeIngredient(ModItems.LUNARIUM_HOE.get(), 1),
                         new RecipeIngredient(ModItems.LUNARIUM_PICKAXE.get(), 1),
-                        new RecipeIngredient(ModItems.LUNARIUM_SHOVEL.get(), 1)))));
+                        new RecipeIngredient(ModItems.LUNARIUM_SHOVEL.get(), 1),
+                        new RecipeIngredient(ModItems.LUNARIUM_SWORD.get(), 1)))));
         // armures
         this.data.recipe.put("lunarium_armor", new RecipeBuilder(RecipeType.ARMOR,
                 new ArrayList<>(Collections.singletonList(ModItems.LUNARIUM_INGOT.get())),

@@ -1,4 +1,4 @@
-package fr.Ethernyx.stellamecanics.item;
+package fr.Ethernyx.stellamecanics.item.ore;
 
 import fr.Ethernyx.stellamecanics.init.ModBlocks;
 import fr.Ethernyx.stellamecanics.init.ModItems;
