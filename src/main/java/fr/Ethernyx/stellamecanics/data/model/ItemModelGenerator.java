@@ -34,8 +34,6 @@ public class ItemModelGenerator extends ItemModelProvider {
                     builder(getExistingFile(mcLoc(item.getModelType())), item.getId());
                     break;
                 case BLOCK:
-                    System.out.print(item.getId()+ "\n");
-                    System.out.print(modLoc("block/" + item.getId()) + "\n");
                     withExistingParent(item.getId(), modLoc("block/" + item.getId()));
                     break;
                 default:
