@@ -5,20 +5,20 @@ import fr.Ethernyx.stellamecanics.block.*;
 import fr.Ethernyx.stellamecanics.block.ore.*;
 import fr.Ethernyx.stellamecanics.block.tileentity.ForgeStellaireBlock;
 import fr.Ethernyx.stellamecanics.utils.ModItemGroups;
-import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
-import net.minecraftforge.common.ToolType;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.function.Supplier;
 
 public class ModBlocks {
 
+    public static Map<String, RegistryObject<Block>> MAP_BLOCKS = new HashMap<>();
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, Main.MOD_ID);
 
     public static final RegistryObject<Block> MAGNETITE_ORE = createBlock(new MagnetiteOre().getId(), MagnetiteOre::new);
@@ -36,8 +36,10 @@ public class ModBlocks {
     public static final RegistryObject<Block> FORGE_STELLAIRE = createBlock("forge_stellaire", ForgeStellaireBlock::new);
 
     public static RegistryObject<Block> createBlock(String name, Supplier<? extends Block> supplier) {
+
         RegistryObject<Block> block = BLOCKS.register(name, supplier);
         ModItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties().tab(ModItemGroups.STELLAMECANICS_TAB)));
+        MAP_BLOCKS.put(name, block);
         return block;
     }
 }

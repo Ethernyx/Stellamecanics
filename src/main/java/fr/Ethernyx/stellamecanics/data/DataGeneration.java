@@ -28,7 +28,7 @@ public class DataGeneration {
         if (e.includeClient())
         {
             ExistingFileHelper existingFileHelper = e.getExistingFileHelper();
-            generator.addProvider(new BlockStatesGenerator(generator, Main.MOD_ID, existingFileHelper));
+            generator.addProvider(new BlockStatesGenerator(generator, Main.MOD_ID, existingFileHelper, aids));
             generator.addProvider(new ItemModelGenerator(generator, existingFileHelper, aids));
             generator.addProvider(new LangGenerator(generator, Main.MOD_ID, "en_us", aids));
             generator.addProvider(new LangGenerator(generator, Main.MOD_ID, "fr_fr", aids));
