@@ -4,8 +4,10 @@ import fr.Ethernyx.stellamecanics.Main;
 import fr.Ethernyx.stellamecanics.init.ModBlocks;
 import fr.Ethernyx.stellamecanics.init.ModItems;
 import fr.Ethernyx.stellamecanics.utils.generator.AidInfoGenerator;
+import fr.Ethernyx.stellamecanics.utils.generator.InstanceType;
 import fr.Ethernyx.stellamecanics.utils.recipe.RecipeBuilder;
 import fr.Ethernyx.stellamecanics.utils.generator.SerealizerGenerator;
+import fr.Ethernyx.stellamecanics.utils.recipe.RecipeIngredient;
 import net.minecraft.advancements.criterion.InventoryChangeTrigger;
 import net.minecraft.data.*;
 import net.minecraft.item.Item;
@@ -14,6 +16,7 @@ import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.IItemProvider;
 import net.minecraft.util.ResourceLocation;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Consumer;
@@ -26,6 +29,19 @@ public class RecipeGenerator extends RecipeProvider {
         this.aids = aids;
     }
 
+    public IItemProvider getBlockOrItem(RecipeIngredient ingredient) {
+        if (ingredient.getType() == InstanceType.BLOCK) return ModBlocks.MAP_BLOCKS.get(ingredient.getItem()).get();
+        else if (ingredient.getType() == InstanceType.ITEM) return ModItems.MAP_ITEMS.get(ingredient.getItem()).get();
+        return null;
+    }
+
+    public List<IItemProvider> getListBlocksOrItems(List<RecipeIngredient> list) {
+        List<IItemProvider> tmp = new ArrayList<>();
+        for (RecipeIngredient ingredient : list) {
+            tmp.add(getBlockOrItem(ingredient));
+        }
+        return tmp;
+    }
 
     @Override
     protected void buildShapelessRecipes(Consumer<IFinishedRecipe> consumer) {
@@ -35,54 +51,54 @@ public class RecipeGenerator extends RecipeProvider {
                    switch (entry.getValue().getType()) {
                        case TOOLS:
                            if (entry.getValue().getInput().size() > 0 && entry.getValue().getOutput().size() > 4) {
-                               axeTool(consumer, entry.getValue().getInput().get(0), entry.getValue().getOutput().get(0).getItem(), entry.getKey() + "_axe");
-                               hoeTool(consumer, entry.getValue().getInput().get(0), entry.getValue().getOutput().get(1).getItem(), entry.getKey() + "_hoe");
-                               pickaxeTool(consumer, entry.getValue().getInput().get(0), entry.getValue().getOutput().get(2).getItem(), entry.getKey() + "_pickaxe");
-                               shovelTool(consumer, entry.getValue().getInput().get(0), entry.getValue().getOutput().get(3).getItem(), entry.getKey() + "_shovel");
-                               swordTool(consumer, entry.getValue().getInput().get(0), entry.getValue().getOutput().get(4).getItem(), entry.getKey() + "_sword");
+                               axeTool(consumer, getBlockOrItem(entry.getValue().getInput().get(0)), getBlockOrItem(entry.getValue().getOutput().get(0)), entry.getKey() + "_axe");
+                               hoeTool(consumer, getBlockOrItem(entry.getValue().getInput().get(0)), getBlockOrItem(entry.getValue().getOutput().get(1)), entry.getKey() + "_hoe");
+                               pickaxeTool(consumer, getBlockOrItem(entry.getValue().getInput().get(0)), getBlockOrItem(entry.getValue().getOutput().get(2)), entry.getKey() + "_pickaxe");
+                               shovelTool(consumer, getBlockOrItem(entry.getValue().getInput().get(0)), getBlockOrItem(entry.getValue().getOutput().get(3)), entry.getKey() + "_shovel");
+                               swordTool(consumer, getBlockOrItem(entry.getValue().getInput().get(0)), getBlockOrItem(entry.getValue().getOutput().get(4)), entry.getKey() + "_sword");
                            }
                            break;
                        case SHAPELLESS:
-                           ShapelessRecipeBuilder.shapeless(entry.getValue().getOutput().get(0).getItem(), entry.getValue().getOutput().get(0).getNb())
-                                   .requires(entry.getValue().getInput().get(0))
-                                   .unlockedBy("unlock", InventoryChangeTrigger.Instance.hasItems(entry.getValue().getInput().get(0)))
+                           ShapelessRecipeBuilder.shapeless(getBlockOrItem(entry.getValue().getOutput().get(0)), entry.getValue().getOutput().get(0).getNb())
+                                   .requires(getBlockOrItem(entry.getValue().getInput().get(0)))
+                                   .unlockedBy("unlock", InventoryChangeTrigger.Instance.hasItems(getBlockOrItem(entry.getValue().getInput().get(0))))
                                    .save(consumer, new ResourceLocation(Main.MOD_ID, entry.getKey()));
                            break;
                        case SHAPE:
-                           ShapedRecipeBuilder tmp = ShapedRecipeBuilder.shaped(entry.getValue().getOutput().get(0).getItem(), entry.getValue().getOutput().get(0).getNb());
+                           ShapedRecipeBuilder tmp = ShapedRecipeBuilder.shaped(getBlockOrItem(entry.getValue().getOutput().get(0)), entry.getValue().getOutput().get(0).getNb());
 
                            for (int i = 0; i < entry.getValue().getInput().size(); i++) {
-                               tmp.define((char)(i + '0'), entry.getValue().getInput().get(i));
+                               tmp.define((char)(i + '0'), getBlockOrItem(entry.getValue().getInput().get(i)));
                            }
                            for (String pattern : entry.getValue().getPattern()) {
                                tmp.pattern(pattern);
                            }
 
-                           tmp.unlockedBy("unlock", InventoryChangeTrigger.Instance.hasItems(entry.getValue().getUnlock().toArray(new IItemProvider[0])));
+                           tmp.unlockedBy("unlock", InventoryChangeTrigger.Instance.hasItems(getListBlocksOrItems(entry.getValue().getUnlock()).toArray(new IItemProvider[0])));
                            tmp.save(consumer, new ResourceLocation(Main.MOD_ID, entry.getKey()));
                            break;
                        case ORE:
-                           furnaceIngot(consumer, entry.getValue().getInput().get(0), entry.getValue().getOutput().get(0).getItem(), entry.getKey());
+                           furnaceIngot(consumer, getBlockOrItem(entry.getValue().getInput().get(0)), getBlockOrItem(entry.getValue().getOutput().get(0)), entry.getKey());
                            break;
                        case SMITH:
-                           if (entry.getValue().getInput().size() > 1) alloyIngot(consumer, entry.getValue().getInput().get(0), entry.getValue().getInput().get(1), entry.getValue().getOutput().get(0).getItem(), entry.getKey());
+                           if (entry.getValue().getInput().size() > 1) alloyIngot(consumer, getBlockOrItem(entry.getValue().getInput().get(0)), getBlockOrItem(entry.getValue().getInput().get(1)), getBlockOrItem(entry.getValue().getOutput().get(0)), entry.getKey());
                            break;
                        case BLAST:
-                           CookingRecipeBuilder.blasting(Ingredient.of(entry.getValue().getInput().get(0)), entry.getValue().getOutput().get(0).getItem(), 0.2f, 100)
-                                   .unlockedBy("unlock", InventoryChangeTrigger.Instance.hasItems(entry.getValue().getInput().get(0)))
+                           CookingRecipeBuilder.blasting(Ingredient.of(getBlockOrItem(entry.getValue().getInput().get(0))), getBlockOrItem(entry.getValue().getOutput().get(0)), 0.2f, 100)
+                                   .unlockedBy("unlock", InventoryChangeTrigger.Instance.hasItems(getBlockOrItem(entry.getValue().getInput().get(0))))
                                    .save(consumer, new ResourceLocation(Main.MOD_ID, entry.getKey() + "_blasting"));
                            break;
                        case SMELT:
-                           CookingRecipeBuilder.smelting(Ingredient.of(entry.getValue().getInput().get(0)), entry.getValue().getOutput().get(0).getItem(), 0.2f, 200)
-                                   .unlockedBy("unlock", InventoryChangeTrigger.Instance.hasItems(entry.getValue().getInput().get(0)))
+                           CookingRecipeBuilder.smelting(Ingredient.of(getBlockOrItem(entry.getValue().getInput().get(0))), getBlockOrItem(entry.getValue().getOutput().get(0)), 0.2f, 200)
+                                   .unlockedBy("unlock", InventoryChangeTrigger.Instance.hasItems(getBlockOrItem(entry.getValue().getInput().get(0))))
                                    .save(consumer, new ResourceLocation(Main.MOD_ID, entry.getKey() + "_smelting"));
                            break;
                        case ARMOR:
                            if (entry.getValue().getInput().size() > 0 && entry.getValue().getOutput().size() > 3) {
-                               bootsArmor(consumer, entry.getValue().getInput().get(0), entry.getValue().getOutput().get(0).getItem(), entry.getKey() + "_boots");
-                               chesplateArmor(consumer, entry.getValue().getInput().get(0), entry.getValue().getOutput().get(1).getItem(), entry.getKey() + "_chesplate");
-                               helmetArmor(consumer, entry.getValue().getInput().get(0), entry.getValue().getOutput().get(2).getItem(), entry.getKey() + "_helmet");
-                               leggingsArmor(consumer, entry.getValue().getInput().get(0), entry.getValue().getOutput().get(3).getItem(), entry.getKey() + "_leggings");
+                               bootsArmor(consumer, getBlockOrItem(entry.getValue().getInput().get(0)), getBlockOrItem(entry.getValue().getOutput().get(0)), entry.getKey() + "_boots");
+                               chesplateArmor(consumer, getBlockOrItem(entry.getValue().getInput().get(0)), getBlockOrItem(entry.getValue().getOutput().get(1)), entry.getKey() + "_chesplate");
+                               helmetArmor(consumer, getBlockOrItem(entry.getValue().getInput().get(0)), getBlockOrItem(entry.getValue().getOutput().get(2)), entry.getKey() + "_helmet");
+                               leggingsArmor(consumer, getBlockOrItem(entry.getValue().getInput().get(0)), getBlockOrItem(entry.getValue().getOutput().get(3)), entry.getKey() + "_leggings");
                            }
                            break;
                        default:

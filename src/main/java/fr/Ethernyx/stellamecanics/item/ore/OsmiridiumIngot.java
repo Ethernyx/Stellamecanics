@@ -30,25 +30,25 @@ public class OsmiridiumIngot extends Item {
         // block
         this.data.recipe.put("osmiridium_block",
                 new RecipeBuilder(RecipeType.SHAPE,
-                        new ArrayList<>(Collections.singletonList(ModItems.OSMIRIDIUM_INGOT.get())),
-                        new ArrayList<>(Collections.singletonList(new RecipeIngredient(ModBlocks.OSMIRIDIUM_BLOCK.get(), 1))),
+                        new ArrayList<>(Collections.singletonList(new RecipeIngredient("osmiridium_ingot", InstanceType.ITEM, 1))),
+                        new ArrayList<>(Collections.singletonList(new RecipeIngredient("osmiridium_block", InstanceType.BLOCK, 1))),
                         new ArrayList<>(Arrays.asList("000", "000", "000")),
-                        new ArrayList<>(Collections.singletonList(ModItems.OSMIRIDIUM_INGOT.get()))));
+                        new ArrayList<>(Collections.singletonList(new RecipeIngredient("osmiridium_ingot", InstanceType.ITEM, 1)))));
         // tools
         this.data.recipe.put("osmiridium_tool", new RecipeBuilder(RecipeType.TOOLS,
-                new ArrayList<>(Collections.singletonList(ModItems.OSMIRIDIUM_INGOT.get())),
-                new ArrayList<>(Arrays.asList(new RecipeIngredient(ModItems.OSMIRIDIUM_AXE.get(), 1),
-                        new RecipeIngredient(ModItems.OSMIRIDIUM_HOE.get(), 1),
-                        new RecipeIngredient(ModItems.OSMIRIDIUM_PICKAXE.get(), 1),
-                        new RecipeIngredient(ModItems.OSMIRIDIUM_SHOVEL.get(), 1),
-                        new RecipeIngredient(ModItems.OSMIRIDIUM_SWORD.get(), 1)))));
+                new ArrayList<>(Collections.singletonList(new RecipeIngredient("osmiridium_ingot", InstanceType.ITEM, 1))),
+                new ArrayList<>(Arrays.asList(new RecipeIngredient("osmiridium_axe", InstanceType.ITEM, 1),
+                        new RecipeIngredient("osmiridium_hoe", InstanceType.ITEM, 1),
+                        new RecipeIngredient("osmiridium_pickaxe", InstanceType.ITEM, 1),
+                        new RecipeIngredient("osmiridium_shovel", InstanceType.ITEM, 1),
+                        new RecipeIngredient("osmiridium_sword", InstanceType.ITEM, 1)))));
         // armures
         this.data.recipe.put("osmiridium_armor", new RecipeBuilder(RecipeType.ARMOR,
-                new ArrayList<>(Collections.singletonList(ModItems.OSMIRIDIUM_INGOT.get())),
-                new ArrayList<>(Arrays.asList(new RecipeIngredient(ModItems.OSMIRIDIUM_BOOTS.get(), 1),
-                        new RecipeIngredient(ModItems.OSMIRIDIUM_CHESTPLATE.get(), 1),
-                        new RecipeIngredient(ModItems.OSMIRIDIUM_HELMET.get(), 1),
-                        new RecipeIngredient(ModItems.OSMIRIDIUM_LEGGINGS.get(), 1)))));
+                new ArrayList<>(Collections.singletonList(new RecipeIngredient("osmiridium_ingot", InstanceType.ITEM, 1))),
+                new ArrayList<>(Arrays.asList(new RecipeIngredient("osmiridium_boots", InstanceType.ITEM, 1),
+                        new RecipeIngredient("osmiridium_chestplate", InstanceType.ITEM, 1),
+                        new RecipeIngredient("osmiridium_helmet", InstanceType.ITEM, 1),
+                        new RecipeIngredient("osmiridium_leggings", InstanceType.ITEM, 1)))));
         return this.data;
     }
 

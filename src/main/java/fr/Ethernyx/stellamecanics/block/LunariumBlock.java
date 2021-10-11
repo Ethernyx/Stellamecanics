@@ -34,8 +34,8 @@ public class LunariumBlock extends Block {
         this.data = new AidInfoGenerator(this.id, this.modelType, this.translate, InstanceType.BLOCK);
 
         this.data.recipe.put("lunarium_ingot", new RecipeBuilder(RecipeType.SHAPELLESS,
-                new ArrayList<>(Collections.singletonList(ModBlocks.LUNARIUM_BLOCK.get())),
-                new ArrayList<>(Collections.singletonList(new RecipeIngredient(ModItems.LUNARIUM_INGOT.get(), 9)))));
+                new ArrayList<>(Collections.singletonList(new RecipeIngredient("lunarium_block", InstanceType.BLOCK, 1))),
+                new ArrayList<>(Collections.singletonList(new RecipeIngredient("lunarium_ingot", InstanceType.ITEM, 9)))));
         return this.data;
     }
 

@@ -31,8 +31,8 @@ public class LunariumRaw extends Item {
 
         // furnace
         this.data.recipe.put("raw_to_lunarium_ingot", new RecipeBuilder(RecipeType.ORE,
-                new ArrayList<>(Collections.singletonList(ModItems.LUNARIUM_RAW.get())),
-                new ArrayList<>(Collections.singletonList(new RecipeIngredient(ModItems.LUNARIUM_INGOT.get(), 1)))));
+                new ArrayList<>(Collections.singletonList(new RecipeIngredient("lunarium_raw", InstanceType.ITEM, 1))),
+                new ArrayList<>(Collections.singletonList(new RecipeIngredient("lunarium_ingot", InstanceType.ITEM, 1)))));
         return this.data;
     }
     public String getId() {

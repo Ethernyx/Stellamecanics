@@ -34,8 +34,8 @@ public class SolariumBlock extends Block {
         this.data = new AidInfoGenerator(this.id, this.modelType, this.translate, InstanceType.BLOCK);
 
         this.data.recipe.put("solarium_ingot", new RecipeBuilder(RecipeType.SHAPELLESS,
-                new ArrayList<>(Collections.singletonList(ModBlocks.SOLARIUM_BLOCK.get())),
-                new ArrayList<>(Collections.singletonList(new RecipeIngredient(ModItems.SOLARIUM_INGOT.get(), 9)))));
+                new ArrayList<>(Collections.singletonList(new RecipeIngredient("solarium_block", InstanceType.BLOCK, 1))),
+                new ArrayList<>(Collections.singletonList(new RecipeIngredient("solarium_ingot", InstanceType.ITEM, 9)))));
         return this.data;
     }
 

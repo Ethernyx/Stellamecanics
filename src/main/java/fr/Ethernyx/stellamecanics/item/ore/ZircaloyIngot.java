@@ -30,25 +30,25 @@ public class ZircaloyIngot extends Item {
         // block
         this.data.recipe.put("zircaloy_block",
                 new RecipeBuilder(RecipeType.SHAPE,
-                        new ArrayList<>(Collections.singletonList(ModItems.ZIRCALOY_INGOT.get())),
-                        new ArrayList<>(Collections.singletonList(new RecipeIngredient(ModBlocks.ZIRCALOY_BLOCK.get(), 1))),
+                        new ArrayList<>(Collections.singletonList(new RecipeIngredient("zircaloy_ingot", InstanceType.ITEM, 1))),
+                        new ArrayList<>(Collections.singletonList(new RecipeIngredient("zircaloy_block", InstanceType.BLOCK, 1))),
                         new ArrayList<>(Arrays.asList("000", "000", "000")),
-                        new ArrayList<>(Collections.singletonList(ModItems.ZIRCALOY_INGOT.get()))));
+                        new ArrayList<>(Collections.singletonList(new RecipeIngredient("zircaloy_ingot", InstanceType.ITEM, 1)))));
         // tools
         this.data.recipe.put("zircaloy_tool", new RecipeBuilder(RecipeType.TOOLS,
-                new ArrayList<>(Collections.singletonList(ModItems.ZIRCALOY_INGOT.get())),
-                new ArrayList<>(Arrays.asList(new RecipeIngredient(ModItems.ZIRCALOY_AXE.get(), 1),
-                        new RecipeIngredient(ModItems.ZIRCALOY_HOE.get(), 1),
-                        new RecipeIngredient(ModItems.ZIRCALOY_PICKAXE.get(), 1),
-                        new RecipeIngredient(ModItems.ZIRCALOY_SHOVEL.get(), 1),
-                        new RecipeIngredient(ModItems.ZIRCALOY_SWORD.get(), 1)))));
+                new ArrayList<>(Collections.singletonList(new RecipeIngredient("zircaloy_ingot", InstanceType.ITEM, 1))),
+                new ArrayList<>(Arrays.asList(new RecipeIngredient("zircaloy_axe", InstanceType.ITEM, 1),
+                        new RecipeIngredient("zircaloy_hoe", InstanceType.ITEM, 1),
+                        new RecipeIngredient("zircaloy_pickaxe", InstanceType.ITEM, 1),
+                        new RecipeIngredient("zircaloy_shovel", InstanceType.ITEM, 1),
+                        new RecipeIngredient("zircaloy_sword", InstanceType.ITEM, 1)))));
         // armures
         this.data.recipe.put("zircaloy_armor", new RecipeBuilder(RecipeType.ARMOR,
-                new ArrayList<>(Collections.singletonList(ModItems.ZIRCALOY_INGOT.get())),
-                new ArrayList<>(Arrays.asList(new RecipeIngredient(ModItems.ZIRCALOY_BOOTS.get(), 1),
-                        new RecipeIngredient(ModItems.ZIRCALOY_CHESTPLATE.get(), 1),
-                        new RecipeIngredient(ModItems.ZIRCALOY_HELMET.get(), 1),
-                        new RecipeIngredient(ModItems.ZIRCALOY_LEGGINGS.get(), 1)))));
+                new ArrayList<>(Collections.singletonList(new RecipeIngredient("zircaloy_ingot", InstanceType.ITEM, 1))),
+                new ArrayList<>(Arrays.asList(new RecipeIngredient("zircaloy_boots", InstanceType.ITEM, 1),
+                        new RecipeIngredient("zircaloy_chestplate", InstanceType.ITEM, 1),
+                        new RecipeIngredient("zircaloy_helmet", InstanceType.ITEM, 1),
+                        new RecipeIngredient("zircaloy_leggings", InstanceType.ITEM, 1)))));
         return this.data;
     }
 

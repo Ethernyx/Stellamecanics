@@ -34,8 +34,8 @@ public class OsmiridiumBlock extends Block {
         this.data = new AidInfoGenerator(this.id, this.modelType, this.translate, InstanceType.BLOCK);
 
         this.data.recipe.put("osmiridium_ingot", new RecipeBuilder(RecipeType.SHAPELLESS,
-                new ArrayList<>(Collections.singletonList(ModBlocks.OSMIRIDIUM_BLOCK.get())),
-                new ArrayList<>(Collections.singletonList(new RecipeIngredient(ModItems.OSMIRIDIUM_INGOT.get(), 9)))));
+                new ArrayList<>(Collections.singletonList(new RecipeIngredient("osmiridium_block", InstanceType.BLOCK, 1))),
+                new ArrayList<>(Collections.singletonList(new RecipeIngredient("osmiridium_ingot", InstanceType.ITEM, 9)))));
         return this.data;
     }
 

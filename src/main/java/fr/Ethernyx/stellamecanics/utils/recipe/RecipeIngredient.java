@@ -1,20 +1,22 @@
 package fr.Ethernyx.stellamecanics.utils.recipe;
 
+import fr.Ethernyx.stellamecanics.utils.generator.InstanceType;
 import net.minecraft.util.IItemProvider;
 
 public class RecipeIngredient {
-    private final IItemProvider item;
+    private final String name;
     private final int nb;
+    private final InstanceType type;
 
-    public RecipeIngredient(IItemProvider item, int nb) {
-        this.item = item;
+    public RecipeIngredient(String name, InstanceType type, int nb) {
+        this.name = name;
         this.nb = nb;
+        this.type = type;
     }
-
-    public IItemProvider getItem() {
-        return item;
+    public InstanceType getType() { return type; }
+    public String getItem() {
+        return name;
     }
-
     public int getNb() {
         return nb;
     }

@@ -30,25 +30,25 @@ public class SolariumIngot extends Item {
         // block
         this.data.recipe.put("solarium_block",
                 new RecipeBuilder(RecipeType.SHAPE,
-                        new ArrayList<>(Collections.singletonList(ModItems.SOLARIUM_INGOT.get())),
-                        new ArrayList<>(Collections.singletonList(new RecipeIngredient(ModBlocks.SOLARIUM_BLOCK.get(), 1))),
+                        new ArrayList<>(Collections.singletonList(new RecipeIngredient("solarium_ingot", InstanceType.ITEM, 1))),
+                        new ArrayList<>(Collections.singletonList(new RecipeIngredient("solarium_block", InstanceType.BLOCK, 1))),
                         new ArrayList<>(Arrays.asList("000", "000", "000")),
-                        new ArrayList<>(Collections.singletonList(ModItems.SOLARIUM_INGOT.get()))));
+                        new ArrayList<>(Collections.singletonList(new RecipeIngredient("solarium_ingot", InstanceType.ITEM, 1)))));
         // tools
         this.data.recipe.put("solarium_tool", new RecipeBuilder(RecipeType.TOOLS,
-                new ArrayList<>(Collections.singletonList(ModItems.SOLARIUM_INGOT.get())),
-                new ArrayList<>(Arrays.asList(new RecipeIngredient(ModItems.SOLARIUM_AXE.get(), 1),
-                        new RecipeIngredient(ModItems.SOLARIUM_HOE.get(), 1),
-                        new RecipeIngredient(ModItems.SOLARIUM_PICKAXE.get(), 1),
-                        new RecipeIngredient(ModItems.SOLARIUM_SHOVEL.get(), 1),
-                        new RecipeIngredient(ModItems.SOLARIUM_SWORD.get(), 1)))));
+                new ArrayList<>(Collections.singletonList(new RecipeIngredient("solarium_ingot", InstanceType.ITEM, 1))),
+                new ArrayList<>(Arrays.asList(new RecipeIngredient("solarium_axe", InstanceType.ITEM, 1),
+                        new RecipeIngredient("solarium_hoe", InstanceType.ITEM, 1),
+                        new RecipeIngredient("solarium_pickaxe", InstanceType.ITEM, 1),
+                        new RecipeIngredient("solarium_shovel", InstanceType.ITEM, 1),
+                        new RecipeIngredient("solarium_sword", InstanceType.ITEM, 1)))));
         // armures
         this.data.recipe.put("solarium_armor", new RecipeBuilder(RecipeType.ARMOR,
-                new ArrayList<>(Collections.singletonList(ModItems.SOLARIUM_INGOT.get())),
-                new ArrayList<>(Arrays.asList(new RecipeIngredient(ModItems.SOLARIUM_BOOTS.get(), 1),
-                        new RecipeIngredient(ModItems.SOLARIUM_CHESTPLATE.get(), 1),
-                        new RecipeIngredient(ModItems.SOLARIUM_HELMET.get(), 1),
-                        new RecipeIngredient(ModItems.SOLARIUM_LEGGINGS.get(), 1)))));
+                new ArrayList<>(Collections.singletonList(new RecipeIngredient("solarium_ingot", InstanceType.ITEM, 1))),
+                new ArrayList<>(Arrays.asList(new RecipeIngredient("solarium_boots", InstanceType.ITEM, 1),
+                        new RecipeIngredient("solarium_chestplate", InstanceType.ITEM, 1),
+                        new RecipeIngredient("solarium_helmet", InstanceType.ITEM, 1),
+                        new RecipeIngredient("solarium_leggings", InstanceType.ITEM, 1)))));
         return this.data;
     }
 

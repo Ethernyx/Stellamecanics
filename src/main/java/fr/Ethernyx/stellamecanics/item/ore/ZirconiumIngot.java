@@ -30,25 +30,25 @@ public class ZirconiumIngot extends Item {
         // block
         this.data.recipe.put("zirconium_block",
                 new RecipeBuilder(RecipeType.SHAPE,
-                        new ArrayList<>(Collections.singletonList(ModItems.ZIRCONIUM_INGOT.get())),
-                        new ArrayList<>(Collections.singletonList(new RecipeIngredient(ModBlocks.ZIRCONIUM_BLOCK.get(), 1))),
+                        new ArrayList<>(Collections.singletonList(new RecipeIngredient("zirconium_ingot", InstanceType.ITEM, 1))),
+                        new ArrayList<>(Collections.singletonList(new RecipeIngredient("zirconium_block", InstanceType.BLOCK, 1))),
                         new ArrayList<>(Arrays.asList("000", "000", "000")),
-                        new ArrayList<>(Collections.singletonList(ModItems.ZIRCONIUM_INGOT.get()))));
+                        new ArrayList<>(Collections.singletonList(new RecipeIngredient("zirconium_ingot", InstanceType.ITEM, 1)))));
         // tools
         this.data.recipe.put("zirconium_tool", new RecipeBuilder(RecipeType.TOOLS,
-                new ArrayList<>(Collections.singletonList(ModItems.ZIRCONIUM_INGOT.get())),
-                new ArrayList<>(Arrays.asList(new RecipeIngredient(ModItems.ZIRCONIUM_AXE.get(), 1),
-                        new RecipeIngredient(ModItems.ZIRCONIUM_HOE.get(), 1),
-                        new RecipeIngredient(ModItems.ZIRCONIUM_PICKAXE.get(), 1),
-                        new RecipeIngredient(ModItems.ZIRCONIUM_SHOVEL.get(), 1),
-                        new RecipeIngredient(ModItems.ZIRCONIUM_SWORD.get(), 1)))));
+                new ArrayList<>(Collections.singletonList(new RecipeIngredient("zirconium_ingot", InstanceType.ITEM, 1))),
+                new ArrayList<>(Arrays.asList(new RecipeIngredient("zirconium_axe", InstanceType.ITEM, 1),
+                        new RecipeIngredient("zirconium_hoe", InstanceType.ITEM, 1),
+                        new RecipeIngredient("zirconium_pickaxe", InstanceType.ITEM, 1),
+                        new RecipeIngredient("zirconium_shovel", InstanceType.ITEM, 1),
+                        new RecipeIngredient("zirconium_sword", InstanceType.ITEM, 1)))));
         // armures
         this.data.recipe.put("zirconium_armor", new RecipeBuilder(RecipeType.ARMOR,
-                new ArrayList<>(Collections.singletonList(ModItems.ZIRCONIUM_INGOT.get())),
-                new ArrayList<>(Arrays.asList(new RecipeIngredient(ModItems.ZIRCONIUM_BOOTS.get(), 1),
-                        new RecipeIngredient(ModItems.ZIRCONIUM_CHESTPLATE.get(), 1),
-                        new RecipeIngredient(ModItems.ZIRCONIUM_HELMET.get(), 1),
-                        new RecipeIngredient(ModItems.ZIRCONIUM_LEGGINGS.get(), 1)))));
+                new ArrayList<>(Collections.singletonList(new RecipeIngredient("zirconium_ingot", InstanceType.ITEM, 1))),
+                new ArrayList<>(Arrays.asList(new RecipeIngredient("zirconium_boots", InstanceType.ITEM, 1),
+                        new RecipeIngredient("zirconium_chestplate", InstanceType.ITEM, 1),
+                        new RecipeIngredient("zirconium_helmet", InstanceType.ITEM, 1),
+                        new RecipeIngredient("zirconium_leggings", InstanceType.ITEM, 1)))));
         return this.data;
     }
 

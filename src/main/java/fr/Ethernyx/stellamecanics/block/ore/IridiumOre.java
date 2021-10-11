@@ -33,8 +33,8 @@ public class IridiumOre extends Block {
     public AidInfoGenerator getData(){
         this.data = new AidInfoGenerator(this.id, this.modelType, this.translate, InstanceType.BLOCK);
         this.data.recipe.put("ore_to_iridium_ingot", new RecipeBuilder(RecipeType.ORE,
-                new ArrayList<>(Collections.singletonList(ModBlocks.IRIDIUM_ORE.get())),
-                new ArrayList<>(Collections.singletonList(new RecipeIngredient(ModItems.IRIDIUM_INGOT.get(), 1)))));
+                new ArrayList<>(Collections.singletonList(new RecipeIngredient("iridium_ore", InstanceType.BLOCK, 1))),
+                new ArrayList<>(Collections.singletonList(new RecipeIngredient("iridium_ingot", InstanceType.ITEM, 1)))));
         return this.data;
     }
 

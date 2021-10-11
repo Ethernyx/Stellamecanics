@@ -38,7 +38,8 @@ public class ModBlocks {
     public static RegistryObject<Block> createBlock(String name, Supplier<? extends Block> supplier) {
 
         RegistryObject<Block> block = BLOCKS.register(name, supplier);
-        ModItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties().tab(ModItemGroups.STELLAMECANICS_TAB)));
+        ModItems.createItem(name, () -> new BlockItem(block.get(), new Item.Properties().tab(ModItemGroups.STELLAMECANICS_TAB)));
+       // ModItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties().tab(ModItemGroups.STELLAMECANICS_TAB)));
         MAP_BLOCKS.put(name, block);
         return block;
     }

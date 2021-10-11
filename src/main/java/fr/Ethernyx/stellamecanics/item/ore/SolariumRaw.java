@@ -31,8 +31,8 @@ public class SolariumRaw extends Item {
 
         // furnace
         this.data.recipe.put("raw_to_solarium_ingot", new RecipeBuilder(RecipeType.ORE,
-                new ArrayList<>(Collections.singletonList(ModItems.SOLARIUM_RAW.get())),
-                new ArrayList<>(Collections.singletonList(new RecipeIngredient(ModItems.SOLARIUM_INGOT.get(), 1)))));
+                new ArrayList<>(Collections.singletonList(new RecipeIngredient("solarium_raw", InstanceType.ITEM, 1))),
+                new ArrayList<>(Collections.singletonList(new RecipeIngredient("solarium_ingot", InstanceType.ITEM, 1)))));
         return this.data;
     }
     public String getId() {

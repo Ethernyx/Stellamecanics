@@ -31,8 +31,8 @@ public class ZirconiumRaw extends Item {
 
         // furnace
         this.data.recipe.put("raw_to_zirconium_ingot", new RecipeBuilder(RecipeType.ORE,
-                new ArrayList<>(Collections.singletonList(ModItems.ZIRCONIUM_RAW.get())),
-                new ArrayList<>(Collections.singletonList(new RecipeIngredient(ModItems.ZIRCONIUM_INGOT.get(), 1)))));
+                new ArrayList<>(Collections.singletonList(new RecipeIngredient("zirconium_raw", InstanceType.ITEM, 1))),
+                new ArrayList<>(Collections.singletonList(new RecipeIngredient("zirconium_ingot", InstanceType.ITEM, 1)))));
         return this.data;
     }
     public String getId() {

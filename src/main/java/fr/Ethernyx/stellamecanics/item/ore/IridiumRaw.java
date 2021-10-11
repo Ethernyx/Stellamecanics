@@ -31,8 +31,8 @@ public class IridiumRaw extends Item {
 
         // furnace
         this.data.recipe.put("raw_to_iridium_ingot", new RecipeBuilder(RecipeType.ORE,
-                new ArrayList<>(Collections.singletonList(ModItems.IRIDIUM_RAW.get())),
-                new ArrayList<>(Collections.singletonList(new RecipeIngredient(ModItems.IRIDIUM_INGOT.get(), 1)))));
+                new ArrayList<>(Collections.singletonList(new RecipeIngredient("iridium_raw", InstanceType.ITEM, 1))),
+                new ArrayList<>(Collections.singletonList(new RecipeIngredient("iridium_ingot", InstanceType.ITEM, 1)))));
         return this.data;
     }
     public String getId() {

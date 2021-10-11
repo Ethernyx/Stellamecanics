@@ -33,8 +33,8 @@ public class ZirconiumOre extends Block {
     public AidInfoGenerator getData(){
         this.data = new AidInfoGenerator(this.id, this.modelType, this.translate, InstanceType.BLOCK);
         this.data.recipe.put("ore_to_zirconium_ingot", new RecipeBuilder(RecipeType.ORE,
-                new ArrayList<>(Collections.singletonList(ModBlocks.ZIRCONIUM_ORE.get())),
-                new ArrayList<>(Collections.singletonList(new RecipeIngredient(ModItems.ZIRCONIUM_INGOT.get(), 1)))));
+                new ArrayList<>(Collections.singletonList(new RecipeIngredient("zirconium_ore", InstanceType.BLOCK, 1))),
+                new ArrayList<>(Collections.singletonList(new RecipeIngredient("zirconium_ingot", InstanceType.ITEM, 1)))));
         return this.data;
     }
 

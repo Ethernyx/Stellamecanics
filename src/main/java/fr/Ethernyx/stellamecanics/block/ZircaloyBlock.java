@@ -34,8 +34,8 @@ public class ZircaloyBlock extends Block {
         this.data = new AidInfoGenerator(this.id, this.modelType, this.translate, InstanceType.BLOCK);
 
         this.data.recipe.put("zircaloy_ingot", new RecipeBuilder(RecipeType.SHAPELLESS,
-                new ArrayList<>(Collections.singletonList(ModBlocks.ZIRCALOY_BLOCK.get())),
-                new ArrayList<>(Collections.singletonList(new RecipeIngredient(ModItems.ZIRCALOY_INGOT.get(), 9)))));
+                new ArrayList<>(Collections.singletonList(new RecipeIngredient("zircaloy_block", InstanceType.BLOCK, 1))),
+                new ArrayList<>(Collections.singletonList(new RecipeIngredient("zircaloy_ingot", InstanceType.ITEM, 9)))));
         return this.data;
     }
 
