@@ -1,13 +1,8 @@
 package fr.Ethernyx.stellamecanics.block.ore;
 
-import fr.Ethernyx.stellamecanics.init.ModBlocks;
-import fr.Ethernyx.stellamecanics.init.ModItems;
 import fr.Ethernyx.stellamecanics.utils.ICommun;
 import fr.Ethernyx.stellamecanics.utils.generator.AidInfoGenerator;
 import fr.Ethernyx.stellamecanics.utils.generator.InstanceType;
-import fr.Ethernyx.stellamecanics.utils.recipe.RecipeBuilder;
-import fr.Ethernyx.stellamecanics.utils.recipe.RecipeIngredient;
-import fr.Ethernyx.stellamecanics.utils.recipe.RecipeType;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;

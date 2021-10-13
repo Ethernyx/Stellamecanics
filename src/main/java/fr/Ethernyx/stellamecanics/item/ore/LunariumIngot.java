@@ -1,7 +1,5 @@
 package fr.Ethernyx.stellamecanics.item.ore;
 
-import fr.Ethernyx.stellamecanics.init.ModBlocks;
-import fr.Ethernyx.stellamecanics.init.ModItems;
 import fr.Ethernyx.stellamecanics.utils.*;
 import fr.Ethernyx.stellamecanics.utils.generator.AidInfoGenerator;
 import fr.Ethernyx.stellamecanics.utils.generator.InstanceType;
@@ -9,7 +7,6 @@ import fr.Ethernyx.stellamecanics.utils.recipe.RecipeBuilder;
 import fr.Ethernyx.stellamecanics.utils.recipe.RecipeIngredient;
 import fr.Ethernyx.stellamecanics.utils.recipe.RecipeType;
 import net.minecraft.item.Item;
-import net.minecraft.util.IItemProvider;
 
 import java.util.*;
 

@@ -1,9 +1,5 @@
 package fr.Ethernyx.stellamecanics.init;
 
-
-
-import com.google.common.eventbus.Subscribe;
-import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.WorldGenRegistries;
@@ -17,7 +13,6 @@ import net.minecraft.world.gen.feature.template.BlockMatchRuleTest;
 import net.minecraftforge.common.world.BiomeGenerationSettingsBuilder;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.RegistryObject;
 
 public class ModGenerationWorld {
 

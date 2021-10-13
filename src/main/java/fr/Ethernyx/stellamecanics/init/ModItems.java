@@ -149,10 +149,5 @@ public class ModItems {
         MAP_ITEMS.put(my_class.getId(), new LinkIItemProvidderAndAidInfoGenerator(item, my_class.getData(), InstanceType.ITEM));
         return item;
     }
-  /*  public static RegistryObject<Item> createItem(String name, Supplier<? extends Item> supplier) {
-        RegistryObject<Item> item = ITEMS.register(name, supplier);
-        MAP_ITEMS.put(name, item, data);
-        return item;
-    }*/
 
 }

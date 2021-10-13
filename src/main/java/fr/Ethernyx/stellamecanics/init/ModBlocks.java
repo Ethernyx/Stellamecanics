@@ -40,10 +40,8 @@ public class ModBlocks {
     public static final RegistryObject<Block> FORGE_STELLAIRE = createBlock(new ForgeStellaireBlock(), ForgeStellaireBlock::new);
 
     public static RegistryObject<Block> createBlock(ICommun my_class, Supplier<? extends Block> supplier) {
-
         RegistryObject<Block> block = BLOCKS.register(my_class.getId(), supplier);
         ModItems.createItem(my_class, () -> new BlockItem(block.get(), new Item.Properties().tab(ModItemGroups.STELLAMECANICS_TAB)));
-       // ModItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties().tab(ModItemGroups.STELLAMECANICS_TAB)));
         MAP_BLOCKS.put(my_class.getId(), new LinkIItemProvidderAndAidInfoGenerator(block, my_class.getData(), InstanceType.BLOCK));
         return block;
     }

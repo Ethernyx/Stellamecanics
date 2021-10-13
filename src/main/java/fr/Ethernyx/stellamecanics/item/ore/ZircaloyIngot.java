@@ -1,7 +1,5 @@
 package fr.Ethernyx.stellamecanics.item.ore;
 
-import fr.Ethernyx.stellamecanics.init.ModBlocks;
-import fr.Ethernyx.stellamecanics.init.ModItems;
 import fr.Ethernyx.stellamecanics.utils.ICommun;
 import fr.Ethernyx.stellamecanics.utils.ModItemGroups;
 import fr.Ethernyx.stellamecanics.utils.generator.AidInfoGenerator;

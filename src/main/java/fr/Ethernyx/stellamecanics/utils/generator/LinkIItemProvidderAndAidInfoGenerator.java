@@ -16,9 +16,4 @@ public class LinkIItemProvidderAndAidInfoGenerator {
         this.data = data;
 
     }
-    /*public LinkIItemProvidderAndAidInfoGenerator(RegistryObject<Block> block, AidInfoGenerator data,  InstanceType type) {
-        this.item = null;
-        this.data = data;
-        this.block = block;
-    }*/
 }

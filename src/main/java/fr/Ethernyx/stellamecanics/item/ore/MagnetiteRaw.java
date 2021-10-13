@@ -1,17 +1,11 @@
 package fr.Ethernyx.stellamecanics.item.ore;
 
-import fr.Ethernyx.stellamecanics.init.ModItems;
 import fr.Ethernyx.stellamecanics.utils.ICommun;
 import fr.Ethernyx.stellamecanics.utils.ModItemGroups;
 import fr.Ethernyx.stellamecanics.utils.generator.AidInfoGenerator;
 import fr.Ethernyx.stellamecanics.utils.generator.InstanceType;
-import fr.Ethernyx.stellamecanics.utils.recipe.RecipeBuilder;
-import fr.Ethernyx.stellamecanics.utils.recipe.RecipeIngredient;
-import fr.Ethernyx.stellamecanics.utils.recipe.RecipeType;
 import net.minecraft.item.Item;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
