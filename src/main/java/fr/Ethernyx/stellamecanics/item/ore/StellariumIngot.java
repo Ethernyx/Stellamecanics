@@ -2,6 +2,7 @@ package fr.Ethernyx.stellamecanics.item.ore;
 
 import fr.Ethernyx.stellamecanics.init.ModBlocks;
 import fr.Ethernyx.stellamecanics.init.ModItems;
+import fr.Ethernyx.stellamecanics.utils.ICommun;
 import fr.Ethernyx.stellamecanics.utils.ModItemGroups;
 import fr.Ethernyx.stellamecanics.utils.generator.AidInfoGenerator;
 import fr.Ethernyx.stellamecanics.utils.generator.InstanceType;
@@ -12,7 +13,7 @@ import net.minecraft.item.Item;
 
 import java.util.*;
 
-public class StellariumIngot extends Item {
+public class StellariumIngot extends Item implements ICommun {
     private final String id = "stellarium_ingot";
     private final String modelType = "item/generated";
     private final Map<String, String> translate = new HashMap<String, String>() {{
@@ -23,9 +24,6 @@ public class StellariumIngot extends Item {
 
     public StellariumIngot() {
         super(new Item.Properties().tab(ModItemGroups.STELLAMECANICS_TAB));
-    }
-
-    public AidInfoGenerator getData(){
         this.data = new AidInfoGenerator(this.id, this.modelType, this.translate, InstanceType.ITEM);
         // block
         this.data.recipe.put("stellarium_block",
@@ -49,10 +47,7 @@ public class StellariumIngot extends Item {
                         new RecipeIngredient("stellarium_chestplate", InstanceType.ITEM, 1),
                         new RecipeIngredient("stellarium_helmet", InstanceType.ITEM, 1),
                         new RecipeIngredient("stellarium_leggings", InstanceType.ITEM, 1)))));
-        return this.data;
     }
-
-    public String getId() {
-        return this.id;
-    }
+    public String getId() { return id;}
+    public AidInfoGenerator getData() { return data; }
 }

@@ -28,6 +28,7 @@ public class ItemModelGenerator extends ItemModelProvider {
     @Override
     protected void registerModels() {
         for (AidInfoGenerator item : this.aids) {
+            System.out.print(item.getId() + "\n");
             switch (item.getType()) {
                 case ITEM:
                 case ENCHANTMENT:

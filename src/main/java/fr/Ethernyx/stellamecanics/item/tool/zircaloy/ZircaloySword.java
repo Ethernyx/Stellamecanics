@@ -1,6 +1,7 @@
 package fr.Ethernyx.stellamecanics.item.tool.zircaloy;
 
 import fr.Ethernyx.stellamecanics.utils.CustomItemTiers;
+import fr.Ethernyx.stellamecanics.utils.ICommun;
 import fr.Ethernyx.stellamecanics.utils.ModItemGroups;
 import fr.Ethernyx.stellamecanics.utils.generator.AidInfoGenerator;
 import fr.Ethernyx.stellamecanics.utils.generator.InstanceType;
@@ -9,7 +10,7 @@ import net.minecraft.item.SwordItem;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ZircaloySword extends SwordItem {
+public class ZircaloySword extends SwordItem implements ICommun {
     private final String id = "zircaloy_sword";
     private final String modelType = "item/handheld";
     private final Map<String, String> translate = new HashMap<String, String>() {{
@@ -19,14 +20,8 @@ public class ZircaloySword extends SwordItem {
 
     public ZircaloySword() {
         super(CustomItemTiers.ZIRCALOY, 0, -2.4f, new Properties().stacksTo(1).tab(ModItemGroups.STELLAMECANICS_TAB));
-    }
-
-    public AidInfoGenerator getData(){
         this.data = new AidInfoGenerator(this.id, this.modelType, this.translate, InstanceType.ITEM);
-        return this.data;
     }
-
-    public String getId() {
-        return this.id;
-    }
+    public String getId() { return id;}
+    public AidInfoGenerator getData() { return data; }
 }

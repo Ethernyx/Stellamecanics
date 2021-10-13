@@ -21,8 +21,7 @@ public class BlockStatesGenerator extends BlockStateProvider {
     protected void registerStatesAndModels() {
         for (AidInfoGenerator block : this.aids) {
             if (block.getType() != InstanceType.BLOCK) continue;
-            
-            if (block.getModelType().equals("simpleblock")) simpleBlock(ModBlocks.MAP_BLOCKS.get(block.getId()).get());
+            if (block.getModelType().equals("simpleblock")) simpleBlock(ModBlocks.MAP_BLOCKS.get(block.getId()).block.get());
         }
     }
 }

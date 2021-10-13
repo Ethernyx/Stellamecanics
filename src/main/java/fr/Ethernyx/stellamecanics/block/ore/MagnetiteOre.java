@@ -2,6 +2,7 @@ package fr.Ethernyx.stellamecanics.block.ore;
 
 import fr.Ethernyx.stellamecanics.init.ModBlocks;
 import fr.Ethernyx.stellamecanics.init.ModItems;
+import fr.Ethernyx.stellamecanics.utils.ICommun;
 import fr.Ethernyx.stellamecanics.utils.generator.AidInfoGenerator;
 import fr.Ethernyx.stellamecanics.utils.generator.InstanceType;
 import fr.Ethernyx.stellamecanics.utils.recipe.RecipeBuilder;
@@ -14,7 +15,7 @@ import net.minecraftforge.common.ToolType;
 
 import java.util.*;
 
-public class MagnetiteOre extends Block {
+public class MagnetiteOre extends Block implements ICommun {
     private final String id = "magnetite_ore";
     private final String modelType = "simpleblock";
     private final Map<String, String> translate = new HashMap<String, String>() {{
@@ -25,15 +26,8 @@ public class MagnetiteOre extends Block {
 
     public MagnetiteOre() {
         super(AbstractBlock.Properties.of(Material.STONE).strength(3f, 15f).harvestTool(ToolType.PICKAXE).harvestLevel(2).requiresCorrectToolForDrops());
-    }
-
-    public AidInfoGenerator getData(){
         this.data = new AidInfoGenerator(this.id, this.modelType, this.translate, InstanceType.BLOCK);
-        return this.data;
     }
-
-    public String getId() {
-        return this.id;
-    }
-
+    public String getId() { return id;}
+    public AidInfoGenerator getData() { return data; }
 }

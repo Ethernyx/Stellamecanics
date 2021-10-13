@@ -2,6 +2,7 @@ package fr.Ethernyx.stellamecanics.item.ore;
 
 import fr.Ethernyx.stellamecanics.init.ModBlocks;
 import fr.Ethernyx.stellamecanics.init.ModItems;
+import fr.Ethernyx.stellamecanics.utils.ICommun;
 import fr.Ethernyx.stellamecanics.utils.ModItemGroups;
 import fr.Ethernyx.stellamecanics.utils.generator.AidInfoGenerator;
 import fr.Ethernyx.stellamecanics.utils.generator.InstanceType;
@@ -12,7 +13,7 @@ import net.minecraft.item.Item;
 
 import java.util.*;
 
-public class ZircaloyIngot extends Item {
+public class ZircaloyIngot extends Item implements ICommun {
     private final String id = "zircaloy_ingot";
     private final String modelType = "item/generated";
     private final Map<String, String> translate = new HashMap<String, String>() {{
@@ -23,9 +24,6 @@ public class ZircaloyIngot extends Item {
 
     public ZircaloyIngot() {
         super(new Item.Properties().tab(ModItemGroups.STELLAMECANICS_TAB));
-    }
-
-    public AidInfoGenerator getData(){
         this.data = new AidInfoGenerator(this.id, this.modelType, this.translate, InstanceType.ITEM);
         // block
         this.data.recipe.put("zircaloy_block",
@@ -49,10 +47,7 @@ public class ZircaloyIngot extends Item {
                         new RecipeIngredient("zircaloy_chestplate", InstanceType.ITEM, 1),
                         new RecipeIngredient("zircaloy_helmet", InstanceType.ITEM, 1),
                         new RecipeIngredient("zircaloy_leggings", InstanceType.ITEM, 1)))));
-        return this.data;
     }
-
-    public String getId() {
-        return this.id;
-    }
+    public String getId() { return id;}
+    public AidInfoGenerator getData() { return data; }
 }

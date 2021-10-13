@@ -2,6 +2,7 @@ package fr.Ethernyx.stellamecanics.block;
 
 import fr.Ethernyx.stellamecanics.init.ModBlocks;
 import fr.Ethernyx.stellamecanics.init.ModItems;
+import fr.Ethernyx.stellamecanics.utils.ICommun;
 import fr.Ethernyx.stellamecanics.utils.generator.AidInfoGenerator;
 import fr.Ethernyx.stellamecanics.utils.generator.InstanceType;
 import fr.Ethernyx.stellamecanics.utils.recipe.RecipeBuilder;
@@ -17,7 +18,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-public class SolariumBlock extends Block {
+public class SolariumBlock extends Block implements ICommun {
     private final String id = "solarium_block";
     private final String modelType = "simpleblock";
     private final Map<String, String> translate = new HashMap<String, String>() {{
@@ -28,18 +29,12 @@ public class SolariumBlock extends Block {
 
     public SolariumBlock() {
         super(AbstractBlock.Properties.of(Material.STONE).strength(3f, 15f).harvestTool(ToolType.PICKAXE));
-    }
-
-    public AidInfoGenerator getData(){
         this.data = new AidInfoGenerator(this.id, this.modelType, this.translate, InstanceType.BLOCK);
 
         this.data.recipe.put("solarium_ingot", new RecipeBuilder(RecipeType.SHAPELLESS,
                 new ArrayList<>(Collections.singletonList(new RecipeIngredient("solarium_block", InstanceType.BLOCK, 1))),
                 new ArrayList<>(Collections.singletonList(new RecipeIngredient("solarium_ingot", InstanceType.ITEM, 9)))));
-        return this.data;
     }
-
-    public String getId() {
-        return this.id;
-    }
+    public String getId() { return id;}
+    public AidInfoGenerator getData() { return data; }
 }

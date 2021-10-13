@@ -13,7 +13,7 @@ import net.minecraft.util.IItemProvider;
 
 import java.util.*;
 
-public class LunariumIngot extends Item {
+public class LunariumIngot extends Item implements ICommun {
     private final String id = "lunarium_ingot";
     private final String modelType = "item/generated";
     private final Map<String, String> translate = new HashMap<String, String>() {{
@@ -24,9 +24,6 @@ public class LunariumIngot extends Item {
 
     public LunariumIngot() {
         super(new Item.Properties().tab(ModItemGroups.STELLAMECANICS_TAB));
-    }
-
-    public AidInfoGenerator getData(){
         this.data = new AidInfoGenerator(this.id, this.modelType, this.translate, InstanceType.ITEM);
         // block
         this.data.recipe.put("lunarium_block",
@@ -50,14 +47,7 @@ public class LunariumIngot extends Item {
                         new RecipeIngredient("lunarium_chestplate", InstanceType.ITEM, 1),
                         new RecipeIngredient("lunarium_helmet", InstanceType.ITEM, 1),
                         new RecipeIngredient("lunarium_leggings", InstanceType.ITEM, 1)))));
-        return this.data;
     }
-
-    public String getId() {
-        return this.id;
-    }
-
-
-
-
+    public String getId() { return id;}
+    public AidInfoGenerator getData() { return data; }
 }

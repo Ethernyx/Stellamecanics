@@ -1,4 +1,5 @@
 {
+  "block.stellamecanics.forge_stellaire": "Forge Stellaire",
   "block.stellamecanics.iridium_block": "Bloc d'iridium",
   "block.stellamecanics.iridium_ore": "Minerai de iridium",
   "block.stellamecanics.lunarium_block": "Bloc de lunarium",
@@ -33,6 +34,7 @@
   "item.stellamecanics.lunarium_raw": "Lunarium brut",
   "item.stellamecanics.lunarium_shovel": "Pelle en lunarium",
   "item.stellamecanics.lunarium_sword": "Ep\u00C3\u00A9e en lunarium",
+  "item.stellamecanics.magnetite_raw": "Magnetite brut",
   "item.stellamecanics.osmiridium_axe": "Hache en osmiridium",
   "item.stellamecanics.osmiridium_boots": "Bottes en osmiridium",
   "item.stellamecanics.osmiridium_chestplate": "Plastron en osmiridium",

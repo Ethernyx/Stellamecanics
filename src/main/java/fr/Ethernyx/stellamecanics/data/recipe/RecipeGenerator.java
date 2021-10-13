@@ -30,8 +30,8 @@ public class RecipeGenerator extends RecipeProvider {
     }
 
     public IItemProvider getBlockOrItem(RecipeIngredient ingredient) {
-        if (ingredient.getType() == InstanceType.BLOCK) return ModBlocks.MAP_BLOCKS.get(ingredient.getItem()).get();
-        else if (ingredient.getType() == InstanceType.ITEM) return ModItems.MAP_ITEMS.get(ingredient.getItem()).get();
+        if (ingredient.getType() == InstanceType.BLOCK) return ModBlocks.MAP_BLOCKS.get(ingredient.getItem()).block.get();
+        else if (ingredient.getType() == InstanceType.ITEM) return ModItems.MAP_ITEMS.get(ingredient.getItem()).item.get();
         return null;
     }
 

@@ -1,8 +1,6 @@
 package fr.Ethernyx.stellamecanics.item.ore;
 
-import fr.Ethernyx.stellamecanics.init.ModBlocks;
-import fr.Ethernyx.stellamecanics.init.ModItems;
-import fr.Ethernyx.stellamecanics.utils.IIModItems;
+import fr.Ethernyx.stellamecanics.utils.ICommun;
 import fr.Ethernyx.stellamecanics.utils.ModItemGroups;
 import fr.Ethernyx.stellamecanics.utils.generator.AidInfoGenerator;
 import fr.Ethernyx.stellamecanics.utils.generator.InstanceType;
@@ -13,20 +11,18 @@ import net.minecraft.item.Item;
 
 import java.util.*;
 
-public class IridiumIngot extends IIModItems {
-    private final String id = "iridium_ingot";
+public class IridiumIngot extends Item implements ICommun {
+    protected final String id = "iridium_ingot";
     private final String modelType = "item/generated";
     private final Map<String, String> translate = new HashMap<String, String>() {{
         put("fr_fr", "Lingot de iridium"); put("en_us", "Iridium ingot");
     }};
-
     private AidInfoGenerator data;
+
+
 
     public IridiumIngot() {
         super(new Item.Properties().tab(ModItemGroups.STELLAMECANICS_TAB));
-    }
-
-    public AidInfoGenerator getData(){
         this.data = new AidInfoGenerator(this.id, this.modelType, this.translate, InstanceType.ITEM);
         // block
         this.data.recipe.put("iridium_block",
@@ -50,6 +46,7 @@ public class IridiumIngot extends IIModItems {
                         new RecipeIngredient("iridium_chestplate", InstanceType.ITEM, 1),
                         new RecipeIngredient("iridium_helmet", InstanceType.ITEM, 1),
                         new RecipeIngredient("iridium_leggings", InstanceType.ITEM, 1)))));
-        return this.data;
     }
+    public String getId() { return id;}
+    public AidInfoGenerator getData() { return data; }
 }

@@ -3,6 +3,7 @@ package fr.Ethernyx.stellamecanics.block.tileentity;
 import fr.Ethernyx.stellamecanics.init.ModBlocks;
 import fr.Ethernyx.stellamecanics.init.ModItems;
 import fr.Ethernyx.stellamecanics.init.ModTileEntities;
+import fr.Ethernyx.stellamecanics.utils.ICommun;
 import fr.Ethernyx.stellamecanics.utils.generator.AidInfoGenerator;
 import fr.Ethernyx.stellamecanics.utils.generator.InstanceType;
 import fr.Ethernyx.stellamecanics.utils.recipe.RecipeBuilder;
@@ -22,8 +23,8 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ForgeStellaireBlock extends Block {
-    private final String id = "forge_stellaire\"";
+public class ForgeStellaireBlock extends Block implements ICommun {
+    private final String id = "forge_stellaire";
     private final String modelType = "simpleblock";
     private final Map<String, String> translate = new HashMap<String, String>() {{
         put("fr_fr", "Forge Stellaire"); put("en_us", "Stellaire forge");
@@ -33,16 +34,8 @@ public class ForgeStellaireBlock extends Block {
 
     public ForgeStellaireBlock() {
         super(AbstractBlock.Properties.of(Material.HEAVY_METAL).strength(3f, 15f).harvestTool(ToolType.PICKAXE).sound(SoundType.METAL));
-    }
-    public AidInfoGenerator getData(){
         this.data = new AidInfoGenerator(this.id, this.modelType, this.translate, InstanceType.BLOCK);
-        return this.data;
     }
-
-    public String getId() {
-        return this.id;
-    }
-
 
     @Override
     public boolean hasTileEntity(BlockState state) {
@@ -53,5 +46,8 @@ public class ForgeStellaireBlock extends Block {
     public TileEntity createTileEntity(BlockState state, IBlockReader world) {
         return ModTileEntities.FORGE_STELLAIRE_TILE_ENTITY.get().create();
     }
+
+    public String getId() { return id;}
+    public AidInfoGenerator getData() { return data; }
 
 }
