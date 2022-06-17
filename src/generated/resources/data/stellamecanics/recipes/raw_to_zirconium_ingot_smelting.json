@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:smelting",
-  "ingredient": {
-    "item": "stellamecanics:zirconium_raw"
-  },
-  "result": "stellamecanics:zirconium_ingot",
-  "experience": 0.2,
-  "cookingtime": 200
-}
