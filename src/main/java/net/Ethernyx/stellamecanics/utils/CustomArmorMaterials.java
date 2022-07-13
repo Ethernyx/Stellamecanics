@@ -15,15 +15,15 @@ import java.util.function.Supplier;
 
 public enum CustomArmorMaterials implements ArmorMaterial {
 
-    SOLARIUM_ARMOR(Main.MOD_ID + ":solarium", 50, new int[]{3, 6, 8, 3}, 10, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 2.0F, 0.2F, () -> { return Ingredient.ofItems(ModItems.ITEMS.get("solarium_ingot")); }),
-    LUNARIUM_ARMOR(Main.MOD_ID + ":lunarium", 50, new int[]{4, 7, 9, 4}, 10, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 3.5F, 0.3F, () -> { return Ingredient.ofItems(ModItems.ITEMS.get("lunarium_ingot")); }),
-    ZIRCONIUM_ARMOR(Main.MOD_ID + ":zirconium", 50, new int[]{3, 7, 9, 3}, 10, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 2.0F, 0.2F, () -> { return Ingredient.ofItems(ModItems.ITEMS.get("zirconium_ingot")); }),
-    IRIDIUM_ARMOR(Main.MOD_ID + ":iridium", 50, new int[]{2, 5, 7, 2}, 10, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 0F, 0F, () -> { return Ingredient.ofItems(ModItems.ITEMS.get("iridium_ingot")); }),
-    ZIRCALOY_ARMOR(Main.MOD_ID + ":zircaloy", 50, new int[]{4, 7, 9, 3}, 10, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 4.5F, 0.3F, () -> {  return Ingredient.ofItems(ModItems.ITEMS.get("zircaloy_ingot")); }),
-    OSMIRIDIUM_ARMOR(Main.MOD_ID + ":osmiridium", 50, new int[]{3, 7, 9, 3}, 10, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 2.0F, 0.2F, () -> { return Ingredient.ofItems(ModItems.ITEMS.get("osmiridium_ingot")); }),
-    STELLARIUM_ARMOR(Main.MOD_ID + ":stellarium", 50, new int[]{ 4, 7, 9, 3}, 10, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 4.5F, 0.4F, () -> { return Ingredient.ofItems(ModItems.ITEMS.get("stellarium_ingot")); });
+    SOLARIUM_ARMOR(Main.MOD_ID + ":solarium", 50, new int[]{3, 6, 8, 3}, 10, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 2.0F, 0.2F, () -> { return Ingredient.ofItems(ModItems.ITEMS.get("solarium_ingot").item); }),
+    LUNARIUM_ARMOR(Main.MOD_ID + ":lunarium", 50, new int[]{4, 7, 9, 4}, 10, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 3.5F, 0.3F, () -> { return Ingredient.ofItems(ModItems.ITEMS.get("lunarium_ingot").item); }),
+    ZIRCONIUM_ARMOR(Main.MOD_ID + ":zirconium", 50, new int[]{3, 7, 9, 3}, 10, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 2.0F, 0.2F, () -> { return Ingredient.ofItems(ModItems.ITEMS.get("zirconium_ingot").item); }),
+    IRIDIUM_ARMOR(Main.MOD_ID + ":iridium", 50, new int[]{2, 5, 7, 2}, 10, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 0F, 0F, () -> { return Ingredient.ofItems(ModItems.ITEMS.get("iridium_ingot").item); }),
+    ZIRCALOY_ARMOR(Main.MOD_ID + ":zircaloy", 50, new int[]{4, 7, 9, 3}, 10, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 4.5F, 0.3F, () -> {  return Ingredient.ofItems(ModItems.ITEMS.get("zircaloy_ingot").item); }),
+    OSMIRIDIUM_ARMOR(Main.MOD_ID + ":osmiridium", 50, new int[]{3, 7, 9, 3}, 10, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 2.0F, 0.2F, () -> { return Ingredient.ofItems(ModItems.ITEMS.get("osmiridium_ingot").item); }),
+    STELLARIUM_ARMOR(Main.MOD_ID + ":stellarium", 50, new int[]{ 4, 7, 9, 3}, 10, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 4.5F, 0.4F, () -> { return Ingredient.ofItems(ModItems.ITEMS.get("stellarium_ingot").item); });
 
-    private static final int[] BASE_DURABILITY = new int[0];
+    private static final int[] BASE_DURABILITY = new int[4];
     private final String name;
     private final int durabilityMultiplier;
     private final int[] protectionAmounts;

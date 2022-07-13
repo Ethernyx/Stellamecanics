@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:blasting",
+  "cookingtime": 100,
+  "experience": 0.2,
+  "ingredient": {
+    "item": "stellamecanics:iridium_ore"
+  },
+  "result": "stellamecanics:iridium_ingot"
+}

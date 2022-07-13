@@ -16,16 +16,24 @@ import net.Ethernyx.stellamecanics.items.tool.solarium.*;
 import net.Ethernyx.stellamecanics.items.tool.stellarium.*;
 import net.Ethernyx.stellamecanics.items.tool.zircaloy.*;
 import net.Ethernyx.stellamecanics.items.tool.zirconium.*;
+import net.Ethernyx.stellamecanics.utils.generator.AidInfoGenerator;
+import net.Ethernyx.stellamecanics.utils.generator.ICommun;
+import net.Ethernyx.stellamecanics.utils.generator.InstanceType;
+import net.Ethernyx.stellamecanics.utils.generator.LinkIItemProvidderAndAidInfoGenerator;
+import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemConvertible;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 
 public class ModItems {
 
-    public static Map<String, Item> ITEMS = new HashMap<>();
+    public static Map<String, LinkIItemProvidderAndAidInfoGenerator> ITEMS = new HashMap<>();
 
     public static final Item MAGNETITE_RAW = addNewItem(MagnetiteRaw.getId(), new MagnetiteRaw());
 
@@ -109,13 +117,18 @@ public class ModItems {
     public static final Item OSMIRIDIUM_CHESTPLATE = addNewItem(OsmiridiumChestplate.getId(), new OsmiridiumChestplate());
     public static final Item OSMIRIDIUM_LEGGINGS = addNewItem(OsmiridiumLeggings.getId(), new OsmiridiumLeggings());
     public static final Item OSMIRIDIUM_BOOTS = addNewItem(OsmiridiumBoots.getId(), new OsmiridiumBoots());
-    
-    private static Item addNewItem(String name, Item item) {
-        ITEMS.put(name, item);
-        return Registry.register(Registry.ITEM, new Identifier(Main.MOD_ID, name), item);
+
+    public static Item addNewItem(String name, ItemConvertible item) {
+        ITEMS.put(name, new LinkIItemProvidderAndAidInfoGenerator(item, ((ICommun) item).getData(), InstanceType.ITEM));
+        return Registry.register(Registry.ITEM, new Identifier(Main.MOD_ID, name), item.asItem());
     }
 
-    public static void registerModItem() {
+    public static Item addNewItem(String name, BlockItem block, AidInfoGenerator data) {
+        ITEMS.put(name, new LinkIItemProvidderAndAidInfoGenerator(block, data, InstanceType.ITEM));
+        return Registry.register(Registry.ITEM, new Identifier(Main.MOD_ID, name), block);
+    }
+
+    public static void registerModItems() {
         Main.LOGGER.debug("Registering Mod Items for " + Main.MOD_ID);
     }
 }

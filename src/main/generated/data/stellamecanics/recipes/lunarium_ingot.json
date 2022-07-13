@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "stellamecanics:lunarium_block"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "item": "stellamecanics:lunarium_ingot"
+  }
+}

@@ -10,13 +10,13 @@ import java.util.function.Supplier;
 
 public enum CustomItemTiers implements ToolMaterial {
 
-    SOLARIUM(4, 3360, 4.8f, 2f, 10, () -> { return Ingredient.ofItems(ModItems.ITEMS.get("solarium_ingot")); }),
-    LUNARIUM(5, 4200, 6f, 1.5f, 10, () -> { return Ingredient.ofItems(ModItems.ITEMS.get("lunarium_ingot")); }),
-    ZIRCONIUM(2, 1680, 2.4f, 1.5f, 10, () -> { return Ingredient.ofItems(ModItems.ITEMS.get("zirconium_ingot")); }),
-    IRIDIUM(4, 3360, 4.8f, 1.5f, 10, () -> { return Ingredient.ofItems(ModItems.ITEMS.get("iridium_ingot")); }),
-    ZIRCALOY(4, 3360, 4.8f, 1.5f, 10, () -> { return Ingredient.ofItems(ModItems.ITEMS.get("zircaloy_ingot")); }),
-    OSMIRIDIUM(6, 5040, 7.2f, 1.5f, 10, () -> { return Ingredient.ofItems(ModItems.ITEMS.get("osmiridium_ingot")); }),
-    STELLARIUM(6, 5040, 7.2f, 1.5f, 10, () -> { return Ingredient.ofItems(ModItems.ITEMS.get("stellarium_ingot")); })
+    SOLARIUM(4, 3360, 4.8f, 2f, 10, () -> { return Ingredient.ofItems(ModItems.ITEMS.get("solarium_ingot").item); }),
+    LUNARIUM(5, 4200, 6f, 1.5f, 10, () -> { return Ingredient.ofItems(ModItems.ITEMS.get("lunarium_ingot").item); }),
+    ZIRCONIUM(2, 1680, 2.4f, 1.5f, 10, () -> { return Ingredient.ofItems(ModItems.ITEMS.get("zirconium_ingot").item); }),
+    IRIDIUM(4, 3360, 4.8f, 1.5f, 10, () -> { return Ingredient.ofItems(ModItems.ITEMS.get("iridium_ingot").item); }),
+    ZIRCALOY(4, 3360, 4.8f, 1.5f, 10, () -> { return Ingredient.ofItems(ModItems.ITEMS.get("zircaloy_ingot").item); }),
+    OSMIRIDIUM(6, 5040, 7.2f, 1.5f, 10, () -> { return Ingredient.ofItems(ModItems.ITEMS.get("osmiridium_ingot").item); }),
+    STELLARIUM(6, 5040, 7.2f, 1.5f, 10, () -> { return Ingredient.ofItems(ModItems.ITEMS.get("stellarium_ingot").item); })
     ;
 
     private final int miningLevel;

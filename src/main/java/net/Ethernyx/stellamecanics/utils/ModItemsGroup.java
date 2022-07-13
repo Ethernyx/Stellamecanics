@@ -8,5 +8,5 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
 
 public class ModItemsGroup {
-    public static final ItemGroup STELLAMECANICS = FabricItemGroupBuilder.build(new Identifier(Main.MOD_ID, "stellamecanics"), () -> new ItemStack(ModItems.ITEMS.get("stellarium_ingot")));
+    public static final ItemGroup STELLAMECANICS = FabricItemGroupBuilder.build(new Identifier(Main.MOD_ID, "stellamecanics_tab"), () -> new ItemStack(ModItems.ITEMS.get("stellarium_ingot").item));
 }

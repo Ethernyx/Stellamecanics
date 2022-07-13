@@ -1,23 +1,29 @@
 package net.Ethernyx.stellamecanics.items.ore;
 
 import net.Ethernyx.stellamecanics.utils.ModItemsGroup;
+import net.Ethernyx.stellamecanics.utils.recipe.RecipeBuilder;
+import net.Ethernyx.stellamecanics.utils.recipe.RecipeIngredient;
+import net.Ethernyx.stellamecanics.utils.recipe.RecipeType;
 import net.minecraft.item.Item;
+import net.Ethernyx.stellamecanics.utils.generator.ICommun;
+import net.Ethernyx.stellamecanics.utils.generator.AidInfoGenerator;
+import net.Ethernyx.stellamecanics.utils.generator.InstanceType;
 
 import java.util.*;
 
-public class IridiumIngot extends Item {
-    protected static final String id = "iridium_ingot";
+public class IridiumIngot extends Item  implements ICommun {
+    public static final String id = "iridium_ingot";
     private final String modelType = "item/generated";
     private final Map<String, String> translate = new HashMap<String, String>() {{
         put("fr_fr", "Lingot de iridium"); put("en_us", "Iridium ingot");
     }};
-  //  private AidInfoGenerator data;
+    private AidInfoGenerator data;
 
 
 
     public IridiumIngot() {
         super(new Item.Settings().group(ModItemsGroup.STELLAMECANICS));
-        /*this.data = new AidInfoGenerator(this.id, this.modelType, this.translate, InstanceType.ITEM);
+        this.data = new AidInfoGenerator(this.id, this.modelType, this.translate, InstanceType.ITEM);
         // block
         this.data.recipe.put("iridium_block",
                 new RecipeBuilder(RecipeType.SHAPE,
@@ -39,8 +45,8 @@ public class IridiumIngot extends Item {
                 new ArrayList<>(Arrays.asList(new RecipeIngredient("iridium_boots", InstanceType.ITEM, 1),
                         new RecipeIngredient("iridium_chestplate", InstanceType.ITEM, 1),
                         new RecipeIngredient("iridium_helmet", InstanceType.ITEM, 1),
-                        new RecipeIngredient("iridium_leggings", InstanceType.ITEM, 1)))));*/
+                        new RecipeIngredient("iridium_leggings", InstanceType.ITEM, 1)))));
     }
     public static String getId() { return id;}
-    //public AidInfoGenerator getData() { return data; }
+    public AidInfoGenerator getData() { return data; }
 }
