@@ -18,6 +18,7 @@ import net.minecraft.item.Items;
 import net.minecraft.loot.LootPool;
 import net.minecraft.loot.LootTable;
 import net.minecraft.loot.condition.LootCondition;
+import net.minecraft.loot.context.LootContextParameter;
 import net.minecraft.loot.context.LootContextType;
 import net.minecraft.loot.context.LootContextTypes;
 import net.minecraft.loot.entry.ItemEntry;
@@ -31,6 +32,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.function.BiConsumer;
@@ -43,9 +45,7 @@ public class LootTableGenerator extends SimpleFabricLootTableProvider {
     private final List<AidInfoGenerator> aids;
 
     public LootTableGenerator(FabricDataGenerator dataGenerator, List<AidInfoGenerator> aids) {
-        super(dataGenerator, LootContextType.create().build());
-        // super(dataGenerator, LootContextTypes.get(Identifier.tryParse(Main.MOD_ID + ":loot_tables")));
-
+        super(dataGenerator, LootContextTypes.BLOCK);
         this.aids = aids;
     }
 
@@ -66,25 +66,25 @@ public class LootTableGenerator extends SimpleFabricLootTableProvider {
     }
     @Override
     public void accept(BiConsumer<Identifier, LootTable.Builder> identifierBuilderBiConsumer) {
-
         for (AidInfoGenerator block : this.aids) {
+            Identifier path = new Identifier(Main.MOD_ID, "blocks/" + block.getId());
             switch (block.getType()) {
                 case BLOCK:
                     switch (block.getLootType()) {
                         case NONE:
-                            BlockLootTableGenerator.dropsNothing();
+                            identifierBuilderBiConsumer.accept(path, BlockLootTableGenerator.dropsNothing());
                             break;
                         case NORMAL:
-                            BlockLootTableGenerator.drops(ModBlocks.BLOCKS.get(block.getId()).block);
+                            identifierBuilderBiConsumer.accept(path, BlockLootTableGenerator.drops(ModBlocks.BLOCKS.get(block.getId()).block));
                         case ORE:
-                            BlockLootTableGenerator.oreDrops(ModBlocks.BLOCKS.get(block.getId()).block, ModItems.ITEMS.get(block.getLootOutput().getItem()).item);
+                            identifierBuilderBiConsumer.accept(path, BlockLootTableGenerator.oreDrops(ModBlocks.BLOCKS.get(block.getId()).block, ModItems.ITEMS.get(block.getLootOutput().getItem()).item));
                             break;
                         case MULTIPLE:
-                            BlockLootTableGenerator.drops(ModBlocks.BLOCKS.get(block.getId()).block, ModItems.ITEMS.get(block.getLootOutput().getItem()).item, ConstantLootNumberProvider.create(block.getLootOutput().getNb()));
+                            identifierBuilderBiConsumer.accept(path, BlockLootTableGenerator.drops(ModBlocks.BLOCKS.get(block.getId()).block, ModItems.ITEMS.get(block.getLootOutput().getItem()).item, ConstantLootNumberProvider.create(block.getLootOutput().getNb())));
                         case SILKTOUCH:
-                            BlockLootTableGenerator.dropsWithSilkTouch(ModBlocks.BLOCKS.get(block.getId()).block);
+                            identifierBuilderBiConsumer.accept(path, BlockLootTableGenerator.dropsWithSilkTouch(ModBlocks.BLOCKS.get(block.getId()).block));
                         case LUCKY_ORE:
-                            BlockLootTableGenerator.dropsWithSilkTouch(ModBlocks.BLOCKS.get(block.getId()).block, (LootPoolEntry.Builder)BlockLootTableGenerator.applyExplosionDecay(ModBlocks.BLOCKS.get(block.getId()).block, ItemEntry.builder(ModItems.ITEMS.get(block.getLootOutput().getItem()).item).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, block.getLootOutput().getNb()))).apply(ApplyBonusLootFunction.oreDrops(Enchantments.FORTUNE))));
+                            identifierBuilderBiConsumer.accept(path, BlockLootTableGenerator.dropsWithSilkTouch(ModBlocks.BLOCKS.get(block.getId()).block, (LootPoolEntry.Builder)BlockLootTableGenerator.applyExplosionDecay(ModBlocks.BLOCKS.get(block.getId()).block, ItemEntry.builder(ModItems.ITEMS.get(block.getLootOutput().getItem()).item).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, block.getLootOutput().getNb()))).apply(ApplyBonusLootFunction.oreDrops(Enchantments.FORTUNE)))));
                         default:
                             break;
                     }
@@ -95,8 +95,8 @@ public class LootTableGenerator extends SimpleFabricLootTableProvider {
         }
     }
 
-   /* @Override
+   @Override
     public String getName() {
-        return Main.MOD_ID + " Loot Table";
-    }*/
+        return "LootTables";
+    }
 }

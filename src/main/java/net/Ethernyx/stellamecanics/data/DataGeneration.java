@@ -19,6 +19,6 @@ public class DataGeneration implements DataGeneratorEntrypoint {
         fabricDataGenerator.addProvider(new ItemModelGenerator(fabricDataGenerator, aids));
         fabricDataGenerator.addProvider(new LangGenerator(fabricDataGenerator, aids, "en_us"));
         fabricDataGenerator.addProvider(new LangGenerator(fabricDataGenerator, aids, "fr_fr"));
-        //fabricDataGenerator.addProvider(new LootTableGenerator(fabricDataGenerator, aids));
+        fabricDataGenerator.addProvider(new LootTableGenerator(fabricDataGenerator, aids));
     }
 }
