@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "stellamecanics:iridium_block",
+    "stellamecanics:lunarium_ore",
+    "stellamecanics:solarium_ore",
+    "stellamecanics:zirconium_block"
+  ]
+}

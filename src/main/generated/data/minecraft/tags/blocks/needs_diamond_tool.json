@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "stellamecanics:iridium_ore",
+    "stellamecanics:zirconium_ore",
+    "stellamecanics:magnetite_ore"
+  ]
+}

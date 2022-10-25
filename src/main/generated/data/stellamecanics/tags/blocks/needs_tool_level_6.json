@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "stellamecanics:zircaloy_block",
+    "stellamecanics:stellarium_block",
+    "stellamecanics:osmiridium_block"
+  ]
+}

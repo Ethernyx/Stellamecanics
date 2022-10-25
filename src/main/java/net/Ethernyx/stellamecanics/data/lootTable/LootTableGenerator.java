@@ -48,22 +48,6 @@ public class LootTableGenerator extends SimpleFabricLootTableProvider {
         super(dataGenerator, LootContextTypes.BLOCK);
         this.aids = aids;
     }
-
-    @NotNull
-    @Override
-    public Consumer<BiConsumer<Identifier, LootTable.Builder>> andThen(@NotNull Consumer<? super BiConsumer<Identifier, LootTable.Builder>> after) {
-        return super.andThen(after);
-    }
-
-    @Override
-    public BiConsumer<Identifier, LootTable.Builder> withConditions(BiConsumer<Identifier, LootTable.Builder> exporter, ConditionJsonProvider... conditions) {
-        return super.withConditions(exporter, conditions);
-    }
-
-    @Override
-    public void run(DataWriter writer) throws IOException {
-        super.run(writer);
-    }
     @Override
     public void accept(BiConsumer<Identifier, LootTable.Builder> identifierBuilderBiConsumer) {
         for (AidInfoGenerator block : this.aids) {
@@ -76,15 +60,19 @@ public class LootTableGenerator extends SimpleFabricLootTableProvider {
                             break;
                         case NORMAL:
                             identifierBuilderBiConsumer.accept(path, BlockLootTableGenerator.drops(ModBlocks.BLOCKS.get(block.getId()).block));
+                            break;
                         case ORE:
                             identifierBuilderBiConsumer.accept(path, BlockLootTableGenerator.oreDrops(ModBlocks.BLOCKS.get(block.getId()).block, ModItems.ITEMS.get(block.getLootOutput().getItem()).item));
                             break;
                         case MULTIPLE:
                             identifierBuilderBiConsumer.accept(path, BlockLootTableGenerator.drops(ModBlocks.BLOCKS.get(block.getId()).block, ModItems.ITEMS.get(block.getLootOutput().getItem()).item, ConstantLootNumberProvider.create(block.getLootOutput().getNb())));
+                            break;
                         case SILKTOUCH:
                             identifierBuilderBiConsumer.accept(path, BlockLootTableGenerator.dropsWithSilkTouch(ModBlocks.BLOCKS.get(block.getId()).block));
+                            break;
                         case LUCKY_ORE:
                             identifierBuilderBiConsumer.accept(path, BlockLootTableGenerator.dropsWithSilkTouch(ModBlocks.BLOCKS.get(block.getId()).block, (LootPoolEntry.Builder)BlockLootTableGenerator.applyExplosionDecay(ModBlocks.BLOCKS.get(block.getId()).block, ItemEntry.builder(ModItems.ITEMS.get(block.getLootOutput().getItem()).item).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, block.getLootOutput().getNb()))).apply(ApplyBonusLootFunction.oreDrops(Enchantments.FORTUNE)))));
+                            break;
                         default:
                             break;
                     }

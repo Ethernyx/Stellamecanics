@@ -2,6 +2,7 @@ package net.Ethernyx.stellamecanics;
 
 import net.Ethernyx.stellamecanics.init.ModBlocks;
 import net.Ethernyx.stellamecanics.init.ModItems;
+import net.Ethernyx.stellamecanics.init.ModTags;
 import net.Ethernyx.stellamecanics.world.ModWorldGeneration;
 import net.fabricmc.api.ModInitializer;
 import org.slf4j.Logger;
@@ -13,6 +14,7 @@ public class Main implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
+		ModTags.registerModTags();
 		ModItems.registerModItems();
 		ModBlocks.registerModBlocks();
 		ModWorldGeneration.generateOres();

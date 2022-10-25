@@ -2,9 +2,10 @@ package net.Ethernyx.stellamecanics.utils.generator;
 
 import net.Ethernyx.stellamecanics.utils.recipe.RecipeBuilder;
 import net.Ethernyx.stellamecanics.utils.recipe.RecipeIngredient;
+import net.minecraft.block.Block;
+import net.minecraft.tag.TagKey;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class AidInfoGenerator {
     protected final String id;
@@ -15,6 +16,7 @@ public class AidInfoGenerator {
     public Map<String, RecipeBuilder> recipe = new HashMap<>();
     protected LootType lootType = LootType.NORMAL;
     protected RecipeIngredient lootOutput = null;
+    protected List<TagKey<Block>> BlockTags = new ArrayList<>();
 
     public AidInfoGenerator(String id, String modelType, Map<String, String> translate, InstanceType type) {
         this.id = id;
@@ -53,4 +55,19 @@ public class AidInfoGenerator {
     public Map<String, RecipeBuilder> getRecipe() {
         return this.recipe;
     }
+
+    public void addTag(TagKey<Block> tag) {
+        this.BlockTags.add(tag);
+    }
+
+    public int removeTag(TagKey<Block> tag) {
+        for (int i = 0; i < this.BlockTags.size(); i++) {
+            if (Objects.equals(this.BlockTags.get(i), tag)) { this.BlockTags.remove(i); return 0; }
+        }
+        return 1;
+    }
+
+    public List<TagKey<Block>> getTags() { return this.BlockTags; }
+
+
 }

@@ -4,6 +4,7 @@ import net.Ethernyx.stellamecanics.data.lang.LangGenerator;
 import net.Ethernyx.stellamecanics.data.lootTable.LootTableGenerator;
 import net.Ethernyx.stellamecanics.data.model.ItemModelGenerator;
 import net.Ethernyx.stellamecanics.data.recipe.RecipeGenerator;
+import net.Ethernyx.stellamecanics.data.tag.TagGenerator;
 import net.Ethernyx.stellamecanics.utils.generator.AidInfoGenerator;
 import net.Ethernyx.stellamecanics.utils.generator.SerealizerGenerator;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
@@ -20,5 +21,6 @@ public class DataGeneration implements DataGeneratorEntrypoint {
         fabricDataGenerator.addProvider(new LangGenerator(fabricDataGenerator, aids, "en_us"));
         fabricDataGenerator.addProvider(new LangGenerator(fabricDataGenerator, aids, "fr_fr"));
         fabricDataGenerator.addProvider(new LootTableGenerator(fabricDataGenerator, aids));
+        fabricDataGenerator.addProvider(new TagGenerator(fabricDataGenerator, aids));
     }
 }
