@@ -31,7 +31,7 @@ public enum CustomArmorMaterials implements ArmorMaterial {
     private final SoundEvent equipSound;
     private final float toughness;
     private final float knockbackResistance;
-    private final Lazy<Ingredient> repairIngredientSupplier;
+    private final Supplier<Ingredient> repairIngredientSupplier;
 
     private CustomArmorMaterials(String name, int durabilityMultiplier, int[] protectionAmounts, int enchantability, SoundEvent equipSound, float toughness, float knockbackResistance, Supplier<Ingredient> repairIngredientSupplier) {
         this.name = name;
@@ -41,7 +41,7 @@ public enum CustomArmorMaterials implements ArmorMaterial {
         this.equipSound = equipSound;
         this.toughness = toughness;
         this.knockbackResistance = knockbackResistance;
-        this.repairIngredientSupplier = new Lazy<Ingredient>(repairIngredientSupplier);
+        this.repairIngredientSupplier = repairIngredientSupplier;
     }
 
     @Override
