@@ -1,6 +1,7 @@
 package net.Ethernyx.stellamecanics;
 
 import net.Ethernyx.stellamecanics.init.ModBlocks;
+import net.Ethernyx.stellamecanics.init.ModFluids;
 import net.Ethernyx.stellamecanics.init.ModItems;
 import net.Ethernyx.stellamecanics.init.ModTags;
 import net.Ethernyx.stellamecanics.world.ModWorldGeneration;
@@ -17,6 +18,7 @@ public class Main implements ModInitializer {
 		ModTags.registerModTags();
 		ModItems.registerModItems();
 		ModBlocks.registerModBlocks();
+		ModFluids.registerModTags();
 		ModWorldGeneration.generateOres();
 	}
 }
