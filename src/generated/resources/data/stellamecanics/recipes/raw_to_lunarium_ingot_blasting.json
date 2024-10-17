@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:blasting",
-  "ingredient": {
-    "item": "stellamecanics:lunarium_raw"
-  },
-  "result": "stellamecanics:lunarium_ingot",
-  "experience": 0.2,
-  "cookingtime": 100
-}

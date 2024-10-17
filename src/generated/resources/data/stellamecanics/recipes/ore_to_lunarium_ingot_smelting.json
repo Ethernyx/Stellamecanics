@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:smelting",
-  "ingredient": {
-    "item": "stellamecanics:lunarium_ore"
-  },
-  "result": "stellamecanics:lunarium_ingot",
-  "experience": 0.2,
-  "cookingtime": 200
-}
