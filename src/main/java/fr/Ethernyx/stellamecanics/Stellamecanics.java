@@ -1,7 +1,10 @@
 package fr.ethernyx.stellamecanics;
 
+import fr.ethernyx.stellamecanics.init.ModBlocks;
+import fr.ethernyx.stellamecanics.init.ModItems;
+import fr.ethernyx.stellamecanics.init.ModItemsGroups;
+import fr.ethernyx.stellamecanics.init.ModTags;
 import net.fabricmc.api.ModInitializer;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -15,10 +18,9 @@ public class Stellamecanics implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
-		// This code runs as soon as Minecraft is in a mod-load-ready state.
-		// However, some things (like resources) may still be uninitialized.
-		// Proceed with mild caution.
-
-		LOGGER.info("Hello Fabric world!");
+		ModItemsGroups.registerItemsGroups();
+		ModTags.registerModTags();
+		ModItems.registerModItems();
+		ModBlocks.registerModBlocks();
 	}
 }

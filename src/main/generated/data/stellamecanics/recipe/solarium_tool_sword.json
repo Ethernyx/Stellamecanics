@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "I": {
+      "item": "stellamecanics:solarium_ingot"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    "I",
+    "I",
+    "S"
+  ],
+  "result": {
+    "count": 1,
+    "id": "stellamecanics:solarium_sword"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "stellamecanics:item/solarium_boots"
+  }
+}
