@@ -3,7 +3,7 @@ package fr.ethernyx.stellamecanics.utils.generator;
 import fr.ethernyx.stellamecanics.utils.recipe.MyIngredient;
 
 public class MyLootTable {
-    private LootType type;
+    private final LootType type;
     private MyIngredient output;
 
     public MyLootTable(LootType type) {

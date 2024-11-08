@@ -1,8 +1,12 @@
 package fr.ethernyx.stellamecanics;
 
 import fr.ethernyx.stellamecanics.datagen.*;
+import fr.ethernyx.stellamecanics.world.ModWorldConfigsFeatures;
+import fr.ethernyx.stellamecanics.world.ModWorldPlacedFeatures;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
+import net.minecraft.registry.RegistryBuilder;
+import net.minecraft.registry.RegistryKeys;
 
 public class StellamecanicsDataGenerator implements DataGeneratorEntrypoint {
 	@Override
@@ -14,6 +18,14 @@ public class StellamecanicsDataGenerator implements DataGeneratorEntrypoint {
 		pack.addProvider(LootTableGenerator::new);
 		pack.addProvider(ModelGenerator::new);
 		pack.addProvider(RecipeGenerator::new);
-		pack.addProvider(LangGenerator::new);
+		pack.addProvider(WorldGenerator::new);
+		//pack.addProvider(LangGenerator::new);
+	}
+
+	@Override
+	public void buildRegistry(RegistryBuilder registryBuilder) {
+
+		registryBuilder.addRegistry(RegistryKeys.CONFIGURED_FEATURE, ModWorldConfigsFeatures::bootstrap);
+		registryBuilder.addRegistry(RegistryKeys.PLACED_FEATURE, ModWorldPlacedFeatures::bootstrap);
 	}
 }
