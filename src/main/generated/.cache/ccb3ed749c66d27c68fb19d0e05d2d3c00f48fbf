@@ -1,11 +1,11 @@
-// 1.21.1	2024-11-08T17:55:00.8040352	Stellamecanics/Block Loot Tables
+// 1.21.1	2024-11-09T11:54:50.4410533	Stellamecanics/Block Loot Tables
 7603dd15970e275843238c386b26a9381801772b data\stellamecanics\loot_table\blocks\lunarium_ore.json
 f27c6555584444204ef2f115f24315b781d354ff data\stellamecanics\loot_table\blocks\zirconium_ore.json
 2b18483dcf3d0a7ff2df3f47cec11b1d1b70f94f data\stellamecanics\loot_table\blocks\zircaloy_block.json
 e8bb919c67a4988b5d9c1cee794b18416fa570f7 data\stellamecanics\loot_table\blocks\stellarium_block.json
 056dbe0e2e66d43248a0a2f974eea1f6e1acbab4 data\stellamecanics\loot_table\blocks\iridium_ore.json
-9492295b6b82d59d2d693f2844831b926e0195f8 data\stellamecanics\loot_table\blocks\solarium_block.json
 f3737178e59a33394ab307808abd41d905e178f4 data\stellamecanics\loot_table\blocks\solarium_ore.json
+9492295b6b82d59d2d693f2844831b926e0195f8 data\stellamecanics\loot_table\blocks\solarium_block.json
 4d640da2df42954236ad2b0c9e3b379bacb5cafe data\stellamecanics\loot_table\blocks\lunarium_block.json
 509982a4b77cea4ba1e9e240497119435deb87b1 data\stellamecanics\loot_table\blocks\zirconium_block.json
 a10d442a20800f76df43f7c16798f3ed7017fbe1 data\stellamecanics\loot_table\blocks\iridium_block.json
