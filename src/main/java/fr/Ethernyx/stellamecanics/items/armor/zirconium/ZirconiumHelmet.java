@@ -12,15 +12,17 @@ import java.util.Map;
 public class ZirconiumHelmet extends ArmorItem  implements IMyItem {
     public static String getId() {
         return "zirconium_helmet";
-    };
+    }
+
     @Override
     public Model getModelType() {
         return Models.GENERATED;
     }
     @Override
     public String getTranslate(String lang) { 
-        Map<String, String> langs = new HashMap<String, String>() {{
-           put("fr_fr", "Casque en zirconium"); put("en_us", "Zirconium helmet");
+        Map<String, String> langs = new HashMap<>() {{
+            put("fr_fr", "Casque en zirconium");
+            put("en_us", "Zirconium helmet");
         }};
         return langs.get(lang);
     }

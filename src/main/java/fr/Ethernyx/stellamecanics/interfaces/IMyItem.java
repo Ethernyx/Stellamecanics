@@ -11,9 +11,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public interface IMyItem extends ItemConvertible {
-    static String getId() { return ""; };
+    static String getId() { return ""; }
+
     default Model getModelType() { return Models.HANDHELD; }
     default String getTranslate(String lang) { return ""; }
-    default List<RecipeBuilder> getRecipe() { return new ArrayList<RecipeBuilder>(); }
+    default List<RecipeBuilder> getRecipe() { return new ArrayList<>(); }
     default List<TagKey<Item>> getTags() { return new ArrayList<>(); }
 }

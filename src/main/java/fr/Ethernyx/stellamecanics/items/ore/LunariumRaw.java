@@ -14,15 +14,17 @@ import java.util.*;
 public class LunariumRaw extends Item  implements IMyItem {
     public static String getId() {
         return "lunarium_raw";
-    };
+    }
+
     @Override
     public Model getModelType() {
         return Models.GENERATED;
     }
     @Override
     public String getTranslate(String lang) { 
-        Map<String, String> langs = new HashMap<String, String>() {{
-           put("fr_fr", "Lunarium brut"); put("en_us", "Lunarium raw");
+        Map<String, String> langs = new HashMap<>() {{
+            put("fr_fr", "Lunarium brut");
+            put("en_us", "Lunarium raw");
         }};
         return langs.get(lang);
     }
@@ -32,12 +34,6 @@ public class LunariumRaw extends Item  implements IMyItem {
 
     public LunariumRaw() {
         super(new Settings());
-        /*this.data = new AidInfoGenerator(this.getId(), this.getModelType(), this.getTranslate(), InstanceType.ITEM);
-
-        // furnace
-        this.data.recipe.put("raw_to_lunarium_ingot", new RecipeBuilder(RecipeType.ORE,
-                new ArrayList<>(Collections.singletonList(new MyIngredient("lunarium_raw", InstanceType.ITEM, 1))),
-                new ArrayList<>(Collections.singletonList(new MyIngredient("lunarium_ingot", InstanceType.ITEM, 1)))));*/
     }
 
     @Override

@@ -110,7 +110,7 @@ public class RecipeGenerator extends FabricRecipeProvider {
         });
 
         ModBlocks.BLOCKS.forEach((name, block) -> {
-           // cookRecipe(block.getRecipe(), exporter);
+            cookRecipe(block.getRecipe(), exporter);
         });
     }
 
@@ -234,8 +234,5 @@ public class RecipeGenerator extends FabricRecipeProvider {
     }
 
     private void alloyIngot(RecipeExporter exporter, ItemConvertible input1, ItemConvertible input2, ItemConvertible output, String name) {
-        /*SmithingRecipeJsonBuilder.create(Ingredient.ofItems(input1), Ingredient.ofItems(input2), (Item) output)
-                .criterion("unlock", InventoryChangedCriterion.Conditions.items(input1, input2))
-                .offerTo(exporter, name);*/
     }
 }

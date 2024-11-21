@@ -14,15 +14,17 @@ import java.util.*;
 public class IridiumRaw extends Item  implements IMyItem {
     public static String getId() {
         return "iridium_raw";
-    };
+    }
+
     @Override
     public Model getModelType() {
         return Models.GENERATED;
     }
     @Override
     public String getTranslate(String lang) { 
-        Map<String, String> langs = new HashMap<String, String>() {{
-           put("fr_fr", "Iridium brut"); put("en_us", "Iridium raw");
+        Map<String, String> langs = new HashMap<>() {{
+            put("fr_fr", "Iridium brut");
+            put("en_us", "Iridium raw");
         }};
         return langs.get(lang);
     }
@@ -35,9 +37,6 @@ public class IridiumRaw extends Item  implements IMyItem {
        //this.data = new AidInfoGenerator(this.getId(), this.getModelType(), this.getTranslate(), InstanceType.ITEM);
 
         // furnace
-      /*  this.data.recipe.put("raw_to_iridium_ingot", new RecipeBuilder(RecipeType.ORE,
-                new ArrayList<>(Collections.singletonList(new MyIngredient("iridium_raw", InstanceType.ITEM, 1))),
-                new ArrayList<>(Collections.singletonList(new MyIngredient("iridium_ingot", InstanceType.ITEM, 1)))));*/
     }
 
     @Override

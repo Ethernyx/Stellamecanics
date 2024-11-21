@@ -20,8 +20,9 @@ public class MagnetiteRaw extends Item implements IMyItem {
     }
     @Override
     public String getTranslate(String lang) { 
-        Map<String, String> langs = new HashMap<String, String>() {{
-           put("fr_fr", "Magnétite brut"); put("en_us", "Magnetite raw");
+        Map<String, String> langs = new HashMap<>() {{
+            put("fr_fr", "Magnétite brut");
+            put("en_us", "Magnetite raw");
         }};
         return langs.get(lang);
     }

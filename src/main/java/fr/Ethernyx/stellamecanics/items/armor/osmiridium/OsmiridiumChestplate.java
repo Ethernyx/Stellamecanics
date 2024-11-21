@@ -12,15 +12,17 @@ import java.util.Map;
 public class OsmiridiumChestplate extends ArmorItem  implements IMyItem {
     public static String getId() {
         return "osmiridium_chestplate";
-    };
+    }
+
     @Override
     public Model getModelType() {
         return Models.GENERATED;
     }
     @Override
     public String getTranslate(String lang) { 
-        Map<String, String> langs = new HashMap<String, String>() {{
-           put("fr_fr", "Plastron en osmiridium"); put("en_us", "Osmiridium chestplate");
+        Map<String, String> langs = new HashMap<>() {{
+            put("fr_fr", "Plastron en osmiridium");
+            put("en_us", "Osmiridium chestplate");
         }};
         return langs.get(lang);
     }

@@ -12,15 +12,17 @@ import java.util.Map;
 public class IridiumLeggings extends ArmorItem  implements IMyItem {
     public static String getId() {
         return "iridium_leggings";
-    };
+    }
+
     @Override
     public Model getModelType() {
         return Models.GENERATED;
     }
     @Override
     public String getTranslate(String lang) { 
-        Map<String, String> langs = new HashMap<String, String>() {{
-           put("fr_fr", "Pantalon en iridium"); put("en_us", "Iridium leggings");
+        Map<String, String> langs = new HashMap<>() {{
+            put("fr_fr", "Pantalon en iridium");
+            put("en_us", "Iridium leggings");
         }};
         return langs.get(lang);
     }

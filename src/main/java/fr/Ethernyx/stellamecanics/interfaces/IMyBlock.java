@@ -12,10 +12,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public interface IMyBlock {
-    static String getId() { return ""; };
+    static String getId() { return ""; }
+
     default Model getModelType() { return Models.CUBE_ALL; }
     default String getTranslate(String lang) { return ""; }
-    default List<RecipeBuilder> getRecipe() { return new ArrayList<RecipeBuilder>(); }
+    default List<RecipeBuilder> getRecipe() { return new ArrayList<>(); }
     default MyLootTable getLootTable() { return new MyLootTable(LootType.NONE); }
     default List<TagKey<Block>> getTags() { return new ArrayList<>(); }
 }

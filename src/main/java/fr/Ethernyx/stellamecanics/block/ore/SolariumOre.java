@@ -21,7 +21,7 @@ public class SolariumOre extends Block implements IMyBlock {
 
     @Override
     public String getTranslate(String lang) {
-        Map<String, String> langs = new HashMap<String, String>() {{
+        Map<String, String> langs = new HashMap<>() {{
             put("fr_fr", "Minerai de solarium");
             put("en_us", "Solarium ore");
         }};
@@ -32,13 +32,6 @@ public class SolariumOre extends Block implements IMyBlock {
 
     public SolariumOre() {
         super(Settings.create().strength(3f, 15f).requiresTool());
-        /*this.data = new AidInfoGenerator(this.id, this.modelType, this.translate, InstanceType.BLOCK);
-        this.data.recipe.put("ore_to_solarium_ingot", new RecipeBuilder(RecipeType.ORE,
-                new ArrayList<>(Collections.singletonList(new MyIngredient("solarium_ore", InstanceType.BLOCK, 1))),
-                new ArrayList<>(Collections.singletonList(new MyIngredient("solarium_ingot", InstanceType.ITEM, 1)))));
-        this.data.setLootType(LootType.ORE, new MyIngredient("solarium_raw", InstanceType.ITEM, 1));
-        this.data.addTag(BlockTags.PICKAXE_MINEABLE);
-        this.data.addTag(ModTags.NEEDS_TOOL_LEVEL_4);*/
     }
 
     @Override

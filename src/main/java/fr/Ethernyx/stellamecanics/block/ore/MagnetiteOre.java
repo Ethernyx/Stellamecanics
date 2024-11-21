@@ -21,7 +21,7 @@ public class MagnetiteOre extends Block implements IMyBlock {
 
     @Override
     public String getTranslate(String lang) {
-        Map<String, String> langs = new HashMap<String, String>() {{
+        Map<String, String> langs = new HashMap<>() {{
             put("fr_fr", "Minerai de magnétite");
             put("en_us", "Magnetite ore");
         }};
@@ -30,10 +30,6 @@ public class MagnetiteOre extends Block implements IMyBlock {
 
     public MagnetiteOre() {
         super(Settings.create().strength(3f, 15f).requiresTool());
-        /*this.data = new AidInfoGenerator(this.id, this.modelType, this.translate, InstanceType.BLOCK);
-        this.data.setLootType(LootType.LUCKY_ORE, new MyIngredient("magnetite_raw", InstanceType.ITEM, 3));
-        this.data.addTag(BlockTags.PICKAXE_MINEABLE);
-        this.data.addTag(BlockTags.NEEDS_DIAMOND_TOOL);*/
     }
 
     @Override

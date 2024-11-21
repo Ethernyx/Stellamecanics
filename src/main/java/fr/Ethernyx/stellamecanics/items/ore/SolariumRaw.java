@@ -14,15 +14,17 @@ import java.util.*;
 public class SolariumRaw extends Item  implements IMyItem {
     public static String getId() {
         return "solarium_raw";
-    };
+    }
+
     @Override
     public Model getModelType() {
         return Models.GENERATED;
     }
     @Override
     public String getTranslate(String lang) { 
-        Map<String, String> langs = new HashMap<String, String>() {{
-           put("fr_fr", "Solarium brut"); put("en_us", "Solarium raw");
+        Map<String, String> langs = new HashMap<>() {{
+            put("fr_fr", "Solarium brut");
+            put("en_us", "Solarium raw");
         }};
         return langs.get(lang);
     }
@@ -32,12 +34,6 @@ public class SolariumRaw extends Item  implements IMyItem {
 
     public SolariumRaw() {
         super(new Settings());
-        /*this.data = new AidInfoGenerator(this.getId(), this.getModelType(), this.getTranslate(), InstanceType.ITEM);
-
-        // furnace
-        this.data.recipe.put("raw_to_solarium_ingot", new RecipeBuilder(RecipeType.ORE,
-                new ArrayList<>(Collections.singletonList(new MyIngredient("solarium_raw", InstanceType.ITEM, 1))),
-                new ArrayList<>(Collections.singletonList(new MyIngredient("solarium_ingot", InstanceType.ITEM, 1)))));*/
     }
 
     @Override

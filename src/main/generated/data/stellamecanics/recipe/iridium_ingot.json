@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "stellamecanics:iridium_block"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "id": "stellamecanics:iridium_ingot"
+  }
+}

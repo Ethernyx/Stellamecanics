@@ -1,8 +1,8 @@
-// 1.21.1	2024-11-09T11:54:50.4460391	Stellamecanics/World Generator
+// 1.21.1	2024-11-21T20:49:52.0854051	Stellamecanics/World Generator
 932331b1e2a3771a66b8f5a0c98ab8bc58b4b5f9 data\stellamecanics\worldgen\placed_feature\iridium_ore.json
 47005723af541b89ef07bc255ea1fed5e1a81f27 data\stellamecanics\worldgen\configured_feature\lunarium_ore.json
-648b1371a9f79412c1e0daef2801b88bbc0dffcc data\stellamecanics\worldgen\placed_feature\lunarium_ore.json
 d5c189f8b12b43eb8db1c1ca42a987c09ba98eeb data\stellamecanics\worldgen\placed_feature\zirconium_ore.json
+648b1371a9f79412c1e0daef2801b88bbc0dffcc data\stellamecanics\worldgen\placed_feature\lunarium_ore.json
 130794d9c0317451496438420b8a2b172d0adcc5 data\stellamecanics\worldgen\configured_feature\iridium_ore.json
 2193f78f46ebe1fb3bf85dbc7bc714ac7eefd714 data\stellamecanics\worldgen\configured_feature\solarium_ore.json
 69e694a9323f7c1b0557fd836214a53bdb5e604c data\stellamecanics\worldgen\placed_feature\solarium_ore.json

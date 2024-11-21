@@ -20,7 +20,7 @@ public class IridiumOre extends Block implements IMyBlock {
 
     @Override
     public String getTranslate(String lang) {
-        Map<String, String> langs = new HashMap<String, String>() {{
+        Map<String, String> langs = new HashMap<>() {{
             put("fr_fr", "Minerai de iridium");
             put("en_us", "Iridium ore");
         }};
@@ -29,13 +29,6 @@ public class IridiumOre extends Block implements IMyBlock {
 
     public IridiumOre() {
         super(Settings.create().strength(3f, 15f).requiresTool());
-        /*this.data = new AidInfoGenerator(this.id, this.modelType, this.translate, InstanceType.BLOCK);
-        this.data.recipe.put("ore_to_iridium_ingot", new RecipeBuilder(RecipeType.ORE,
-                new ArrayList<>(Collections.singletonList(new MyIngredient("iridium_ore", InstanceType.BLOCK, 1))),
-                new ArrayList<>(Collections.singletonList(new MyIngredient("iridium_ingot", InstanceType.ITEM, 1)))));
-        this.data.setLootType(LootType.ORE, new MyIngredient("iridium_raw", InstanceType.ITEM, 1));
-        this.data.addTag(BlockTags.PICKAXE_MINEABLE);
-        this.data.addTag(BlockTags.NEEDS_DIAMOND_TOOL);*/
     }
 
     @Override

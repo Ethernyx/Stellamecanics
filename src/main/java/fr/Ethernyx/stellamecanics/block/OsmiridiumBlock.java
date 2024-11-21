@@ -21,7 +21,7 @@ public class OsmiridiumBlock extends Block implements IMyBlock {
 
     @Override
     public String getTranslate(String lang) {
-        Map<String, String> langs = new HashMap<String, String>() {{
+        Map<String, String> langs = new HashMap<>() {{
             put("fr_fr", "Bloc de osmiridium");
             put("en_us", "Osmiridium block");
         }};
@@ -30,14 +30,6 @@ public class OsmiridiumBlock extends Block implements IMyBlock {
 
     public OsmiridiumBlock() {
         super(Settings.create().strength(3f, 15f).requiresTool());
-        /*this.data = new AidInfoGenerator(this.id, this.modelType, this.translate, InstanceType.BLOCK);
-
-        this.data.recipe.put("osmiridium_ingot", new RecipeBuilder(RecipeType.SHAPELLESS,
-                new ArrayList<>(Collections.singletonList(new MyIngredient("osmiridium_block", InstanceType.BLOCK, 1))),
-                new ArrayList<>(Collections.singletonList(new MyIngredient("osmiridium_ingot", InstanceType.ITEM, 9)))));
-        this.data.setLootType(LootType.NORMAL);
-        this.data.addTag(BlockTags.PICKAXE_MINEABLE);
-        this.data.addTag(ModTags.NEEDS_TOOL_LEVEL_6);*/
     }
 
     @Override
