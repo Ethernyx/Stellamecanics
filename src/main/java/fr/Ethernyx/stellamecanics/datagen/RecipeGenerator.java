@@ -97,6 +97,7 @@ public class RecipeGenerator extends FabricRecipeProvider {
                         leggingsArmor(exporter, getBlockOrItem(recipe.getInput().getFirst()), getBlockOrItem(recipe.getOutput().get(3)), recipe.getRecipeName() + "_leggings");
                     }
                     break;
+                case FORGE:
                 default:
                     break;
             }

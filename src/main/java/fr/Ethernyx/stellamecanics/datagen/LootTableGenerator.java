@@ -2,12 +2,16 @@ package fr.ethernyx.stellamecanics.datagen;
 
 import fr.ethernyx.stellamecanics.init.ModBlocks;
 import fr.ethernyx.stellamecanics.init.ModItems;
+import fr.ethernyx.stellamecanics.interfaces.IMyBlock;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider;
 import net.minecraft.block.Block;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.Enchantments;
+import net.minecraft.item.Item;
+import net.minecraft.loot.LootTable;
 import net.minecraft.loot.entry.ItemEntry;
+import net.minecraft.loot.entry.LeafEntry;
 import net.minecraft.loot.function.ApplyBonusLootFunction;
 import net.minecraft.loot.function.SetCountLootFunction;
 import net.minecraft.loot.provider.number.ConstantLootNumberProvider;
@@ -45,19 +49,24 @@ public class LootTableGenerator extends FabricBlockLootTableProvider {
                             break;
                         case LUCKY_ORE:
                             RegistryWrapper.Impl<Enchantment> impl = this.registryLookup.getWrapperOrThrow(RegistryKeys.ENCHANTMENT);
-                            dropsWithSilkTouch(
-                                    (Block) block,
-                                    applyExplosionDecay(
-                                            (Block) block,
-                                            ItemEntry.builder(ModItems.ITEMS.get(block.getLootTable().getOutput().getItem()))
-                                                    .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1F, block.getLootTable().getOutput().getNb())))
-                                                    .apply(ApplyBonusLootFunction.oreDrops(impl.getOrThrow(Enchantments.FORTUNE)))
-                                    )
-                            );
+                            addDrop((Block) block, multipleOreDrops(block, (Item) ModItems.ITEMS.get(block.getLootTable().getOutput().getItem()), block.getLootTable().getOutput().getMin(),  block.getLootTable().getOutput().getMax()));
                             break;
                         default:
                             break;
                     }
             });
+    }
+
+    public LootTable.Builder multipleOreDrops(IMyBlock block, Item drop, float min, float max) {
+        RegistryWrapper.Impl<Enchantment> impl = this.registryLookup.getWrapperOrThrow(RegistryKeys.ENCHANTMENT);
+        return dropsWithSilkTouch(
+                (Block) block,
+                applyExplosionDecay(
+                        (Block) block,
+                        ((LeafEntry.Builder<?>) ItemEntry.builder(drop)
+                                .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(min, max))))
+                                .apply(ApplyBonusLootFunction.oreDrops(impl.getOrThrow(Enchantments.FORTUNE)))
+                )
+        );
     }
 }

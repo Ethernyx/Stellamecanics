@@ -34,7 +34,7 @@ public class MagnetiteOre extends Block implements IMyBlock {
 
     @Override
     public MyLootTable getLootTable() {
-        return new MyLootTable(LootType.LUCKY_ORE, new MyIngredient("magnetite_raw", InstanceType.ITEM, 3));
+        return new MyLootTable(LootType.LUCKY_ORE, new MyIngredient("magnetite_raw", InstanceType.ITEM, 1, 3));
     }
 
     @Override

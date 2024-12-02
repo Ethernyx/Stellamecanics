@@ -2,6 +2,7 @@ package fr.ethernyx.stellamecanics.world;
 
 import fr.ethernyx.stellamecanics.Stellamecanics;
 import fr.ethernyx.stellamecanics.utils.world.MyFeaturePlaced;
+import fr.ethernyx.stellamecanics.utils.world.ModifierPlacementType;
 import net.minecraft.registry.Registerable;
 import net.minecraft.registry.RegistryEntryLookup;
 import net.minecraft.registry.RegistryKey;
@@ -20,15 +21,40 @@ public class ModWorldPlacedFeatures {
 
     public static Map<String, MyFeaturePlaced> PLACED_FEATURE = new HashMap<>();
 
-    public static final RegistryKey<PlacedFeature> IRIDIUM_ORE_PLACED = registerPlacedFeature("iridium_ore", DimensionOptions.OVERWORLD, 10, 2, 80);
-    public static final RegistryKey<PlacedFeature> ZIRCONIUM_ORE_PLACED = registerPlacedFeature("zirconium_ore", DimensionOptions.OVERWORLD, 10, 2, 80);
-    public static final RegistryKey<PlacedFeature> LUNARIUM_ORE_PLACED = registerPlacedFeature("lunarium_ore", DimensionOptions.END, 10, 2, 80);
-    public static final RegistryKey<PlacedFeature> SOLARIUM_ORE_PLACED = registerPlacedFeature("solarium_ore", DimensionOptions.NETHER, 10, 2, 80);
+    public static final RegistryKey<PlacedFeature> IRIDIUM_ORE_PLACED = registerPlacedFeature("iridium_ore", DimensionOptions.OVERWORLD, 10, 2, 80, ModifierPlacementType.UNIFORM);
+    public static final RegistryKey<PlacedFeature> ZIRCONIUM_ORE_PLACED = registerPlacedFeature("zirconium_ore", DimensionOptions.OVERWORLD, 10, 2, 80, ModifierPlacementType.UNIFORM);
+    public static final RegistryKey<PlacedFeature> LUNARIUM_ORE_PLACED = registerPlacedFeature("lunarium_ore", DimensionOptions.END, 10, 2, 80, ModifierPlacementType.UNIFORM);
+    public static final RegistryKey<PlacedFeature> SOLARIUM_ORE_PLACED = registerPlacedFeature("solarium_ore", DimensionOptions.NETHER, 10, 2, 80, ModifierPlacementType.UNIFORM);
 
     public static void bootstrap(Registerable<PlacedFeature> context) {
         RegistryEntryLookup<ConfiguredFeature<?, ?>> registryLookup = context.getRegistryLookup(RegistryKeys.CONFIGURED_FEATURE);
         PLACED_FEATURE.forEach((key, item) -> {
-            register(context, item.getRegistryKey(), registryLookup.getOrThrow(ModWorldConfigsFeatures.CONFIG_FEATURE.get(key).getRegistryKey()), modifiersWithCount(item.getCount(), HeightRangePlacementModifier.uniform(YOffset.fixed(item.getyMin()), YOffset.fixed(item.getyMax()))));
+            switch (item.getType()) {
+                case UNIFORM:
+                    register(context,
+                            item.getRegistryKey(),
+                            registryLookup.getOrThrow(ModWorldConfigsFeatures.CONFIG_FEATURE.get(key).getRegistryKey()),
+                            modifiersWithCount(item.getCount(),
+                                    HeightRangePlacementModifier.uniform(
+                                            YOffset.fixed(item.getyMin()),
+                                            YOffset.fixed(item.getyMax()))));
+                    break;
+                case TRAPEZOID:
+                    /* ymin = le y ou proba la plus faible
+                    *  ymax = le y ou la proba est la plus forte
+                    * */
+
+                    register(context,
+                            item.getRegistryKey(),
+                            registryLookup.getOrThrow(ModWorldConfigsFeatures.CONFIG_FEATURE.get(key).getRegistryKey()),
+                            modifiersWithCount(item.getCount(),
+                                    HeightRangePlacementModifier.trapezoid(
+                                            YOffset.fixed(item.getyMin()),
+                                            YOffset.fixed(item.getyMax()))));
+                    break;
+                default:
+                    break;
+            }
         });
     }
 
@@ -43,8 +69,10 @@ public class ModWorldPlacedFeatures {
         return modifiers(RarityFilterPlacementModifier.of(chance), heightModifier);
     }
 
-    private static RegistryKey<PlacedFeature> registerPlacedFeature(String name, RegistryKey<DimensionOptions> dim, int count, int yMin, int yMax) {
-        PLACED_FEATURE.put(name, new MyFeaturePlaced(dim, name, count, yMin, yMax));
+    /* name, dimension, nb filon / chunk, ymin, ymax, type de placement */
+
+    private static RegistryKey<PlacedFeature> registerPlacedFeature(String name, RegistryKey<DimensionOptions> dim, int count, int yMin, int yMax, ModifierPlacementType type) {
+        PLACED_FEATURE.put(name, new MyFeaturePlaced(dim, name, count, yMin, yMax, type));
         return PLACED_FEATURE.get(name).getRegistryKey();
     }
 
