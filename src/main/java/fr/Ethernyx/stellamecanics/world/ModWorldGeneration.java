@@ -15,6 +15,7 @@ public class ModWorldGeneration  {
             if (item.getDimension() == DimensionOptions.OVERWORLD) biomeSelector = BiomeSelectors.foundInOverworld();
             else if (item.getDimension() == DimensionOptions.NETHER)  biomeSelector = BiomeSelectors.foundInTheNether();
             else if (item.getDimension() == DimensionOptions.END) biomeSelector = BiomeSelectors.foundInTheEnd();
+            else return;
             BiomeModifications.addFeature(biomeSelector, GenerationStep.Feature.UNDERGROUND_ORES, item.getRegistryKey());
         });
     }

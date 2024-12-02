@@ -12,16 +12,18 @@ public class MyFeaturePlaced {
     private final int count;
     private final int yMin;
     private final int yMax;
+    private final ModifierPlacementType type;
     private final String name;
     private final RegistryKey<DimensionOptions> dimension;
 
 
-    public MyFeaturePlaced( RegistryKey<DimensionOptions> dimension, String name, int count, int yMin, int yMax) {
+    public MyFeaturePlaced( RegistryKey<DimensionOptions> dimension, String name, int count, int yMin, int yMax, ModifierPlacementType type) {
         this.name = name;
         this.registryKey = RegistryKey.of(RegistryKeys.PLACED_FEATURE, Identifier.of(Stellamecanics.MOD_ID, name));
         this.count = count;
         this.yMin = yMin;
         this.yMax = yMax;
+        this.type = type;
         this.dimension = dimension;
     }
 
@@ -47,5 +49,9 @@ public class MyFeaturePlaced {
 
     public String getName() {
         return name;
+    }
+
+    public ModifierPlacementType getType() {
+        return type;
     }
 }
