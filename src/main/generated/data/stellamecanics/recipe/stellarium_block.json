@@ -2,9 +2,7 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "0": {
-      "item": "stellamecanics:stellarium_ingot"
-    }
+    "0": "stellamecanics:stellarium_ingot"
   },
   "pattern": [
     "000",

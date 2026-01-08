@@ -2,9 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    {
-      "item": "stellamecanics:zircaloy_block"
-    }
+    "stellamecanics:zircaloy_block"
   ],
   "result": {
     "count": 9,

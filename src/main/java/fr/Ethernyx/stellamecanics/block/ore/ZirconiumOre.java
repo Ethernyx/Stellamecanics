@@ -14,9 +14,8 @@ import net.minecraft.registry.tag.TagKey;
 import java.util.*;
 
 public class ZirconiumOre extends Block implements IMyBlock {
-    public static String getId() {
-        return "zirconium_ore";
-    }
+    public static String ID = "zirconium_ore";
+public String getId() { return ID;  }
 
     @Override
     public String getTranslate(String lang) {
@@ -27,9 +26,7 @@ public class ZirconiumOre extends Block implements IMyBlock {
         return langs.get(lang);
     }
 
-    public ZirconiumOre() {
-        super(Settings.create().strength(3f, 15f).requiresTool());
-    }
+   public ZirconiumOre(Settings settings) { super(settings.strength(3f, 15f).requiresTool()); }
 
     @Override
     public List<RecipeBuilder> getRecipe() {

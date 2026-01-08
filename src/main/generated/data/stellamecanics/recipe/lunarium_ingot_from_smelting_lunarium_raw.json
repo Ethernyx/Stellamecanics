@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "cookingtime": 200,
+  "experience": 0.2,
+  "group": "raw_to_lunarium_ingot_smelting",
+  "ingredient": "stellamecanics:lunarium_raw",
+  "result": {
+    "id": "stellamecanics:lunarium_ingot"
+  }
+}

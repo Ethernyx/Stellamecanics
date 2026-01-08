@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:blasting",
+  "category": "misc",
+  "cookingtime": 100,
+  "experience": 0.2,
+  "group": "raw_to_solarium_ingot_blasting",
+  "ingredient": "stellamecanics:solarium_raw",
+  "result": {
+    "id": "stellamecanics:solarium_ingot"
+  }
+}

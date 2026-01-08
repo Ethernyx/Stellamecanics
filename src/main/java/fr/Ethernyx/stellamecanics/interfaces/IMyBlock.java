@@ -4,15 +4,15 @@ import fr.ethernyx.stellamecanics.utils.generator.LootType;
 import fr.ethernyx.stellamecanics.utils.generator.MyLootTable;
 import fr.ethernyx.stellamecanics.utils.recipe.RecipeBuilder;
 import net.minecraft.block.Block;
-import net.minecraft.data.client.Model;
-import net.minecraft.data.client.Models;
+import net.minecraft.client.data.Models;
+import net.minecraft.client.data.Model;
 import net.minecraft.registry.tag.TagKey;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public interface IMyBlock {
-    static String getId() { return ""; }
+    String getId();
 
     default Model getModelType() { return Models.CUBE_ALL; }
     default String getTranslate(String lang) { return ""; }

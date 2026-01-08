@@ -2,24 +2,28 @@ package fr.ethernyx.stellamecanics.items.armor.zircaloy;
 
 import fr.ethernyx.stellamecanics.interfaces.IMyItem;
 import fr.ethernyx.stellamecanics.utils.CustomArmorMaterials;
-import net.minecraft.data.client.Model;
-import net.minecraft.data.client.Models;
-import net.minecraft.item.ArmorItem;
+import net.minecraft.client.data.Model;
+import net.minecraft.client.data.Models;
+import net.minecraft.item.Item;
+import net.minecraft.item.equipment.EquipmentType;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class ZircaloyChestplate extends ArmorItem  implements IMyItem {
-    public static String getId() {
-        return "zircaloy_chestplate";
+public class ZircaloyChestplate extends Item implements IMyItem {
+    public static String ID = "zircaloy_chestplate";
+
+    public String getId() {
+        return ID;
     }
 
     @Override
     public Model getModelType() {
         return Models.GENERATED;
     }
+
     @Override
-    public String getTranslate(String lang) { 
+    public String getTranslate(String lang) {
         Map<String, String> langs = new HashMap<>() {{
             put("fr_fr", "Plastron en zircaloy");
             put("en_us", "Zircaloy chestplate");
@@ -28,12 +32,7 @@ public class ZircaloyChestplate extends ArmorItem  implements IMyItem {
     }
 
 
-    
+    public ZircaloyChestplate(Settings settings) { super(settings.armor(CustomArmorMaterials.ZIRCALOY_ARMOR, EquipmentType.CHESTPLATE)); }
 
-    public ZircaloyChestplate() {
-        super(CustomArmorMaterials.ZIRCALOY_ARMOR, Type.CHESTPLATE, new Settings());
-        /*this.data = new AidInfoGenerator(this.getId(), this.getModelType(), this.getTranslate(), InstanceType.ITEM);*/
-    }
-    
-    
+
 }

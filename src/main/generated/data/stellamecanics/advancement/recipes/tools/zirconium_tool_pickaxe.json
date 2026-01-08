@@ -3,7 +3,7 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "minecraft:zirconium_tool_pickaxe"
+        "recipe": "stellamecanics:zirconium_tool_pickaxe"
       },
       "trigger": "minecraft:recipe_unlocked"
     },
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "minecraft:zirconium_tool_pickaxe"
+      "stellamecanics:zirconium_tool_pickaxe"
     ]
   }
 }

@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:blasting",
+  "category": "misc",
+  "cookingtime": 100,
+  "experience": 0.2,
+  "group": "raw_to_iridium_ingot_blasting",
+  "ingredient": "stellamecanics:iridium_raw",
+  "result": {
+    "id": "stellamecanics:iridium_ingot"
+  }
+}

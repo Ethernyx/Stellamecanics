@@ -2,18 +2,20 @@ package fr.ethernyx.stellamecanics.items.tool.solarium;
 
 import fr.ethernyx.stellamecanics.interfaces.IMyItem;
 import fr.ethernyx.stellamecanics.utils.CustomItemTiers;
-import net.minecraft.item.HoeItem;
+import net.minecraft.item.Item;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class SolariumHoe extends HoeItem  implements IMyItem {
-    public static String getId() {
-        return "solarium_hoe";
+public class SolariumHoe extends Item implements IMyItem {
+    public static String ID = "solarium_hoe";
+
+    public String getId() {
+        return ID;
     }
 
     @Override
-    public String getTranslate(String lang) { 
+    public String getTranslate(String lang) {
         Map<String, String> langs = new HashMap<>() {{
             put("fr_fr", "Houe en solarium");
             put("en_us", "Solarium hoe");
@@ -21,12 +23,8 @@ public class SolariumHoe extends HoeItem  implements IMyItem {
         return langs.get(lang);
     }
 
-    
 
-    public SolariumHoe() {
-        super(CustomItemTiers.SOLARIUM, new Settings());
-        /*this.data = new AidInfoGenerator(this.getId(), this.getModelType(), this.getTranslate(), InstanceType.ITEM);*/
-    }
-    
-    
+    public SolariumHoe(Settings settings) { super(settings.hoe(CustomItemTiers.SOLARIUM, 0f, -3f)); }
+
+
 }

@@ -2,9 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    {
-      "item": "stellamecanics:iridium_block"
-    }
+    "stellamecanics:iridium_block"
   ],
   "result": {
     "count": 9,

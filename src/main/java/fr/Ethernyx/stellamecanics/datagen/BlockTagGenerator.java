@@ -21,7 +21,7 @@ public class BlockTagGenerator extends FabricTagProvider.BlockTagProvider {
             ModBlocks.BLOCKS.forEach((key, block) -> {
                 if (!block.getTags().isEmpty()) {
                     block.getTags().forEach((tag) -> {
-                        getOrCreateTagBuilder(tag).add((Block) block);
+                        valueLookupBuilder(tag).add((Block) block);
                     });
                 }
             });

@@ -5,23 +5,26 @@ import fr.ethernyx.stellamecanics.utils.generator.InstanceType;
 import fr.ethernyx.stellamecanics.utils.recipe.MyIngredient;
 import fr.ethernyx.stellamecanics.utils.recipe.RecipeBuilder;
 import fr.ethernyx.stellamecanics.utils.recipe.RecipeType;
-import net.minecraft.data.client.Model;
-import net.minecraft.data.client.Models;
+import net.minecraft.client.data.Model;
+import net.minecraft.client.data.Models;
 import net.minecraft.item.Item;
 
 import java.util.*;
 
-public class SolariumRaw extends Item  implements IMyItem {
-    public static String getId() {
-        return "solarium_raw";
+public class SolariumRaw extends Item implements IMyItem {
+    public static String ID = "solarium_raw";
+
+    public String getId() {
+        return ID;
     }
 
     @Override
     public Model getModelType() {
         return Models.GENERATED;
     }
+
     @Override
-    public String getTranslate(String lang) { 
+    public String getTranslate(String lang) {
         Map<String, String> langs = new HashMap<>() {{
             put("fr_fr", "Solarium brut");
             put("en_us", "Solarium raw");
@@ -30,11 +33,7 @@ public class SolariumRaw extends Item  implements IMyItem {
     }
 
 
-    
-
-    public SolariumRaw() {
-        super(new Settings());
-    }
+    public SolariumRaw(Settings settings) { super(settings); }
 
     @Override
     public List<RecipeBuilder> getRecipe() {
@@ -47,5 +46,5 @@ public class SolariumRaw extends Item  implements IMyItem {
         return recipes;
     }
 
-    
+
 }

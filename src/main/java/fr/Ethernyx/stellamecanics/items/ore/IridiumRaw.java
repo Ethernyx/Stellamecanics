@@ -5,23 +5,26 @@ import fr.ethernyx.stellamecanics.utils.generator.InstanceType;
 import fr.ethernyx.stellamecanics.utils.recipe.MyIngredient;
 import fr.ethernyx.stellamecanics.utils.recipe.RecipeBuilder;
 import fr.ethernyx.stellamecanics.utils.recipe.RecipeType;
-import net.minecraft.data.client.Model;
-import net.minecraft.data.client.Models;
+import net.minecraft.client.data.Model;
+import net.minecraft.client.data.Models;
 import net.minecraft.item.Item;
 
 import java.util.*;
 
-public class IridiumRaw extends Item  implements IMyItem {
-    public static String getId() {
-        return "iridium_raw";
+public class IridiumRaw extends Item implements IMyItem {
+    public static String ID = "iridium_raw";
+
+    public String getId() {
+        return ID;
     }
 
     @Override
     public Model getModelType() {
         return Models.GENERATED;
     }
+
     @Override
-    public String getTranslate(String lang) { 
+    public String getTranslate(String lang) {
         Map<String, String> langs = new HashMap<>() {{
             put("fr_fr", "Iridium brut");
             put("en_us", "Iridium raw");
@@ -30,11 +33,9 @@ public class IridiumRaw extends Item  implements IMyItem {
     }
 
 
-    
-
-    public IridiumRaw() {
-        super(new Settings());
-       //this.data = new AidInfoGenerator(this.getId(), this.getModelType(), this.getTranslate(), InstanceType.ITEM);
+    public IridiumRaw(Settings settings) {
+        super(settings);
+        //this.data = new AidInfoGenerator(this.getId(), this.getModelType(), this.getTranslate(), InstanceType.ITEM);
 
         // furnace
     }
@@ -49,5 +50,5 @@ public class IridiumRaw extends Item  implements IMyItem {
         return recipes;
     }
 
-    
+
 }

@@ -14,9 +14,8 @@ import net.minecraft.registry.tag.TagKey;
 import java.util.*;
 
 public class IridiumOre extends Block implements IMyBlock {
-    public static String getId() {
-        return "iridium_ore";
-    }
+    public static String ID = "iridium_ore";
+public String getId() { return ID;  }
 
     @Override
     public String getTranslate(String lang) {
@@ -27,9 +26,7 @@ public class IridiumOre extends Block implements IMyBlock {
         return langs.get(lang);
     }
 
-    public IridiumOre() {
-        super(Settings.create().strength(3f, 15f).requiresTool());
-    }
+   public IridiumOre(Settings settings) { super(settings.strength(3f, 15f).requiresTool()); }
 
     @Override
     public List<RecipeBuilder> getRecipe() {

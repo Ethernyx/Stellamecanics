@@ -19,7 +19,7 @@ public class ItemTagGenerator extends FabricTagProvider.ItemTagProvider {
             ModItems.ITEMS.forEach((key, item) -> {
                 if (!item.getTags().isEmpty()) {
                     item.getTags().forEach((tag) -> {
-                        getOrCreateTagBuilder(tag).add((Item) item);
+                        valueLookupBuilder(tag).add((Item) item);
                     });
                 }
             });

@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "cookingtime": 200,
+  "experience": 0.2,
+  "group": "raw_to_iridium_ingot_smelting",
+  "ingredient": "stellamecanics:iridium_raw",
+  "result": {
+    "id": "stellamecanics:iridium_ingot"
+  }
+}

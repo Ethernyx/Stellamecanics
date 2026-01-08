@@ -3,7 +3,7 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "minecraft:zirconium_ingot"
+        "recipe": "stellamecanics:zirconium_ingot"
       },
       "trigger": "minecraft:recipe_unlocked"
     },
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "minecraft:zirconium_ingot"
+      "stellamecanics:zirconium_ingot"
     ]
   }
 }

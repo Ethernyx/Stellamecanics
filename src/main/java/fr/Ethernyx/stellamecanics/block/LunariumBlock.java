@@ -15,9 +15,8 @@ import net.minecraft.registry.tag.TagKey;
 import java.util.*;
 
 public class LunariumBlock extends Block implements IMyBlock {
-    public static String getId() {
-        return "lunarium_block";
-    }
+    public static String ID = "lunarium_block";
+public String getId() { return ID;  }
 
     @Override
     public String getTranslate(String lang) {
@@ -28,9 +27,7 @@ public class LunariumBlock extends Block implements IMyBlock {
         return langs.get(lang);
     }
 
-    public LunariumBlock() {
-        super(Settings.create().strength(3f, 15f).requiresTool());
-    }
+   public LunariumBlock(Settings settings) { super(settings.strength(3f, 15f).requiresTool()); }
 
     @Override
     public List<RecipeBuilder> getRecipe() {

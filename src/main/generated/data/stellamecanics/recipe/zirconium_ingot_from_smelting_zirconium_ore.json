@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "cookingtime": 200,
+  "experience": 0.2,
+  "group": "ore_to_zirconium_ingot_smelting",
+  "ingredient": "stellamecanics:zirconium_ore",
+  "result": {
+    "id": "stellamecanics:zirconium_ingot"
+  }
+}

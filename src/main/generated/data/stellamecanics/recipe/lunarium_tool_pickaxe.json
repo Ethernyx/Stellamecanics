@@ -2,12 +2,8 @@
   "type": "minecraft:crafting_shaped",
   "category": "equipment",
   "key": {
-    "I": {
-      "item": "stellamecanics:lunarium_ingot"
-    },
-    "S": {
-      "item": "minecraft:stick"
-    }
+    "I": "stellamecanics:lunarium_ingot",
+    "S": "minecraft:stick"
   },
   "pattern": [
     "III",

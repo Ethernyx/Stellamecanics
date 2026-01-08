@@ -2,9 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    {
-      "item": "stellamecanics:stellarium_block"
-    }
+    "stellamecanics:stellarium_block"
   ],
   "result": {
     "count": 9,

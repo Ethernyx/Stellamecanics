@@ -3,7 +3,7 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "minecraft:zircaloy_armor_leggings"
+        "recipe": "stellamecanics:zircaloy_armor_leggings"
       },
       "trigger": "minecraft:recipe_unlocked"
     },
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "minecraft:zircaloy_armor_leggings"
+      "stellamecanics:zircaloy_armor_leggings"
     ]
   }
 }

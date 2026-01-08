@@ -2,9 +2,7 @@
   "type": "minecraft:crafting_shaped",
   "category": "equipment",
   "key": {
-    "I": {
-      "item": "stellamecanics:solarium_ingot"
-    }
+    "I": "stellamecanics:solarium_ingot"
   },
   "pattern": [
     "I I",

@@ -2,9 +2,7 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "0": {
-      "item": "stellamecanics:iridium_ingot"
-    }
+    "0": "stellamecanics:iridium_ingot"
   },
   "pattern": [
     "000",

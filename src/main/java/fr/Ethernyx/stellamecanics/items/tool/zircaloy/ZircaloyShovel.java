@@ -2,14 +2,16 @@ package fr.ethernyx.stellamecanics.items.tool.zircaloy;
 
 import fr.ethernyx.stellamecanics.interfaces.IMyItem;
 import fr.ethernyx.stellamecanics.utils.CustomItemTiers;
-import net.minecraft.item.ShovelItem;
+import net.minecraft.item.Item;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class ZircaloyShovel extends ShovelItem  implements IMyItem {
-    public static String getId() {
-        return "zircaloy_shovel";
+public class ZircaloyShovel extends Item implements IMyItem {
+    public static String ID = "zircaloy_shovel";
+
+    public String getId() {
+        return ID;
     }
 
     @Override
@@ -21,12 +23,8 @@ public class ZircaloyShovel extends ShovelItem  implements IMyItem {
         return langs.get(lang);
     }
 
-    
 
-    public ZircaloyShovel() {
-        super(CustomItemTiers.ZIRCALOY, new Settings());
-        /*this.data = new AidInfoGenerator(this.getId(), this.getModelType(), this.getTranslate(), InstanceType.ITEM);*/
-    }
-    
-    
+    public ZircaloyShovel(Settings settings) { super(settings.shovel(CustomItemTiers.ZIRCALOY, 1.5f, -3f)); }
+
+
 }

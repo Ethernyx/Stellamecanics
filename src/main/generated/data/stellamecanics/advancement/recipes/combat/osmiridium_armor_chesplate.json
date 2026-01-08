@@ -3,7 +3,7 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "minecraft:osmiridium_armor_chesplate"
+        "recipe": "stellamecanics:osmiridium_armor_chesplate"
       },
       "trigger": "minecraft:recipe_unlocked"
     },
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "minecraft:osmiridium_armor_chesplate"
+      "stellamecanics:osmiridium_armor_chesplate"
     ]
   }
 }

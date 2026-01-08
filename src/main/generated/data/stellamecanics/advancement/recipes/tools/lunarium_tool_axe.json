@@ -3,7 +3,7 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "minecraft:lunarium_tool_axe"
+        "recipe": "stellamecanics:lunarium_tool_axe"
       },
       "trigger": "minecraft:recipe_unlocked"
     },
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "minecraft:lunarium_tool_axe"
+      "stellamecanics:lunarium_tool_axe"
     ]
   }
 }

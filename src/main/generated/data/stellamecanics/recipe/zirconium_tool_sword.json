@@ -2,12 +2,8 @@
   "type": "minecraft:crafting_shaped",
   "category": "equipment",
   "key": {
-    "I": {
-      "item": "stellamecanics:zirconium_ingot"
-    },
-    "S": {
-      "item": "minecraft:stick"
-    }
+    "I": "stellamecanics:zirconium_ingot",
+    "S": "minecraft:stick"
   },
   "pattern": [
     "I",

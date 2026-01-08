@@ -2,18 +2,20 @@ package fr.ethernyx.stellamecanics.items.tool.iridium;
 
 import fr.ethernyx.stellamecanics.interfaces.IMyItem;
 import fr.ethernyx.stellamecanics.utils.CustomItemTiers;
-import net.minecraft.item.SwordItem;
+import net.minecraft.item.Item;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class IridiumSword extends SwordItem  implements IMyItem {
-    public static String getId() {
-        return "iridium_sword";
+public class IridiumSword extends Item implements IMyItem {
+    public static String ID = "iridium_sword";
+
+    public String getId() {
+        return ID;
     }
 
     @Override
-    public String getTranslate(String lang) { 
+    public String getTranslate(String lang) {
         Map<String, String> langs = new HashMap<>() {{
             put("fr_fr", "Epée en iridium");
             put("en_us", "Iridium sword");
@@ -21,13 +23,12 @@ public class IridiumSword extends SwordItem  implements IMyItem {
         return langs.get(lang);
     }
 
-    
 
-    public IridiumSword() {
-        super(CustomItemTiers.IRIDIUM, new Settings());
+    public IridiumSword(Settings settings) {
+        super(settings.sword(CustomItemTiers.IRIDIUM, 3f, -2.4f));
         /*this.data = new AidInfoGenerator(this.getId(), this.getModelType(), this.getTranslate(), InstanceType.ITEM);*/
 
     }
-    
-    
+
+
 }

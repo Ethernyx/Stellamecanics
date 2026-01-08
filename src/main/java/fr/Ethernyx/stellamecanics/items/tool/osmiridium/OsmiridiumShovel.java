@@ -2,18 +2,20 @@ package fr.ethernyx.stellamecanics.items.tool.osmiridium;
 
 import fr.ethernyx.stellamecanics.interfaces.IMyItem;
 import fr.ethernyx.stellamecanics.utils.CustomItemTiers;
-import net.minecraft.item.ShovelItem;
+import net.minecraft.item.Item;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class OsmiridiumShovel extends ShovelItem  implements IMyItem {
-    public static String getId() {
-        return "osmiridium_shovel";
+public class OsmiridiumShovel extends Item implements IMyItem {
+    public static String ID = "osmiridium_shovel";
+
+    public String getId() {
+        return ID;
     }
 
     @Override
-    public String getTranslate(String lang) { 
+    public String getTranslate(String lang) {
         Map<String, String> langs = new HashMap<>() {{
             put("fr_fr", "Pelle en osmiridium");
             put("en_us", "Osmiridium shovel");
@@ -21,12 +23,8 @@ public class OsmiridiumShovel extends ShovelItem  implements IMyItem {
         return langs.get(lang);
     }
 
-    
 
-    public OsmiridiumShovel() {
-        super(CustomItemTiers.OSMIRIDIUM, new Settings());
-        /*this.data = new AidInfoGenerator(this.getId(), this.getModelType(), this.getTranslate(), InstanceType.ITEM);*/
-    }
-    
-    
+    public OsmiridiumShovel(Settings settings) { super(settings.shovel(CustomItemTiers.OSMIRIDIUM, 1.5f, -3f)); }
+
+
 }

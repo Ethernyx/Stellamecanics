@@ -48,7 +48,7 @@ public class LootTableGenerator extends FabricBlockLootTableProvider {
                             dropsWithSilkTouch((Block) block);
                             break;
                         case LUCKY_ORE:
-                            RegistryWrapper.Impl<Enchantment> impl = this.registryLookup.getWrapperOrThrow(RegistryKeys.ENCHANTMENT);
+                            RegistryWrapper.Impl<Enchantment> impl = this.registries.getOrThrow(RegistryKeys.ENCHANTMENT);
                             addDrop((Block) block, multipleOreDrops(block, (Item) ModItems.ITEMS.get(block.getLootTable().getOutput().getItem()), block.getLootTable().getOutput().getMin(),  block.getLootTable().getOutput().getMax()));
                             break;
                         default:
@@ -58,7 +58,7 @@ public class LootTableGenerator extends FabricBlockLootTableProvider {
     }
 
     public LootTable.Builder multipleOreDrops(IMyBlock block, Item drop, float min, float max) {
-        RegistryWrapper.Impl<Enchantment> impl = this.registryLookup.getWrapperOrThrow(RegistryKeys.ENCHANTMENT);
+        RegistryWrapper.Impl<Enchantment> impl = this.registries.getOrThrow(RegistryKeys.ENCHANTMENT);
         return dropsWithSilkTouch(
                 (Block) block,
                 applyExplosionDecay(

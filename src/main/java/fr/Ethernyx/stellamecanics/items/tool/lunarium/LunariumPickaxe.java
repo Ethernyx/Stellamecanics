@@ -2,18 +2,20 @@ package fr.ethernyx.stellamecanics.items.tool.lunarium;
 
 import fr.ethernyx.stellamecanics.interfaces.IMyItem;
 import fr.ethernyx.stellamecanics.utils.CustomItemTiers;
-import net.minecraft.item.PickaxeItem;
+import net.minecraft.item.Item;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class LunariumPickaxe extends PickaxeItem  implements IMyItem {
-    public static String getId() {
-        return "lunarium_pickaxe";
+public class LunariumPickaxe extends Item implements IMyItem {
+    public static String ID = "lunarium_pickaxe";
+
+    public String getId() {
+        return ID;
     }
 
     @Override
-    public String getTranslate(String lang) { 
+    public String getTranslate(String lang) {
         Map<String, String> langs = new HashMap<>() {{
             put("fr_fr", "Pioche en lunarium");
             put("en_us", "Lunarium pickaxe");
@@ -21,12 +23,8 @@ public class LunariumPickaxe extends PickaxeItem  implements IMyItem {
         return langs.get(lang);
     }
 
-    
 
-    public LunariumPickaxe() {
-        super(CustomItemTiers.LUNARIUM, new Settings());
-        /*this.data = new AidInfoGenerator(this.getId(), this.getModelType(), this.getTranslate(), InstanceType.ITEM);*/
-    }
-    
-    
+    public LunariumPickaxe(Settings settings) { super(settings.pickaxe(CustomItemTiers.LUNARIUM, 1f, -2.8f)); }
+
+
 }

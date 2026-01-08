@@ -1,10 +1,10 @@
-// 1.21.1	2024-12-02T12:58:44.5295588	Stellamecanics/Tags for minecraft:block
-a841444b0a6fea7f6f3b6b3f35ef98f9083476c9 data\stellamecanics\tags\block\need_lunarium_tool.json
-93bee32bb9b4b55360e75999e9317ef67df11b95 data\minecraft\tags\block\needs_diamond_tool.json
-1f7846dd14da6eece048395d632592bbf9303f59 data\minecraft\tags\block\mineable\pickaxe.json
-3462af8e06c220dbaec73f22fcad58a65e5644cf data\stellamecanics\tags\block\need_iridium_tool.json
-a841444b0a6fea7f6f3b6b3f35ef98f9083476c9 data\stellamecanics\tags\block\need_solarium_tool.json
-a841444b0a6fea7f6f3b6b3f35ef98f9083476c9 data\stellamecanics\tags\block\need_zirconium_tool.json
-80690861899042da93cf5338efba3f054c4189ca data\stellamecanics\tags\block\need_osmiridium_tool.json
-80690861899042da93cf5338efba3f054c4189ca data\stellamecanics\tags\block\need_stellarium_tool.json
-80690861899042da93cf5338efba3f054c4189ca data\stellamecanics\tags\block\need_zircaloy_tool.json
+// 1.21.10	-999999999-01-01T00:00:00	Stellamecanics/Tags for minecraft:block
+1f7846dd14da6eece048395d632592bbf9303f59 data/minecraft/tags/block/mineable/pickaxe.json
+93bee32bb9b4b55360e75999e9317ef67df11b95 data/minecraft/tags/block/needs_diamond_tool.json
+3462af8e06c220dbaec73f22fcad58a65e5644cf data/stellamecanics/tags/block/need_iridium_tool.json
+a841444b0a6fea7f6f3b6b3f35ef98f9083476c9 data/stellamecanics/tags/block/need_lunarium_tool.json
+80690861899042da93cf5338efba3f054c4189ca data/stellamecanics/tags/block/need_osmiridium_tool.json
+a841444b0a6fea7f6f3b6b3f35ef98f9083476c9 data/stellamecanics/tags/block/need_solarium_tool.json
+80690861899042da93cf5338efba3f054c4189ca data/stellamecanics/tags/block/need_stellarium_tool.json
+80690861899042da93cf5338efba3f054c4189ca data/stellamecanics/tags/block/need_zircaloy_tool.json
+a841444b0a6fea7f6f3b6b3f35ef98f9083476c9 data/stellamecanics/tags/block/need_zirconium_tool.json

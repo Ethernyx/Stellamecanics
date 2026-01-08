@@ -15,9 +15,8 @@ import net.minecraft.registry.tag.TagKey;
 import java.util.*;
 
 public class SolariumOre extends Block implements IMyBlock {
-    public static String getId() {
-        return "solarium_ore";
-    }
+    public static String ID = "solarium_ore";
+public String getId() { return ID;  }
 
     @Override
     public String getTranslate(String lang) {
@@ -30,9 +29,7 @@ public class SolariumOre extends Block implements IMyBlock {
 
     
 
-    public SolariumOre() {
-        super(Settings.create().strength(3f, 15f).requiresTool());
-    }
+   public SolariumOre(Settings settings) { super(settings.strength(3f, 15f).requiresTool()); }
 
     @Override
     public List<RecipeBuilder> getRecipe() {

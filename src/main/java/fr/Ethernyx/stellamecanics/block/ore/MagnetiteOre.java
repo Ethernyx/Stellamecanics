@@ -15,9 +15,8 @@ import java.util.List;
 import java.util.Map;
 
 public class MagnetiteOre extends Block implements IMyBlock {
-    public static String getId() {
-        return "magnetite_ore";
-    }
+    public static String ID = "magnetite_ore";
+public String getId() { return ID;  }
 
     @Override
     public String getTranslate(String lang) {
@@ -28,9 +27,7 @@ public class MagnetiteOre extends Block implements IMyBlock {
         return langs.get(lang);
     }
 
-    public MagnetiteOre() {
-        super(Settings.create().strength(3f, 15f).requiresTool());
-    }
+   public MagnetiteOre(Settings settings) { super(settings.strength(3f, 15f).requiresTool()); }
 
     @Override
     public MyLootTable getLootTable() {

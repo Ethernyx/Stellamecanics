@@ -2,14 +2,16 @@ package fr.ethernyx.stellamecanics.items.tool.lunarium;
 
 import fr.ethernyx.stellamecanics.interfaces.IMyItem;
 import fr.ethernyx.stellamecanics.utils.CustomItemTiers;
-import net.minecraft.item.ShovelItem;
+import net.minecraft.item.Item;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class LunariumShovel extends ShovelItem  implements IMyItem {
-    public static String getId() {
-        return "lunarium_shovel";
+public class LunariumShovel extends Item implements IMyItem {
+    public static String ID = "lunarium_shovel";
+
+    public String getId() {
+        return ID;
     }
 
     @Override
@@ -21,12 +23,8 @@ public class LunariumShovel extends ShovelItem  implements IMyItem {
         return langs.get(lang);
     }
 
-    
 
-    public LunariumShovel() {
-        super(CustomItemTiers.LUNARIUM, new Settings());
-        /*this.data = new AidInfoGenerator(this.getId(), this.getModelType(), this.getTranslate(), InstanceType.ITEM);*/
-    }
-    
-    
+    public LunariumShovel(Settings settings) { super(settings.shovel(CustomItemTiers.LUNARIUM, 1.5f, -3f)); }
+
+
 }

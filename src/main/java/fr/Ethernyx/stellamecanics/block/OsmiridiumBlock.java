@@ -15,9 +15,8 @@ import net.minecraft.registry.tag.TagKey;
 import java.util.*;
 
 public class OsmiridiumBlock extends Block implements IMyBlock {
-    public static String getId() {
-        return "osmiridium_block";
-    }
+    public static String ID = "osmiridium_block";
+public String getId() { return ID;  }
 
     @Override
     public String getTranslate(String lang) {
@@ -28,9 +27,7 @@ public class OsmiridiumBlock extends Block implements IMyBlock {
         return langs.get(lang);
     }
 
-    public OsmiridiumBlock() {
-        super(Settings.create().strength(3f, 15f).requiresTool());
-    }
+   public OsmiridiumBlock(Settings settings) { super(settings.strength(3f, 15f).requiresTool()); }
 
     @Override
     public List<RecipeBuilder> getRecipe() {

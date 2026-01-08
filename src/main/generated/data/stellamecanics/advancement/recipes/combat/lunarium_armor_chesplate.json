@@ -3,7 +3,7 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "minecraft:lunarium_armor_chesplate"
+        "recipe": "stellamecanics:lunarium_armor_chesplate"
       },
       "trigger": "minecraft:recipe_unlocked"
     },
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "minecraft:lunarium_armor_chesplate"
+      "stellamecanics:lunarium_armor_chesplate"
     ]
   }
 }
