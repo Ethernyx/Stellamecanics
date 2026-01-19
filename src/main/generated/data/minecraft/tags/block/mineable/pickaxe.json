@@ -1,16 +1,17 @@
 {
   "values": [
-    "stellamecanics:lunarium_ore",
-    "stellamecanics:zirconium_block",
     "stellamecanics:magnetite_ore",
     "stellamecanics:lunarium_block",
-    "stellamecanics:zircaloy_block",
     "stellamecanics:stellarium_block",
     "stellamecanics:iridium_block",
     "stellamecanics:iridium_ore",
     "stellamecanics:solarium_ore",
+    "stellamecanics:forge_stellaire",
+    "stellamecanics:osmiridium_block",
+    "stellamecanics:lunarium_ore",
+    "stellamecanics:zirconium_block",
+    "stellamecanics:zircaloy_block",
     "stellamecanics:solarium_block",
-    "stellamecanics:zirconium_ore",
-    "stellamecanics:osmiridium_block"
+    "stellamecanics:zirconium_ore"
   ]
 }

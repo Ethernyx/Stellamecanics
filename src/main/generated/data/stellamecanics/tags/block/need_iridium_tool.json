@@ -1,7 +1,7 @@
 {
   "values": [
-    "stellamecanics:lunarium_ore",
     "stellamecanics:iridium_block",
-    "stellamecanics:solarium_ore"
+    "stellamecanics:solarium_ore",
+    "stellamecanics:lunarium_ore"
   ]
 }

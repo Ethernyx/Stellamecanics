@@ -47,6 +47,9 @@ public class IridiumRaw extends Item implements IMyItem {
         recipes.add(new RecipeBuilder("raw_to_iridium_ingot", RecipeType.ORE,
                 new ArrayList<>(Collections.singletonList(new MyIngredient("iridium_raw", InstanceType.ITEM, 1))),
                 new ArrayList<>(Collections.singletonList(new MyIngredient("iridium_ingot", InstanceType.ITEM, 1)))));
+        recipes.add(new RecipeBuilder("raw_to_iridium_ingot", RecipeType.FORGE,
+                new ArrayList<>(Collections.singletonList(new MyIngredient("iridium_raw", InstanceType.ITEM, 1))),
+                new ArrayList<>(Collections.singletonList(new MyIngredient("iridium_ingot", InstanceType.ITEM, 2)))));
         return recipes;
     }
 

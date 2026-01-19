@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "0": "stellamecanics:iridium_block",
+    "1": "stellamecanics:iridium_ingot",
+    "2": "minecraft:furnace"
+  },
+  "pattern": [
+    "0 0",
+    "121",
+    "111"
+  ],
+  "result": {
+    "count": 1,
+    "id": "stellamecanics:forge_stellaire"
+  }
+}

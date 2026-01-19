@@ -2,6 +2,7 @@ package fr.ethernyx.stellamecanics.init;
 
 import fr.ethernyx.stellamecanics.Stellamecanics;
 import fr.ethernyx.stellamecanics.block.*;
+import fr.ethernyx.stellamecanics.block.entities.forgeStellaire.ForgeStellaire;
 import fr.ethernyx.stellamecanics.block.ore.*;
 import fr.ethernyx.stellamecanics.interfaces.IMyBlock;
 import fr.ethernyx.stellamecanics.interfaces.IMyItem;
@@ -34,6 +35,8 @@ public class ModBlocks {
     public static final Block SOLARIUM_BLOCK = addNewBlock(SolariumBlock.ID, SolariumBlock::new);
     public static final Block LUNARIUM_BLOCK = addNewBlock(LunariumBlock.ID, LunariumBlock::new);
     public static final Block STELLARIUM_BLOCK = addNewBlock(StellariumBlock.ID, StellariumBlock::new);
+
+    public static final Block FORGE_STELLAIRE = addNewBlock(ForgeStellaire.ID, ForgeStellaire::new);
 
 
     private static Block addNewBlock(String name, Function<AbstractBlock.Settings, Block> function) {

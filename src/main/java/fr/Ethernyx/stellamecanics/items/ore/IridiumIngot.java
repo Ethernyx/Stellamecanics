@@ -41,7 +41,7 @@ public class IridiumIngot extends Item implements IMyItem {
         List<RecipeBuilder> recipes = new ArrayList<>();
         recipes.add(new RecipeBuilder("iridium_block", RecipeType.SHAPE,
                 new ArrayList<>(Collections.singletonList(new MyIngredient("iridium_ingot", InstanceType.ITEM, 1))),
-                new ArrayList<>(Collections.singletonList(new MyIngredient("iridium_block", InstanceType.BLOCK, 1))),
+            new ArrayList<>(Collections.singletonList(new MyIngredient("iridium_block", InstanceType.BLOCK, 1))),
                 new ArrayList<>(Arrays.asList("000", "000", "000")),
                 new ArrayList<>(Collections.singletonList(new MyIngredient("iridium_ingot", InstanceType.ITEM, 1)))));
 

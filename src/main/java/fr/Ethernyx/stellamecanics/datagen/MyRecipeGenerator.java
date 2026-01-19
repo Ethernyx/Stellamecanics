@@ -1,5 +1,6 @@
 package fr.ethernyx.stellamecanics.datagen;
 
+import fr.ethernyx.stellamecanics.builders.recipes.forgeStellaire.ForgeStellaireRecipeBuilder;
 import fr.ethernyx.stellamecanics.init.ModBlocks;
 import fr.ethernyx.stellamecanics.init.ModItems;
 import fr.ethernyx.stellamecanics.utils.generator.InstanceType;
@@ -9,13 +10,22 @@ import fr.ethernyx.stellamecanics.utils.recipe.RecipeType;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.minecraft.advancement.criterion.InventoryChangedCriterion;
+import net.minecraft.block.Blocks;
 import net.minecraft.data.recipe.RecipeExporter;
 import net.minecraft.data.recipe.RecipeGenerator;
 import net.minecraft.data.recipe.ShapedRecipeJsonBuilder;
+import net.minecraft.fluid.Fluid;
+import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemConvertible;
+import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.recipe.Ingredient;
+import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.book.RecipeCategory;
+import net.minecraft.recipe.input.RecipeInput;
+import net.minecraft.registry.Registries;
 import net.minecraft.registry.RegistryWrapper;
+import net.minecraft.util.Identifier;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -92,6 +102,7 @@ public class MyRecipeGenerator extends FabricRecipeProvider {
                             }
                             break;
                         case FORGE:
+                            ForgeStellaireRecipeBuilder.offer(exporter, recipe.getRecipeName(), Ingredient.ofItems(getBlockOrItem(recipe.getInput().getFirst())), Fluids.LAVA, 200, 50, new ItemStack(getBlockOrItem(recipe.getOutput().getFirst()), recipe.getOutput().getFirst().getNb()));
                         default:
                             break;
                     }
@@ -223,6 +234,8 @@ public class MyRecipeGenerator extends FabricRecipeProvider {
     public ItemConvertible getBlockOrItem(MyIngredient ingredient) {
         if (ingredient.getType() == InstanceType.BLOCK) return (ItemConvertible) ModBlocks.BLOCKS.get(ingredient.getItem());
         else if (ingredient.getType() == InstanceType.ITEM) return ModItems.ITEMS.get(ingredient.getItem());
+        else if (ingredient.getType() == InstanceType.VANILLABLOCK) return Registries.BLOCK.get(Identifier.of("minecraft", ingredient.getItem()));
+        else if (ingredient.getType() == InstanceType.VANILLAITEM) return Registries.ITEM.get(Identifier.of("minecraft", ingredient.getItem()));
         return null;
     }
 
