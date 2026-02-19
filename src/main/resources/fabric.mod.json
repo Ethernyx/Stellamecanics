@@ -25,6 +25,7 @@
 			"fr.ethernyx.stellamecanics.StellamecanicsClient"
 		]
 	},
+	"accessWidener": "stellamecanics.accesswidener",
 	"mixins": [
 		"stellamecanics.mixins.json"
 	],

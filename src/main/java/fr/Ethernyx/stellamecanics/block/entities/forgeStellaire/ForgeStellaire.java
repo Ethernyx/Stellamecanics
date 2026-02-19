@@ -9,7 +9,6 @@ import fr.ethernyx.stellamecanics.utils.generator.MyLootTable;
 import fr.ethernyx.stellamecanics.utils.recipe.MyIngredient;
 import fr.ethernyx.stellamecanics.utils.recipe.RecipeBuilder;
 import fr.ethernyx.stellamecanics.utils.recipe.RecipeType;
-import net.fabricmc.fabric.api.transfer.v1.fluid.FluidConstants;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
@@ -121,7 +120,7 @@ public class ForgeStellaire extends BlockWithEntity implements IMyBlock, BlockEn
 
         if (stack.isOf(Items.LAVA_BUCKET)) {
 
-            if (forge.addFluid(Fluids.LAVA, FluidConstants.BUCKET)) {
+            if (forge.addFluid(forge.tankSolarium, Fluids.LAVA, 1000)) {
                 // 🔊 SON
                 world.playSound(
                         null,                    // tous les joueurs
@@ -138,7 +137,7 @@ public class ForgeStellaire extends BlockWithEntity implements IMyBlock, BlockEn
                 return true;
             }
         } else if (stack.isOf(Items.BUCKET)) {
-            if (forge.addFluid(Fluids.LAVA, - FluidConstants.BUCKET)) {
+            if (forge.addFluid(forge.tankSolarium,Fluids.LAVA, - 1000)) {
                 // 🔊 SON
                 world.playSound(
                         null,                    // tous les joueurs

@@ -19,6 +19,7 @@ public class Stellamecanics implements ModInitializer {
 	public void onInitialize() {
 		ModItemsGroups.registerItemsGroups();
 		ModTags.registerModTags();
+		ModFluids.registerModFluids();
 		ModItems.registerModItems();
 		ModBlocks.registerModBlocks();
 		ModBlockEntities.registerModBlockEntities();

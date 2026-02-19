@@ -15,6 +15,7 @@ public class StellamecanicsDataGenerator implements DataGeneratorEntrypoint {
 
 		pack.addProvider(BlockTagGenerator::new);
 		pack.addProvider(ItemTagGenerator::new);
+		pack.addProvider(FluidTagGenerator::new);
 		pack.addProvider(LootTableGenerator::new);
 		pack.addProvider(ModelGenerator::new);
 		pack.addProvider(MyRecipeGenerator::new);

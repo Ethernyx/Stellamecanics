@@ -2,6 +2,7 @@ package fr.ethernyx.stellamecanics.init;
 
 import fr.ethernyx.stellamecanics.Stellamecanics;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
+import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.registry.Registries;
@@ -19,6 +20,12 @@ public class ModItemsGroups {
                     .entries((displayContext, entries) -> {
                         ModItems.ITEMS.forEach((key, item) -> {
                             entries.add(item);
+                        });
+                        ModBlocks.BLOCKS.forEach((key, block) -> {
+                            entries.add((ItemConvertible) block);
+                        });
+                        ModFluids.FLUIDS.forEach((key, fluid) -> {
+                            entries.add(fluid.getBucket());
                         });
                     }).build());
 

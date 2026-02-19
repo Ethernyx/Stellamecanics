@@ -1,6 +1,7 @@
 package fr.ethernyx.stellamecanics.datagen;
 
 import fr.ethernyx.stellamecanics.init.ModBlocks;
+import fr.ethernyx.stellamecanics.init.ModFluids;
 import fr.ethernyx.stellamecanics.init.ModItems;
 import fr.ethernyx.stellamecanics.interfaces.IMyBlock;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
@@ -55,6 +56,10 @@ public class LootTableGenerator extends FabricBlockLootTableProvider {
                             break;
                     }
             });
+
+        ModFluids.FLUIDS.forEach((key, fluid) -> {
+            addDrop(fluid.getBlock(), dropsNothing());
+        });
     }
 
     public LootTable.Builder multipleOreDrops(IMyBlock block, Item drop, float min, float max) {

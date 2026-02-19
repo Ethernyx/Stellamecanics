@@ -2,8 +2,12 @@ package fr.ethernyx.stellamecanics.datagen;
 
 import fr.ethernyx.stellamecanics.Stellamecanics;
 import fr.ethernyx.stellamecanics.init.ModBlocks;
+import fr.ethernyx.stellamecanics.init.ModFluids;
 import fr.ethernyx.stellamecanics.init.ModItems;
 import fr.ethernyx.stellamecanics.init.ModItemsGroups;
+import fr.ethernyx.stellamecanics.interfaces.IMyFlowingFluid;
+import fr.ethernyx.stellamecanics.utils.FluidListType;
+import fr.ethernyx.stellamecanics.utils.FluidListTypeEnum;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
 import net.minecraft.block.Block;
@@ -32,6 +36,14 @@ public class LangFrGenerator extends FabricLanguageProvider {
         if (!ModItems.ITEMS.isEmpty()) {
             ModItems.ITEMS.forEach((key, item) -> {
                 translationBuilder.add((Item) item, item.getTranslate(lang));
+            });
+        }
+
+        if (!ModFluids.FLUIDS.isEmpty()) {
+            ModFluids.FLUIDS.forEach((key, fluid) -> {
+                IMyFlowingFluid fluidInterface = (IMyFlowingFluid) fluid.getStill();
+                translationBuilder.add(fluid.getBlock(), fluidInterface.getTranslate(lang, FluidListTypeEnum.BLOCK));
+                translationBuilder.add(fluid.getBucket(), fluidInterface.getTranslate(lang, FluidListTypeEnum.BUCKET));
             });
         }
         addText(translationBuilder, ModItemsGroups.STELLAMECANICS.getDisplayName(), "Stellamecanics");

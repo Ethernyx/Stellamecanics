@@ -4,28 +4,33 @@ import fr.ethernyx.stellamecanics.block.entities.forgeStellaire.gui.ForgeStellai
 import fr.ethernyx.stellamecanics.builders.recipes.forgeStellaire.ForgeStellaireRecipe;
 import fr.ethernyx.stellamecanics.builders.recipes.forgeStellaire.ForgeStellaireRecipeInput;
 import fr.ethernyx.stellamecanics.init.ModBlockEntities;
-import fr.ethernyx.stellamecanics.init.ModBlocks;
 import fr.ethernyx.stellamecanics.init.ModRecipeTypes;
 import fr.ethernyx.stellamecanics.interfaces.IMyBlockEntity;
-import fr.ethernyx.stellamecanics.interfaces.ImplementedInventory;
+import fr.ethernyx.stellamecanics.network.BlockPosPayload;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
-import net.fabricmc.fabric.api.transfer.v1.fluid.FluidConstants;
+import net.fabricmc.fabric.api.transfer.v1.context.ContainerItemContext;
+import net.fabricmc.fabric.api.transfer.v1.fluid.FluidStorage;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant;
 import net.fabricmc.fabric.api.transfer.v1.fluid.base.SingleFluidStorage;
+import net.fabricmc.fabric.api.transfer.v1.item.InventoryStorage;
+import net.fabricmc.fabric.api.transfer.v1.storage.Storage;
 import net.fabricmc.fabric.api.transfer.v1.transaction.Transaction;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.Fluids;
-import net.minecraft.inventory.Inventories;
-import net.minecraft.inventory.Inventory;
+import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NbtCompound;
+import net.minecraft.network.listener.ClientPlayPacketListener;
+import net.minecraft.network.packet.Packet;
+import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
 import net.minecraft.recipe.RecipeEntry;
+import net.minecraft.registry.*;
 import net.minecraft.screen.ArrayPropertyDelegate;
-import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -33,24 +38,57 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.storage.ReadView;
 import net.minecraft.storage.WriteView;
 import net.minecraft.text.Text;
-import net.minecraft.util.ItemScatterer;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Optional;
 
-public class ForgeStellaireEntity extends BlockEntity implements NamedScreenHandlerFactory, ImplementedInventory, IMyBlockEntity {
+
+
+public class ForgeStellaireEntity extends BlockEntity implements ExtendedScreenHandlerFactory<BlockPosPayload>, IMyBlockEntity {
     public static String ID = "forge_stellaire_entity";
     public static String IDBLOCK = "forge_stellaire";
     private static final int INPUT_SLOT = 0;
     private static final int OUTPUT_SLOT = 1;
-    public static final long CAPACITY = 10 * FluidConstants.BUCKET;
+    private static final int TANKSOLARIUMAMOUNT_SLOT = 3;
+    private static final int TANKLUNARIUMAMOUNT_SLOT = 5;
+    public static final long CAPACITY = 10 * 1000;
     private int progress = 0;
     private int progressTime = 0;
     private final int maxProgress = 200;
     private final DefaultedList<ItemStack> items = DefaultedList.ofSize(2, ItemStack.EMPTY);
+    private final SimpleInventory input = new SimpleInventory(1) {
+        @Override
+        public void markDirty() {
+            super.markDirty();
+            update();
+        }
+
+        @Override
+        public boolean isValid(int slot, ItemStack stack) {
+            return ForgeStellaireEntity.this.isValid(stack, slot);
+        }
+    };
+
+    private final SimpleInventory output = new SimpleInventory(1) {
+        @Override
+        public void markDirty() {
+            super.markDirty();
+            update();
+        }
+
+        @Override
+        public boolean isValid(int slot, ItemStack stack) {
+            return ForgeStellaireEntity.this.isValid(stack, slot);
+        }
+    };
+
+    private final InventoryStorage inputInventoryStorage = InventoryStorage.of(input, Direction.UP);
+    private final InventoryStorage outputInventoryStorage = InventoryStorage.of(output, Direction.DOWN);
 
     public final SingleFluidStorage tankSolarium = new SingleFluidStorage() {
         @Override
@@ -63,6 +101,7 @@ public class ForgeStellaireEntity extends BlockEntity implements NamedScreenHand
             markDirty();
         }
     };
+
     public final SingleFluidStorage tankLunarium = new SingleFluidStorage() {
         @Override
         protected long getCapacity(FluidVariant fluidVariant) {
@@ -82,10 +121,10 @@ public class ForgeStellaireEntity extends BlockEntity implements NamedScreenHand
                 case 0 -> progress;
                 case 1 -> progressTime;
                 case 2 -> maxProgress;
-                case 3 -> (int) (tankSolarium.getAmount() / FluidConstants.BUCKET);
-                case 4 -> (int) (tankSolarium.getCapacity() / FluidConstants.BUCKET);
-                case 5 -> (int) (tankLunarium.getAmount() / FluidConstants.BUCKET);
-                case 6 -> (int) (tankLunarium.getCapacity() / FluidConstants.BUCKET);
+                case 3 -> (int) (tankSolarium.getAmount());
+                case 4 -> (int) (tankSolarium.getCapacity());
+                case 5 -> (int) (tankLunarium.getAmount());
+                case 6 -> (int) (tankLunarium.getCapacity());
                 default -> 0;
             };
         }
@@ -119,29 +158,41 @@ public class ForgeStellaireEntity extends BlockEntity implements NamedScreenHand
     @Override
     protected void writeData(WriteView view) {
         super.writeData(view);
-        Inventories.writeData(view, items);
+        view.put("forge_stellaire.input",  ItemStack.CODEC, input.getStack(0));
+        view.put("forge_stellaire.output", ItemStack.CODEC, output.getStack(0));
         view.putInt("forge_stellaire.progress", progress);
         view.putInt("forge_stellaire.progress_time", progressTime);
+        view.putString("forge_stellaire.tank_solarium", tankSolarium.getResource().getFluid() != null
+                ? Registries.FLUID.getId(tankSolarium.getResource().getFluid()).toString() : "minecraft:empty");
+        view.putLong("forge_stellaire.tank_solarium_amount", tankSolarium.getAmount());
+        view.putString("forge_stellaire.tank_lunarium", tankLunarium.getResource().getFluid() != null
+                ? Registries.FLUID.getId(tankLunarium.getResource().getFluid()).toString() : "minecraft:empty");
+        view.putLong("forge_stellaire.tank_lunarium_amount", tankLunarium.getAmount());
     }
 
     @Override
     protected void readData(ReadView view) {
-        Inventories.readData(view, items);
-        progress = view.getInt("forge_stellaire.progress", 0);
-        progressTime = view.getInt("forge_stellaire.progress_time", 0);
         super.readData(view);
-    }
+        view.read("forge_stellaire.input",  ItemStack.CODEC).ifPresent(s -> input.setStack(0, s));
+        view.read("forge_stellaire.output", ItemStack.CODEC).ifPresent(s -> output.setStack(0, s));
+        progress     = view.getInt("forge_stellaire.progress", 0);
+        progressTime = view.getInt("forge_stellaire.progress_time", 0);
 
-    @Override
-    public void onBlockReplaced(BlockPos pos, BlockState oldState) {
-        ItemScatterer.spawn(world, pos, (this));
-        super.onBlockReplaced(pos, oldState);
+        Fluid tmp = Registries.FLUID.get(Identifier.of(view.getString("forge_stellaire.tank_solarium", "")));
+        if (tmp != Fluids.EMPTY) addFluid(tankSolarium, tmp, view.getLong("forge_stellaire.tank_solarium_amount", 0L));
+        tmp = Registries.FLUID.get(Identifier.of(view.getString("forge_stellaire.tank_lunarium", "")));
+        if (tmp != Fluids.EMPTY) addFluid(tankLunarium, tmp, view.getLong("forge_stellaire.tank_lunarium_amount", 0L));
+
+        if (world != null && !world.isClient()) {
+            world.updateListeners(pos, getCachedState(), getCachedState(), 3);
+        }
     }
 
     public void tick(World world, BlockPos pos, BlockState state) {
         if (world.isClient()) return;
 
         if(hasRecipe()) {
+            if (progressTime == 0) this.progressTime = getCurrentRecipe().get().value().processTime();
             increaseCraftingProgress();
             markDirty(world, pos, state);
 
@@ -153,30 +204,8 @@ public class ForgeStellaireEntity extends BlockEntity implements NamedScreenHand
             resetProgress();
         }
 
-        if (world.isDay()) addSolariumFluid(10);
-        else addLunariumFluid(10);
-        /*if (be.burnTime <= 0 && !be.tank.isResourceBlank()) {
-            int burn = getBurnTime(be.tank.getResource());
-            if (burn > 0) {
-                try (Transaction tx = Transaction.openOuter()) {
-                    be.tank.extract(be.tank.getResource(), FluidConstants.BUCKET / 10, tx);
-                    tx.commit();
-                }
-                be.burnTime = burn;
-            }
-        }
-
-        if (be.burnTime > 0) {
-            be.burnTime--;
-            be.cookTime++;
-
-            if (be.cookTime >= be.maxCookTime) {
-                // 🔥 ici tu feras le smelting réel
-                be.cookTime = 0;
-            }
-        } else {
-            be.cookTime = 0;
-        }*/
+        if (world.isDay()) addFluid(tankSolarium, Fluids.LAVA, 4);
+        else addFluid(tankLunarium, Fluids.WATER, 4);
     }
 
     private void resetProgress() {
@@ -190,16 +219,51 @@ public class ForgeStellaireEntity extends BlockEntity implements NamedScreenHand
 
     private void craftItem() {
         Optional<RecipeEntry<ForgeStellaireRecipe>> recipe = getCurrentRecipe();
+        ForgeStellaireRecipe r = recipe.get().value();
 
-        ItemStack output = recipe.get().value().result();
-        this.removeStack(INPUT_SLOT, 1);
-        this.addFluid(recipe.get().value().fluid(),- recipe.get().value().fluidAmount());
-        this.setStack(OUTPUT_SLOT, new ItemStack(output.getItem(),
-                this.getStack(OUTPUT_SLOT).getCount() + output.getCount()));
+        input.removeStack(0, 1);
+
+        ItemStack output = r.result();
+        this.output.setStack(0, new ItemStack(output.getItem(),
+                this.output.getStack(0).getCount() + output.getCount()));
+
+        // Extraction du fluide
+        SingleFluidStorage tank = r.fluid() == Fluids.LAVA ? tankSolarium : tankLunarium;
+        boolean extracted = addFluid(tank, r.fluid(), -r.fluidAmount());
+
+        if (!extracted) {
+            // log pour debug — à retirer en prod
+            System.out.println("[ForgeStellaireEntity] Echec extraction fluide: "
+                    + r.fluidAmount() + " droplets de " + r.fluid());
+        }
     }
 
     private boolean hasCraftingFinished() {
         return this.progress >= this.maxProgress || this.progressTime <= this.progress;
+    }
+
+    private Fluid getTankFluid(ForgeStellaireRecipe recipe) {
+        return recipe.fluid() == Fluids.WATER
+                ? tankLunarium.getResource().getFluid()
+                : tankSolarium.getResource().getFluid();
+    }
+
+    private int getTankAmount(ForgeStellaireRecipe recipe) {
+        return recipe.fluid() == Fluids.WATER
+                ? properties.get(TANKLUNARIUMAMOUNT_SLOT)
+                : properties.get(TANKSOLARIUMAMOUNT_SLOT);
+    }
+
+    private boolean hasEnoughFluid(ForgeStellaireRecipe recipe) {
+        Fluid recipeFluid = recipe.fluid();
+        long required = recipe.fluidAmount();
+        Fluid tankFluid = getTankFluid(recipe);
+        int stored = getTankAmount(recipe);
+
+        if (tankFluid == Fluids.EMPTY) return false;
+        if (stored <= 0) return false;
+
+        return tankFluid == recipeFluid && stored >= required;
     }
 
     private boolean hasRecipe() {
@@ -208,23 +272,23 @@ public class ForgeStellaireEntity extends BlockEntity implements NamedScreenHand
             return false;
         }
 
-        this.progressTime = recipe.get().value().processTime();
         ItemStack output = recipe.get().value().result();
-        return canInsertAmountIntoOutputSlot(output.getCount()) && canInsertItemIntoOutputSlot(output);
+
+        return canInsertAmountIntoOutputSlot(output.getCount()) && canInsertItemIntoOutputSlot(output) && hasEnoughFluid(recipe.get().value());
     }
 
     private Optional<RecipeEntry<ForgeStellaireRecipe>> getCurrentRecipe() {
         return ((ServerWorld) this.getWorld()).getRecipeManager()
-                .getFirstMatch(ModRecipeTypes.FORGE_STELLAIRE, new ForgeStellaireRecipeInput(items.get(INPUT_SLOT)), this.getWorld());
+                .getFirstMatch(ModRecipeTypes.FORGE_STELLAIRE, new ForgeStellaireRecipeInput(input.getStack(0)), this.getWorld());
     }
 
     private boolean canInsertItemIntoOutputSlot(ItemStack output) {
-        return this.getStack(OUTPUT_SLOT).isEmpty() || this.getStack(OUTPUT_SLOT).getItem() == output.getItem();
+        return this.output.getStack(0).isEmpty() || this.output.getStack(0).getItem() == output.getItem();
     }
 
     private boolean canInsertAmountIntoOutputSlot(int count) {
-        int maxCount = this.getStack(OUTPUT_SLOT).isEmpty() ? 64 : this.getStack(OUTPUT_SLOT).getMaxCount();
-        int currentCount = this.getStack(OUTPUT_SLOT).getCount();
+        int maxCount = this.output.getStack(0).isEmpty() ? 64 : this.output.getStack(0).getMaxCount();
+        int currentCount = this.output.getStack(0).getCount();
 
         return maxCount >= currentCount + count;
     }
@@ -241,73 +305,77 @@ public class ForgeStellaireEntity extends BlockEntity implements NamedScreenHand
         return new ForgeStellaireScreenHandler(syncId, playerInv, this, properties);
     }
 
+    public boolean addFluid(SingleFluidStorage tank,
+                             Fluid fluid,
+                             long amount) {
+        FluidVariant variant = FluidVariant.of(fluid);
+
+        try (Transaction tx = Transaction.openOuter()) {
+            long changed;
+
+            if (amount > 0) {
+                changed = tank.insert(variant, amount, tx);
+            } else {
+                changed = tank.extract(variant, -amount, tx);
+            }
+
+            if (changed == Math.abs(amount)) {
+                tx.commit();
+                markDirty();
+                if (world != null) world.updateListeners(pos, getCachedState(), getCachedState(), 3);
+                return true;
+            }
+        }
+        return false;
+    }
     @Override
-    public DefaultedList<ItemStack> getItems() {
-        return items;
-    }
+    public void setWorld(World world) {
+        super.setWorld(world);
 
-    public boolean addFluid(Fluid fluid, long amount) {
-        if (fluid == Fluids.LAVA) return addSolariumFluid(amount);
-        else if (fluid == Fluids.WATER) return addLunariumFluid(amount);
-        else return false;
-
-    }
-
-    private boolean addSolariumFluid(long amount) {
-        try (Transaction transaction = Transaction.openOuter()) {
-            long inserted = 0;
-            if (amount > 0) {
-                inserted = tankSolarium.insert(
-                        FluidVariant.of(Fluids.LAVA),
-                        amount,
-                        transaction
-                );
-            } else {
-                inserted = tankSolarium.extract(
-                        FluidVariant.of(Fluids.LAVA),
-                        - amount,
-                        transaction
-                );
-            }
-
-
-            if (inserted > 0) {
-                transaction.commit();
-                markDirty();
-                world.updateListeners(pos, getCachedState(), getCachedState(), 3);
-                return true;
-            }
+        // world vient juste d'être attaché, tu peux notifier le client
+        if (world != null && !world.isClient()) {
+            world.updateListeners(pos, getCachedState(), getCachedState(), 3);
         }
-
-        return false;
     }
 
-    private boolean addLunariumFluid(long amount) {
-        try (Transaction transaction = Transaction.openOuter()) {
-            long inserted = 0;
-            if (amount > 0) {
-                inserted = tankLunarium.insert(
-                        FluidVariant.of(Fluids.LAVA),
-                        amount,
-                        transaction
-                );
-            } else {
-                inserted = tankLunarium.extract(
-                        FluidVariant.of(Fluids.LAVA),
-                        - amount,
-                        transaction
-                );
-            }
-
-
-            if (inserted > 0) {
-                transaction.commit();
-                markDirty();
-                world.updateListeners(pos, getCachedState(), getCachedState(), 3);
-                return true;
-            }
-        }
-
-        return false;
+    @Nullable
+    @Override
+    public Packet<ClientPlayPacketListener> toUpdatePacket() {
+        return BlockEntityUpdateS2CPacket.create(this);
     }
+
+    @Override
+    public NbtCompound toInitialChunkDataNbt(RegistryWrapper.WrapperLookup registryLookup) {
+        return createNbt(registryLookup);
+    }
+
+    public boolean isValid(ItemStack stack, int slot) {
+        if(stack.isEmpty()) return true;
+        if(slot != 0) return false;
+
+        Storage<FluidVariant> storage = ContainerItemContext.withConstant(stack).find(FluidStorage.ITEM);
+        return storage != null;
+    }
+
+    private void update() {
+        markDirty();
+        if(world != null)
+            world.updateListeners(pos, getCachedState(), getCachedState(), Block.NOTIFY_ALL);
+    }
+
+    @Override
+    public BlockPosPayload getScreenOpeningData(ServerPlayerEntity serverPlayerEntity) {
+        return new BlockPosPayload(this.pos);
+    }
+
+    public SimpleInventory getInputInventory() {
+        return input;
+    }
+
+    public SimpleInventory getOutputInventory() {
+        return output;
+    }
+
+    public SingleFluidStorage  getFluidStorageSolarium() { return tankSolarium;}
+    public SingleFluidStorage  getFluidStorageLunarium() { return tankLunarium;}
 }
