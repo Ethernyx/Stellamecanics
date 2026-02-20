@@ -37,7 +37,7 @@ public class ModTags {
         public static final TagKey<Item> OSMIRIDIUM_REPAIR = createTag(("osmiridium_repair"));
         public static final TagKey<Item> ZIRCALOY_REPAIR = createTag(("zircaloy_repair"));
         public static final TagKey<Item> ZIRCONIUM_REPAIR = createTag(("zirconium_repair"));
-        public static final TagKey<Item> STELLARIUM_REPAIR = createTag(("zirconium_repair"));
+        public static final TagKey<Item> STELLARIUM_REPAIR = createTag(("stellarium_repair"));
 
         private static TagKey<Item> createTag(String name) {
             return TagKey.of(RegistryKeys.ITEM, Identifier.of(Stellamecanics.MOD_ID, name));
