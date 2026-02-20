@@ -1,6 +1,7 @@
 package fr.ethernyx.stellamecanics.block.entities.forgeStellaire;
 
 import com.mojang.serialization.MapCodec;
+import fr.ethernyx.stellamecanics.Stellamecanics;
 import fr.ethernyx.stellamecanics.init.ModBlockEntities;
 import fr.ethernyx.stellamecanics.interfaces.IMyBlock;
 import fr.ethernyx.stellamecanics.utils.generator.InstanceType;
@@ -17,12 +18,16 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.registry.tag.TagKey;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -36,7 +41,8 @@ public class ForgeStellaire extends BlockWithEntity implements IMyBlock, BlockEn
     public static final MapCodec<ForgeStellaire> CODEC = ForgeStellaire.createCodec(ForgeStellaire::new);
 
     public ForgeStellaire(Settings settings) {
-        super(settings.strength(3f, 15f));
+        super(settings.registryKey(RegistryKey.of(RegistryKeys.BLOCK,
+                Identifier.of(Stellamecanics.MOD_ID, ID))).strength(3f, 15f));
     }
 
     @Override
