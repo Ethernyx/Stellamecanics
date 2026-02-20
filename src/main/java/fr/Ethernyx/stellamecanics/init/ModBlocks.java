@@ -180,38 +180,11 @@ public class ModBlocks {
         return block;
     }
 
-    /*private static Block addNewBlock(String name, Function<AbstractBlock.Settings, Block> function) {
-        BLOCKS.put(name, (IMyBlock) function.apply(AbstractBlock.Settings.create().registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(Stellamecanics.MOD_ID, name)))));
-        registerBlockItem(name, (Block) BLOCKS.get(name));
-        return Registry.register(Registries.BLOCK, Identifier.of(Stellamecanics.MOD_ID, name), (Block) BLOCKS.get(name));
-    }*/
-
     private static <T extends Block & IMyBlock> void registerBlockItem(T block) {
         Registry.register(Registries.ITEM, Identifier.of(Stellamecanics.MOD_ID, block.getId()),
                 new BlockItem(block, new Item.Settings().useBlockPrefixedTranslationKey()
                         .registryKey(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(Stellamecanics.MOD_ID, block.getId())))));
     }
-
-    /*private static void registerBlockItem(String name, Block block) {
-        Registry.register(Registries.ITEM, Identifier.of(Stellamecanics.MOD_ID, name),
-                new BlockItem(block, new Item.Settings().useBlockPrefixedTranslationKey()
-                        .registryKey(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(Stellamecanics.MOD_ID, name)))));
-    }*/
-    /*public static <T extends Block & IMyBlock> T addNewItem(
-            String name,
-            Function<Block.Settings, T> factory
-    ) {
-        Identifier id = Identifier.of(Stellamecanics.MOD_ID, name);
-
-        AbstractBlock.Settings settings = new AbstractBlock.Settings().create()
-                .registryKey(RegistryKey.of(RegistryKeys.ITEM, id));
-
-        T block = factory.apply(settings);
-
-        Registry.register(Registries.BLOCK, id, block);
-        BLOCKS.put(name, block);
-        return block;
-    }*/
 
     public static void registerModBlocks() { Stellamecanics.LOGGER.debug("Registering Mod Blocks for " + Stellamecanics.MOD_ID); }
 }
