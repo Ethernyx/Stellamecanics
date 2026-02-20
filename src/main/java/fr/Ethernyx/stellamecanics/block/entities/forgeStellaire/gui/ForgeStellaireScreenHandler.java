@@ -107,9 +107,8 @@ public class ForgeStellaireScreenHandler extends ScreenHandler {
         return maxProgress != 0 && progress != 0 ? progress * arrowPixelSize / maxProgress : 0;
     }
 
-    public int getInfosLunarium(int type) { return (int) type == AMOUNT ? properties.get(5) : properties.get(6); }
-    public int getInfosSolarium(int type) { return (int) type == AMOUNT ? properties.get(3) : properties.get(4); }
+    public int getInfosLunarium(int type) { return type == AMOUNT ? properties.get(5) : properties.get(6); }
+    public int getInfosSolarium(int type) { return type == AMOUNT ? properties.get(3) : properties.get(4); }
     public Fluid getFluid() { return Fluids.LAVA;}
     public ForgeStellaireEntity getBlockEntity() { return blockEntity; }
-
 }

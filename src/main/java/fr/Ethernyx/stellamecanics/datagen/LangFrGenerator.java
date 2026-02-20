@@ -1,12 +1,8 @@
 package fr.ethernyx.stellamecanics.datagen;
 
 import fr.ethernyx.stellamecanics.Stellamecanics;
-import fr.ethernyx.stellamecanics.init.ModBlocks;
-import fr.ethernyx.stellamecanics.init.ModFluids;
-import fr.ethernyx.stellamecanics.init.ModItems;
-import fr.ethernyx.stellamecanics.init.ModItemsGroups;
+import fr.ethernyx.stellamecanics.init.*;
 import fr.ethernyx.stellamecanics.interfaces.IMyFlowingFluid;
-import fr.ethernyx.stellamecanics.utils.FluidListType;
 import fr.ethernyx.stellamecanics.utils.FluidListTypeEnum;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
@@ -46,6 +42,9 @@ public class LangFrGenerator extends FabricLanguageProvider {
                 translationBuilder.add(fluid.getBucket(), fluidInterface.getTranslate(lang, FluidListTypeEnum.BUCKET));
             });
         }
+        ModScreenHandlers.GUI_TRANSLATIONS.forEach((key, gui) -> {
+            translationBuilder.add(key, gui.get(lang));
+        });
         addText(translationBuilder, ModItemsGroups.STELLAMECANICS.getDisplayName(), "Stellamecanics");
     }
 
