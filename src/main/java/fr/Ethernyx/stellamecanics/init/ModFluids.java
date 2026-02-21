@@ -1,65 +1,42 @@
 package fr.ethernyx.stellamecanics.init;
 
 import fr.ethernyx.stellamecanics.Stellamecanics;
-import fr.ethernyx.stellamecanics.fluids.LunariumFluid;
-import fr.ethernyx.stellamecanics.fluids.SolariumFluid;
 import fr.ethernyx.stellamecanics.interfaces.IMyFlowingFluid;
 import fr.ethernyx.stellamecanics.utils.FluidListType;
-import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.FluidBlock;
-import net.minecraft.fluid.FlowableFluid;
-import net.minecraft.item.BucketItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.Items;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
-import net.minecraft.util.Identifier;
+import fr.ethernyx.stellamecanics.utils.FluidListTypeEnum;
+import fr.ethernyx.stellamecanics.utils.generic.GenericFluids;
+import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
+import net.minecraft.registry.tag.BlockTags;
+import net.minecraft.registry.tag.FluidTags;
 
 import java.util.*;
 
 public class ModFluids {
     public static Map<String, FluidListType> FLUIDS = new HashMap<>();
 
-    public static final FluidListType SOLARIUM_FLUID = addNewFluid(new SolariumFluid.Still(), new SolariumFluid.Flowing());
-    public static final FluidListType LUNARIUM_FLUID = addNewFluid(new LunariumFluid.Still(), new LunariumFluid.Flowing());
+    public static final FluidListType SOLARIUM_FLUID = addNewFluid(
+            GenericFluids.create(
+                    Map.of(FluidListTypeEnum.STILL, "solarium_fluid_still", FluidListTypeEnum.FLOWING, "solarium_fluid_flowing", FluidListTypeEnum.BLOCK, "solarium_fluid_block", FluidListTypeEnum.BUCKET, "solarium_fluid_bucket"),
+                    Map.of(FluidListTypeEnum.BLOCK, Map.of("fr_fr", "Solarium", "en_us", "Solarium"), FluidListTypeEnum.BUCKET, Map.of("fr_fr", "Bucket de solarium", "en_us", "Solarium bucket")),
+                    List.of(ConventionalItemTags.BUCKETS),
+                    List.of(BlockTags.REPLACEABLE, BlockTags.INVALID_SPAWN_INSIDE, BlockTags.FIRE),
+                    Map.of(FluidListTypeEnum.STILL, List.of(FluidTags.WATER), FluidListTypeEnum.FLOWING, List.of(FluidTags.WATER)),
+                    0xFFAA00
+            ));
+    public static final FluidListType LUNARIUM_FLUID = addNewFluid(
+            GenericFluids.create(
+                    Map.of(FluidListTypeEnum.STILL, "lunarium_fluid_still", FluidListTypeEnum.FLOWING, "lunarium_fluid_flowing", FluidListTypeEnum.BLOCK, "lunarium_fluid_block", FluidListTypeEnum.BUCKET, "lunarium_fluid_bucket"),
+                    Map.of(FluidListTypeEnum.BLOCK, Map.of("fr_fr", "Lunarium", "en_us", "Lunarium"), FluidListTypeEnum.BUCKET, Map.of("fr_fr", "Bucket de lunarium", "en_us", "Lunarium bucket")),
+                    List.of(ConventionalItemTags.BUCKETS),
+                    List.of(BlockTags.REPLACEABLE, BlockTags.INVALID_SPAWN_INSIDE, BlockTags.FIRE),
+                    Map.of(FluidListTypeEnum.STILL, List.of(FluidTags.WATER), FluidListTypeEnum.FLOWING, List.of(FluidTags.WATER)),
+                    0xC8D8E8
+            ));
 
-    private static <T extends FlowableFluid & IMyFlowingFluid> FluidListType addNewFluid(T still, T flowing) {
-
-        FlowableFluid registerStill = (T) Registry.register(
-                Registries.FLUID,
-                Identifier.of(Stellamecanics.MOD_ID, still.stillId()),
-                still
-        );
-
-        FlowableFluid registerFlowing = (T) Registry.register(
-                Registries.FLUID,
-                Identifier.of(Stellamecanics.MOD_ID, flowing.flowingId()),
-                flowing
-        );
-
-        still.setStill(registerStill);
-        still.setFlowing(registerFlowing);
-        flowing.setStill(registerStill);
-        flowing.setFlowing(registerFlowing);
-
-        still.setBlock(Registry.register(
-                Registries.BLOCK,
-                Identifier.of(Stellamecanics.MOD_ID, still.blockId()),
-                still.Block(still)
-        ));
-        still.setBucket(Registry.register(
-                Registries.ITEM,
-                Identifier.of(Stellamecanics.MOD_ID, still.bucketId()),
-                still.Bucket(still)
-        ));
-        flowing.setBlock(still.getBlock());
-        flowing.setBucket(still.getBucketItem());
-
-        FluidListType fluids = new FluidListType(registerStill, registerFlowing, still.getBlock(), (BucketItem) still.getBucketItem());
-        FLUIDS.put(still.stillId(), fluids);
-        return fluids;
+    private static FluidListType addNewFluid(FluidListType fluidListType) {
+        IMyFlowingFluid still = (IMyFlowingFluid) fluidListType.getStill();
+        FLUIDS.put(still.stillId(), fluidListType);
+        return fluidListType;
     }
 
     public static void registerModFluids() {

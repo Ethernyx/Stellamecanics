@@ -3,7 +3,7 @@ package fr.ethernyx.stellamecanics.builders.recipes.forgeStellaire;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import fr.ethernyx.stellamecanics.init.ModRecipeSerealizers;
+import fr.ethernyx.stellamecanics.init.ModRecipeSerializers;
 import fr.ethernyx.stellamecanics.init.ModRecipeTypes;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.item.ItemStack;
@@ -35,7 +35,7 @@ public record ForgeStellaireRecipe(Ingredient inputItem, Fluid fluid, long fluid
     }
 
     @Override
-    public RecipeSerializer<ForgeStellaireRecipe> getSerializer() { return ModRecipeSerealizers.FORGE_STELLAIRE; }
+    public RecipeSerializer<ForgeStellaireRecipe> getSerializer() { return ModRecipeSerializers.FORGE_STELLAIRE; }
 
     @Override
     public RecipeType<ForgeStellaireRecipe> getType() { return ModRecipeTypes.FORGE_STELLAIRE; }

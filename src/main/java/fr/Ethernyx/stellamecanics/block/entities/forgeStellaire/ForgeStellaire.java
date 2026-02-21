@@ -37,56 +37,40 @@ import java.util.*;
 
 public class ForgeStellaire extends BlockWithEntity implements IMyBlock, BlockEntityProvider {
 
-    public static String ID = "forge_stellaire";
-    public static final MapCodec<ForgeStellaire> CODEC = ForgeStellaire.createCodec(ForgeStellaire::new);
+    private final String id;
+    private final Map<String, String> translate;
+    private final List<TagKey<Block>> tags;
+    private final List<RecipeBuilder> recipes;
+    private final MyLootTable lootTable;
+    public static final MapCodec<ForgeStellaire> CODEC = MapCodec.unit(
+            () -> new ForgeStellaire(
+                    "forge_stellaire",
+                    new MyLootTable(LootType.NONE),
+                    Map.of(),
+                    List.of(),
+                    List.of()
+            )
+    );
 
-    public ForgeStellaire(Settings settings) {
-        super(settings.registryKey(RegistryKey.of(RegistryKeys.BLOCK,
-                Identifier.of(Stellamecanics.MOD_ID, ID))).strength(3f, 15f));
+    public ForgeStellaire(String id, MyLootTable lootTable,Map<String, String> translate, List<TagKey<Block>> tags, List<RecipeBuilder> recipes) {
+        super(Settings.create().registryKey(RegistryKey.of(RegistryKeys.BLOCK,
+                Identifier.of(Stellamecanics.MOD_ID, id))).strength(3f, 15f));
+        this.id = id;
+        this.lootTable = lootTable;
+        this.translate = translate;
+        this.tags = tags == null ? List.of() : tags;
+        this.recipes = recipes == null ? List.of() : recipes;
     }
 
-    @Override
-    public String getId() {
-        return ID;
+    @Override public String getId() {
+        return id;
     }
-
-    @Override
-    public String getTranslate(String lang) {
-        Map<String, String> langs = new HashMap<>() {{
-            put("fr_fr", "Forge Stellaire");
-            put("en_us", "Star Forge");
-        }};
-        return langs.get(lang);
-    }
-
-    @Override
-    public List<RecipeBuilder> getRecipe() {
-        List<RecipeBuilder> recipes = new ArrayList<>();
-        recipes.add(new RecipeBuilder(
-                "forge_stellaire",
-                        RecipeType.SHAPE,
-                        new ArrayList<>(List.of(
-                                new MyIngredient("iridium_block", InstanceType.BLOCK, 1),
-                                new MyIngredient("iridium_ingot", InstanceType.ITEM, 1),
-                                new MyIngredient("furnace", InstanceType.VANILLABLOCK, 1)
-                        )),
-                        new ArrayList<>(Collections.singletonList(new MyIngredient("forge_stellaire", InstanceType.BLOCK, 1))),
-                        new ArrayList<>(Arrays.asList("0 0", "121", "111")),
-                new ArrayList<>(Collections.singletonList(new MyIngredient("forge_stellaire", InstanceType.BLOCK, 1)))
-        ));
-        return recipes;
-    }
-
-    @Override
-    public MyLootTable getLootTable() {
-        return new MyLootTable(LootType.NORMAL, new MyIngredient("forge_stellaire", InstanceType.BLOCK, 1));
-    }
-
-    @Override
-    public List<TagKey<Block>> getTags() {
-        List<TagKey<Block>> tags = new ArrayList<>();
-        tags.add(BlockTags.PICKAXE_MINEABLE);
-        return tags;
+    @Override public String getTranslate(String lang) { return translate.get(lang); }
+    @Override public List<RecipeBuilder> getRecipe() { return recipes; }
+    @Override public MyLootTable getLootTable() { return lootTable; }
+    @Override public List<TagKey<Block>> getTags() { return tags; }
+    @Override protected MapCodec<? extends BlockWithEntity> getCodec() {
+        return CODEC;
     }
 
     @Override
@@ -161,11 +145,6 @@ public class ForgeStellaire extends BlockWithEntity implements IMyBlock, BlockEn
             }
         }
         return false;
-    }
-
-    @Override
-    protected MapCodec<? extends BlockWithEntity> getCodec() {
-        return CODEC;
     }
 
     @Nullable

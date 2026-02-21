@@ -170,9 +170,19 @@ public class ModBlocks {
                             List.of(new MyIngredient("stellarium_block", InstanceType.BLOCK, 1)),
                             List.of(new MyIngredient("stellarium_ingot", InstanceType.ITEM, 9))))
             ));
-    public static final Block FORGE_STELLAIRE = addNewBlock(new ForgeStellaire(AbstractBlock.Settings.create()));
-
-
+    public static final Block FORGE_STELLAIRE = addNewBlock(
+            new ForgeStellaire("forge_stellaire",
+                    new MyLootTable(LootType.NORMAL, new MyIngredient("forge_stellaire", InstanceType.BLOCK, 1)),
+                    Map.of("fr_fr", "Forge Stellaire", "en_us", "Stellar forge"),
+                    List.of(BlockTags.PICKAXE_MINEABLE),
+                    List.of(new RecipeBuilder("forge_stellaire", RecipeType.SHAPE,
+                            List.of(new MyIngredient("iridium_block", InstanceType.BLOCK, 1),
+                                    new MyIngredient("iridium_ingot", InstanceType.ITEM, 1),
+                                    new MyIngredient("furnace", InstanceType.VANILLABLOCK, 1)),
+                            List.of(new MyIngredient("forge_stellaire", InstanceType.BLOCK, 1)),
+                            List.of("0 0", "121", "111"),
+                            List.of(new MyIngredient("forge_stellaire", InstanceType.BLOCK, 1))))
+            ));
     public static <T extends Block & IMyBlock> T addNewBlock(T block) {
         Registry.register(Registries.BLOCK, Identifier.of(Stellamecanics.MOD_ID, block.getId()), block);
         BLOCKS.put(block.getId(), block);

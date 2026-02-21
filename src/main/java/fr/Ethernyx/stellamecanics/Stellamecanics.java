@@ -1,6 +1,5 @@
 package fr.ethernyx.stellamecanics;
 
-import fr.ethernyx.stellamecanics.block.entities.forgeStellaire.gui.ForgeStellaireScreen;
 import fr.ethernyx.stellamecanics.init.*;
 import fr.ethernyx.stellamecanics.world.ModWorldGeneration;
 import net.fabricmc.api.ModInitializer;
@@ -27,7 +26,7 @@ public class Stellamecanics implements ModInitializer {
 		ModWorldGeneration.generateOres();
 		ModScreenHandlers.registerScreenHandlers();
 
-		ModRecipeSerealizers.registerRecipeSerealizers();
+		ModRecipeSerializers.registerRecipeSerealizers();
 		ModRecipeTypes.registerRecipeTypes();
 
 	}
