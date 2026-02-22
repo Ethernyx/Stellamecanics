@@ -1,0 +1,12 @@
+{
+  "values": [
+    "stellamecanics:zircaloy_fluid_flowing",
+    "stellamecanics:zircaloy_fluid_still",
+    "stellamecanics:iridium_fluid_flowing",
+    "stellamecanics:iridium_fluid_still",
+    "stellamecanics:osmiridium_fluid_flowing",
+    "stellamecanics:osmiridium_fluid_still",
+    "stellamecanics:zirconium_fluid_flowing",
+    "stellamecanics:zirconium_fluid_still"
+  ]
+}

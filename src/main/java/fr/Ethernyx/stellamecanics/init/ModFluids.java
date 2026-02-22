@@ -32,6 +32,52 @@ public class ModFluids {
                     Map.of(FluidListTypeEnum.STILL, List.of(FluidTags.WATER), FluidListTypeEnum.FLOWING, List.of(FluidTags.WATER)),
                     0xC8D8E8
             ));
+    public static final FluidListType STELLARIUM_FLUID = addNewFluid(
+            GenericFluids.create(
+                    Map.of(FluidListTypeEnum.STILL, "stellarium_fluid_still", FluidListTypeEnum.FLOWING, "stellarium_fluid_flowing", FluidListTypeEnum.BLOCK, "stellarium_fluid_block", FluidListTypeEnum.BUCKET, "stellarium_fluid_bucket"),
+                    Map.of(FluidListTypeEnum.BLOCK, Map.of("fr_fr", "Stellarium", "en_us", "Stellarium"), FluidListTypeEnum.BUCKET, Map.of("fr_fr", "Bucket de stellarium", "en_us", "Stellarium bucket")),
+                    List.of(ConventionalItemTags.BUCKETS),
+                    List.of(BlockTags.REPLACEABLE, BlockTags.INVALID_SPAWN_INSIDE, BlockTags.FIRE),
+                    Map.of(FluidListTypeEnum.STILL, List.of(FluidTags.WATER), FluidListTypeEnum.FLOWING, List.of(FluidTags.WATER)),
+                    0xC8D8E8 /* <-- pas bon */
+            ));
+    public static final FluidListType ZIRCONIUM_FLUID = addNewFluid(
+            GenericFluids.create(
+                    Map.of(FluidListTypeEnum.STILL, "zirconium_fluid_still", FluidListTypeEnum.FLOWING, "zirconium_fluid_flowing", FluidListTypeEnum.BLOCK, "zirconium_fluid_block", FluidListTypeEnum.BUCKET, "zirconium_fluid_bucket"),
+                    Map.of(FluidListTypeEnum.BLOCK, Map.of("fr_fr", "Zirconium", "en_us", "Zirconium"), FluidListTypeEnum.BUCKET, Map.of("fr_fr", "Bucket de zirconium", "en_us", "Zirconium bucket")),
+                    List.of(ConventionalItemTags.BUCKETS),
+                    List.of(BlockTags.REPLACEABLE, BlockTags.INVALID_SPAWN_INSIDE, BlockTags.FIRE),
+                    Map.of(FluidListTypeEnum.STILL, List.of(FluidTags.LAVA), FluidListTypeEnum.FLOWING, List.of(FluidTags.LAVA)),
+                    0xC8D8E8 /* <-- pas bon */
+            ));
+    public static final FluidListType IRIDIUM_FLUID = addNewFluid(
+            GenericFluids.create(
+                    Map.of(FluidListTypeEnum.STILL, "iridium_fluid_still", FluidListTypeEnum.FLOWING, "iridium_fluid_flowing", FluidListTypeEnum.BLOCK, "iridium_fluid_block", FluidListTypeEnum.BUCKET, "iridium_fluid_bucket"),
+                    Map.of(FluidListTypeEnum.BLOCK, Map.of("fr_fr", "Iridium", "en_us", "Iridium"), FluidListTypeEnum.BUCKET, Map.of("fr_fr", "Bucket d'iridium", "en_us", "Iridium bucket")),
+                    List.of(ConventionalItemTags.BUCKETS),
+                    List.of(BlockTags.REPLACEABLE, BlockTags.INVALID_SPAWN_INSIDE, BlockTags.FIRE),
+                    Map.of(FluidListTypeEnum.STILL, List.of(FluidTags.LAVA), FluidListTypeEnum.FLOWING, List.of(FluidTags.LAVA)),
+                    0xC8D8E8 /* <-- pas bon */
+            ));
+    public static final FluidListType ZIRCALOY_FLUID = addNewFluid(
+            GenericFluids.create(
+                    Map.of(FluidListTypeEnum.STILL, "zircaloy_fluid_still", FluidListTypeEnum.FLOWING, "zircaloy_fluid_flowing", FluidListTypeEnum.BLOCK, "zircaloy_fluid_block", FluidListTypeEnum.BUCKET, "zircaloy_fluid_bucket"),
+                    Map.of(FluidListTypeEnum.BLOCK, Map.of("fr_fr", "Zircaloy", "en_us", "Zircaloy"), FluidListTypeEnum.BUCKET, Map.of("fr_fr", "Bucket de zircaloy", "en_us", "Zircaloy bucket")),
+                    List.of(ConventionalItemTags.BUCKETS),
+                    List.of(BlockTags.REPLACEABLE, BlockTags.INVALID_SPAWN_INSIDE, BlockTags.FIRE),
+                    Map.of(FluidListTypeEnum.STILL, List.of(FluidTags.LAVA), FluidListTypeEnum.FLOWING, List.of(FluidTags.LAVA)),
+                    0xC8D8E8 /* <-- pas bon */
+            ));
+    public static final FluidListType OSMIRIDIUM_FLUID = addNewFluid(
+            GenericFluids.create(
+                    Map.of(FluidListTypeEnum.STILL, "osmiridium_fluid_still", FluidListTypeEnum.FLOWING, "osmiridium_fluid_flowing", FluidListTypeEnum.BLOCK, "osmiridium_fluid_block", FluidListTypeEnum.BUCKET, "osmiridium_fluid_bucket"),
+                    Map.of(FluidListTypeEnum.BLOCK, Map.of("fr_fr", "Osmiridium", "en_us", "Osmiridium"), FluidListTypeEnum.BUCKET, Map.of("fr_fr", "Bucket d'osmiridium", "en_us", "Osmiridium bucket")),
+                    List.of(ConventionalItemTags.BUCKETS),
+                    List.of(BlockTags.REPLACEABLE, BlockTags.INVALID_SPAWN_INSIDE, BlockTags.FIRE),
+                    Map.of(FluidListTypeEnum.STILL, List.of(FluidTags.LAVA), FluidListTypeEnum.FLOWING, List.of(FluidTags.LAVA)),
+                    0xC8D8E8 /* <-- pas bon */
+            ));
+
 
     private static FluidListType addNewFluid(FluidListType fluidListType) {
         IMyFlowingFluid still = (IMyFlowingFluid) fluidListType.getStill();

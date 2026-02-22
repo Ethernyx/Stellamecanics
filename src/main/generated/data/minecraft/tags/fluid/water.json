@@ -3,6 +3,8 @@
     "stellamecanics:solarium_fluid_flowing",
     "stellamecanics:solarium_fluid_still",
     "stellamecanics:lunarium_fluid_flowing",
-    "stellamecanics:lunarium_fluid_still"
+    "stellamecanics:lunarium_fluid_still",
+    "stellamecanics:stellarium_fluid_flowing",
+    "stellamecanics:stellarium_fluid_still"
   ]
 }

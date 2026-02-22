@@ -1,9 +1,9 @@
 // 1.21.10	-999999999-01-01T00:00:00	Stellamecanics/Tags for minecraft:block
-605a183edbe882a8888affa1000959fbe4992a8d data/minecraft/tags/block/fire.json
-605a183edbe882a8888affa1000959fbe4992a8d data/minecraft/tags/block/invalid_spawn_inside.json
+9f96591bc987d3c0625c0b248d5bb348dec603e4 data/minecraft/tags/block/fire.json
+9f96591bc987d3c0625c0b248d5bb348dec603e4 data/minecraft/tags/block/invalid_spawn_inside.json
 599d4c08f2f9fc4f61b4fad4339816156ed35c8a data/minecraft/tags/block/mineable/pickaxe.json
 93bee32bb9b4b55360e75999e9317ef67df11b95 data/minecraft/tags/block/needs_diamond_tool.json
-605a183edbe882a8888affa1000959fbe4992a8d data/minecraft/tags/block/replaceable.json
+9f96591bc987d3c0625c0b248d5bb348dec603e4 data/minecraft/tags/block/replaceable.json
 601cbb40c1b6cefa8616ee947a3f71071fa3db9d data/stellamecanics/tags/block/need_iridium_tool.json
 63d8e6883093ff1b828a92d445c03fc54457a92b data/stellamecanics/tags/block/need_lunarium_tool.json
 12730483822187572f850f11686477f65de5a958 data/stellamecanics/tags/block/need_osmiridium_tool.json

@@ -1,6 +1,11 @@
 {
   "values": [
+    "stellamecanics:zircaloy_fluid_bucket",
     "stellamecanics:solarium_fluid_bucket",
-    "stellamecanics:lunarium_fluid_bucket"
+    "stellamecanics:lunarium_fluid_bucket",
+    "stellamecanics:iridium_fluid_bucket",
+    "stellamecanics:osmiridium_fluid_bucket",
+    "stellamecanics:stellarium_fluid_bucket",
+    "stellamecanics:zirconium_fluid_bucket"
   ]
 }

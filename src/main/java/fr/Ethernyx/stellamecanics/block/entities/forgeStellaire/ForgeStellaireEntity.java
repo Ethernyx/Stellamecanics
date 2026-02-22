@@ -4,6 +4,7 @@ import fr.ethernyx.stellamecanics.block.entities.forgeStellaire.gui.ForgeStellai
 import fr.ethernyx.stellamecanics.builders.recipes.forgeStellaire.ForgeStellaireRecipe;
 import fr.ethernyx.stellamecanics.builders.recipes.forgeStellaire.ForgeStellaireRecipeInput;
 import fr.ethernyx.stellamecanics.init.ModBlockEntities;
+import fr.ethernyx.stellamecanics.init.ModFluids;
 import fr.ethernyx.stellamecanics.init.ModRecipeTypes;
 import fr.ethernyx.stellamecanics.interfaces.IMyBlockEntity;
 import fr.ethernyx.stellamecanics.network.BlockPosPayload;
@@ -204,8 +205,8 @@ public class ForgeStellaireEntity extends BlockEntity implements ExtendedScreenH
             resetProgress();
         }
 
-        if (world.isDay()) addFluid(tankSolarium, Fluids.LAVA, 4);
-        else addFluid(tankLunarium, Fluids.WATER, 4);
+        if (world.isDay()) addFluid(tankSolarium, ModFluids.SOLARIUM_FLUID.getFlowing(), 4);
+        else addFluid(tankLunarium, ModFluids.LUNARIUM_FLUID.getFlowing(), 4);
     }
 
     private void resetProgress() {
@@ -228,7 +229,7 @@ public class ForgeStellaireEntity extends BlockEntity implements ExtendedScreenH
                 this.output.getStack(0).getCount() + output.getCount()));
 
         // Extraction du fluide
-        SingleFluidStorage tank = r.fluid() == Fluids.LAVA ? tankSolarium : tankLunarium;
+        SingleFluidStorage tank = r.fluid() == ModFluids.LUNARIUM_FLUID.getStill() ? tankLunarium : tankSolarium;
         boolean extracted = addFluid(tank, r.fluid(), -r.fluidAmount());
 
         if (!extracted) {
@@ -243,13 +244,13 @@ public class ForgeStellaireEntity extends BlockEntity implements ExtendedScreenH
     }
 
     private Fluid getTankFluid(ForgeStellaireRecipe recipe) {
-        return recipe.fluid() == Fluids.WATER
+        return recipe.fluid() == ModFluids.LUNARIUM_FLUID.getStill()
                 ? tankLunarium.getResource().getFluid()
                 : tankSolarium.getResource().getFluid();
     }
 
     private int getTankAmount(ForgeStellaireRecipe recipe) {
-        return recipe.fluid() == Fluids.WATER
+        return recipe.fluid() == ModFluids.LUNARIUM_FLUID.getStill()
                 ? properties.get(TANKLUNARIUMAMOUNT_SLOT)
                 : properties.get(TANKSOLARIUMAMOUNT_SLOT);
     }
