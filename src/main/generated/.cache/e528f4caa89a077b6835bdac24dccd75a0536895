@@ -1,2 +1,3 @@
 // 1.21.10	-999999999-01-01T00:00:00	Stellamecanics/Tags for minecraft:fluid
-9b33e44e31f7dd6b4621178b5a26d9324392573e data/minecraft/tags/fluid/water.json
+d91f137864de2a1986bcb7f605a0e36d2717136d data/minecraft/tags/fluid/lava.json
+336ad62be359f6e4622a3a5671220afb654f1182 data/minecraft/tags/fluid/water.json

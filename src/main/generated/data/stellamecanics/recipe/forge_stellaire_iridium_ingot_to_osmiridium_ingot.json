@@ -2,10 +2,10 @@
   "type": "stellamecanics:forge_stellaire",
   "fluid": "stellamecanics:solarium_fluid_still",
   "fluid_amount": 200,
-  "ingredient": "stellamecanics:iridium_raw",
+  "ingredient": "stellamecanics:iridium_ingot",
   "process_time": 50,
   "result": {
-    "count": 2,
-    "id": "stellamecanics:iridium_ingot"
+    "count": 1,
+    "id": "stellamecanics:osmiridium_ingot"
   }
 }

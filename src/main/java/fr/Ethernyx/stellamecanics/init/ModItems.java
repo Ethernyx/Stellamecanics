@@ -47,13 +47,21 @@ public class ModItems {
                             List.of(new MyIngredient("solarium_boots", InstanceType.ITEM, 1),
                                     new MyIngredient("solarium_chestplate", InstanceType.ITEM, 1),
                                     new MyIngredient("solarium_helmet", InstanceType.ITEM, 1),
-                                    new MyIngredient("solarium_leggings", InstanceType.ITEM, 1)))
+                                    new MyIngredient("solarium_leggings", InstanceType.ITEM, 1))),
+                    new RecipeBuilder("solarium_ingot_to_stellarium_ingot", RecipeType.FORGE,
+                            List.of(new MyIngredient("solarium_ingot", InstanceType.ITEM, 1)),
+                            List.of(new MyIngredient("lunarium_fluid_still", InstanceType.FLUID, 200)),
+                            List.of(new MyIngredient("stellarium_ingot", InstanceType.ITEM, 1)))
             )));
     public static final Item SOLARIUM_RAW = addNewItem(misc("solarium_raw", ItemsType.RAW,
             Map.of("fr_fr", "Solarium brut", "en_us", "Solarium raw"), null, List.of(
                     new RecipeBuilder("raw_to_solarium_ingot", RecipeType.ORE,
                             List.of(new MyIngredient("solarium_raw", InstanceType.ITEM, 1)),
-                            List.of(new MyIngredient("solarium_ingot", InstanceType.ITEM, 1)))
+                            List.of(new MyIngredient("solarium_ingot", InstanceType.ITEM, 1))),
+                    new RecipeBuilder("raw_to_solarium_ingot", RecipeType.FORGE,
+                            List.of(new MyIngredient("solarium_raw", InstanceType.ITEM, 1)),
+                            List.of(new MyIngredient("lunarium_fluid_still", InstanceType.FLUID, 200)),
+                            List.of(new MyIngredient("solarium_ingot", InstanceType.ITEM, 2)))
             )));
     public static final Item SOLARIUM_AXE = addNewItem(tool("solarium_axe", ItemsType.AXE, CustomItemTiers.SOLARIUM, Map.of("fr_fr", "Hache en solarium", "en_us", "Solarium axe"), null, null));
     public static final Item SOLARIUM_HOE = addNewItem(tool("solarium_hoe", ItemsType.HOE, CustomItemTiers.SOLARIUM, Map.of("fr_fr", "Houe en solarium", "en_us", "Solarium hoe"), null, null));
@@ -85,13 +93,21 @@ public class ModItems {
                             List.of(new MyIngredient("lunarium_boots", InstanceType.ITEM, 1),
                                     new MyIngredient("lunarium_chestplate", InstanceType.ITEM, 1),
                                     new MyIngredient("lunarium_helmet", InstanceType.ITEM, 1),
-                                    new MyIngredient("lunarium_leggings", InstanceType.ITEM, 1)))
+                                    new MyIngredient("lunarium_leggings", InstanceType.ITEM, 1))),
+                    new RecipeBuilder("lunarium_ingot_to_stellarium_ingot", RecipeType.FORGE,
+                            List.of(new MyIngredient("lunarium_ingot", InstanceType.ITEM, 1)),
+                            List.of(new MyIngredient("solarium_fluid_still", InstanceType.FLUID, 200)),
+                            List.of(new MyIngredient("stellarium_ingot", InstanceType.ITEM, 1)))
             )));
     public static final Item LUNARIUM_RAW = addNewItem(misc("lunarium_raw", ItemsType.RAW,
             Map.of("fr_fr", "Lunarium brut", "en_us", "Lunarium raw"), null, List.of(
                     new RecipeBuilder("raw_to_lunarium_ingot", RecipeType.ORE,
                             List.of(new MyIngredient("lunarium_raw", InstanceType.ITEM, 1)),
-                            List.of(new MyIngredient("lunarium_ingot", InstanceType.ITEM, 1)))
+                            List.of(new MyIngredient("lunarium_ingot", InstanceType.ITEM, 1))),
+                    new RecipeBuilder("raw_to_lunarium_ingot", RecipeType.FORGE,
+                            List.of(new MyIngredient("lunarium_raw", InstanceType.ITEM, 1)),
+                            List.of(new MyIngredient("solarium_fluid_still", InstanceType.FLUID, 200)),
+                            List.of(new MyIngredient("lunarium_ingot", InstanceType.ITEM, 2)))
             )));
     public static final Item LUNARIUM_AXE = addNewItem(tool("lunarium_axe", ItemsType.AXE, CustomItemTiers.LUNARIUM, Map.of("fr_fr", "Hache en lunarium", "en_us", "Lunarium axe"), null, null));
     public static final Item LUNARIUM_HOE = addNewItem(tool("lunarium_hoe", ItemsType.HOE, CustomItemTiers.LUNARIUM, Map.of("fr_fr", "Houe en lunarium", "en_us", "Lunarium hoe"), null, null));
@@ -155,13 +171,21 @@ public class ModItems {
                             List.of(new MyIngredient("zirconium_boots", InstanceType.ITEM, 1),
                                     new MyIngredient("zirconium_chestplate", InstanceType.ITEM, 1),
                                     new MyIngredient("zirconium_helmet", InstanceType.ITEM, 1),
-                                    new MyIngredient("zirconium_leggings", InstanceType.ITEM, 1)))
+                                    new MyIngredient("zirconium_leggings", InstanceType.ITEM, 1))),
+                    new RecipeBuilder("zirconium_ingot_to_zircaloy_ingot", RecipeType.FORGE,
+                            List.of(new MyIngredient("zirconium_ingot", InstanceType.ITEM, 1)),
+                            List.of(new MyIngredient("solarium_fluid_still", InstanceType.FLUID, 200)),
+                            List.of(new MyIngredient("zircaloy_ingot", InstanceType.ITEM, 1)))
             )));
     public static final Item ZIRCONIUM_RAW = addNewItem(misc("zirconium_raw", ItemsType.RAW,
             Map.of("fr_fr", "Zirconium brut", "en_us", "Zirconium raw"), null, List.of(
                     new RecipeBuilder("raw_to_zirconium_ingot", RecipeType.ORE,
                             List.of(new MyIngredient("zirconium_raw", InstanceType.ITEM, 1)),
-                            List.of(new MyIngredient("zirconium_ingot", InstanceType.ITEM, 1)))
+                            List.of(new MyIngredient("zirconium_ingot", InstanceType.ITEM, 1))),
+                    new RecipeBuilder("raw_to_zirconium_ingot", RecipeType.FORGE,
+                            List.of(new MyIngredient("zirconium_raw", InstanceType.ITEM, 1)),
+                            List.of(new MyIngredient("solarium_fluid_still", InstanceType.FLUID, 200)),
+                            List.of(new MyIngredient("zirconium_ingot", InstanceType.ITEM, 2)))
             )));
     public static final Item ZIRCONIUM_AXE = addNewItem(tool("zirconium_axe", ItemsType.AXE, CustomItemTiers.ZIRCONIUM, Map.of("fr_fr", "Hache en zirconium", "en_us", "Zirconium axe"), null, null));
     public static final Item ZIRCONIUM_HOE = addNewItem(tool("zirconium_hoe", ItemsType.HOE, CustomItemTiers.ZIRCONIUM, Map.of("fr_fr", "Houe en zirconium", "en_us", "Zirconium hoe"), null, null));
@@ -193,7 +217,11 @@ public class ModItems {
                             List.of(new MyIngredient("iridium_boots", InstanceType.ITEM, 1),
                                     new MyIngredient("iridium_chestplate", InstanceType.ITEM, 1),
                                     new MyIngredient("iridium_helmet", InstanceType.ITEM, 1),
-                                    new MyIngredient("iridium_leggings", InstanceType.ITEM, 1)))
+                                    new MyIngredient("iridium_leggings", InstanceType.ITEM, 1))),
+                    new RecipeBuilder("iridium_ingot_to_osmiridium_ingot", RecipeType.FORGE,
+                            List.of(new MyIngredient("iridium_ingot", InstanceType.ITEM, 1)),
+                            List.of(new MyIngredient("solarium_fluid_still", InstanceType.FLUID, 200)),
+                            List.of(new MyIngredient("osmiridium_ingot", InstanceType.ITEM, 1)))
             )));
     public static final Item IRIDIUM_RAW = addNewItem(misc("iridium_raw", ItemsType.RAW,
             Map.of("fr_fr", "Iridium brut", "en_us", "Iridium raw"), null, List.of(
@@ -202,6 +230,7 @@ public class ModItems {
                             List.of(new MyIngredient("iridium_ingot", InstanceType.ITEM, 1))),
                     new RecipeBuilder("raw_to_iridium_ingot", RecipeType.FORGE,
                             List.of(new MyIngredient("iridium_raw", InstanceType.ITEM, 1)),
+                            List.of(new MyIngredient("solarium_fluid_still", InstanceType.FLUID, 200)),
                             List.of(new MyIngredient("iridium_ingot", InstanceType.ITEM, 2)))
             )));
     public static final Item IRIDIUM_AXE = addNewItem(tool("iridium_axe", ItemsType.AXE, CustomItemTiers.IRIDIUM, Map.of("fr_fr", "Hache en iridium", "en_us", "Iridium axe"), null, null));

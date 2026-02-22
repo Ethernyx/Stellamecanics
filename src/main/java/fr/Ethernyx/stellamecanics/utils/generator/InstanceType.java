@@ -1,5 +1,5 @@
 package fr.ethernyx.stellamecanics.utils.generator;
 
 public enum InstanceType {
-    BLOCK, ITEM, ENCHANTMENT, SCREEN, VANILLABLOCK, VANILLAITEM
+    BLOCK, ITEM, ENCHANTMENT, SCREEN, VANILLABLOCK, VANILLAITEM, FLUID, VANILLAFLUID;
 }
