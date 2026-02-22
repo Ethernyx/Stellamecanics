@@ -3,25 +3,23 @@ package fr.ethernyx.stellamecanics.block.entities.forgeStellaire;
 import com.mojang.serialization.MapCodec;
 import fr.ethernyx.stellamecanics.Stellamecanics;
 import fr.ethernyx.stellamecanics.init.ModBlockEntities;
+import fr.ethernyx.stellamecanics.init.ModFluids;
 import fr.ethernyx.stellamecanics.interfaces.IMyBlock;
-import fr.ethernyx.stellamecanics.utils.generator.InstanceType;
 import fr.ethernyx.stellamecanics.utils.generator.LootType;
 import fr.ethernyx.stellamecanics.utils.generator.MyLootTable;
-import fr.ethernyx.stellamecanics.utils.recipe.MyIngredient;
 import fr.ethernyx.stellamecanics.utils.recipe.RecipeBuilder;
-import fr.ethernyx.stellamecanics.utils.recipe.RecipeType;
+import net.fabricmc.fabric.api.transfer.v1.fluid.base.SingleFluidStorage;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.fluid.Fluids;
+import net.minecraft.fluid.Fluid;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.registry.Registries;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
-import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.registry.tag.TagKey;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
@@ -30,6 +28,7 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
@@ -76,24 +75,35 @@ public class ForgeStellaire extends BlockWithEntity implements IMyBlock, BlockEn
     @Override
     protected ActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos,
                                          PlayerEntity player, Hand hand, BlockHitResult hit) {
-
-
-        if (world.isClient()) {
-            return ActionResult.SUCCESS;
-        }
-
+        if (world.isClient()) return ActionResult.SUCCESS;
 
         BlockEntity be = world.getBlockEntity(pos);
-        if (!(be instanceof ForgeStellaireEntity forge)) {
+        if (!(be instanceof ForgeStellaireEntity forge)) return ActionResult.PASS;
+
+        Direction side = hit.getSide();
+
+        // Côté gauche (WEST) → tankSolarium, côté droit (EAST) → tankLunarium
+        if (side == Direction.WEST || side == Direction.EAST) {
+            boolean isSolarium = side == Direction.WEST;
+            SingleFluidStorage tank  = isSolarium ? forge.tankSolarium  : forge.tankLunarium;
+            Fluid fluid = isSolarium ? ModFluids.SOLARIUM_FLUID.getStill() : ModFluids.LUNARIUM_FLUID.getStill();
+            Item bucketFull = isSolarium ? ModFluids.SOLARIUM_FLUID.getBucket() : ModFluids.LUNARIUM_FLUID.getBucket();
+
+            // ✅ On vérifie que l'item en main est bien le bucket du bon fluide (ou un bucket vide)
+             stack = player.getStackInHand(hand);
+            if (!stack.isOf(bucketFull) && !stack.isOf(Items.BUCKET)) {
+                // Bucket du mauvais fluide (ou autre item) → on ouvre le GUI à la place
+                player.openHandledScreen(forge);
+                return ActionResult.CONSUME;
+            }
+            if (handleFluidInteraction(player, hand, forge, world, pos, tank, fluid, bucketFull)) {
+                return ActionResult.CONSUME;
+            }
+            // Clic sur un côté tank mais interaction impossible → on n'ouvre pas le GUI
             return ActionResult.PASS;
         }
 
-        // 🪣 1️⃣ PRIORITÉ AU FLUIDE
-        if (handleFluidInteraction(player, hand, forge, world, pos)) {
-            return ActionResult.CONSUME;
-        }
-
-        // 🖱️ 2️⃣ SINON → GUI
+        // Toute autre face → ouvre le GUI
         player.openHandledScreen(forge);
         return ActionResult.CONSUME;
     }
@@ -104,43 +114,22 @@ public class ForgeStellaire extends BlockWithEntity implements IMyBlock, BlockEn
     }
 
     private boolean handleFluidInteraction(PlayerEntity player, Hand hand,
-                                           ForgeStellaireEntity forge, World world, BlockPos pos) {
-
+                                           ForgeStellaireEntity forge, World world, BlockPos pos,
+                                           SingleFluidStorage tank, Fluid fluid, Item bucketFull) {
         ItemStack stack = player.getStackInHand(hand);
 
-        if (stack.isOf(Items.LAVA_BUCKET)) {
-
-            if (forge.addFluid(forge.tankSolarium, Fluids.LAVA, 1000)) {
-                // 🔊 SON
-                world.playSound(
-                        null,                    // tous les joueurs
-                        pos,
-                        SoundEvents.ITEM_BUCKET_EMPTY_LAVA,
-                        SoundCategory.BLOCKS,
-                        1.0F,
-                        1.0F
-                );
-                if (!player.getAbilities().creativeMode) {
+        if (stack.isOf(bucketFull)) {
+            if (forge.addFluid(tank, fluid, 1000)) {
+                world.playSound(null, pos, SoundEvents.ITEM_BUCKET_EMPTY_LAVA, SoundCategory.BLOCKS, 1f, 1f);
+                if (!player.getAbilities().creativeMode)
                     player.setStackInHand(hand, new ItemStack(Items.BUCKET));
-                }
-
                 return true;
             }
         } else if (stack.isOf(Items.BUCKET)) {
-            if (forge.addFluid(forge.tankSolarium,Fluids.LAVA, - 1000)) {
-                // 🔊 SON
-                world.playSound(
-                        null,                    // tous les joueurs
-                        pos,
-                        SoundEvents.ITEM_BUCKET_FILL_LAVA,
-                        SoundCategory.BLOCKS,
-                        1.0F,
-                        1.0F
-                );
-                if (!player.getAbilities().creativeMode) {
-                    player.setStackInHand(hand, new ItemStack(Items.LAVA_BUCKET));
-                }
-
+            if (forge.addFluid(tank, fluid, -1000)) {
+                world.playSound(null, pos, SoundEvents.ITEM_BUCKET_FILL_LAVA, SoundCategory.BLOCKS, 1f, 1f);
+                if (!player.getAbilities().creativeMode)
+                    player.setStackInHand(hand, new ItemStack(bucketFull));
                 return true;
             }
         }
