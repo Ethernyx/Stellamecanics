@@ -13,9 +13,12 @@ import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
+import net.minecraft.client.data.Model;
+import net.minecraft.client.data.TextureKey;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.registry.RegistryKey;
@@ -23,6 +26,7 @@ import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.tag.TagKey;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
+import net.minecraft.state.StateManager;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
@@ -31,6 +35,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
+import net.minecraft.state.property.Properties;
 
 import java.util.*;
 
@@ -145,5 +150,31 @@ public class ForgeStellaire extends BlockWithEntity implements IMyBlock, BlockEn
 
         return validateTicker(type, ModBlockEntities.FORGE_STELLAIRE,
                 (world1, pos, state1, blockEntity) -> blockEntity.tick(world1, pos, state1));
+    }
+
+    @Override
+    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+        builder.add(Properties.HORIZONTAL_FACING);
+    }
+
+    @Override
+    public BlockState getPlacementState(ItemPlacementContext ctx) {
+        return this.getDefaultState()
+                .with(Properties.HORIZONTAL_FACING, ctx.getHorizontalPlayerFacing().getOpposite());
+    }
+
+
+    @Override
+    public Model getModelType() {
+        return new Model(
+                Optional.of(Identifier.of(Stellamecanics.MOD_ID, "block/forge_stellaire/forge_stellaire_base")),
+                Optional.empty(),
+                TextureKey.TOP,
+                TextureKey.BOTTOM,
+                TextureKey.NORTH,
+                TextureKey.SOUTH,
+                TextureKey.WEST,
+                TextureKey.EAST
+        );
     }
 }

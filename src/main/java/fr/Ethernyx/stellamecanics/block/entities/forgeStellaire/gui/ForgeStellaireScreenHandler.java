@@ -23,6 +23,13 @@ public class ForgeStellaireScreenHandler extends ScreenHandler {
     private final int AMOUNT = 0;
     private final int CAPACITY = 1;
 
+    private static final int INPUT_SLOT  = 0;
+    private static final int OUTPUT_SLOT = 1;
+    private static final int PLAYER_INV_START = 2;   // 3 rangées × 9 = 27 slots
+    private static final int PLAYER_INV_END   = 29;
+    private static final int HOTBAR_START = 29;       // 9 slots de hotbar
+    private static final int HOTBAR_END   = 38;
+
     public ForgeStellaireScreenHandler(int syncId, PlayerInventory playerInventory, BlockPosPayload payload) {
         this(syncId, playerInventory, (ForgeStellaireEntity) playerInventory.player.getEntityWorld().getBlockEntity(payload.pos()), new ArrayPropertyDelegate(7));
     }
@@ -53,21 +60,49 @@ public class ForgeStellaireScreenHandler extends ScreenHandler {
     public ItemStack quickMove(PlayerEntity player, int slotIndex) {
         ItemStack newStack = ItemStack.EMPTY;
         Slot slot = getSlot(slotIndex);
-        if (slot != null && slot.hasStack()) {
-            ItemStack inSlot = slot.getStack();
-            newStack = inSlot.copy();
 
-            if (slotIndex < 2) {
-                if (!insertItem(inSlot, 2, this.slots.size(), true))
-                    return ItemStack.EMPTY;
-            } else if (!insertItem(inSlot, 0, 2, false))
+        if (slot == null || !slot.hasStack()) return ItemStack.EMPTY;
+
+        ItemStack inSlot = slot.getStack();
+        newStack = inSlot.copy();
+
+        if (slotIndex == OUTPUT_SLOT) {
+            // Output → inventaire joueur (hotbar en priorité)
+            if (!insertItem(inSlot, PLAYER_INV_START, HOTBAR_END, true))
                 return ItemStack.EMPTY;
 
-            if (inSlot.isEmpty())
-                slot.setStack(ItemStack.EMPTY);
-            else slot.markDirty();
+        } else if (slotIndex == INPUT_SLOT) {
+            // Input → inventaire joueur
+            if (!insertItem(inSlot, PLAYER_INV_START, HOTBAR_END, true))
+                return ItemStack.EMPTY;
+
+        } else {
+            // Inventaire joueur / hotbar → slot input uniquement
+            // On ne propose PAS le slot output (canInsert retourne false de toute façon,
+            // mais on évite l'essai inutile)
+            if (!insertItem(inSlot, INPUT_SLOT, INPUT_SLOT + 1, false)) {
+                // Si l'input est plein ou invalide, on déplace entre hotbar ↔ inventaire
+                if (slotIndex < HOTBAR_START) {
+                    // Inventaire principal → hotbar
+                    if (!insertItem(inSlot, HOTBAR_START, HOTBAR_END, false))
+                        return ItemStack.EMPTY;
+                } else {
+                    // Hotbar → inventaire principal
+                    if (!insertItem(inSlot, PLAYER_INV_START, PLAYER_INV_END, false))
+                        return ItemStack.EMPTY;
+                }
+            }
         }
 
+        if (inSlot.isEmpty())
+            slot.setStack(ItemStack.EMPTY);
+        else
+            slot.markDirty();
+
+        if (inSlot.getCount() == newStack.getCount())
+            return ItemStack.EMPTY;
+
+        slot.onTakeItem(player, inSlot);
         return newStack;
     }
 

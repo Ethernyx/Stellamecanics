@@ -1,6 +1,11 @@
 {
-  "parent": "minecraft:block/cube_all",
+  "parent": "stellamecanics:block/forge_stellaire/forge_stellaire_base",
   "textures": {
-    "all": "stellamecanics:block/forge_stellaire"
+    "bottom": "stellamecanics:block/forge_stellaire/forge_stellaire_bottom",
+    "east": "stellamecanics:block/forge_stellaire/forge_stellaire_east",
+    "north": "stellamecanics:block/forge_stellaire/forge_stellaire_north",
+    "south": "stellamecanics:block/forge_stellaire/forge_stellaire_south",
+    "top": "stellamecanics:block/forge_stellaire/forge_stellaire_top",
+    "west": "stellamecanics:block/forge_stellaire/forge_stellaire_west"
   }
 }

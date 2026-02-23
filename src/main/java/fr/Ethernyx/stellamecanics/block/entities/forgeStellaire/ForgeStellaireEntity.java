@@ -14,6 +14,7 @@ import net.fabricmc.fabric.api.transfer.v1.fluid.FluidStorage;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant;
 import net.fabricmc.fabric.api.transfer.v1.fluid.base.SingleFluidStorage;
 import net.fabricmc.fabric.api.transfer.v1.item.InventoryStorage;
+import net.fabricmc.fabric.api.transfer.v1.item.ItemStorage;
 import net.fabricmc.fabric.api.transfer.v1.storage.Storage;
 import net.fabricmc.fabric.api.transfer.v1.transaction.Transaction;
 import net.minecraft.block.Block;
@@ -84,12 +85,12 @@ public class ForgeStellaireEntity extends BlockEntity implements ExtendedScreenH
 
         @Override
         public boolean isValid(int slot, ItemStack stack) {
-            return ForgeStellaireEntity.this.isValid(stack, slot);
+            return false;
         }
     };
 
-    private final InventoryStorage inputInventoryStorage = InventoryStorage.of(input, Direction.UP);
-    private final InventoryStorage outputInventoryStorage = InventoryStorage.of(output, Direction.DOWN);
+    public final InventoryStorage inputInventoryStorage = InventoryStorage.of(input, Direction.UP);
+    public final InventoryStorage outputInventoryStorage = InventoryStorage.of(output, Direction.DOWN);
 
     public final SingleFluidStorage tankSolarium = new SingleFluidStorage() {
         @Override
@@ -372,11 +373,34 @@ public class ForgeStellaireEntity extends BlockEntity implements ExtendedScreenH
     public SimpleInventory getInputInventory() {
         return input;
     }
-
     public SimpleInventory getOutputInventory() {
         return output;
     }
 
     public SingleFluidStorage  getFluidStorageSolarium() { return tankSolarium;}
     public SingleFluidStorage  getFluidStorageLunarium() { return tankLunarium;}
+    // Getters pour l'enregistrement des pipes (Transfer API)
+    public InventoryStorage getInputInventoryStorage()  { return inputInventoryStorage; }
+    public InventoryStorage getOutputInventoryStorage() { return outputInventoryStorage; }
+
+    private static boolean storagesRegistered = false;
+
+    public static void registerStorages() {
+        if (storagesRegistered) return;
+        storagesRegistered = true;
+
+        // Pipes items : dessus → input / dessous → output
+        ItemStorage.SIDED.registerForBlockEntity((be, direction) -> {
+            if (direction == Direction.UP)   return be.inputInventoryStorage;
+            if (direction == Direction.DOWN) return be.outputInventoryStorage;
+            return null;
+        }, ModBlockEntities.FORGE_STELLAIRE);
+
+        // Pipes fluides : WEST → Solarium / EAST → Lunarium
+        FluidStorage.SIDED.registerForBlockEntity((be, direction) -> {
+            if (direction == Direction.WEST) return be.tankSolarium;
+            if (direction == Direction.EAST) return be.tankLunarium;
+            return null;
+        }, ModBlockEntities.FORGE_STELLAIRE);
+    }
 }

@@ -1,7 +1,19 @@
 {
   "variants": {
-    "": {
+    "facing=east": {
+      "model": "stellamecanics:block/forge_stellaire",
+      "y": 90
+    },
+    "facing=north": {
       "model": "stellamecanics:block/forge_stellaire"
+    },
+    "facing=south": {
+      "model": "stellamecanics:block/forge_stellaire",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "stellamecanics:block/forge_stellaire",
+      "y": 270
     }
   }
 }

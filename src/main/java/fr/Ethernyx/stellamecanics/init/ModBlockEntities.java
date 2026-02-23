@@ -25,5 +25,8 @@ public class ModBlockEntities {
             ).build()
     );
 
-    public static void registerModBlockEntities() { Stellamecanics.LOGGER.debug("Registering Mod Block Entities for " + Stellamecanics.MOD_ID); }
+    public static void registerModBlockEntities() {
+        Stellamecanics.LOGGER.debug("Registering Mod Block Entities for " + Stellamecanics.MOD_ID);
+        ForgeStellaireEntity.registerStorages();
+    }
 }
