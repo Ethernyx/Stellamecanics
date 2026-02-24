@@ -14,6 +14,7 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.client.data.Model;
+import net.minecraft.client.data.Models;
 import net.minecraft.client.data.TextureKey;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.Fluid;
@@ -87,9 +88,9 @@ public class ForgeStellaire extends BlockWithEntity implements IMyBlock, BlockEn
 
         Direction side = hit.getSide();
 
-        // Côté gauche (WEST) → tankSolarium, côté droit (EAST) → tankLunarium
-        if (side == Direction.WEST || side == Direction.EAST) {
-            boolean isSolarium = side == Direction.WEST;
+        // Côté gauche (SOUTH) → tankSolarium, côté droit (NORTH) → tankLunarium
+        if (side == Direction.NORTH || side == Direction.SOUTH) {
+            boolean isSolarium = side == Direction.SOUTH;
             SingleFluidStorage tank  = isSolarium ? forge.tankSolarium  : forge.tankLunarium;
             Fluid fluid = isSolarium ? ModFluids.SOLARIUM_FLUID.getStill() : ModFluids.LUNARIUM_FLUID.getStill();
             Item bucketFull = isSolarium ? ModFluids.SOLARIUM_FLUID.getBucket() : ModFluids.LUNARIUM_FLUID.getBucket();
@@ -164,17 +165,5 @@ public class ForgeStellaire extends BlockWithEntity implements IMyBlock, BlockEn
     }
 
 
-    @Override
-    public Model getModelType() {
-        return new Model(
-                Optional.of(Identifier.of(Stellamecanics.MOD_ID, "block/forge_stellaire/forge_stellaire_base")),
-                Optional.empty(),
-                TextureKey.TOP,
-                TextureKey.BOTTOM,
-                TextureKey.NORTH,
-                TextureKey.SOUTH,
-                TextureKey.WEST,
-                TextureKey.EAST
-        );
-    }
+    @Override public Model getModelType() { return Models.CUBE; }
 }

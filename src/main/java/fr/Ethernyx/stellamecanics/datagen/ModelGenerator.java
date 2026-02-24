@@ -28,7 +28,7 @@ public class ModelGenerator extends FabricModelProvider {
             if (block.getModelType() == Models.CUBE_ALL) {
                 // Bloc simple → une seule texture sur toutes les faces
                 gen.registerSimpleCubeAll((Block) block);
-            } else {
+            } else if (block.getModelType() == Models.CUBE) {
                 // Bloc avec 6 faces distinctes + orientation horizontale
                 // Chemin attendu : assets/stellamecanics/textures/block/<id>/<id>_<face>.png
                 String base = "block/" + block.getId() + "/" + block.getId();

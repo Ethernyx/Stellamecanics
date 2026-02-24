@@ -1,5 +1,5 @@
 {
-  "parent": "stellamecanics:block/forge_stellaire/forge_stellaire_base",
+  "parent": "stellamecanics:block/forge_stellaire_base",
   "textures": {
     "bottom": "stellamecanics:block/forge_stellaire/forge_stellaire_bottom",
     "east": "stellamecanics:block/forge_stellaire/forge_stellaire_east",

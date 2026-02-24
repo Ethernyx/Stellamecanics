@@ -396,10 +396,10 @@ public class ForgeStellaireEntity extends BlockEntity implements ExtendedScreenH
             return null;
         }, ModBlockEntities.FORGE_STELLAIRE);
 
-        // Pipes fluides : WEST → Solarium / EAST → Lunarium
+        // Pipes fluides : SOUTH → Solarium / NORTH → Lunarium
         FluidStorage.SIDED.registerForBlockEntity((be, direction) -> {
-            if (direction == Direction.WEST) return be.tankSolarium;
-            if (direction == Direction.EAST) return be.tankLunarium;
+            if (direction == Direction.SOUTH) return be.tankSolarium;
+            if (direction == Direction.NORTH) return be.tankLunarium;
             return null;
         }, ModBlockEntities.FORGE_STELLAIRE);
     }
