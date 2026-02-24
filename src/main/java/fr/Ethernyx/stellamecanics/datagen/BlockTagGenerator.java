@@ -2,6 +2,7 @@ package fr.ethernyx.stellamecanics.datagen;
 
 import fr.ethernyx.stellamecanics.init.ModBlocks;
 import fr.ethernyx.stellamecanics.init.ModFluids;
+import fr.ethernyx.stellamecanics.init.ModTags;
 import fr.ethernyx.stellamecanics.interfaces.IMyFlowingFluid;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
@@ -21,6 +22,14 @@ public class BlockTagGenerator extends FabricTagProvider.BlockTagProvider {
 
     @Override
     protected void configure(RegistryWrapper.WrapperLookup wrapperLookup) {
+        if (!ModTags.Blocks.BLOCKTAGS.isEmpty()) {
+            ModTags.Blocks.BLOCKTAGS.forEach((name, tag) -> {
+                tag.legacy().forEach(blockTag -> {
+                    valueLookupBuilder(tag.getTag()).addTag(blockTag);
+                });
+                valueLookupBuilder(tag.getTag()).setReplace(tag.isreplace());
+            });
+        }
         if (!ModBlocks.BLOCKS.isEmpty()) {
             ModBlocks.BLOCKS.forEach((key, block) -> {
                 if (!block.getTags().isEmpty()) {

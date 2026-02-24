@@ -1,6 +1,7 @@
 package fr.ethernyx.stellamecanics.datagen;
 
 import fr.ethernyx.stellamecanics.init.ModFluids;
+import fr.ethernyx.stellamecanics.init.ModTags;
 import fr.ethernyx.stellamecanics.interfaces.IMyFlowingFluid;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
@@ -16,6 +17,13 @@ public class FluidTagGenerator extends FabricTagProvider.FluidTagProvider {
     }
     @Override
     protected void configure(RegistryWrapper.WrapperLookup wrapperLookup) {
+        ModTags.Fluids.FLUIDTAGS.forEach((key, tag) -> {
+            tag.legacy().forEach(fluidTag -> {
+                valueLookupBuilder(tag.getTag()).addTag(fluidTag);
+            });
+            valueLookupBuilder(tag.getTag()).setReplace(tag.isreplace());
+        });
+
         if (!ModFluids.FLUIDS.isEmpty()) {
             ModFluids.FLUIDS.forEach((key, fluid) -> {
                 if (!((IMyFlowingFluid) fluid.getStill()).getFlowingTag().isEmpty()) {
