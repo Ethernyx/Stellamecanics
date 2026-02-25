@@ -33,8 +33,9 @@ public class ModelGenerator extends FabricModelProvider {
                 // Chemin attendu : assets/stellamecanics/textures/block/<id>/<id>_<face>.png
                 String base = "block/" + block.getId() + "/" + block.getId();
                 TextureMap textures = new TextureMap()
-                        .put(TextureKey.TOP,    Identifier.of(Stellamecanics.MOD_ID, base + "_top"))
-                        .put(TextureKey.BOTTOM, Identifier.of(Stellamecanics.MOD_ID, base + "_bottom"))
+                        .put(TextureKey.PARTICLE, Identifier.of(Stellamecanics.MOD_ID, base + "_north"))
+                        .put(TextureKey.UP,    Identifier.of(Stellamecanics.MOD_ID, base + "_top"))
+                        .put(TextureKey.DOWN, Identifier.of(Stellamecanics.MOD_ID, base + "_bottom"))
                         .put(TextureKey.NORTH,  Identifier.of(Stellamecanics.MOD_ID, base + "_north"))
                         .put(TextureKey.SOUTH,  Identifier.of(Stellamecanics.MOD_ID, base + "_south"))
                         .put(TextureKey.WEST,   Identifier.of(Stellamecanics.MOD_ID, base + "_west"))
