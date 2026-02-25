@@ -23,6 +23,12 @@
 		],
 		"client" : [
 			"fr.ethernyx.stellamecanics.StellamecanicsClient"
+		],
+		"rei_client_plugin": [
+			"fr.ethernyx.stellamecanics.compatibility.rei.StellamecanicsREIClient"
+		],
+		"rei_plugin": [
+			"fr.ethernyx.stellamecanics.compatibility.rei.StellamecanicsREIClient"
 		]
 	},
 	"accessWidener": "stellamecanics.accesswidener",
@@ -33,7 +39,8 @@
 		"fabricloader": ">=0.16.5",
 		"minecraft": "~1.21.10",
 		"java": ">=21",
-		"fabric-api": "*"
+		"fabric-api": "*",
+		"roughlyenoughitems": "*"
 	},
 	"suggests": {
 		"another-mod": "*"

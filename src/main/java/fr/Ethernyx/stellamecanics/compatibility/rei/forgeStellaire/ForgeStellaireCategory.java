@@ -47,10 +47,19 @@ public class ForgeStellaireCategory implements DisplayCategory<BasicDisplay> {
 
         widgets.add(Widgets.createTexturedWidget(TEXTURE, new Rectangle(startPoint.x, startPoint.y, 175, 82)));
 
+        // Slot item input
         widgets.add(Widgets.createSlot(new Point(startPoint.x + 54, startPoint.y + 34))
                 .entries(display.getInputEntries().get(0)).markInput());
+
+        // Slot fluide (index 1 dans les inputs)
+        if (display.getInputEntries().size() > 1) {
+            widgets.add(Widgets.createSlot(new Point(startPoint.x + 20, startPoint.y + 34))
+                    .entries(display.getInputEntries().get(1)).markInput());
+        }
+
+        // Slot output
         widgets.add(Widgets.createSlot(new Point(startPoint.x + 104, startPoint.y + 34))
-                .entries(display.getOutputEntries().get(0)).markOutput());
+                .entries(display.getOutputEntries().getFirst()).markOutput());
 
         return widgets;
     }
