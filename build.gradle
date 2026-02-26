@@ -39,7 +39,7 @@ dependencies {
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
 	modCompileOnly "me.shedaniel:RoughlyEnoughItems-api-fabric:21.9.813"
-	modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-fabric:21.9.813"
+	modLocalRuntime "me.shedaniel:RoughlyEnoughItems-fabric:21.9.813"
 	modApi "dev.architectury:architectury-fabric:18.0.8"
 	modApi "me.shedaniel.cloth:cloth-config-fabric:20.0.149"
 }

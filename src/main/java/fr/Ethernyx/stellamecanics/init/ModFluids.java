@@ -20,7 +20,7 @@ public class ModFluids {
                     Map.of(FluidListTypeEnum.BLOCK, Map.of("fr_fr", "Solarium", "en_us", "Solarium"), FluidListTypeEnum.BUCKET, Map.of("fr_fr", "Bucket de solarium", "en_us", "Solarium bucket")),
                     List.of(ConventionalItemTags.BUCKETS),
                     List.of(BlockTags.REPLACEABLE, BlockTags.INVALID_SPAWN_INSIDE, BlockTags.FIRE),
-                    Map.of(FluidListTypeEnum.STILL, List.of(FluidTags.WATER), FluidListTypeEnum.FLOWING, List.of(FluidTags.WATER)),
+                    Map.of(FluidListTypeEnum.STILL, List.of(FluidTags.WATER, ModTags.Fluids.FLUIDTAGS.get("forge_stellaire_fluid_input_left").getTag()), FluidListTypeEnum.FLOWING, List.of(FluidTags.WATER, ModTags.Fluids.FLUIDTAGS.get("forge_stellaire_fluid_input_left").getTag())),
                     0xFFAA00
             ));
     public static final FluidListType LUNARIUM_FLUID = addNewFluid(
@@ -29,7 +29,7 @@ public class ModFluids {
                     Map.of(FluidListTypeEnum.BLOCK, Map.of("fr_fr", "Lunarium", "en_us", "Lunarium"), FluidListTypeEnum.BUCKET, Map.of("fr_fr", "Bucket de lunarium", "en_us", "Lunarium bucket")),
                     List.of(ConventionalItemTags.BUCKETS),
                     List.of(BlockTags.REPLACEABLE, BlockTags.INVALID_SPAWN_INSIDE, BlockTags.FIRE),
-                    Map.of(FluidListTypeEnum.STILL, List.of(FluidTags.WATER), FluidListTypeEnum.FLOWING, List.of(FluidTags.WATER)),
+                    Map.of(FluidListTypeEnum.STILL, List.of(FluidTags.WATER, ModTags.Fluids.FLUIDTAGS.get("forge_stellaire_fluid_input_right").getTag()), FluidListTypeEnum.FLOWING, List.of(FluidTags.WATER, ModTags.Fluids.FLUIDTAGS.get("forge_stellaire_fluid_input_right").getTag())),
                     0xC8D8E8
             ));
     public static final FluidListType STELLARIUM_FLUID = addNewFluid(

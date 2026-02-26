@@ -66,6 +66,8 @@ public class ModTags {
 
     public static class Fluids {
         public static Map<String, GenericFluidTags> FLUIDTAGS = new HashMap<>();
+        public static final TagKey<Fluid> FORGE_STELLAIRE_FLUID_INPUT_LEFT = createTag(new GenericFluidTags("forge_stellaire_fluid_input_left", List.of()));
+        public static final TagKey<Fluid> FORGE_STELLAIRE_FLUID_INPUT_RIGHT = createTag(new GenericFluidTags("forge_stellaire_fluid_input_right", List.of()));
 
         private static TagKey<Fluid> createTag(GenericFluidTags tag) {
             FLUIDTAGS.put(tag.getName(), tag);

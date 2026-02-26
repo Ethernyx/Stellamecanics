@@ -160,8 +160,11 @@ public class ForgeStellaireEntity extends BlockEntity implements ExtendedScreenH
     @Override
     protected void writeData(WriteView view) {
         super.writeData(view);
-        view.put("forge_stellaire.input",  ItemStack.CODEC, input.getStack(0));
-        view.put("forge_stellaire.output", ItemStack.CODEC, output.getStack(0));
+        // Sauvegarder seulement si non vide
+        if (!input.getStack(0).isEmpty())
+            view.put("forge_stellaire.input", ItemStack.CODEC, input.getStack(0));
+        if (!output.getStack(0).isEmpty())
+            view.put("forge_stellaire.output", ItemStack.CODEC, output.getStack(0));
         view.putInt("forge_stellaire.progress", progress);
         view.putInt("forge_stellaire.progress_time", progressTime);
         view.putString("forge_stellaire.tank_solarium", tankSolarium.getResource().getFluid() != null

@@ -1,3 +1,5 @@
 // 1.21.10	-999999999-01-01T00:00:00	Stellamecanics/Tags for minecraft:fluid
 d91f137864de2a1986bcb7f605a0e36d2717136d data/minecraft/tags/fluid/lava.json
 336ad62be359f6e4622a3a5671220afb654f1182 data/minecraft/tags/fluid/water.json
+59dd4cf5d305a1200f4de7c607045186a07443f6 data/stellamecanics/tags/fluid/forge_stellaire_fluid_input_left.json
+d797a136ec912de0f103584523b3c3a1e2b835de data/stellamecanics/tags/fluid/forge_stellaire_fluid_input_right.json

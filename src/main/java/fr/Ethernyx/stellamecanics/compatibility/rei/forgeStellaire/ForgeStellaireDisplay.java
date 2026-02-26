@@ -17,18 +17,21 @@ import java.util.List;
 public class ForgeStellaireDisplay extends BasicDisplay {
     private final Fluid fluid;
     private final long fluidAmount;
+    private final ForgeStellaireRecipe recipe;
 
     public ForgeStellaireDisplay(RecipeEntry<ForgeStellaireRecipe> recipe) {
-        super(List.of(EntryIngredients.ofIngredient(recipe.value().getIngredientPlacement().getIngredients().get(0))),
+        super(List.of(EntryIngredients.ofIngredient(recipe.value().getIngredientPlacement().getIngredients().getFirst()),
+                        EntryIngredient.of(EntryStacks.of(recipe.value().fluid(), recipe.value().fluidAmount()))),
                 List.of(EntryIngredient.of(EntryStacks.of(recipe.value().result()))));
+        this.recipe = recipe.value();
         fluid = recipe.value().fluid();
         fluidAmount = recipe.value().fluidAmount();
     }
 
     public Fluid getFluid() { return fluid; }
     public long getFluidAmount() { return fluidAmount; }
+    public ForgeStellaireRecipe getRecipe() { return recipe; } // ← maintenant valide
 
     @Override public CategoryIdentifier<?> getCategoryIdentifier() { return ForgeStellaireCategory.FORGE_STELLAIRE; }
-
     @Override public @Nullable DisplaySerializer<? extends Display> getSerializer() { return null; }
 }

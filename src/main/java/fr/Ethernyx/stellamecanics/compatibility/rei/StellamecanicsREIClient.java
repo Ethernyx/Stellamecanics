@@ -12,38 +12,87 @@ import me.shedaniel.rei.api.client.registry.category.CategoryRegistry;
 import me.shedaniel.rei.api.client.registry.display.DisplayRegistry;
 import me.shedaniel.rei.api.client.registry.display.DynamicDisplayGenerator;
 import me.shedaniel.rei.api.client.registry.screen.ScreenRegistry;
+import me.shedaniel.rei.api.client.view.ViewSearchBuilder;
 import me.shedaniel.rei.api.common.entry.EntryStack;
+import me.shedaniel.rei.api.common.entry.type.VanillaEntryTypes;
 import me.shedaniel.rei.api.common.util.EntryStacks;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.RecipeEntry;
-import net.minecraft.recipe.ServerRecipeManager;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class StellamecanicsREIClient implements REIClientPlugin {
+
+    private List<ForgeStellaireDisplay> getAllDisplays() {
+        MinecraftClient client = MinecraftClient.getInstance();
+        Collection<RecipeEntry<ForgeStellaireRecipe>> recipes;
+
+        if (client.getServer() != null) {
+            recipes = client.getServer().getRecipeManager().getAllOfType(ModRecipeTypes.FORGE_STELLAIRE);
+        } else {
+            recipes = client.getNetworkHandler().getRecipeManager().getSynchronizedRecipes()
+                    .getAllOfType(ModRecipeTypes.FORGE_STELLAIRE);
+        }
+
+        return recipes.stream().map(ForgeStellaireDisplay::new).collect(Collectors.toList());
+    }
+
     @Override
     public void registerCategories(CategoryRegistry registry) {
         registry.add(new ForgeStellaireCategory());
-
         registry.addWorkstations(ForgeStellaireCategory.FORGE_STELLAIRE, EntryStacks.of(ModBlocks.FORGE_STELLAIRE));
     }
 
     @Override
     public void registerDisplays(DisplayRegistry registry) {
-        registry.beginFiller(RecipeEntry.class)
-                .filter(entry -> {
-                    boolean match = entry.value() instanceof ForgeStellaireRecipe;
-                    if (match) System.out.println("[REI] Found ForgeStellaireRecipe: " + entry.id());
-                    return match;
-                })
-                .fill(entry -> new ForgeStellaireDisplay((RecipeEntry<ForgeStellaireRecipe>) entry));
+        registry.registerDisplayGenerator(
+                ForgeStellaireCategory.FORGE_STELLAIRE,
+                new DynamicDisplayGenerator<>() {
+                    @Override
+                    public Optional<List<ForgeStellaireDisplay>> getRecipeFor(EntryStack<?> entry) {
+                        if (!(entry.getValue() instanceof ItemStack stack)) return Optional.empty();
+
+                        List<ForgeStellaireDisplay> result = getAllDisplays().stream()
+                                .filter(d -> {
+                                    return ItemStack.areItemsEqual(d.getRecipe().result(), stack);
+                                })
+                                .collect(Collectors.toList());
+                        return result.isEmpty() ? Optional.empty() : Optional.of(result);
+                    }
+
+                    @Override
+                    public Optional<List<ForgeStellaireDisplay>> getUsageFor(EntryStack<?> entry) {
+                        if (!entry.getType().equals(VanillaEntryTypes.ITEM)) return Optional.empty();
+                        ItemStack stack = entry.castValue();
+
+                        List<ForgeStellaireDisplay> result = getAllDisplays().stream()
+                                .filter(d -> d.getRecipe().inputItem().test(stack))
+                                .collect(Collectors.toList());
+
+                        return result.isEmpty() ? Optional.empty() : Optional.of(result);
+                    }
+
+                    @Override
+                    public Optional<List<ForgeStellaireDisplay>> generate(ViewSearchBuilder builder) {
+                        if (!builder.getRecipesFor().isEmpty() || !builder.getUsagesFor().isEmpty()) {
+                            return Optional.empty();
+                        }
+                        return Optional.of(getAllDisplays());
+                    }
+                }
+        );
+
+
     }
 
     @Override
     public void registerScreens(ScreenRegistry registry) {
         registry.registerClickArea(screen -> new Rectangle(((screen.width - 176) / 2) + 78,
-                        ((screen.height - 166) / 2) + 30, 20, 25), ForgeStellaireScreen.class,
+                        ((screen.height - 186) / 2) + 30, 20, 25), ForgeStellaireScreen.class,
                 ForgeStellaireCategory.FORGE_STELLAIRE);
     }
 }

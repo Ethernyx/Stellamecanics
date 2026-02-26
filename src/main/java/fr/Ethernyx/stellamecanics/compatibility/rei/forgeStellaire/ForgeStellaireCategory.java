@@ -2,6 +2,8 @@ package fr.ethernyx.stellamecanics.compatibility.rei.forgeStellaire;
 
 import fr.ethernyx.stellamecanics.Stellamecanics;
 import fr.ethernyx.stellamecanics.init.ModBlocks;
+import fr.ethernyx.stellamecanics.init.ModTags;
+import fr.ethernyx.stellamecanics.interfaces.IMyFlowingFluid;
 import me.shedaniel.math.Point;
 import me.shedaniel.math.Rectangle;
 import me.shedaniel.rei.api.client.gui.Renderer;
@@ -42,24 +44,47 @@ public class ForgeStellaireCategory implements DisplayCategory<BasicDisplay> {
 
     @Override
     public List<Widget> setupDisplay(BasicDisplay display, Rectangle bounds) {
-        Point startPoint = new Point(bounds.getCenterX() - 87, bounds.getCenterY() - 35);
+        Point startPoint = new Point(bounds.getCenterX() - 87, bounds.getCenterY() - 55);
         List<Widget> widgets = new LinkedList<>();
 
-        widgets.add(Widgets.createTexturedWidget(TEXTURE, new Rectangle(startPoint.x, startPoint.y, 175, 82)));
+        widgets.add(Widgets.createTexturedWidget(TEXTURE, new Rectangle(startPoint.x, startPoint.y, 175, 102)));
 
         // Slot item input
-        widgets.add(Widgets.createSlot(new Point(startPoint.x + 54, startPoint.y + 34))
+        widgets.add(Widgets.createSlot(new Point(startPoint.x + 72, startPoint.y + 47))
                 .entries(display.getInputEntries().get(0)).markInput());
 
         // Slot fluide (index 1 dans les inputs)
         if (display.getInputEntries().size() > 1) {
-            widgets.add(Widgets.createSlot(new Point(startPoint.x + 20, startPoint.y + 34))
-                    .entries(display.getInputEntries().get(1)).markInput());
+            ForgeStellaireDisplay forgeStellaireDisplay = (ForgeStellaireDisplay) display;
+            IMyFlowingFluid fluid = (IMyFlowingFluid) forgeStellaireDisplay.getFluid();
+
+            final int x = fluid.getStillTag().contains(ModTags.Fluids.FLUIDTAGS.get("forge_stellaire_fluid_input_right").getTag()) ? 27 : 13;
+            final int color = 0xAA000000 | (fluid.color() & 0xFFFFFF);
+
+            Widget fluidWidget = Widgets.createDrawableWidget((helper, mouseX, mouseY, delta) -> {
+                helper.fillGradient(
+                        startPoint.x + x, startPoint.y + 24,
+                        startPoint.x + x + 7, startPoint.y + 82,
+                        color, color
+                );
+            });
+
+            // Ajoute le widget avec un tooltip
+            widgets.add(Widgets.withTooltip(
+                    Widgets.withBounds(
+                            fluidWidget,
+                            new Rectangle(startPoint.x + x, startPoint.y + 24, 7, 58)
+                    ),
+                    List.of(
+                            Text.translatable(fluid.getBlock().getTranslationKey()),
+                            Text.literal(forgeStellaireDisplay.getFluidAmount() + " mB")
+                    )
+            ));
         }
 
         // Slot output
-        widgets.add(Widgets.createSlot(new Point(startPoint.x + 104, startPoint.y + 34))
-                .entries(display.getOutputEntries().getFirst()).markOutput());
+        widgets.add(Widgets.createSlot(new Point(startPoint.x + 122, startPoint.y + 47))
+                .entries(display.getOutputEntries().getFirst()).markOutput().disableBackground());
 
         return widgets;
     }
