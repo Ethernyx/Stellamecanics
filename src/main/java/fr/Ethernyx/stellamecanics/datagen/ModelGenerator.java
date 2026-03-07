@@ -63,12 +63,12 @@ public class ModelGenerator extends FabricModelProvider {
         });
 
         ModFluids.FLUIDS.forEach((id, fluid) -> {
-            BlockStateModelGenerator.createSingletonBlockState(
+            gen.blockStateCollector.accept(BlockStateModelGenerator.createSingletonBlockState(
                     fluid.getBlock(),
                     BlockStateModelGenerator.createWeightedVariant(
                             ModelIds.getMinecraftNamespacedBlock("water")
                     )
-            );
+            ));
         });
     }
 
