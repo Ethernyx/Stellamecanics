@@ -54,15 +54,12 @@ import java.util.Optional;
 public class ForgeStellaireEntity extends BlockEntity implements ExtendedScreenHandlerFactory<BlockPosPayload>, IMyBlockEntity {
     public static String ID = "forge_stellaire_entity";
     public static String IDBLOCK = "forge_stellaire";
-    private static final int INPUT_SLOT = 0;
-    private static final int OUTPUT_SLOT = 1;
-    private static final int TANKSOLARIUMAMOUNT_SLOT = 3;
-    private static final int TANKLUNARIUMAMOUNT_SLOT = 5;
+    private static final int PRODUCTION_SOLARIUM_PER_TICK = 4;
+    private static final int PRODUCTION_LUNARIUM_PER_TICK = 4;
     public static final long CAPACITY = 10 * 1000;
     private int progress = 0;
     private int progressTime = 0;
     private final int maxProgress = 200;
-    private final DefaultedList<ItemStack> items = DefaultedList.ofSize(2, ItemStack.EMPTY);
     private final SimpleInventory input = new SimpleInventory(1) {
         @Override
         public void markDirty() {
@@ -115,18 +112,17 @@ public class ForgeStellaireEntity extends BlockEntity implements ExtendedScreenH
             markDirty();
         }
     };
-    private final PropertyDelegate properties = new ArrayPropertyDelegate(7) {
+    private final PropertyDelegate properties = new ArrayPropertyDelegate(6) {
 
         @Override
         public int get(int index) {
             return switch (index) {
                 case 0 -> progress;
                 case 1 -> progressTime;
-                case 2 -> maxProgress;
-                case 3 -> (int) (tankSolarium.getAmount());
-                case 4 -> (int) (tankSolarium.getCapacity());
-                case 5 -> (int) (tankLunarium.getAmount());
-                case 6 -> (int) (tankLunarium.getCapacity());
+                case 2 -> (int) (tankSolarium.getAmount());
+                case 3 -> (int) (tankSolarium.getCapacity());
+                case 4 -> (int) (tankLunarium.getAmount());
+                case 5 -> (int) (tankLunarium.getCapacity());
                 default -> 0;
             };
         }
@@ -138,7 +134,7 @@ public class ForgeStellaireEntity extends BlockEntity implements ExtendedScreenH
 
         @Override
         public int size() {
-            return 7;
+            return 6;
         }
     };
 
@@ -167,11 +163,20 @@ public class ForgeStellaireEntity extends BlockEntity implements ExtendedScreenH
             view.put("forge_stellaire.output", ItemStack.CODEC, output.getStack(0));
         view.putInt("forge_stellaire.progress", progress);
         view.putInt("forge_stellaire.progress_time", progressTime);
-        view.putString("forge_stellaire.tank_solarium", tankSolarium.getResource().getFluid() != null
-                ? Registries.FLUID.getId(tankSolarium.getResource().getFluid()).toString() : "minecraft:empty");
+
+        Fluid solariumFluid = tankSolarium.getResource().getFluid();
+        view.putString("forge_stellaire.tank_solarium",
+                (solariumFluid != null && solariumFluid != Fluids.EMPTY)
+                        ? Registries.FLUID.getId(solariumFluid).toString()
+                        : "");
+
+        Fluid lunariumFluid = tankLunarium.getResource().getFluid();
+        view.putString("forge_stellaire.tank_lunarium",
+                (lunariumFluid != null && lunariumFluid != Fluids.EMPTY)
+                        ? Registries.FLUID.getId(lunariumFluid).toString()
+                        : "");
+
         view.putLong("forge_stellaire.tank_solarium_amount", tankSolarium.getAmount());
-        view.putString("forge_stellaire.tank_lunarium", tankLunarium.getResource().getFluid() != null
-                ? Registries.FLUID.getId(tankLunarium.getResource().getFluid()).toString() : "minecraft:empty");
         view.putLong("forge_stellaire.tank_lunarium_amount", tankLunarium.getAmount());
     }
 
@@ -183,10 +188,19 @@ public class ForgeStellaireEntity extends BlockEntity implements ExtendedScreenH
         progress     = view.getInt("forge_stellaire.progress", 0);
         progressTime = view.getInt("forge_stellaire.progress_time", 0);
 
-        Fluid tmp = Registries.FLUID.get(Identifier.of(view.getString("forge_stellaire.tank_solarium", "")));
-        if (tmp != Fluids.EMPTY) addFluid(tankSolarium, tmp, view.getLong("forge_stellaire.tank_solarium_amount", 0L));
-        tmp = Registries.FLUID.get(Identifier.of(view.getString("forge_stellaire.tank_lunarium", "")));
-        if (tmp != Fluids.EMPTY) addFluid(tankLunarium, tmp, view.getLong("forge_stellaire.tank_lunarium_amount", 0L));
+        String id = view.getString("forge_stellaire.tank_solarium", "");
+        if (!id.isEmpty()) {
+            Fluid tmp = Registries.FLUID.get(Identifier.of(id));
+            if (tmp != null && tmp != Fluids.EMPTY)
+                addFluid(tankSolarium, tmp, view.getLong("forge_stellaire.tank_solarium_amount", 0L));
+        }
+
+        id = view.getString("forge_stellaire.tank_lunarium", "");
+        if (!id.isEmpty()) {
+            Fluid tmp = Registries.FLUID.get(Identifier.of(id));
+            if (tmp != null && tmp != Fluids.EMPTY)
+                addFluid(tankLunarium, tmp, view.getLong("forge_stellaire.tank_lunarium_amount", 0L));
+        }
 
         if (world != null && !world.isClient()) {
             world.updateListeners(pos, getCachedState(), getCachedState(), 3);
@@ -197,7 +211,7 @@ public class ForgeStellaireEntity extends BlockEntity implements ExtendedScreenH
         if (world.isClient()) return;
 
         if(hasRecipe()) {
-            if (progressTime == 0) this.progressTime = getCurrentRecipe().get().value().processTime();
+            if (progressTime == 0) this.progressTime = Math.min(getCurrentRecipe().get().value().processTime(), this.maxProgress);
             increaseCraftingProgress();
             markDirty(world, pos, state);
 
@@ -209,8 +223,8 @@ public class ForgeStellaireEntity extends BlockEntity implements ExtendedScreenH
             resetProgress();
         }
 
-        if (world.isDay()) addFluid(tankSolarium, ModFluids.SOLARIUM_FLUID.getFlowing(), 4);
-        else addFluid(tankLunarium, ModFluids.LUNARIUM_FLUID.getFlowing(), 4);
+        if (world.isDay()) addFluid(tankSolarium, ModFluids.SOLARIUM_FLUID.getFlowing(), tankSolarium.getCapacity() - tankSolarium.getAmount() > PRODUCTION_SOLARIUM_PER_TICK ? PRODUCTION_SOLARIUM_PER_TICK : tankSolarium.getCapacity() - tankSolarium.getAmount());
+        else addFluid(tankLunarium, ModFluids.LUNARIUM_FLUID.getFlowing(), tankLunarium.getCapacity() - tankLunarium.getAmount() > PRODUCTION_LUNARIUM_PER_TICK ? PRODUCTION_LUNARIUM_PER_TICK : tankLunarium.getCapacity() - tankLunarium.getAmount());
     }
 
     private void resetProgress() {
@@ -234,17 +248,11 @@ public class ForgeStellaireEntity extends BlockEntity implements ExtendedScreenH
 
         // Extraction du fluide
         SingleFluidStorage tank = r.fluid() == ModFluids.LUNARIUM_FLUID.getStill() ? tankLunarium : tankSolarium;
-        boolean extracted = addFluid(tank, r.fluid(), -r.fluidAmount());
-
-        if (!extracted) {
-            // log pour debug — à retirer en prod
-            System.out.println("[ForgeStellaireEntity] Echec extraction fluide: "
-                    + r.fluidAmount() + " droplets de " + r.fluid());
-        }
+        addFluid(tank, r.fluid(), -r.fluidAmount());
     }
 
     private boolean hasCraftingFinished() {
-        return this.progress >= this.maxProgress || this.progressTime <= this.progress;
+        return this.progressTime <= this.progress;
     }
 
     private Fluid getTankFluid(ForgeStellaireRecipe recipe) {
@@ -254,9 +262,9 @@ public class ForgeStellaireEntity extends BlockEntity implements ExtendedScreenH
     }
 
     private int getTankAmount(ForgeStellaireRecipe recipe) {
-        return recipe.fluid() == ModFluids.LUNARIUM_FLUID.getStill()
-                ? properties.get(TANKLUNARIUMAMOUNT_SLOT)
-                : properties.get(TANKSOLARIUMAMOUNT_SLOT);
+        return Math.toIntExact(recipe.fluid() == ModFluids.LUNARIUM_FLUID.getStill()
+                ? tankLunarium.getAmount()
+                : tankSolarium.getAmount());
     }
 
     private boolean hasEnoughFluid(ForgeStellaireRecipe recipe) {
@@ -283,6 +291,8 @@ public class ForgeStellaireEntity extends BlockEntity implements ExtendedScreenH
     }
 
     private Optional<RecipeEntry<ForgeStellaireRecipe>> getCurrentRecipe() {
+        assert world != null;
+        if (world.isClient()) return Optional.empty();
         return ((ServerWorld) this.getWorld()).getRecipeManager()
                 .getFirstMatch(ModRecipeTypes.FORGE_STELLAIRE, new ForgeStellaireRecipeInput(input.getStack(0)), this.getWorld());
     }

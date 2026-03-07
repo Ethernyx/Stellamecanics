@@ -31,7 +31,7 @@ public class ForgeStellaireScreenHandler extends ScreenHandler {
     private static final int HOTBAR_END   = 38;
 
     public ForgeStellaireScreenHandler(int syncId, PlayerInventory playerInventory, BlockPosPayload payload) {
-        this(syncId, playerInventory, (ForgeStellaireEntity) playerInventory.player.getEntityWorld().getBlockEntity(payload.pos()), new ArrayPropertyDelegate(7));
+        this(syncId, playerInventory, (ForgeStellaireEntity) playerInventory.player.getEntityWorld().getBlockEntity(payload.pos()), new ArrayPropertyDelegate(6));
     }
 
     public ForgeStellaireScreenHandler(int syncId, PlayerInventory playerInventory, ForgeStellaireEntity blockEntity, PropertyDelegate propertyDelegate) {
@@ -50,7 +50,7 @@ public class ForgeStellaireScreenHandler extends ScreenHandler {
         addPlayerHotbar(playerInventory);
         addBlockInventory(inputInventory, outputInventory);
 
-        checkDataCount(propertyDelegate, 7);
+        checkDataCount(propertyDelegate, 6);
         addProperties(propertyDelegate);
         this.properties = propertyDelegate;
     }
@@ -142,8 +142,7 @@ public class ForgeStellaireScreenHandler extends ScreenHandler {
         return maxProgress != 0 && progress != 0 ? progress * arrowPixelSize / maxProgress : 0;
     }
 
-    public int getInfosLunarium(int type) { return type == AMOUNT ? properties.get(5) : properties.get(6); }
-    public int getInfosSolarium(int type) { return type == AMOUNT ? properties.get(3) : properties.get(4); }
-    public Fluid getFluid() { return Fluids.LAVA;}
+    public int getInfosLunarium(int type) { return type == AMOUNT ? properties.get(4) : properties.get(5); }
+    public int getInfosSolarium(int type) { return type == AMOUNT ? properties.get(2) : properties.get(3); }
     public ForgeStellaireEntity getBlockEntity() { return blockEntity; }
 }

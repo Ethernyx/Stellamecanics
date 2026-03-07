@@ -3,6 +3,7 @@ package fr.ethernyx.stellamecanics.block.entities.forgeStellaire;
 import com.mojang.serialization.MapCodec;
 import fr.ethernyx.stellamecanics.Stellamecanics;
 import fr.ethernyx.stellamecanics.init.ModBlockEntities;
+import fr.ethernyx.stellamecanics.init.ModBlocks;
 import fr.ethernyx.stellamecanics.init.ModFluids;
 import fr.ethernyx.stellamecanics.interfaces.IMyBlock;
 import fr.ethernyx.stellamecanics.utils.generator.LootType;
@@ -47,15 +48,8 @@ public class ForgeStellaire extends BlockWithEntity implements IMyBlock, BlockEn
     private final List<TagKey<Block>> tags;
     private final List<RecipeBuilder> recipes;
     private final MyLootTable lootTable;
-    public static final MapCodec<ForgeStellaire> CODEC = MapCodec.unit(
-            () -> new ForgeStellaire(
-                    "forge_stellaire",
-                    new MyLootTable(LootType.NONE),
-                    Map.of(),
-                    List.of(),
-                    List.of()
-            )
-    );
+    private static ForgeStellaire INSTANCE;
+    public static final MapCodec<ForgeStellaire> CODEC = MapCodec.unit(() -> INSTANCE);
 
     public ForgeStellaire(String id, MyLootTable lootTable,Map<String, String> translate, List<TagKey<Block>> tags, List<RecipeBuilder> recipes) {
         super(Settings.create().registryKey(RegistryKey.of(RegistryKeys.BLOCK,
@@ -65,6 +59,7 @@ public class ForgeStellaire extends BlockWithEntity implements IMyBlock, BlockEn
         this.translate = translate;
         this.tags = tags == null ? List.of() : tags;
         this.recipes = recipes == null ? List.of() : recipes;
+        INSTANCE = this;
     }
 
     @Override public String getId() {

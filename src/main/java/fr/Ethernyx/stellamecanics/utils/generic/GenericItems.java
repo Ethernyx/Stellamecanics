@@ -2,7 +2,7 @@ package fr.ethernyx.stellamecanics.utils.generic;
 
 import fr.ethernyx.stellamecanics.Stellamecanics;
 import fr.ethernyx.stellamecanics.interfaces.IMyItem;
-import fr.ethernyx.stellamecanics.utils.CustomItemTiers;
+import fr.ethernyx.stellamecanics.utils.ItemsType;
 import fr.ethernyx.stellamecanics.utils.recipe.RecipeBuilder;
 import net.minecraft.client.data.Model;
 import net.minecraft.client.data.Models;

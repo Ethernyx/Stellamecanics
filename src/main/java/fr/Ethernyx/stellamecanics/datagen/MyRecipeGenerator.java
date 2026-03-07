@@ -99,6 +99,7 @@ public class MyRecipeGenerator extends FabricRecipeProvider {
                             break;
                         case FORGE:
                             ForgeStellaireRecipeBuilder.offer(exporter, recipe.getRecipeName(), Ingredient.ofItems(getBlockOrItem(recipe.getInput().getFirst())), getFluid(recipe.getFluid().getFirst()), recipe.getFluid().getFirst().getNb(), 50, new ItemStack(getBlockOrItem(recipe.getOutput().getFirst()), recipe.getOutput().getFirst().getNb()));
+                            break;
                         default:
                             break;
                     }

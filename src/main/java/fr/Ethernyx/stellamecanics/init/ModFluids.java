@@ -12,7 +12,7 @@ import net.minecraft.registry.tag.FluidTags;
 import java.util.*;
 
 public class ModFluids {
-    public static Map<String, FluidListType> FLUIDS = new HashMap<>();
+    public static Map<String, FluidListType> FLUIDS = new LinkedHashMap <>();
 
     public static final FluidListType SOLARIUM_FLUID = addNewFluid(
             GenericFluids.create(

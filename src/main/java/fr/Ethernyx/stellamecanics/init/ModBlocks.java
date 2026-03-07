@@ -10,7 +10,6 @@ import fr.ethernyx.stellamecanics.utils.generic.GenericBlocks;
 import fr.ethernyx.stellamecanics.utils.recipe.MyIngredient;
 import fr.ethernyx.stellamecanics.utils.recipe.RecipeBuilder;
 import fr.ethernyx.stellamecanics.utils.recipe.RecipeType;
-import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
@@ -21,12 +20,12 @@ import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.util.Identifier;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
 public class ModBlocks {
-    public static Map<String, IMyBlock> BLOCKS = new HashMap<>();
+    public static Map<String, IMyBlock> BLOCKS = new LinkedHashMap<>();
 
     public static final Block MAGNETITE_ORE = addNewBlock(
             new GenericBlocks("magnetite_ore",

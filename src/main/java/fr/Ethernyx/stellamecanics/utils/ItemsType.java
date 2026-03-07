@@ -1,4 +1,4 @@
-package fr.ethernyx.stellamecanics.utils.generic;
+package fr.ethernyx.stellamecanics.utils;
 
 public enum ItemsType {
     AXE,

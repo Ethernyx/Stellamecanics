@@ -55,7 +55,9 @@ public class ForgeStellaireCategory implements DisplayCategory<BasicDisplay> {
 
         // Slot fluide (index 1 dans les inputs)
         if (display.getInputEntries().size() > 1) {
-            ForgeStellaireDisplay forgeStellaireDisplay = (ForgeStellaireDisplay) display;
+            if (!(display instanceof ForgeStellaireDisplay forgeStellaireDisplay)) {
+                return widgets; // retourne la liste sans le widget fluide
+            }
             IMyFlowingFluid fluid = (IMyFlowingFluid) forgeStellaireDisplay.getFluid();
 
             final int x = fluid.getStillTag().contains(ModTags.Fluids.FLUIDTAGS.get("forge_stellaire_fluid_input_right").getTag()) ? 27 : 13;

@@ -6,7 +6,7 @@ import fr.ethernyx.stellamecanics.utils.CustomArmorMaterials;
 import fr.ethernyx.stellamecanics.utils.CustomItemTiers;
 import fr.ethernyx.stellamecanics.utils.generator.InstanceType;
 import fr.ethernyx.stellamecanics.utils.generic.GenericItems;
-import fr.ethernyx.stellamecanics.utils.generic.ItemsType;
+import fr.ethernyx.stellamecanics.utils.ItemsType;
 import fr.ethernyx.stellamecanics.utils.recipe.MyIngredient;
 import fr.ethernyx.stellamecanics.utils.recipe.RecipeBuilder;
 import fr.ethernyx.stellamecanics.utils.recipe.RecipeType;
@@ -18,12 +18,12 @@ import net.minecraft.registry.Registry;
 import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.Identifier;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
 public class ModItems {
-    public static Map<String, IMyItem> ITEMS = new HashMap<>();
+    public static Map<String, IMyItem> ITEMS = new LinkedHashMap<>();
 
     public static final Item MAGNETITE_RAW = addNewItem(misc("magnetite_raw", ItemsType.RAW, Map.of("fr_fr", "Magnétite brut", "en_us", "Magnetite raw"), null, null));
 

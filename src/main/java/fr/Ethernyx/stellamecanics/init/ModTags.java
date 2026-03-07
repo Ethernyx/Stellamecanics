@@ -10,13 +10,13 @@ import net.minecraft.item.Item;
 import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.registry.tag.TagKey;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
 public class ModTags {
     public static class Blocks {
-        public static Map<String, GenericBlockTags> BLOCKTAGS = new HashMap<>();
+        public static Map<String, GenericBlockTags> BLOCKTAGS = new LinkedHashMap <>();
         public static final TagKey<Block> NEED_LVL_4 = createTag(new GenericBlockTags("need_lvl_4", List.of(BlockTags.NEEDS_DIAMOND_TOOL)));
         public static final TagKey<Block> NEED_LVL_5 = createTag(new GenericBlockTags("need_lvl_5", List.of(NEED_LVL_4)));
         public static final TagKey<Block> NEED_LVL_6 = createTag(new GenericBlockTags("need_lvl_6", List.of(NEED_LVL_5)));;
@@ -28,7 +28,7 @@ public class ModTags {
     }
 
     public static class Items {
-        public static Map<String, GenericItemTags> ITEMTAGS = new HashMap<>();
+        public static Map<String, GenericItemTags> ITEMTAGS = new LinkedHashMap <>();
         public static final TagKey<Item> IRIDIUM_TOOL = createTag(new GenericItemTags("iridium_tool", List.of()));
         public static final TagKey<Item> SOLARIUM_TOOL = createTag(new GenericItemTags("solarium_tool", List.of()));
         public static final TagKey<Item> LUNARIUM_TOOL = createTag(new GenericItemTags("lunarium_tool", List.of()));
@@ -65,7 +65,7 @@ public class ModTags {
     }
 
     public static class Fluids {
-        public static Map<String, GenericFluidTags> FLUIDTAGS = new HashMap<>();
+        public static Map<String, GenericFluidTags> FLUIDTAGS = new LinkedHashMap<>();
         public static final TagKey<Fluid> FORGE_STELLAIRE_FLUID_INPUT_LEFT = createTag(new GenericFluidTags("forge_stellaire_fluid_input_left", List.of()));
         public static final TagKey<Fluid> FORGE_STELLAIRE_FLUID_INPUT_RIGHT = createTag(new GenericFluidTags("forge_stellaire_fluid_input_right", List.of()));
 

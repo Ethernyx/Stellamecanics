@@ -10,11 +10,11 @@ import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.util.Identifier;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class ModScreenHandlers {
-    public static final Map<String, Map<String, String>> GUI_TRANSLATIONS = new HashMap<>();
+    public static final Map<String, Map<String, String>> GUI_TRANSLATIONS = new LinkedHashMap<>();
 
     public static final ScreenHandlerType<ForgeStellaireScreenHandler> FORGE_STELLAIRE = addNewHandler(
             "forge_stellaire",
