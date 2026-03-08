@@ -18,6 +18,7 @@ public class ForgeStellaireDisplay extends BasicDisplay {
     private final Fluid fluid;
     private final long fluidAmount;
     private final ForgeStellaireRecipe recipe;
+    private final int processTime;
 
     public ForgeStellaireDisplay(RecipeEntry<ForgeStellaireRecipe> recipe) {
         super(List.of(EntryIngredients.ofIngredient(recipe.value().getIngredientPlacement().getIngredients().getFirst()),
@@ -26,11 +27,13 @@ public class ForgeStellaireDisplay extends BasicDisplay {
         this.recipe = recipe.value();
         fluid = recipe.value().fluid();
         fluidAmount = recipe.value().fluidAmount();
+        this.processTime = recipe.value().processTime();
     }
 
     public Fluid getFluid() { return fluid; }
     public long getFluidAmount() { return fluidAmount; }
-    public ForgeStellaireRecipe getRecipe() { return recipe; } // ← maintenant valide
+    public ForgeStellaireRecipe getRecipe() { return recipe; }
+    public int    getProcessTime() { return processTime; }
 
     @Override public CategoryIdentifier<?> getCategoryIdentifier() { return ForgeStellaireCategory.FORGE_STELLAIRE; }
     @Override public @Nullable DisplaySerializer<? extends Display> getSerializer() { return null; }
