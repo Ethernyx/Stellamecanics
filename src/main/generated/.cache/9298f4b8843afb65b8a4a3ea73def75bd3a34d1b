@@ -1,9 +1,0 @@
-// 1.21.10	-999999999-01-01T00:00:00	Stellamecanics/Tags for minecraft:block
-9f96591bc987d3c0625c0b248d5bb348dec603e4 data/minecraft/tags/block/fire.json
-9f96591bc987d3c0625c0b248d5bb348dec603e4 data/minecraft/tags/block/invalid_spawn_inside.json
-599d4c08f2f9fc4f61b4fad4339816156ed35c8a data/minecraft/tags/block/mineable/pickaxe.json
-5669caca8fba8faeffbdd30c76fc60331a194273 data/minecraft/tags/block/needs_diamond_tool.json
-9f96591bc987d3c0625c0b248d5bb348dec603e4 data/minecraft/tags/block/replaceable.json
-13c1f6eba4c6dfd083597d954341cc08303d1a19 data/stellamecanics/tags/block/need_lvl_4.json
-f09df14513aa17e7e3f74782d9e30f44daa2c22b data/stellamecanics/tags/block/need_lvl_5.json
-d4e6b05bbade462ed810193da1aae01175cc06f9 data/stellamecanics/tags/block/need_lvl_6.json

@@ -1,7 +1,7 @@
 {
   "values": [
     "#minecraft:needs_diamond_tool",
-    "stellamecanics:zirconium_block",
-    "stellamecanics:zirconium_ore"
+    "stellamecanics:zirconium_ore",
+    "stellamecanics:zirconium_block"
   ]
 }

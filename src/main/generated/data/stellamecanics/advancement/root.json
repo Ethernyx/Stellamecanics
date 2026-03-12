@@ -1,0 +1,28 @@
+{
+  "criteria": {
+    "tick": {
+      "trigger": "minecraft:tick"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "background": "minecraft:gui/advancements/backgrounds/adventure",
+    "description": {
+      "translate": "advancement.stellamecanics.root.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "stellamecanics:stellarium_ingot"
+    },
+    "show_toast": false,
+    "title": {
+      "translate": "advancement.stellamecanics.root.title"
+    }
+  },
+  "requirements": [
+    [
+      "tick"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

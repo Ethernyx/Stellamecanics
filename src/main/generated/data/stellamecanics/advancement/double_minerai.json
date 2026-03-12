@@ -1,0 +1,51 @@
+{
+  "parent": "stellamecanics:crafting_stellar_forge",
+  "criteria": {
+    "criterion_recipe_forge_stellaire_raw_to_iridium_ingot": {
+      "conditions": {
+        "recipe_id": "stellamecanics:forge_stellaire_raw_to_iridium_ingot"
+      },
+      "trigger": "stellamecanics:forge_stellaire_used"
+    },
+    "criterion_recipe_forge_stellaire_raw_to_lunarium_ingot": {
+      "conditions": {
+        "recipe_id": "stellamecanics:forge_stellaire_raw_to_lunarium_ingot"
+      },
+      "trigger": "stellamecanics:forge_stellaire_used"
+    },
+    "criterion_recipe_forge_stellaire_raw_to_solarium_ingot": {
+      "conditions": {
+        "recipe_id": "stellamecanics:forge_stellaire_raw_to_solarium_ingot"
+      },
+      "trigger": "stellamecanics:forge_stellaire_used"
+    },
+    "criterion_recipe_forge_stellaire_raw_to_zirconium_ingot": {
+      "conditions": {
+        "recipe_id": "stellamecanics:forge_stellaire_raw_to_zirconium_ingot"
+      },
+      "trigger": "stellamecanics:forge_stellaire_used"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancement.stellamecanics.double_minerai.description"
+    },
+    "frame": "challenge",
+    "icon": {
+      "count": 1,
+      "id": "stellamecanics:iridium_raw"
+    },
+    "title": {
+      "translate": "advancement.stellamecanics.double_minerai.title"
+    }
+  },
+  "requirements": [
+    [
+      "criterion_recipe_forge_stellaire_raw_to_iridium_ingot",
+      "criterion_recipe_forge_stellaire_raw_to_lunarium_ingot",
+      "criterion_recipe_forge_stellaire_raw_to_solarium_ingot",
+      "criterion_recipe_forge_stellaire_raw_to_zirconium_ingot"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

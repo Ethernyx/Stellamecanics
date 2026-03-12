@@ -1,8 +1,8 @@
 {
   "values": [
     "#stellamecanics:need_lvl_5",
-    "stellamecanics:stellarium_block",
+    "stellamecanics:zircaloy_block",
     "stellamecanics:osmiridium_block",
-    "stellamecanics:zircaloy_block"
+    "stellamecanics:stellarium_block"
   ]
 }

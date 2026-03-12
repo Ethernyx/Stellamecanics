@@ -1,0 +1,34 @@
+{
+  "parent": "stellamecanics:crafting_stellar_forge",
+  "criteria": {
+    "criterion": {
+      "conditions": {
+        "items": [
+          {
+            "count": 1,
+            "items": "stellamecanics:solarium_ingot"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancement.stellamecanics.first_solarium.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "stellamecanics:solarium_ingot"
+    },
+    "title": {
+      "translate": "advancement.stellamecanics.first_solarium.title"
+    }
+  },
+  "requirements": [
+    [
+      "criterion"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

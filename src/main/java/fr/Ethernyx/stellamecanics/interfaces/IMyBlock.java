@@ -6,12 +6,13 @@ import fr.ethernyx.stellamecanics.utils.recipe.RecipeBuilder;
 import net.minecraft.block.Block;
 import net.minecraft.client.data.Models;
 import net.minecraft.client.data.Model;
+import net.minecraft.item.ItemConvertible;
 import net.minecraft.registry.tag.TagKey;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public interface IMyBlock {
+public interface IMyBlock extends ItemConvertible {
     String getId();
 
     default Model getModelType() { return Models.CUBE_ALL; }

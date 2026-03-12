@@ -22,6 +22,8 @@ public class Stellamecanics implements ModInitializer {
 		ModItems.registerModItems();
 		ModBlocks.registerModBlocks();
 		ModBlockEntities.registerModBlockEntities();
+		ModCriteria.registerModCriteria();
+		ModAdvancements.registerModAdvancements();
 
 		ModWorldGeneration.generateOres();
 		ModScreenHandlers.registerScreenHandlers();

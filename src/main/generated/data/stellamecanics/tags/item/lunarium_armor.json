@@ -1,8 +1,8 @@
 {
   "values": [
+    "stellamecanics:lunarium_helmet",
     "stellamecanics:lunarium_chestplate",
-    "stellamecanics:lunarium_boots",
     "stellamecanics:lunarium_leggings",
-    "stellamecanics:lunarium_helmet"
+    "stellamecanics:lunarium_boots"
   ]
 }

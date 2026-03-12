@@ -4,6 +4,7 @@ import fr.ethernyx.stellamecanics.block.entities.forgeStellaire.gui.ForgeStellai
 import fr.ethernyx.stellamecanics.builders.recipes.forgeStellaire.ForgeStellaireRecipe;
 import fr.ethernyx.stellamecanics.builders.recipes.forgeStellaire.ForgeStellaireRecipeInput;
 import fr.ethernyx.stellamecanics.init.ModBlockEntities;
+import fr.ethernyx.stellamecanics.init.ModCriteria;
 import fr.ethernyx.stellamecanics.init.ModFluids;
 import fr.ethernyx.stellamecanics.init.ModRecipeTypes;
 import fr.ethernyx.stellamecanics.interfaces.IMyBlockEntity;
@@ -216,7 +217,15 @@ public class ForgeStellaireEntity extends BlockEntity implements ExtendedScreenH
             markDirty(world, pos, state);
 
             if(hasCraftingFinished()) {
-                craftItem();
+                // Récupérer le joueur qui a le GUI ouvert
+                ServerPlayerEntity player = ((ServerWorld) world).getPlayers()
+                        .stream()
+                        .filter(p -> p.currentScreenHandler instanceof ForgeStellaireScreenHandler handler
+                                && handler.getBlockEntity() == this)
+                        .findFirst()
+                        .orElse(null);
+
+                craftItem(player);
                 resetProgress();
             }
         } else {
@@ -236,7 +245,7 @@ public class ForgeStellaireEntity extends BlockEntity implements ExtendedScreenH
         this.progress++;
     }
 
-    private void craftItem() {
+    private void craftItem(ServerPlayerEntity player) {
         Optional<RecipeEntry<ForgeStellaireRecipe>> recipe = getCurrentRecipe();
         ForgeStellaireRecipe r = recipe.get().value();
 
@@ -249,6 +258,12 @@ public class ForgeStellaireEntity extends BlockEntity implements ExtendedScreenH
         // Extraction du fluide
         SingleFluidStorage tank = r.fluid() == ModFluids.LUNARIUM_FLUID.getStill() ? tankLunarium : tankSolarium;
         addFluid(tank, r.fluid(), -r.fluidAmount());
+
+        // Déclencher le criterion si on a un joueur
+        if (player != null) {
+            RecipeEntry<ForgeStellaireRecipe> entry = recipe.get();
+            ModCriteria.FORGE_STELLAIRE_USED.trigger(player, entry.id().getValue());
+        }
     }
 
     private boolean hasCraftingFinished() {

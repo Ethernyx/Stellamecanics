@@ -162,10 +162,8 @@ public class ForgeStellaireCategory implements DisplayCategory<BasicDisplay> {
             Sprite sprite = handler.getFluidSprites(client.world, null, state)[0];
             int tint  = handler.getFluidColor(client.world, null, state);
             int color = 0xFF000000 | (tint & 0xFFFFFF);
-            // drawSpriteStretched disponible sur DrawContext en 1.21.x
             ctx.drawSpriteStretched(RenderPipelines.GUI_TEXTURED, sprite, x, y, w, h, color);
         } else {
-            // Repli : rectangle coloré depuis IMyFlowingFluid ou bleu eau
             int color = 0xFF3F76E4;
             if (fluid instanceof IMyFlowingFluid f) {
                 color = 0xFF000000 | (f.color() & 0xFFFFFF);

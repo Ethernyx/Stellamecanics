@@ -1,0 +1,46 @@
+{
+  "parent": "stellamecanics:first_iridium",
+  "criteria": {
+    "criterion": {
+      "conditions": {
+        "items": [
+          {
+            "count": 1,
+            "items": "stellamecanics:iridium_helmet"
+          },
+          {
+            "count": 1,
+            "items": "stellamecanics:iridium_chestplate"
+          },
+          {
+            "count": 1,
+            "items": "stellamecanics:iridium_leggings"
+          },
+          {
+            "count": 1,
+            "items": "stellamecanics:iridium_boots"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancement.stellamecanics.iridium_armor.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "stellamecanics:iridium_chestplate"
+    },
+    "title": {
+      "translate": "advancement.stellamecanics.iridium_armor.title"
+    }
+  },
+  "requirements": [
+    [
+      "criterion"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

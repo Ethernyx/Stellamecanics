@@ -1,8 +1,8 @@
 {
   "values": [
-    "stellamecanics:lunarium_shovel",
     "stellamecanics:lunarium_axe",
+    "stellamecanics:lunarium_hoe",
     "stellamecanics:lunarium_pickaxe",
-    "stellamecanics:lunarium_hoe"
+    "stellamecanics:lunarium_shovel"
   ]
 }

@@ -1,0 +1,47 @@
+{
+  "parent": "stellamecanics:first_stellarium",
+  "criteria": {
+    "criterion": {
+      "conditions": {
+        "items": [
+          {
+            "count": 1,
+            "items": "stellamecanics:stellarium_helmet"
+          },
+          {
+            "count": 1,
+            "items": "stellamecanics:stellarium_chestplate"
+          },
+          {
+            "count": 1,
+            "items": "stellamecanics:stellarium_leggings"
+          },
+          {
+            "count": 1,
+            "items": "stellamecanics:stellarium_boots"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancement.stellamecanics.stellarium_armor.description"
+    },
+    "frame": "challenge",
+    "icon": {
+      "count": 1,
+      "id": "stellamecanics:stellarium_chestplate"
+    },
+    "title": {
+      "translate": "advancement.stellamecanics.stellarium_armor.title"
+    }
+  },
+  "requirements": [
+    [
+      "criterion"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

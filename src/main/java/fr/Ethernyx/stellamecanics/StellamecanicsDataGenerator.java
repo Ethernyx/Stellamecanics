@@ -22,6 +22,7 @@ public class StellamecanicsDataGenerator implements DataGeneratorEntrypoint {
 		pack.addProvider(WorldGenerator::new);
 		pack.addProvider(LangUsGenerator::new);
 		pack.addProvider(LangFrGenerator::new);
+		pack.addProvider(AdvancementGenerator::new);
 	}
 
 	@Override

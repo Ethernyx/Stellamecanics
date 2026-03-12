@@ -1,0 +1,46 @@
+{
+  "parent": "stellamecanics:first_iridium",
+  "criteria": {
+    "criterion": {
+      "conditions": {
+        "items": [
+          {
+            "count": 1,
+            "items": "stellamecanics:iridium_pickaxe"
+          },
+          {
+            "count": 1,
+            "items": "stellamecanics:iridium_axe"
+          },
+          {
+            "count": 1,
+            "items": "stellamecanics:iridium_shovel"
+          },
+          {
+            "count": 1,
+            "items": "stellamecanics:iridium_hoe"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancement.stellamecanics.iridium_tools.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "stellamecanics:iridium_pickaxe"
+    },
+    "title": {
+      "translate": "advancement.stellamecanics.iridium_tools.title"
+    }
+  },
+  "requirements": [
+    [
+      "criterion"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

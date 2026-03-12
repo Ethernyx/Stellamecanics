@@ -1,0 +1,35 @@
+{
+  "parent": "stellamecanics:first_iridium",
+  "criteria": {
+    "criterion": {
+      "conditions": {
+        "items": [
+          {
+            "count": 1,
+            "items": "stellamecanics:forge_stellaire"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancement.stellamecanics.crafting_stellar_forge.description"
+    },
+    "frame": "challenge",
+    "icon": {
+      "count": 1,
+      "id": "stellamecanics:forge_stellaire"
+    },
+    "title": {
+      "translate": "advancement.stellamecanics.crafting_stellar_forge.title"
+    }
+  },
+  "requirements": [
+    [
+      "criterion"
+    ]
+  ],
+  "sends_telemetry_event": true
+}
