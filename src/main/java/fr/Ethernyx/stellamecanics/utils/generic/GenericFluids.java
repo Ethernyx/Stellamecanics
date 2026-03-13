@@ -19,6 +19,8 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
+import net.minecraft.registry.tag.BlockTags;
+import net.minecraft.registry.tag.FluidTags;
 import net.minecraft.registry.tag.TagKey;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.StateManager;
@@ -30,6 +32,8 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.WorldAccess;
 import net.minecraft.world.WorldView;
 
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -225,4 +229,85 @@ public abstract class GenericFluids extends FlowableFluid implements IMyFlowingF
         @Override public int     getLevel(FluidState s) { return s.get(LEVEL); }
         @Override public boolean isStill(FluidState s)  { return false; }
     }
+
+    public static class Builder {
+        // IDs des ressources (still, flowing, block, bucket)
+        private final Map<FluidListTypeEnum, String> ids = new LinkedHashMap<>();
+
+        // Traductions : FluidListTypeEnum (BLOCK, BUCKET) → (lang → texte)
+        private final Map<FluidListTypeEnum, Map<String, String>> translate = new LinkedHashMap<>();;
+
+        // Tags
+        private final List<TagKey<Item>>  bucketTags = new ArrayList<>();
+        private final List<TagKey<Block>> blockTags = new ArrayList<>();
+        private final Map<FluidListTypeEnum, List<TagKey<Fluid>>> fluidTags = new LinkedHashMap<>(); // STILL / FLOWING
+
+        // Couleur de rendu
+        private int color;
+
+        private Builder() {}
+
+        public Builder still(String id) {
+            this.ids.put(FluidListTypeEnum.STILL, id);
+            return this;
+        }
+
+        public Builder flowing(String id) {
+            this.ids.put(FluidListTypeEnum.FLOWING, id);
+            return this;
+        }
+
+        public Builder block(String id, Map<String, String> translate) {
+            this.ids.put(FluidListTypeEnum.BLOCK, id);
+            this.translate.put(FluidListTypeEnum.BLOCK, translate);
+            return this;
+        }
+
+        public Builder bucket(String id, Map<String, String> translate) {
+            this.ids.put(FluidListTypeEnum.BUCKET, id);
+            this.translate.put(FluidListTypeEnum.BUCKET, translate);
+            return this;
+        }
+
+        public Builder bucketTags(List<TagKey<Item>> tag) {
+            this.bucketTags.addAll(tag);
+            return this;
+        }
+
+        public Builder blockTags(List<TagKey<Block>> tag) {
+            this.blockTags.addAll(tag);
+            return this;
+        }
+
+        public Builder stillTags(List<TagKey<Fluid>> tags) {
+            fluidTags.put(FluidListTypeEnum.STILL, tags);
+            return this;
+        }
+
+        public Builder flowingTags(List<TagKey<Fluid>> tags) {
+            fluidTags.put(FluidListTypeEnum.FLOWING, tags);
+            return this;
+        }
+
+        public Builder fluidTags(List<TagKey<Fluid>> tags) {
+            fluidTags.put(FluidListTypeEnum.STILL, tags);
+            fluidTags.put(FluidListTypeEnum.FLOWING, tags);
+            return this;
+        }
+
+        public Builder color(int color) {
+            this.color = color;
+            return this;
+        }
+
+        public FluidListType build() {
+            if (!ids.containsKey(FluidListTypeEnum.STILL))   throw new IllegalStateException("still id manquant");
+            if (!ids.containsKey(FluidListTypeEnum.FLOWING))  throw new IllegalStateException("flowing id manquant");
+            if (!ids.containsKey(FluidListTypeEnum.BLOCK))    throw new IllegalStateException("block id manquant");
+            if (!ids.containsKey(FluidListTypeEnum.BUCKET))   throw new IllegalStateException("bucket id manquant");
+            return GenericFluids.create(ids, translate, bucketTags, blockTags, fluidTags, color);
+        }
+    }
+
+    public static Builder builder() { return new Builder(); }
 }
