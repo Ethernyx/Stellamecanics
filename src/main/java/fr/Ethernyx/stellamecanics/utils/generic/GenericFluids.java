@@ -40,7 +40,7 @@ import java.util.Map;
 public abstract class GenericFluids extends FlowableFluid implements IMyFlowingFluid {
 
     private Block BLOCK;
-    private Item  BUCKET;
+    private Item BUCKET;
     private Fluid STILL;
     private Fluid FLOWING;
 
@@ -67,11 +67,11 @@ public abstract class GenericFluids extends FlowableFluid implements IMyFlowingF
             int color
     ) {
         this.ids = ids;
-        this.translate  = translate;
+        this.translate = translate;
         this.bucketTags = bucketTags  != null ? bucketTags  : List.of();
-        this.blockTags  = blockTags   != null ? blockTags   : List.of();
-        this.fluidTags  = fluidTags   != null ? fluidTags   : Map.of();
-        this.color      = color;
+        this.blockTags = blockTags   != null ? blockTags   : List.of();
+        this.fluidTags = fluidTags   != null ? fluidTags   : Map.of();
+        this.color = color;
     }
 
     public static FluidListType create(
@@ -82,7 +82,7 @@ public abstract class GenericFluids extends FlowableFluid implements IMyFlowingF
             Map<FluidListTypeEnum, List<TagKey<Fluid>>> fluidTags,
             int color
     ) {
-        GenericFluids still   = new Still(ids, translate, bucketTags, blockTags, fluidTags, color);
+        GenericFluids still = new Still(ids, translate, bucketTags, blockTags, fluidTags, color);
         GenericFluids flowing = new Flowing(ids, translate, bucketTags, blockTags, fluidTags, color);
 
         FlowableFluid registerStill = Registry.register(
@@ -119,22 +119,22 @@ public abstract class GenericFluids extends FlowableFluid implements IMyFlowingF
 
     // ── IMyFlowingFluid ────────────────────────────────────────────────────────
 
-    @Override public String stillId()   { return ids.get(FluidListTypeEnum.STILL); }
+    @Override public String stillId() { return ids.get(FluidListTypeEnum.STILL); }
     @Override public String flowingId() { return ids.get(FluidListTypeEnum.FLOWING); }
-    @Override public String blockId()   { return ids.get(FluidListTypeEnum.BLOCK); }
-    @Override public String bucketId()  { return ids.get(FluidListTypeEnum.BUCKET); }
-    @Override public void setStill(Fluid still)     { STILL   = still; }
+    @Override public String blockId() { return ids.get(FluidListTypeEnum.BLOCK); }
+    @Override public String bucketId() { return ids.get(FluidListTypeEnum.BUCKET); }
+    @Override public void setStill(Fluid still) { STILL = still; }
     @Override public void setFlowing(Fluid flowing) { FLOWING = flowing; }
-    @Override public void setBlock(Block block)     { BLOCK   = block; }
-    @Override public void setBucket(Item bucket)    { BUCKET  = bucket; }
-    @Override public Fluid getStill()     { return STILL; }
-    @Override public Fluid getFlowing()   { return FLOWING; }
-    @Override public Block getBlock()     { return BLOCK; }
-    @Override public Item  getBucketItem(){ return BUCKET; }
+    @Override public void setBlock(Block block) { BLOCK = block; }
+    @Override public void setBucket(Item bucket) { BUCKET = bucket; }
+    @Override public Fluid getStill() { return STILL; }
+    @Override public Fluid getFlowing() { return FLOWING; }
+    @Override public Block getBlock() { return BLOCK; }
+    @Override public Item getBucketItem(){ return BUCKET; }
     @Override public int color() { return color; }
     @Override public String getTranslate(String lang, FluidListTypeEnum type) { return translate.getOrDefault(type, Map.of()).getOrDefault(lang, ""); }
-    @Override public List<TagKey<Item>>  getBucketTag()  { return bucketTags; }
-    @Override public List<TagKey<Block>> getBlockTag()   { return blockTags; }
+    @Override public List<TagKey<Item>>  getBucketTag() { return bucketTags; }
+    @Override public List<TagKey<Block>> getBlockTag() { return blockTags; }
     @Override public List<TagKey<Fluid>> getStillTag() { return fluidTags.getOrDefault(FluidListTypeEnum.STILL, List.of()); }
     @Override public List<TagKey<Fluid>> getFlowingTag() { return fluidTags.getOrDefault(FluidListTypeEnum.FLOWING, List.of());}
 
@@ -170,12 +170,12 @@ public abstract class GenericFluids extends FlowableFluid implements IMyFlowingF
 
     // ── FlowableFluid ──────────────────────────────────────────────────────────
 
-    @Override public boolean matchesType(Fluid f)                   { return f == getStill() || f == getFlowing(); }
-    @Override protected boolean isInfinite(ServerWorld w)           { return false; }
-    @Override protected int     getMaxFlowDistance(WorldView w)     { return 4; }
-    @Override protected int     getLevelDecreasePerBlock(WorldView w){ return 1; }
-    @Override public    int     getTickRate(WorldView w)            { return 5; }
-    @Override protected float   getBlastResistance()                { return 100f; }
+    @Override public boolean matchesType(Fluid f) { return f == getStill() || f == getFlowing(); }
+    @Override protected boolean isInfinite(ServerWorld w) { return false; }
+    @Override protected int getMaxFlowDistance(WorldView w) { return 4; }
+    @Override protected int getLevelDecreasePerBlock(WorldView w){ return 1; }
+    @Override public int getTickRate(WorldView w) { return 5; }
+    @Override protected float getBlastResistance() { return 100f; }
 
     @Override
     protected BlockState toBlockState(FluidState state) {
@@ -206,8 +206,8 @@ public abstract class GenericFluids extends FlowableFluid implements IMyFlowingF
             super(ids, translate, bucketTags, blockTags, fluidTags, color);
         }
 
-        @Override public int     getLevel(FluidState s) { return 8; }
-        @Override public boolean isStill(FluidState s)  { return true; }
+        @Override public int getLevel(FluidState s) { return 8; }
+        @Override public boolean isStill(FluidState s) { return true; }
     }
 
     public static class Flowing extends GenericFluids {
@@ -226,23 +226,16 @@ public abstract class GenericFluids extends FlowableFluid implements IMyFlowingF
             b.add(LEVEL);
         }
 
-        @Override public int     getLevel(FluidState s) { return s.get(LEVEL); }
-        @Override public boolean isStill(FluidState s)  { return false; }
+        @Override public int getLevel(FluidState s) { return s.get(LEVEL); }
+        @Override public boolean isStill(FluidState s) { return false; }
     }
 
     public static class Builder {
-        // IDs des ressources (still, flowing, block, bucket)
         private final Map<FluidListTypeEnum, String> ids = new LinkedHashMap<>();
-
-        // Traductions : FluidListTypeEnum (BLOCK, BUCKET) → (lang → texte)
         private final Map<FluidListTypeEnum, Map<String, String>> translate = new LinkedHashMap<>();;
-
-        // Tags
         private final List<TagKey<Item>>  bucketTags = new ArrayList<>();
         private final List<TagKey<Block>> blockTags = new ArrayList<>();
         private final Map<FluidListTypeEnum, List<TagKey<Fluid>>> fluidTags = new LinkedHashMap<>(); // STILL / FLOWING
-
-        // Couleur de rendu
         private int color;
 
         private Builder() {}
@@ -301,10 +294,10 @@ public abstract class GenericFluids extends FlowableFluid implements IMyFlowingF
         }
 
         public FluidListType build() {
-            if (!ids.containsKey(FluidListTypeEnum.STILL))   throw new IllegalStateException("still id manquant");
-            if (!ids.containsKey(FluidListTypeEnum.FLOWING))  throw new IllegalStateException("flowing id manquant");
-            if (!ids.containsKey(FluidListTypeEnum.BLOCK))    throw new IllegalStateException("block id manquant");
-            if (!ids.containsKey(FluidListTypeEnum.BUCKET))   throw new IllegalStateException("bucket id manquant");
+            if (!ids.containsKey(FluidListTypeEnum.STILL)) throw new IllegalStateException("still id manquant");
+            if (!ids.containsKey(FluidListTypeEnum.FLOWING)) throw new IllegalStateException("flowing id manquant");
+            if (!ids.containsKey(FluidListTypeEnum.BLOCK)) throw new IllegalStateException("block id manquant");
+            if (!ids.containsKey(FluidListTypeEnum.BUCKET)) throw new IllegalStateException("bucket id manquant");
             return GenericFluids.create(ids, translate, bucketTags, blockTags, fluidTags, color);
         }
     }
