@@ -49,45 +49,12 @@ public class AdvancementGenerator extends FabricAdvancementProvider {
                             advancement.getFrame(),
                             advancement.isShowToast(),
                             advancement.isAnnounceToChat(),
-                            advancement.isHidden()
-                    );
-                    switch (advancement.getType()) {
-                        case INVENTORY ->  {
-                            List<ItemPredicate> items = new ArrayList<>();
-                            advancement.getItems().forEach((item) -> {
-                                switch (item.getType()) {
-                                    case ITEM -> {
-                                        items.add(ItemPredicate.Builder.create()
-                                                .items(itemLookup, ModItems.ITEMS.get(item.getItem()).asItem())
-                                                .count(NumberRange.IntRange.exactly(item.getNb()))
-                                                .build());
-                                    }
-                                    case BLOCK -> {
-                                        items.add(ItemPredicate.Builder.create()
-                                                .items(itemLookup, ModBlocks.BLOCKS.get(item.getItem()))
-                                                .count(NumberRange.IntRange.exactly(item.getNb()))
-                                                .build());
-                                    }
-                                }
-                            });
-                            builder.criterion("criterion", InventoryChangedCriterion.Conditions.items(items.toArray(new ItemPredicate[0])));
-                        }
-                        case FORGE_CRAFTING -> {
-                            List<String> criterion = new ArrayList<>();
-                            advancement.getItems().forEach((item) -> {
-                                if (item.getType() == InstanceType.RECIPE) {
-                                    builder.criterion("criterion_recipe_" + item.getItem(),
-                                            new AdvancementCriterion<>(ModCriteria.FORGE_STELLAIRE_USED,
-                                                    ModCriteria.FORGE_STELLAIRE_USED.create(Identifier.of(Stellamecanics.MOD_ID, item.getItem())))
-                                    );
-                                    criterion.add("criterion_recipe_" + item.getItem());
-                                }
-                            });
-                            if (!criterion.isEmpty()) builder.requirements(AdvancementRequirements.anyOf(criterion));
-                        }
-                        case CRAFTING, NONE, DURABILITY -> { builder.criterion("tick", TickCriterion.Conditions.createTick()); }
-                    }
+                            advancement.isHidden());
 
+            // ── Gestion des conditions du criterion ──────────────────────────────────────────────────────────────────
+            advancement.getCondition().apply(builder, lookup);
+
+                        //case CRAFTING, NONE, DURABILITY -> { builder.criterion("tick", TickCriterion.Conditions.createTick()); }
             if (advancement.getParent() != null) {
                 builder.parent(Identifier.of(Stellamecanics.MOD_ID, advancement.getParent().getId()));
             }
