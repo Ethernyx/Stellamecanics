@@ -159,17 +159,33 @@ Les deux types de placement disponibles sont :
 
 ## Advancements
 
-Les advancements sont déclarés dans `ModAdvancements` et générés par `AdvancementGenerator`.
+Les advancements sont déclarés dans `ModAdvancements` via un **Builder** et générés par `AdvancementGenerator`.
 
-Les types de critères disponibles (`CriterionType`) :
+```java
+CustomAdvancements.builder("mon_advancement")
+    .icon(ModItems.MON_ITEM)          // obligatoire
+    .parent(MON_PARENT)               // null si root
+    .title("fr_fr", "Mon titre")      // obligatoire
+    .title("en_us", "My title")
+    .description("fr_fr", "...")      // optionnel
+    .description("en_us", "...")
+    .frame(AdvancementFrame.TASK)     // défaut : TASK
+    .condition(new HasItemCondition(...))
+    .showToast(true)                  // défaut : true
+    .announceToChat(true)             // défaut : true
+    .hidden(false)                    // défaut : false
+    .build()
+```
 
-| Type | Déclenchement |
+Les conditions disponibles (`IMyAdvancementCondition`) dans `builders/advancements/criterionTypes/` :
+
+| Classe | Déclenchement |
 |---|---|
-| `INVENTORY` | Quand le joueur a les items listés dans son inventaire |
-| `FORGE_CRAFTING` | Quand le joueur craft via la Forge Stellaire (recette spécifique) |
-| `NONE` | Jamais déclenché manuellement (tick criterion, à éviter) |
+| `HasItemCondition(List<MyIngredient>)` | Quand le joueur a les items listés dans son inventaire |
+| `ForgedItemCondition(List<String>)` | Quand le joueur craft une des recettes listées via la Forge Stellaire |
+| `NoneCondition()` | Tick criterion — à réserver au root uniquement |
 
-> ⚠️ `NONE` et `CRAFTING` ajoutent un `TickCriterion` — ils se déclenchent à chaque tick. À n'utiliser que temporairement.
+> ⚠️ `NoneCondition` se déclenche à chaque tick pour tous les joueurs. Ne l'utilise que pour le root.
 
 ---
 

@@ -204,18 +204,27 @@ public static final FluidListType ADAMANTIUM_FLUID = addNewFluid(
 ## Étape 7 — Advancement dans `ModAdvancements` *(optionnel)*
 
 ```java
-public static final CustomAdvancements FIRST_ADAMANTIUM = addNewAdvancement(advancement(
-    "first_adamantium",
-    ModItems.ADAMANTIUM_INGOT,              // icône
-    CRAFTING_STELLAR_FORGE,                 // parent
-    Map.of("fr_fr", "De l'adamantium !", "en_us", "Adamantium!"),
-    Map.of("fr_fr", "Obtenez votre premier lingot d'adamantium", "en_us", "Get your first adamantium ingot"),
-    AdvancementFrame.TASK,
-    CriterionType.INVENTORY,
-    List.of(new MyIngredient("adamantium_ingot", InstanceType.ITEM, 1)),
-    true, true, false
-));
+public static final CustomAdvancements FIRST_ADAMANTIUM = addNewAdvancement(
+    CustomAdvancements.builder("first_adamantium")
+        .icon(ModItems.ADAMANTIUM_INGOT)
+        .parent(CRAFTING_STELLAR_FORGE)
+        .title("fr_fr", "De l'adamantium !")
+        .title("en_us", "Adamantium!")
+        .description("fr_fr", "Obtenez votre premier lingot d'adamantium")
+        .description("en_us", "Get your first adamantium ingot")
+        .condition(new HasItemCondition(List.of(
+            new MyIngredient("adamantium_ingot", InstanceType.ITEM, 1))))
+        .build()
+);
 ```
+
+Pour un advancement lié à une recette de Forge Stellaire, utilise `ForgedItemCondition` à la place :
+
+```java
+.condition(new ForgedItemCondition(List.of("forge_stellaire_raw_to_adamantium_ingot")))
+```
+
+> Les IDs passés à `ForgedItemCondition` doivent inclure le préfixe `forge_stellaire_` puisqu'il fait partie de l'ID réel de la recette.
 
 ---
 
