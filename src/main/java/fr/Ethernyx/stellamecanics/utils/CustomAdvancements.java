@@ -2,13 +2,11 @@ package fr.ethernyx.stellamecanics.utils;
 
 import fr.ethernyx.stellamecanics.builders.advancements.criterionTypes.NoneCondition;
 import fr.ethernyx.stellamecanics.interfaces.IMyAdvancementCondition;
-import fr.ethernyx.stellamecanics.utils.recipe.MyIngredient;
 import net.minecraft.advancement.AdvancementFrame;
 import net.minecraft.item.ItemConvertible;
 import net.minecraft.util.Identifier;
 
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 
 public class CustomAdvancements {

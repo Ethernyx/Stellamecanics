@@ -2,31 +2,18 @@ package fr.ethernyx.stellamecanics.datagen;
 
 import fr.ethernyx.stellamecanics.Stellamecanics;
 import fr.ethernyx.stellamecanics.init.ModAdvancements;
-import fr.ethernyx.stellamecanics.init.ModBlocks;
-import fr.ethernyx.stellamecanics.init.ModCriteria;
-import fr.ethernyx.stellamecanics.init.ModItems;
-import fr.ethernyx.stellamecanics.utils.generator.InstanceType;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricAdvancementProvider;
 import net.minecraft.advancement.Advancement;
-import net.minecraft.advancement.AdvancementCriterion;
 import net.minecraft.advancement.AdvancementEntry;
-import net.minecraft.advancement.AdvancementRequirements;
 import net.minecraft.advancement.criterion.*;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemConvertible;
-import net.minecraft.predicate.NumberRange;
-import net.minecraft.predicate.item.ItemPredicate;
 import net.minecraft.registry.RegistryEntryLookup;
-import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
-
-import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Consumer;
 
