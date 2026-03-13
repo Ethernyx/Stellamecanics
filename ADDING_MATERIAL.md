@@ -175,29 +175,19 @@ public static final Block ADAMANTIUM_BLOCK = addNewBlock(
 Si le matériau nécessite un fluide propre (pour la Forge Stellaire par exemple) :
 
 ```java
-public static final FluidListType ADAMANTIUM_FLUID = addNewFluid(
-    GenericFluids.create(
-        Map.of(
-            FluidListTypeEnum.STILL,   "adamantium_fluid_still",
-            FluidListTypeEnum.FLOWING, "adamantium_fluid_flowing",
-            FluidListTypeEnum.BLOCK,   "adamantium_fluid_block",
-            FluidListTypeEnum.BUCKET,  "adamantium_fluid_bucket"
-        ),
-        Map.of(
-            FluidListTypeEnum.BLOCK,  Map.of("fr_fr", "Adamantium",          "en_us", "Adamantium"),
-            FluidListTypeEnum.BUCKET, Map.of("fr_fr", "Bucket d'adamantium",  "en_us", "Adamantium bucket")
-        ),
-        List.of(ConventionalItemTags.BUCKETS),
-        List.of(BlockTags.REPLACEABLE, BlockTags.INVALID_SPAWN_INSIDE, BlockTags.FIRE),
-        Map.of(
-            FluidListTypeEnum.STILL,   List.of(FluidTags.LAVA),
-            FluidListTypeEnum.FLOWING, List.of(FluidTags.LAVA)
-        ),
-        0xAAAAAA  // ← couleur hexadécimale du fluide (ARGB sans alpha)
-    ));
+public static final FluidListType ADAMANTIUM_FLUID = addNewFluid(GenericFluids.builder()
+        .still("adamantium_fluid_still")
+        .flowing("adamantium_fluid_flowing")
+        .block("adamantium_fluid_block",   Map.of("fr_fr", "Adamantium",          "en_us", "Adamantium"))
+        .bucket("adamantium_fluid_bucket", Map.of("fr_fr", "Bucket d'adamantium",  "en_us", "Adamantium bucket"))
+        .bucketTags(List.of(ConventionalItemTags.BUCKETS))
+        .blockTags(List.of(BlockTags.REPLACEABLE, BlockTags.INVALID_SPAWN_INSIDE, BlockTags.FIRE))
+        .fluidTags(List.of(FluidTags.LAVA))   // même tag still + flowing
+        .color(0xAAAAAA)                       // ← couleur hexadécimale du fluide (ARGB sans alpha)
+        .build());
 ```
 
-> Si ce fluide doit être utilisable dans la Forge Stellaire, ajoute-le au tag `forge_stellaire_fluid_input_left` ou `forge_stellaire_fluid_input_right` dans `ModTags.Fluids` et met à jour `ModFluids` en conséquence.
+> Si ce fluide doit être utilisable dans la Forge Stellaire, ajoute-le au tag `forge_stellaire_fluid_input_left` ou `forge_stellaire_fluid_input_right` dans `ModTags.Fluids` et utilise `.stillTags()` + `.flowingTags()` séparément à la place de `.fluidTags()` (voir Solarium et Lunarium dans `ModFluids` comme exemples).
 
 ---
 
@@ -221,7 +211,7 @@ public static final CustomAdvancements FIRST_ADAMANTIUM = addNewAdvancement(
 Pour un advancement lié à une recette de Forge Stellaire, utilise `ForgedItemCondition` à la place :
 
 ```java
-.condition(new ForgedItemCondition(List.of("forge_stellaire_raw_to_adamantium_ingot")))
+.condition(new ForgedItemCondition(List.of("forge_stellaire_raw_to_adamantium_ingot")));
 ```
 
 > Les IDs passés à `ForgedItemCondition` doivent inclure le préfixe `forge_stellaire_` puisqu'il fait partie de l'ID réel de la recette.
