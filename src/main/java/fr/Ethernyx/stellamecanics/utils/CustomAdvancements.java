@@ -120,6 +120,8 @@ public class CustomAdvancements {
                 throw new IllegalStateException("Advancement '" + id + "' : icon est obligatoire");
             if (title.isEmpty())
                 throw new IllegalStateException("Advancement '" + id + "' : title est obligatoire");
+            if (parent != null && description.isEmpty())
+                throw new IllegalStateException("Advancement '" + id + "' : description est obligatoire");
 
             return new CustomAdvancements(
                     id,

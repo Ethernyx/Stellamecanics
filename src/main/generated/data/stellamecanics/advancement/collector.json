@@ -5,115 +5,171 @@
       "conditions": {
         "items": [
           {
-            "count": 1,
+            "count": {
+              "min": 1
+            },
             "items": "stellamecanics:stellarium_helmet"
           },
           {
-            "count": 1,
+            "count": {
+              "min": 1
+            },
             "items": "stellamecanics:stellarium_chestplate"
           },
           {
-            "count": 1,
+            "count": {
+              "min": 1
+            },
             "items": "stellamecanics:stellarium_leggings"
           },
           {
-            "count": 1,
+            "count": {
+              "min": 1
+            },
             "items": "stellamecanics:stellarium_boots"
           },
           {
-            "count": 1,
+            "count": {
+              "min": 1
+            },
             "items": "stellamecanics:osmiridium_helmet"
           },
           {
-            "count": 1,
+            "count": {
+              "min": 1
+            },
             "items": "stellamecanics:osmiridium_chestplate"
           },
           {
-            "count": 1,
+            "count": {
+              "min": 1
+            },
             "items": "stellamecanics:osmiridium_leggings"
           },
           {
-            "count": 1,
+            "count": {
+              "min": 1
+            },
             "items": "stellamecanics:osmiridium_boots"
           },
           {
-            "count": 1,
+            "count": {
+              "min": 1
+            },
             "items": "stellamecanics:zircaloy_helmet"
           },
           {
-            "count": 1,
+            "count": {
+              "min": 1
+            },
             "items": "stellamecanics:zircaloy_chestplate"
           },
           {
-            "count": 1,
+            "count": {
+              "min": 1
+            },
             "items": "stellamecanics:zircaloy_leggings"
           },
           {
-            "count": 1,
+            "count": {
+              "min": 1
+            },
             "items": "stellamecanics:zircaloy_boots"
           },
           {
-            "count": 1,
+            "count": {
+              "min": 1
+            },
             "items": "stellamecanics:zirconium_helmet"
           },
           {
-            "count": 1,
+            "count": {
+              "min": 1
+            },
             "items": "stellamecanics:zirconium_chestplate"
           },
           {
-            "count": 1,
+            "count": {
+              "min": 1
+            },
             "items": "stellamecanics:zirconium_leggings"
           },
           {
-            "count": 1,
+            "count": {
+              "min": 1
+            },
             "items": "stellamecanics:zirconium_boots"
           },
           {
-            "count": 1,
+            "count": {
+              "min": 1
+            },
             "items": "stellamecanics:solarium_helmet"
           },
           {
-            "count": 1,
+            "count": {
+              "min": 1
+            },
             "items": "stellamecanics:solarium_chestplate"
           },
           {
-            "count": 1,
+            "count": {
+              "min": 1
+            },
             "items": "stellamecanics:solarium_leggings"
           },
           {
-            "count": 1,
+            "count": {
+              "min": 1
+            },
             "items": "stellamecanics:solarium_boots"
           },
           {
-            "count": 1,
+            "count": {
+              "min": 1
+            },
             "items": "stellamecanics:lunarium_helmet"
           },
           {
-            "count": 1,
+            "count": {
+              "min": 1
+            },
             "items": "stellamecanics:lunarium_chestplate"
           },
           {
-            "count": 1,
+            "count": {
+              "min": 1
+            },
             "items": "stellamecanics:lunarium_leggings"
           },
           {
-            "count": 1,
+            "count": {
+              "min": 1
+            },
             "items": "stellamecanics:lunarium_boots"
           },
           {
-            "count": 1,
+            "count": {
+              "min": 1
+            },
             "items": "stellamecanics:iridium_helmet"
           },
           {
-            "count": 1,
+            "count": {
+              "min": 1
+            },
             "items": "stellamecanics:iridium_chestplate"
           },
           {
-            "count": 1,
+            "count": {
+              "min": 1
+            },
             "items": "stellamecanics:iridium_leggings"
           },
           {
-            "count": 1,
+            "count": {
+              "min": 1
+            },
             "items": "stellamecanics:iridium_boots"
           }
         ]

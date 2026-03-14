@@ -5,7 +5,9 @@
       "conditions": {
         "items": [
           {
-            "count": 1,
+            "count": {
+              "min": 1
+            },
             "items": "stellamecanics:osmiridium_ingot"
           }
         ]

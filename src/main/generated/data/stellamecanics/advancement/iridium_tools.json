@@ -5,19 +5,27 @@
       "conditions": {
         "items": [
           {
-            "count": 1,
+            "count": {
+              "min": 1
+            },
             "items": "stellamecanics:iridium_pickaxe"
           },
           {
-            "count": 1,
+            "count": {
+              "min": 1
+            },
             "items": "stellamecanics:iridium_axe"
           },
           {
-            "count": 1,
+            "count": {
+              "min": 1
+            },
             "items": "stellamecanics:iridium_shovel"
           },
           {
-            "count": 1,
+            "count": {
+              "min": 1
+            },
             "items": "stellamecanics:iridium_hoe"
           }
         ]

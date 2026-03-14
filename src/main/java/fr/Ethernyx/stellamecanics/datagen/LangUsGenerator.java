@@ -45,7 +45,7 @@ public class LangUsGenerator extends FabricLanguageProvider {
         if (!ModAdvancements.ADVANCEMENTS.isEmpty()) {
             ModAdvancements.ADVANCEMENTS.forEach((key, advancement) -> {
                 translationBuilder.add("advancement." + Stellamecanics.MOD_ID + "." + key + ".title", advancement.getTitle(lang));
-                translationBuilder.add("advancement." + Stellamecanics.MOD_ID + "." + key + ".description", advancement.getDescription(lang));
+                if (advancement.getParent() != null) translationBuilder.add("advancement." + Stellamecanics.MOD_ID + "." + key + ".description", advancement.getDescription(lang));
             });
         }
         ModScreenHandlers.GUI_TRANSLATIONS.forEach((key, gui) -> {

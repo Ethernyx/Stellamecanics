@@ -1,11 +1,11 @@
 {
   "type": "stellamecanics:forge_stellaire",
-  "fluid": "stellamecanics:solarium_fluid_still",
+  "fluid": "stellamecanics:lunarium_fluid_still",
   "fluid_amount": 200,
-  "ingredient": "stellamecanics:lunarium_raw",
+  "ingredient": "stellamecanics:solarium_raw",
   "process_time": 50,
   "result": {
     "count": 2,
-    "id": "stellamecanics:lunarium_ingot"
+    "id": "stellamecanics:solarium_ingot"
   }
 }

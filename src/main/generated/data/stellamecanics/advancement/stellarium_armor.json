@@ -5,19 +5,27 @@
       "conditions": {
         "items": [
           {
-            "count": 1,
+            "count": {
+              "min": 1
+            },
             "items": "stellamecanics:stellarium_helmet"
           },
           {
-            "count": 1,
+            "count": {
+              "min": 1
+            },
             "items": "stellamecanics:stellarium_chestplate"
           },
           {
-            "count": 1,
+            "count": {
+              "min": 1
+            },
             "items": "stellamecanics:stellarium_leggings"
           },
           {
-            "count": 1,
+            "count": {
+              "min": 1
+            },
             "items": "stellamecanics:stellarium_boots"
           }
         ]
