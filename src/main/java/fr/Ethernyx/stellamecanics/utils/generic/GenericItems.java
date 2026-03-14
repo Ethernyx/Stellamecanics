@@ -40,7 +40,7 @@ public class GenericItems extends Item implements IMyItem {
             case HOE:
             case AXE:
             case SWORD:
-                model = Models.HANDHELD;;
+                model = Models.HANDHELD;
                 break;
             default:
                 model = Models.GENERATED;

@@ -24,15 +24,11 @@ public class LangUsGenerator extends FabricLanguageProvider {
     public void generateTranslations(RegistryWrapper.WrapperLookup wrapperLookup, TranslationBuilder translationBuilder) {
         String lang = "en_us";
         if (!ModBlocks.BLOCKS.isEmpty()) {
-            ModBlocks.BLOCKS.forEach((key, block) -> {
-                translationBuilder.add((Block) block, block.getTranslate(lang));
-            });
+            ModBlocks.BLOCKS.forEach((key, block) -> translationBuilder.add((Block) block, block.getTranslate(lang)));
         }
 
         if (!ModItems.ITEMS.isEmpty()) {
-            ModItems.ITEMS.forEach((key, item) -> {
-                translationBuilder.add((Item) item, item.getTranslate(lang));
-            });
+            ModItems.ITEMS.forEach((key, item) -> translationBuilder.add((Item) item, item.getTranslate(lang)));
         }
 
         if (!ModFluids.FLUIDS.isEmpty()) {
@@ -48,9 +44,7 @@ public class LangUsGenerator extends FabricLanguageProvider {
                 if (advancement.getParent() != null) translationBuilder.add("advancement." + Stellamecanics.MOD_ID + "." + key + ".description", advancement.getDescription(lang));
             });
         }
-        ModScreenHandlers.GUI_TRANSLATIONS.forEach((key, gui) -> {
-            translationBuilder.add(key, gui.get(lang));
-        });
+        ModScreenHandlers.GUI_TRANSLATIONS.forEach((key, gui) -> translationBuilder.add(key, gui.get(lang)));
         addText(translationBuilder, ModItemsGroups.STELLAMECANICS.getDisplayName(), "Stellamecanics");
     }
 
