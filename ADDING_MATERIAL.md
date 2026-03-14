@@ -90,28 +90,29 @@ public static final Item ADAMANTIUM_INGOT = addNewItem(misc("adamantium_ingot", 
     List.of(ModTags.Items.ITEMTAGS.get("adamantium_repair").getTag()),
     List.of(
         // Bloc 9-en-1
-        new RecipeBuilder("adamantium_block", RecipeType.SHAPE,
-            List.of(new MyIngredient("adamantium_ingot", InstanceType.ITEM, 1)),
-            List.of(new MyIngredient("adamantium_block", InstanceType.BLOCK, 1)),
-            List.of("000", "000", "000"),
-            List.of(new MyIngredient("adamantium_ingot", InstanceType.ITEM, 1))),
+        RecipeBuilder.builder("adamantium_block", RecipeType.SHAPE)
+            .input(new MyIngredient("adamantium_ingot", InstanceType.ITEM, 1))
+            .output(new MyIngredient("adamantium_block", InstanceType.BLOCK, 1))
+            .pattern(List.of("000", "000", "000"))
+            .unlock(new MyIngredient("adamantium_ingot", InstanceType.ITEM, 1))
+            .build(),
         // Outils
-        new RecipeBuilder("adamantium_tool", RecipeType.TOOLS,
-            List.of(new MyIngredient("adamantium_ingot", InstanceType.ITEM, 1)),
-            List.of(
-                new MyIngredient("adamantium_axe",     InstanceType.ITEM, 1),
-                new MyIngredient("adamantium_hoe",     InstanceType.ITEM, 1),
-                new MyIngredient("adamantium_pickaxe", InstanceType.ITEM, 1),
-                new MyIngredient("adamantium_shovel",  InstanceType.ITEM, 1),
-                new MyIngredient("adamantium_sword",   InstanceType.ITEM, 1))),
+        RecipeBuilder.builder("adamantium_tool", RecipeType.TOOLS)
+            .input(new MyIngredient("adamantium_ingot", InstanceType.ITEM, 1))
+            .output(new MyIngredient("adamantium_axe",     InstanceType.ITEM, 1))
+            .output(new MyIngredient("adamantium_hoe",     InstanceType.ITEM, 1))
+            .output(new MyIngredient("adamantium_pickaxe", InstanceType.ITEM, 1))
+            .output(new MyIngredient("adamantium_shovel",  InstanceType.ITEM, 1))
+            .output(new MyIngredient("adamantium_sword",   InstanceType.ITEM, 1))
+            .build(),
         // Armure
-        new RecipeBuilder("adamantium_armor", RecipeType.ARMOR,
-            List.of(new MyIngredient("adamantium_ingot", InstanceType.ITEM, 1)),
-            List.of(
-                new MyIngredient("adamantium_boots",      InstanceType.ITEM, 1),
-                new MyIngredient("adamantium_chestplate", InstanceType.ITEM, 1),
-                new MyIngredient("adamantium_helmet",     InstanceType.ITEM, 1),
-                new MyIngredient("adamantium_leggings",   InstanceType.ITEM, 1)))
+        RecipeBuilder.builder("adamantium_armor", RecipeType.ARMOR)
+            .input(new MyIngredient("adamantium_ingot", InstanceType.ITEM, 1))
+            .output(new MyIngredient("adamantium_boots",      InstanceType.ITEM, 1))
+            .output(new MyIngredient("adamantium_chestplate", InstanceType.ITEM, 1))
+            .output(new MyIngredient("adamantium_helmet",     InstanceType.ITEM, 1))
+            .output(new MyIngredient("adamantium_leggings",   InstanceType.ITEM, 1))
+            .build()
     )));
 
 // Brut (avec fusion et recette forge)
@@ -119,11 +120,16 @@ public static final Item ADAMANTIUM_RAW = addNewItem(misc("adamantium_raw", Item
     Map.of("fr_fr", "Adamantium brut", "en_us", "Adamantium raw"),
     List.of(ModTags.Items.ITEMTAGS.get("adamantium_repair").getTag()),
     List.of(
-        new RecipeBuilder("raw_to_adamantium_ingot", RecipeType.ORE,
-            List.of(new MyIngredient("adamantium_raw",   InstanceType.ITEM, 1)),
-            List.of(new MyIngredient("adamantium_ingot", InstanceType.ITEM, 1)))
+        RecipeBuilder.builder("raw_to_adamantium_ingot", RecipeType.ORE)
+            .input(new MyIngredient("adamantium_raw",   InstanceType.ITEM, 1))
+            .output(new MyIngredient("adamantium_ingot", InstanceType.ITEM, 1))
+            .build()
         // Optionnel : recette FORGE pour doubler
-        // new RecipeBuilder("raw_to_adamantium_ingot", RecipeType.FORGE, ...)
+        // RecipeBuilder.builder("raw_to_adamantium_ingot", RecipeType.FORGE)
+        //     .input(new MyIngredient("adamantium_raw", InstanceType.ITEM, 1))
+        //     .fluid(new MyIngredient("..._fluid_still", InstanceType.FLUID, 200))
+        //     .output(new MyIngredient("adamantium_ingot", InstanceType.ITEM, 2))
+        //     .build()
     )));
 
 // Outils
@@ -151,9 +157,10 @@ public static final Block ADAMANTIUM_ORE = addNewBlock(
         new MyLootTable(LootType.ORE, new MyIngredient("adamantium_raw", InstanceType.ITEM, 1)),
         Map.of("fr_fr", "Minerai d'adamantium", "en_us", "Adamantium ore"),
         List.of(BlockTags.PICKAXE_MINEABLE, ModTags.Blocks.BLOCKTAGS.get("need_lvl_6").getTag()),
-        List.of(new RecipeBuilder("ore_to_adamantium_ingot", RecipeType.ORE,
-            List.of(new MyIngredient("adamantium_ore",   InstanceType.BLOCK, 1)),
-            List.of(new MyIngredient("adamantium_ingot", InstanceType.ITEM,  1))))
+        List.of(RecipeBuilder.builder("ore_to_adamantium_ingot", RecipeType.ORE)
+            .input(new MyIngredient("adamantium_ore",   InstanceType.BLOCK, 1))
+            .output(new MyIngredient("adamantium_ingot", InstanceType.ITEM,  1))
+            .build())
     ));
 
 // Bloc de stockage (9 lingots → 1 bloc, 1 bloc → 9 lingots)
@@ -162,9 +169,10 @@ public static final Block ADAMANTIUM_BLOCK = addNewBlock(
         new MyLootTable(LootType.NORMAL, new MyIngredient("adamantium_block", InstanceType.BLOCK, 1)),
         Map.of("fr_fr", "Bloc d'adamantium", "en_us", "Adamantium block"),
         List.of(BlockTags.PICKAXE_MINEABLE, ModTags.Blocks.BLOCKTAGS.get("need_lvl_6").getTag()),
-        List.of(new RecipeBuilder("adamantium_ingot", RecipeType.SHAPELLESS,
-            List.of(new MyIngredient("adamantium_block", InstanceType.BLOCK, 1)),
-            List.of(new MyIngredient("adamantium_ingot", InstanceType.ITEM,  9))))
+        List.of(RecipeBuilder.builder("adamantium_ingot", RecipeType.SHAPELLESS)
+            .input(new MyIngredient("adamantium_block", InstanceType.BLOCK, 1))
+            .output(new MyIngredient("adamantium_ingot", InstanceType.ITEM,  9))
+            .build())
     ));
 ```
 
@@ -175,19 +183,29 @@ public static final Block ADAMANTIUM_BLOCK = addNewBlock(
 Si le matériau nécessite un fluide propre (pour la Forge Stellaire par exemple) :
 
 ```java
-public static final FluidListType ADAMANTIUM_FLUID = addNewFluid(GenericFluids.builder()
-        .still("adamantium_fluid_still")
-        .flowing("adamantium_fluid_flowing")
-        .block("adamantium_fluid_block",   Map.of("fr_fr", "Adamantium",          "en_us", "Adamantium"))
-        .bucket("adamantium_fluid_bucket", Map.of("fr_fr", "Bucket d'adamantium",  "en_us", "Adamantium bucket"))
-        .bucketTags(List.of(ConventionalItemTags.BUCKETS))
-        .blockTags(List.of(BlockTags.REPLACEABLE, BlockTags.INVALID_SPAWN_INSIDE, BlockTags.FIRE))
-        .fluidTags(List.of(FluidTags.LAVA))   // même tag still + flowing
-        .color(0xAAAAAA)                       // ← couleur hexadécimale du fluide (ARGB sans alpha)
-        .build());
+public static final FluidListType ADAMANTIUM_FLUID = addNewFluid(
+    GenericFluids.create(
+        Map.of(
+            FluidListTypeEnum.STILL,   "adamantium_fluid_still",
+            FluidListTypeEnum.FLOWING, "adamantium_fluid_flowing",
+            FluidListTypeEnum.BLOCK,   "adamantium_fluid_block",
+            FluidListTypeEnum.BUCKET,  "adamantium_fluid_bucket"
+        ),
+        Map.of(
+            FluidListTypeEnum.BLOCK,  Map.of("fr_fr", "Adamantium",          "en_us", "Adamantium"),
+            FluidListTypeEnum.BUCKET, Map.of("fr_fr", "Bucket d'adamantium",  "en_us", "Adamantium bucket")
+        ),
+        List.of(ConventionalItemTags.BUCKETS),
+        List.of(BlockTags.REPLACEABLE, BlockTags.INVALID_SPAWN_INSIDE, BlockTags.FIRE),
+        Map.of(
+            FluidListTypeEnum.STILL,   List.of(FluidTags.LAVA),
+            FluidListTypeEnum.FLOWING, List.of(FluidTags.LAVA)
+        ),
+        0xAAAAAA  // ← couleur hexadécimale du fluide (ARGB sans alpha)
+    ));
 ```
 
-> Si ce fluide doit être utilisable dans la Forge Stellaire, ajoute-le au tag `forge_stellaire_fluid_input_left` ou `forge_stellaire_fluid_input_right` dans `ModTags.Fluids` et utilise `.stillTags()` + `.flowingTags()` séparément à la place de `.fluidTags()` (voir Solarium et Lunarium dans `ModFluids` comme exemples).
+> Si ce fluide doit être utilisable dans la Forge Stellaire, ajoute-le au tag `forge_stellaire_fluid_input_left` ou `forge_stellaire_fluid_input_right` dans `ModTags.Fluids` et met à jour `ModFluids` en conséquence.
 
 ---
 
@@ -211,7 +229,7 @@ public static final CustomAdvancements FIRST_ADAMANTIUM = addNewAdvancement(
 Pour un advancement lié à une recette de Forge Stellaire, utilise `ForgedItemCondition` à la place :
 
 ```java
-.condition(new ForgedItemCondition(List.of("forge_stellaire_raw_to_adamantium_ingot")));
+.condition(new ForgedItemCondition(List.of("forge_stellaire_raw_to_adamantium_ingot")))
 ```
 
 > Les IDs passés à `ForgedItemCondition` doivent inclure le préfixe `forge_stellaire_` puisqu'il fait partie de l'ID réel de la recette.
