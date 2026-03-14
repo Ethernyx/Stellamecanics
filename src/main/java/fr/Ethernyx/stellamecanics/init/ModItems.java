@@ -11,11 +11,8 @@ import fr.ethernyx.stellamecanics.utils.recipe.MyIngredient;
 import fr.ethernyx.stellamecanics.utils.recipe.RecipeBuilder;
 import fr.ethernyx.stellamecanics.utils.recipe.RecipeType;
 import net.minecraft.item.Item;
-import net.minecraft.item.ToolMaterial;
-import net.minecraft.item.equipment.ArmorMaterial;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
-import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.Identifier;
 
 import java.util.LinkedHashMap;
@@ -25,315 +22,674 @@ import java.util.Map;
 public class ModItems {
     public static Map<String, IMyItem> ITEMS = new LinkedHashMap<>();
 
-    public static final Item MAGNETITE_RAW = addNewItem(misc("magnetite_raw", ItemsType.RAW, Map.of("fr_fr", "Magnétite brut", "en_us", "Magnetite raw"), null, null));
+    public static final Item MAGNETITE_RAW = addNewItem(GenericItems.builder("magnetite_raw", ItemsType.RAW)
+            .translate("fr_fr", "Magnétite brut")
+            .translate("en_us", "Magnetite raw")
+            .build());
 
     // ── SOLARIUM ──────────────────────────────────────────────────────────────
-    public static final Item SOLARIUM_INGOT = addNewItem(misc("solarium_ingot", ItemsType.INGOT,
-            Map.of("fr_fr", "Lingot de solarium", "en_us", "Solarium ingot"), List.of(ModTags.Items.ITEMTAGS.get("solarium_repair").getTag()), List.of(
-                    RecipeBuilder.builder("solarium_block", RecipeType.SHAPE)
-                            .input(new MyIngredient("solarium_ingot", InstanceType.ITEM, 1))
-                            .output(new MyIngredient("solarium_block", InstanceType.BLOCK, 1))
-                            .pattern(List.of("000", "000", "000"))
-                            .unlock(new MyIngredient("solarium_ingot", InstanceType.ITEM, 1))
-                            .build(),
-                    RecipeBuilder.builder("solarium_tool", RecipeType.TOOLS)
-                            .input(new MyIngredient("solarium_ingot", InstanceType.ITEM, 1))
-                            .output(new MyIngredient("solarium_axe", InstanceType.ITEM, 1))
-                            .output(new MyIngredient("solarium_hoe", InstanceType.ITEM, 1))
-                            .output(new MyIngredient("solarium_pickaxe", InstanceType.ITEM, 1))
-                            .output(new MyIngredient("solarium_shovel", InstanceType.ITEM, 1))
-                            .output(new MyIngredient("solarium_sword", InstanceType.ITEM, 1))
-                            .build(),
-                    RecipeBuilder.builder("solarium_armor", RecipeType.ARMOR)
-                            .input(new MyIngredient("solarium_ingot", InstanceType.ITEM, 1))
-                            .output(new MyIngredient("solarium_boots", InstanceType.ITEM, 1))
-                            .output(new MyIngredient("solarium_chestplate", InstanceType.ITEM, 1))
-                            .output(new MyIngredient("solarium_helmet", InstanceType.ITEM, 1))
-                            .output(new MyIngredient("solarium_leggings", InstanceType.ITEM, 1))
-                            .build(),
-                    RecipeBuilder.builder("solarium_ingot_to_stellarium_ingot", RecipeType.FORGE)
-                            .input(new MyIngredient("solarium_ingot", InstanceType.ITEM, 1))
-                            .fluid(new MyIngredient("lunarium_fluid_still", InstanceType.FLUID, 200))
-                            .output(new MyIngredient("stellarium_ingot", InstanceType.ITEM, 1))
-                            .build())));
-    public static final Item SOLARIUM_RAW = addNewItem(misc("solarium_raw", ItemsType.RAW,
-            Map.of("fr_fr", "Solarium brut", "en_us", "Solarium raw"), List.of(ModTags.Items.ITEMTAGS.get("solarium_repair").getTag()), List.of(
-                    RecipeBuilder.builder("raw_to_solarium_ingot", RecipeType.ORE)
-                            .input(new MyIngredient("solarium_raw", InstanceType.ITEM, 1))
-                            .output(new MyIngredient("solarium_ingot", InstanceType.ITEM, 1))
-                            .build(),
-                    RecipeBuilder.builder("raw_to_solarium_ingot", RecipeType.FORGE)
-                            .input(new MyIngredient("solarium_raw", InstanceType.ITEM, 1))
-                            .fluid(new MyIngredient("lunarium_fluid_still", InstanceType.FLUID, 200))
-                            .output(new MyIngredient("solarium_ingot", InstanceType.ITEM, 2))
-                            .build())));
-    public static final Item SOLARIUM_AXE = addNewItem(tool("solarium_axe", ItemsType.AXE, CustomItemTiers.SOLARIUM, Map.of("fr_fr", "Hache en solarium", "en_us", "Solarium axe"), List.of(ModTags.Items.ITEMTAGS.get("solarium_tool").getTag()), null));
-    public static final Item SOLARIUM_HOE = addNewItem(tool("solarium_hoe", ItemsType.HOE, CustomItemTiers.SOLARIUM, Map.of("fr_fr", "Houe en solarium", "en_us", "Solarium hoe"), List.of(ModTags.Items.ITEMTAGS.get("solarium_tool").getTag()), null));
-    public static final Item SOLARIUM_PICKAXE = addNewItem(tool("solarium_pickaxe", ItemsType.PICKAXE, CustomItemTiers.SOLARIUM, Map.of("fr_fr", "Pioche en solarium", "en_us", "Solarium pickaxe"), List.of(ModTags.Items.ITEMTAGS.get("solarium_tool").getTag()), null));
-    public static final Item SOLARIUM_SHOVEL = addNewItem(tool("solarium_shovel", ItemsType.SHOVEL, CustomItemTiers.SOLARIUM, Map.of("fr_fr", "Pelle en solarium", "en_us", "Solarium shovel"), List.of(ModTags.Items.ITEMTAGS.get("solarium_tool").getTag()), null));
-    public static final Item SOLARIUM_SWORD = addNewItem(tool("solarium_sword", ItemsType.SWORD, CustomItemTiers.SOLARIUM, Map.of("fr_fr", "Epée en solarium", "en_us", "Solarium sword"), List.of(ModTags.Items.ITEMTAGS.get("solarium_weapon").getTag()), null));
-    public static final Item SOLARIUM_HELMET = addNewItem(armor("solarium_helmet", ItemsType.HELMET, CustomArmorMaterials.SOLARIUM_ARMOR, Map.of("fr_fr", "Casque en solarium", "en_us", "Solarium helmet"), List.of(ModTags.Items.ITEMTAGS.get("solarium_armor").getTag()), null));
-    public static final Item SOLARIUM_CHESTPLATE = addNewItem(armor("solarium_chestplate", ItemsType.CHESTPLATE, CustomArmorMaterials.SOLARIUM_ARMOR, Map.of("fr_fr", "Plastron en solarium", "en_us", "Solarium chestplate"), List.of(ModTags.Items.ITEMTAGS.get("solarium_armor").getTag()), null));
-    public static final Item SOLARIUM_LEGGINGS = addNewItem(armor("solarium_leggings", ItemsType.LEGGINGS, CustomArmorMaterials.SOLARIUM_ARMOR, Map.of("fr_fr", "Pantalon en solarium", "en_us", "Solarium leggings"), List.of(ModTags.Items.ITEMTAGS.get("solarium_armor").getTag()), null));
-    public static final Item SOLARIUM_BOOTS = addNewItem(armor("solarium_boots", ItemsType.BOOTS, CustomArmorMaterials.SOLARIUM_ARMOR, Map.of("fr_fr", "Bottes en solarium", "en_us", "Solarium boots"), List.of(ModTags.Items.ITEMTAGS.get("solarium_armor").getTag()), null));
+    public static final Item SOLARIUM_INGOT = addNewItem(GenericItems.builder("solarium_ingot", ItemsType.INGOT)
+            .translate("fr_fr", "Lingot de solarium")
+            .translate("en_us", "Solarium ingot")
+            .tag(ModTags.Items.SOLARIUM_REPAIR)
+            .recipe(RecipeBuilder.builder("solarium_block", RecipeType.SHAPE)
+                    .input(new MyIngredient("solarium_ingot", InstanceType.ITEM, 1))
+                    .output(new MyIngredient("solarium_block", InstanceType.BLOCK, 1))
+                    .pattern(List.of("000", "000", "000"))
+                    .unlock(new MyIngredient("solarium_ingot", InstanceType.ITEM, 1))
+                    .build())
+            .recipe(RecipeBuilder.builder("solarium_tool", RecipeType.TOOLS)
+                    .input(new MyIngredient("solarium_ingot", InstanceType.ITEM, 1))
+                    .output(new MyIngredient("solarium_axe", InstanceType.ITEM, 1))
+                    .output(new MyIngredient("solarium_hoe", InstanceType.ITEM, 1))
+                    .output(new MyIngredient("solarium_pickaxe", InstanceType.ITEM, 1))
+                    .output(new MyIngredient("solarium_shovel", InstanceType.ITEM, 1))
+                    .output(new MyIngredient("solarium_sword", InstanceType.ITEM, 1))
+                    .build())
+            .recipe(RecipeBuilder.builder("solarium_armor", RecipeType.ARMOR)
+                    .input(new MyIngredient("solarium_ingot", InstanceType.ITEM, 1))
+                    .output(new MyIngredient("solarium_boots", InstanceType.ITEM, 1))
+                    .output(new MyIngredient("solarium_chestplate", InstanceType.ITEM, 1))
+                    .output(new MyIngredient("solarium_helmet", InstanceType.ITEM, 1))
+                    .output(new MyIngredient("solarium_leggings", InstanceType.ITEM, 1))
+                    .build())
+            .recipe(RecipeBuilder.builder("solarium_ingot_to_stellarium_ingot", RecipeType.FORGE)
+                    .input(new MyIngredient("solarium_ingot", InstanceType.ITEM, 1))
+                    .fluid(new MyIngredient("lunarium_fluid_still", InstanceType.FLUID, 200))
+                    .output(new MyIngredient("stellarium_ingot", InstanceType.ITEM, 1))
+                    .build())
+            .build());
+
+    public static final Item SOLARIUM_RAW = addNewItem(GenericItems.builder("solarium_raw", ItemsType.RAW)
+            .translate("fr_fr", "Solarium brut")
+            .translate("en_us", "Solarium raw")
+            .tag(ModTags.Items.SOLARIUM_REPAIR)
+            .recipe(RecipeBuilder.builder("raw_to_solarium_ingot", RecipeType.ORE)
+                    .input(new MyIngredient("solarium_raw", InstanceType.ITEM, 1))
+                    .output(new MyIngredient("solarium_ingot", InstanceType.ITEM, 1))
+                    .build())
+            .recipe(RecipeBuilder.builder("raw_to_solarium_ingot", RecipeType.FORGE)
+                    .input(new MyIngredient("solarium_raw", InstanceType.ITEM, 1))
+                    .fluid(new MyIngredient("lunarium_fluid_still", InstanceType.FLUID, 200))
+                    .output(new MyIngredient("solarium_ingot", InstanceType.ITEM, 2))
+                    .build())
+            .build());
+
+    public static final Item SOLARIUM_AXE = addNewItem(GenericItems.builder("solarium_axe", ItemsType.AXE)
+            .translate("fr_fr", "Hache en solarium")
+            .translate("en_us", "Solarium axe")
+            .tag(ModTags.Items.SOLARIUM_TOOL)
+            .toolMaterial(CustomItemTiers.SOLARIUM)
+            .build());
+
+    public static final Item SOLARIUM_HOE = addNewItem(GenericItems.builder("solarium_hoe", ItemsType.HOE)
+            .translate("fr_fr", "Houe en solarium")
+            .translate("en_us", "Solarium hoe")
+            .tag(ModTags.Items.SOLARIUM_TOOL)
+            .toolMaterial(CustomItemTiers.SOLARIUM)
+            .build());
+
+    public static final Item SOLARIUM_PICKAXE = addNewItem(GenericItems.builder("solarium_pickaxe", ItemsType.PICKAXE)
+            .translate("fr_fr", "Pioche en solarium")
+            .translate("en_us", "Solarium pickaxe")
+            .tag(ModTags.Items.SOLARIUM_TOOL)
+            .toolMaterial(CustomItemTiers.SOLARIUM)
+            .build());
+
+    public static final Item SOLARIUM_SHOVEL = addNewItem(GenericItems.builder("solarium_shovel", ItemsType.SHOVEL)
+            .translate("fr_fr", "Pelle en solarium")
+            .translate("en_us", "Solarium shovel")
+            .tag(ModTags.Items.SOLARIUM_TOOL)
+            .toolMaterial(CustomItemTiers.SOLARIUM)
+            .build());
+
+    public static final Item SOLARIUM_SWORD = addNewItem(GenericItems.builder("solarium_sword", ItemsType.SWORD)
+            .translate("fr_fr", "Epée en solarium")
+            .translate("en_us", "Solarium sword")
+            .tag(ModTags.Items.SOLARIUM_WEAPON)
+            .toolMaterial(CustomItemTiers.SOLARIUM)
+            .build());
+
+    public static final Item SOLARIUM_HELMET = addNewItem(GenericItems.builder("solarium_helmet", ItemsType.HELMET)
+            .translate("fr_fr", "Casque en solarium")
+            .translate("en_us", "Solarium helmet")
+            .tag(ModTags.Items.SOLARIUM_ARMOR)
+            .armorMaterial(CustomArmorMaterials.SOLARIUM_ARMOR)
+            .build());
+
+    public static final Item SOLARIUM_CHESTPLATE = addNewItem(GenericItems.builder("solarium_chestplate", ItemsType.CHESTPLATE)
+            .translate("fr_fr", "Plastron en solarium")
+            .translate("en_us", "Solarium chestplate")
+            .tag(ModTags.Items.SOLARIUM_ARMOR)
+            .armorMaterial(CustomArmorMaterials.SOLARIUM_ARMOR)
+            .build());
+
+    public static final Item SOLARIUM_LEGGINGS = addNewItem(GenericItems.builder("solarium_leggings", ItemsType.LEGGINGS)
+            .translate("fr_fr", "Pantalon en solarium")
+            .translate("en_us", "Solarium leggings")
+            .tag(ModTags.Items.SOLARIUM_ARMOR)
+            .armorMaterial(CustomArmorMaterials.SOLARIUM_ARMOR)
+            .build());
+    public static final Item SOLARIUM_BOOTS = addNewItem(GenericItems.builder("solarium_boots", ItemsType.BOOTS)
+            .translate("fr_fr", "Bottes en solarium")
+            .translate("en_us", "Solarium boots")
+            .tag(ModTags.Items.SOLARIUM_ARMOR)
+            .armorMaterial(CustomArmorMaterials.SOLARIUM_ARMOR)
+            .build());
 
     // ── LUNARIUM ──────────────────────────────────────────────────────────────
-    public static final Item LUNARIUM_INGOT = addNewItem(misc("lunarium_ingot", ItemsType.INGOT,
-            Map.of("fr_fr", "Lingot de lunarium", "en_us", "Lunarium ingot"), List.of(ModTags.Items.ITEMTAGS.get("lunarium_repair").getTag()), List.of(
-                    RecipeBuilder.builder("lunarium_block", RecipeType.SHAPE)
-                            .input(new MyIngredient("lunarium_ingot", InstanceType.ITEM, 1))
-                            .output(new MyIngredient("lunarium_block", InstanceType.BLOCK, 1))
-                            .pattern(List.of("000", "000", "000"))
-                            .unlock(new MyIngredient("lunarium_block", InstanceType.BLOCK, 1))
-                            .build(),
-                    RecipeBuilder.builder("lunarium_tool", RecipeType.TOOLS)
-                            .input(new MyIngredient("lunarium_ingot", InstanceType.ITEM, 1))
-                            .output(new MyIngredient("lunarium_axe", InstanceType.ITEM, 1))
-                            .output(new MyIngredient("lunarium_hoe", InstanceType.ITEM, 1))
-                            .output(new MyIngredient("lunarium_pickaxe", InstanceType.ITEM, 1))
-                            .output(new MyIngredient("lunarium_shovel", InstanceType.ITEM, 1))
-                            .output(new MyIngredient("lunarium_sword", InstanceType.ITEM, 1))
-                            .build(),
-                    RecipeBuilder.builder("lunarium_armor", RecipeType.ARMOR)
-                            .input(new MyIngredient("lunarium_ingot", InstanceType.ITEM, 1))
-                            .output(new MyIngredient("lunarium_boots", InstanceType.ITEM, 1))
-                            .output(new MyIngredient("lunarium_chestplate", InstanceType.ITEM, 1))
-                            .output(new MyIngredient("lunarium_helmet", InstanceType.ITEM, 1))
-                            .output(new MyIngredient("lunarium_leggings", InstanceType.ITEM, 1))
-                            .build(),
-                    RecipeBuilder.builder("lunarium_ingot_to_stellarium_ingot", RecipeType.FORGE)
-                            .input(new MyIngredient("lunarium_ingot", InstanceType.ITEM, 1))
-                            .fluid(new MyIngredient("solarium_fluid_still", InstanceType.FLUID, 200))
-                            .output(new MyIngredient("stellarium_ingot", InstanceType.BLOCK, 1))
-                            .build())));
-    public static final Item LUNARIUM_RAW = addNewItem(misc("lunarium_raw", ItemsType.RAW,
-            Map.of("fr_fr", "Lunarium brut", "en_us", "Lunarium raw"), List.of(ModTags.Items.ITEMTAGS.get("lunarium_repair").getTag()), List.of(
-                    RecipeBuilder.builder("raw_to_lunarium_ingot", RecipeType.ORE)
-                            .input(new MyIngredient("lunarium_raw", InstanceType.ITEM, 1))
-                            .output(new MyIngredient("lunarium_ingot", InstanceType.ITEM, 1))
-                            .build(),
-                    RecipeBuilder.builder("raw_to_lunarium_ingot", RecipeType.FORGE)
-                            .input(new MyIngredient("lunarium_raw", InstanceType.ITEM, 1))
-                            .fluid(new MyIngredient("solarium_fluid_still", InstanceType.FLUID, 200))
-                            .output(new MyIngredient("lunarium_ingot", InstanceType.ITEM, 2))
-                            .build())));
-    public static final Item LUNARIUM_AXE = addNewItem(tool("lunarium_axe", ItemsType.AXE, CustomItemTiers.LUNARIUM, Map.of("fr_fr", "Hache en lunarium", "en_us", "Lunarium axe"), List.of(ModTags.Items.ITEMTAGS.get("lunarium_tool").getTag()), null));
-    public static final Item LUNARIUM_HOE = addNewItem(tool("lunarium_hoe", ItemsType.HOE, CustomItemTiers.LUNARIUM, Map.of("fr_fr", "Houe en lunarium", "en_us", "Lunarium hoe"), List.of(ModTags.Items.ITEMTAGS.get("lunarium_tool").getTag()), null));
-    public static final Item LUNARIUM_PICKAXE = addNewItem(tool("lunarium_pickaxe", ItemsType.PICKAXE, CustomItemTiers.LUNARIUM, Map.of("fr_fr", "Pioche en lunarium", "en_us", "Lunarium pickaxe"), List.of(ModTags.Items.ITEMTAGS.get("lunarium_tool").getTag()), null));
-    public static final Item LUNARIUM_SHOVEL = addNewItem(tool("lunarium_shovel", ItemsType.SHOVEL, CustomItemTiers.LUNARIUM, Map.of("fr_fr", "Pelle en lunarium", "en_us", "Lunarium shovel"), List.of(ModTags.Items.ITEMTAGS.get("lunarium_tool").getTag()), null));
-    public static final Item LUNARIUM_SWORD = addNewItem(tool("lunarium_sword", ItemsType.SWORD, CustomItemTiers.LUNARIUM, Map.of("fr_fr", "Epée en lunarium", "en_us", "Lunarium sword"), List.of(ModTags.Items.ITEMTAGS.get("lunarium_weapon").getTag()), null));
-    public static final Item LUNARIUM_HELMET = addNewItem(armor("lunarium_helmet", ItemsType.HELMET, CustomArmorMaterials.LUNARIUM_ARMOR, Map.of("fr_fr", "Casque en lunarium", "en_us", "Lunarium helmet"), List.of(ModTags.Items.ITEMTAGS.get("lunarium_armor").getTag()), null));
-    public static final Item LUNARIUM_CHESTPLATE = addNewItem(armor("lunarium_chestplate", ItemsType.CHESTPLATE, CustomArmorMaterials.LUNARIUM_ARMOR, Map.of("fr_fr", "Plastron en lunarium", "en_us", "Lunarium chestplate"), List.of(ModTags.Items.ITEMTAGS.get("lunarium_armor").getTag()), null));
-    public static final Item LUNARIUM_LEGGINGS = addNewItem(armor("lunarium_leggings", ItemsType.LEGGINGS, CustomArmorMaterials.LUNARIUM_ARMOR, Map.of("fr_fr", "Pantalon en lunarium", "en_us", "Lunarium leggings"), List.of(ModTags.Items.ITEMTAGS.get("lunarium_armor").getTag()), null));
-    public static final Item LUNARIUM_BOOTS = addNewItem(armor("lunarium_boots", ItemsType.BOOTS, CustomArmorMaterials.LUNARIUM_ARMOR, Map.of("fr_fr", "Bottes en lunarium", "en_us", "Lunarium boots"), List.of(ModTags.Items.ITEMTAGS.get("lunarium_armor").getTag()), null));
+    public static final Item LUNARIUM_INGOT = addNewItem(GenericItems.builder("lunarium_ingot", ItemsType.INGOT)
+            .translate("fr_fr", "Lingot de lunarium")
+            .translate("en_us", "Lunarium ingot")
+            .tag(ModTags.Items.LUNARIUM_REPAIR)
+            .recipe(RecipeBuilder.builder("lunarium_block", RecipeType.SHAPE)
+                    .input(new MyIngredient("lunarium_ingot", InstanceType.ITEM, 1))
+                    .output(new MyIngredient("lunarium_block", InstanceType.BLOCK, 1))
+                    .pattern(List.of("000", "000", "000"))
+                    .unlock(new MyIngredient("lunarium_block", InstanceType.BLOCK, 1))
+                    .build())
+            .recipe(RecipeBuilder.builder("lunarium_tool", RecipeType.TOOLS)
+                    .input(new MyIngredient("lunarium_ingot", InstanceType.ITEM, 1))
+                    .output(new MyIngredient("lunarium_axe", InstanceType.ITEM, 1))
+                    .output(new MyIngredient("lunarium_hoe", InstanceType.ITEM, 1))
+                    .output(new MyIngredient("lunarium_pickaxe", InstanceType.ITEM, 1))
+                    .output(new MyIngredient("lunarium_shovel", InstanceType.ITEM, 1))
+                    .output(new MyIngredient("lunarium_sword", InstanceType.ITEM, 1))
+                    .build())
+            .recipe(RecipeBuilder.builder("lunarium_armor", RecipeType.ARMOR)
+                    .input(new MyIngredient("lunarium_ingot", InstanceType.ITEM, 1))
+                    .output(new MyIngredient("lunarium_boots", InstanceType.ITEM, 1))
+                    .output(new MyIngredient("lunarium_chestplate", InstanceType.ITEM, 1))
+                    .output(new MyIngredient("lunarium_helmet", InstanceType.ITEM, 1))
+                    .output(new MyIngredient("lunarium_leggings", InstanceType.ITEM, 1))
+                    .build())
+            .recipe(RecipeBuilder.builder("lunarium_ingot_to_stellarium_ingot", RecipeType.FORGE)
+                    .input(new MyIngredient("lunarium_ingot", InstanceType.ITEM, 1))
+                    .fluid(new MyIngredient("solarium_fluid_still", InstanceType.FLUID, 200))
+                    .output(new MyIngredient("stellarium_ingot", InstanceType.ITEM, 1))  // corrigé BLOCK → ITEM
+                    .build())
+            .build());
+
+    public static final Item LUNARIUM_RAW = addNewItem(GenericItems.builder("lunarium_raw", ItemsType.RAW)
+            .translate("fr_fr", "Lunarium brut")
+            .translate("en_us", "Lunarium raw")
+            .tag(ModTags.Items.LUNARIUM_REPAIR)
+            .recipe(RecipeBuilder.builder("raw_to_lunarium_ingot", RecipeType.ORE)
+                    .input(new MyIngredient("lunarium_raw", InstanceType.ITEM, 1))
+                    .output(new MyIngredient("lunarium_ingot", InstanceType.ITEM, 1))
+                    .build())
+            .recipe(RecipeBuilder.builder("raw_to_lunarium_ingot", RecipeType.FORGE)
+                    .input(new MyIngredient("lunarium_raw", InstanceType.ITEM, 1))
+                    .fluid(new MyIngredient("solarium_fluid_still", InstanceType.FLUID, 200))
+                    .output(new MyIngredient("lunarium_ingot", InstanceType.ITEM, 2))
+                    .build())
+            .build());
+
+    public static final Item LUNARIUM_AXE = addNewItem(GenericItems.builder("lunarium_axe", ItemsType.AXE)
+            .translate("fr_fr", "Hache en lunarium")
+            .translate("en_us", "Lunarium axe")
+            .tag(ModTags.Items.LUNARIUM_TOOL)
+            .toolMaterial(CustomItemTiers.LUNARIUM)
+            .build());
+    public static final Item LUNARIUM_HOE = addNewItem(GenericItems.builder("lunarium_hoe", ItemsType.HOE)
+            .translate("fr_fr", "Houe en lunarium")
+            .translate("en_us", "Lunarium hoe")
+            .tag(ModTags.Items.LUNARIUM_TOOL)
+            .toolMaterial(CustomItemTiers.LUNARIUM)
+            .build());
+    public static final Item LUNARIUM_PICKAXE = addNewItem(GenericItems.builder("lunarium_pickaxe", ItemsType.PICKAXE)
+            .translate("fr_fr", "Pioche en lunarium")
+            .translate("en_us", "Lunarium pickaxe")
+            .tag(ModTags.Items.LUNARIUM_TOOL)
+            .toolMaterial(CustomItemTiers.LUNARIUM)
+            .build());
+    public static final Item LUNARIUM_SHOVEL = addNewItem(GenericItems.builder("lunarium_shovel", ItemsType.SHOVEL)
+            .translate("fr_fr", "Pelle en lunarium")
+            .translate("en_us", "Lunarium shovel")
+            .tag(ModTags.Items.LUNARIUM_TOOL)
+            .toolMaterial(CustomItemTiers.LUNARIUM)
+            .build());
+    public static final Item LUNARIUM_SWORD = addNewItem(GenericItems.builder("lunarium_sword", ItemsType.SWORD)
+            .translate("fr_fr", "Epée en lunarium")
+            .translate("en_us", "Lunarium sword")
+            .tag(ModTags.Items.LUNARIUM_WEAPON)
+            .toolMaterial(CustomItemTiers.LUNARIUM)
+            .build());
+    public static final Item LUNARIUM_HELMET = addNewItem(GenericItems.builder("lunarium_helmet", ItemsType.HELMET)
+            .translate("fr_fr", "Casque en lunarium")
+            .translate("en_us", "Lunarium helmet")
+            .tag(ModTags.Items.LUNARIUM_ARMOR)
+            .armorMaterial(CustomArmorMaterials.LUNARIUM_ARMOR)
+            .build());
+    public static final Item LUNARIUM_CHESTPLATE = addNewItem(GenericItems.builder("lunarium_chestplate", ItemsType.CHESTPLATE)
+            .translate("fr_fr", "Plastron en lunarium")
+            .translate("en_us", "Lunarium chestplate")
+            .tag(ModTags.Items.LUNARIUM_ARMOR)
+            .armorMaterial(CustomArmorMaterials.LUNARIUM_ARMOR)
+            .build());
+    public static final Item LUNARIUM_LEGGINGS = addNewItem(GenericItems.builder("lunarium_leggings", ItemsType.LEGGINGS)
+            .translate("fr_fr", "Pantalon en lunarium")
+            .translate("en_us", "Lunarium leggings")
+            .tag(ModTags.Items.LUNARIUM_ARMOR)
+            .armorMaterial(CustomArmorMaterials.LUNARIUM_ARMOR)
+            .build());
+    public static final Item LUNARIUM_BOOTS = addNewItem(GenericItems.builder("lunarium_boots", ItemsType.BOOTS)
+            .translate("fr_fr", "Bottes en lunarium")
+            .translate("en_us", "Lunarium boots")
+            .tag(ModTags.Items.LUNARIUM_ARMOR)
+            .armorMaterial(CustomArmorMaterials.LUNARIUM_ARMOR)
+            .build());
 
     // ── STELLARIUM ────────────────────────────────────────────────────────────
-    public static final Item STELLARIUM_INGOT = addNewItem(misc("stellarium_ingot", ItemsType.INGOT,
-            Map.of("fr_fr", "Lingot de stellarium", "en_us", "Stellarium ingot"), List.of(ModTags.Items.ITEMTAGS.get("stellarium_repair").getTag()), List.of(
-                    RecipeBuilder.builder("stellarium_block", RecipeType.SHAPE)
-                            .input(new MyIngredient("stellarium_ingot", InstanceType.ITEM, 1))
-                            .output(new MyIngredient("stellarium_block", InstanceType.BLOCK, 1))
-                            .pattern(List.of("000", "000", "000"))
-                            .unlock(new MyIngredient("stellarium_ingot", InstanceType.ITEM, 1))
-                            .build(),
-                    RecipeBuilder.builder("stellarium_tool", RecipeType.TOOLS)
-                            .input(new MyIngredient("stellarium_ingot", InstanceType.ITEM, 1))
-                            .output(new MyIngredient("stellarium_axe", InstanceType.ITEM, 1))
-                            .output(new MyIngredient("stellarium_hoe", InstanceType.ITEM, 1))
-                            .output(new MyIngredient("stellarium_pickaxe", InstanceType.ITEM, 1))
-                            .output(new MyIngredient("stellarium_shovel", InstanceType.ITEM, 1))
-                            .output(new MyIngredient("stellarium_sword", InstanceType.ITEM, 1))
-                            .build(),
-                    RecipeBuilder.builder("stellarium_armor", RecipeType.ARMOR)
-                            .input(new MyIngredient("stellarium_ingot", InstanceType.ITEM, 1))
-                            .output(new MyIngredient("stellarium_boots", InstanceType.ITEM, 1))
-                            .output(new MyIngredient("stellarium_chestplate", InstanceType.ITEM, 1))
-                            .output(new MyIngredient("stellarium_helmet", InstanceType.ITEM, 1))
-                            .output(new MyIngredient("stellarium_leggings", InstanceType.ITEM, 1))
-                            .build())));
-    public static final Item STELLARIUM_AXE = addNewItem(tool("stellarium_axe", ItemsType.AXE, CustomItemTiers.STELLARIUM, Map.of("fr_fr", "Hache en stellarium", "en_us", "Stellarium axe"), List.of(ModTags.Items.ITEMTAGS.get("stellarium_tool").getTag()), null));
-    public static final Item STELLARIUM_HOE = addNewItem(tool("stellarium_hoe", ItemsType.HOE, CustomItemTiers.STELLARIUM, Map.of("fr_fr", "Houe en stellarium", "en_us", "Stellarium hoe"), List.of(ModTags.Items.ITEMTAGS.get("stellarium_tool").getTag()), null));
-    public static final Item STELLARIUM_PICKAXE = addNewItem(tool("stellarium_pickaxe", ItemsType.PICKAXE, CustomItemTiers.STELLARIUM, Map.of("fr_fr", "Pioche en stellarium", "en_us", "Stellarium pickaxe"), List.of(ModTags.Items.ITEMTAGS.get("stellarium_tool").getTag()), null));
-    public static final Item STELLARIUM_SHOVEL = addNewItem(tool("stellarium_shovel", ItemsType.SHOVEL, CustomItemTiers.STELLARIUM, Map.of("fr_fr", "Pelle en stellarium", "en_us", "Stellarium shovel"), List.of(ModTags.Items.ITEMTAGS.get("stellarium_tool").getTag()), null));
-    public static final Item STELLARIUM_SWORD = addNewItem(tool("stellarium_sword", ItemsType.SWORD, CustomItemTiers.STELLARIUM, Map.of("fr_fr", "Epée en stellarium", "en_us", "Stellarium sword"), List.of(ModTags.Items.ITEMTAGS.get("stellarium_weapon").getTag()), null));
-    public static final Item STELLARIUM_HELMET = addNewItem(armor("stellarium_helmet", ItemsType.HELMET, CustomArmorMaterials.STELLARIUM_ARMOR, Map.of("fr_fr", "Casque en stellarium", "en_us", "Stellarium helmet"), List.of(ModTags.Items.ITEMTAGS.get("stellarium_armor").getTag()), null));
-    public static final Item STELLARIUM_CHESTPLATE = addNewItem(armor("stellarium_chestplate", ItemsType.CHESTPLATE, CustomArmorMaterials.STELLARIUM_ARMOR, Map.of("fr_fr", "Plastron en stellarium", "en_us", "Stellarium chestplate"), List.of(ModTags.Items.ITEMTAGS.get("stellarium_armor").getTag()), null));
-    public static final Item STELLARIUM_LEGGINGS = addNewItem(armor("stellarium_leggings", ItemsType.LEGGINGS, CustomArmorMaterials.STELLARIUM_ARMOR, Map.of("fr_fr", "Pantalon en stellarium", "en_us", "Stellarium leggings"), List.of(ModTags.Items.ITEMTAGS.get("stellarium_armor").getTag()), null));
-    public static final Item STELLARIUM_BOOTS = addNewItem(armor("stellarium_boots", ItemsType.BOOTS, CustomArmorMaterials.STELLARIUM_ARMOR, Map.of("fr_fr", "Bottes en stellarium", "en_us", "Stellarium boots"), List.of(ModTags.Items.ITEMTAGS.get("stellarium_armor").getTag()), null));
+    public static final Item STELLARIUM_INGOT = addNewItem(GenericItems.builder("stellarium_ingot", ItemsType.INGOT)
+            .translate("fr_fr", "Lingot de stellarium")
+            .translate("en_us", "Stellarium ingot")
+            .tag(ModTags.Items.STELLARIUM_REPAIR)
+            .recipe(RecipeBuilder.builder("stellarium_block", RecipeType.SHAPE)
+                    .input(new MyIngredient("stellarium_ingot", InstanceType.ITEM, 1))
+                    .output(new MyIngredient("stellarium_block", InstanceType.BLOCK, 1))
+                    .pattern(List.of("000", "000", "000"))
+                    .unlock(new MyIngredient("stellarium_ingot", InstanceType.ITEM, 1))
+                    .build())
+            .recipe(RecipeBuilder.builder("stellarium_tool", RecipeType.TOOLS)
+                    .input(new MyIngredient("stellarium_ingot", InstanceType.ITEM, 1))
+                    .output(new MyIngredient("stellarium_axe", InstanceType.ITEM, 1))
+                    .output(new MyIngredient("stellarium_hoe", InstanceType.ITEM, 1))
+                    .output(new MyIngredient("stellarium_pickaxe", InstanceType.ITEM, 1))
+                    .output(new MyIngredient("stellarium_shovel", InstanceType.ITEM, 1))
+                    .output(new MyIngredient("stellarium_sword", InstanceType.ITEM, 1))
+                    .build())
+            .recipe(RecipeBuilder.builder("stellarium_armor", RecipeType.ARMOR)
+                    .input(new MyIngredient("stellarium_ingot", InstanceType.ITEM, 1))
+                    .output(new MyIngredient("stellarium_boots", InstanceType.ITEM, 1))
+                    .output(new MyIngredient("stellarium_chestplate", InstanceType.ITEM, 1))
+                    .output(new MyIngredient("stellarium_helmet", InstanceType.ITEM, 1))
+                    .output(new MyIngredient("stellarium_leggings", InstanceType.ITEM, 1))
+                    .build())
+            .build());
+
+    public static final Item STELLARIUM_AXE = addNewItem(GenericItems.builder("stellarium_axe", ItemsType.AXE)
+            .translate("fr_fr", "Hache en stellarium")
+            .translate("en_us", "Stellarium axe")
+            .tag(ModTags.Items.STELLARIUM_TOOL)
+            .toolMaterial(CustomItemTiers.STELLARIUM)
+            .build());
+    public static final Item STELLARIUM_HOE = addNewItem(GenericItems.builder("stellarium_hoe", ItemsType.HOE)
+            .translate("fr_fr", "Houe en stellarium")     .translate("en_us", "Stellarium hoe")
+            .tag(ModTags.Items.STELLARIUM_TOOL)
+            .toolMaterial(CustomItemTiers.STELLARIUM)
+            .build());
+    public static final Item STELLARIUM_PICKAXE = addNewItem(GenericItems.builder("stellarium_pickaxe", ItemsType.PICKAXE)
+            .translate("fr_fr", "Pioche en stellarium")   .translate("en_us", "Stellarium pickaxe")
+            .tag(ModTags.Items.STELLARIUM_TOOL)
+            .toolMaterial(CustomItemTiers.STELLARIUM)
+            .build());
+    public static final Item STELLARIUM_SHOVEL = addNewItem(GenericItems.builder("stellarium_shovel", ItemsType.SHOVEL)
+            .translate("fr_fr", "Pelle en stellarium")    .translate("en_us", "Stellarium shovel")
+            .tag(ModTags.Items.STELLARIUM_TOOL)
+            .toolMaterial(CustomItemTiers.STELLARIUM)
+            .build());
+    public static final Item STELLARIUM_SWORD = addNewItem(GenericItems.builder("stellarium_sword", ItemsType.SWORD)
+            .translate("fr_fr", "Epée en stellarium")
+            .translate("en_us", "Stellarium sword")
+            .tag(ModTags.Items.STELLARIUM_WEAPON)
+            .toolMaterial(CustomItemTiers.STELLARIUM)
+            .build());
+    public static final Item STELLARIUM_HELMET = addNewItem(GenericItems.builder("stellarium_helmet", ItemsType.HELMET)
+            .translate("fr_fr", "Casque en stellarium")
+            .translate("en_us", "Stellarium helmet")
+            .tag(ModTags.Items.STELLARIUM_ARMOR)
+            .armorMaterial(CustomArmorMaterials.STELLARIUM_ARMOR)
+            .build());
+    public static final Item STELLARIUM_CHESTPLATE = addNewItem(GenericItems.builder("stellarium_chestplate", ItemsType.CHESTPLATE)
+            .translate("fr_fr", "Plastron en stellarium")
+            .translate("en_us", "Stellarium chestplate")
+            .tag(ModTags.Items.STELLARIUM_ARMOR)
+            .armorMaterial(CustomArmorMaterials.STELLARIUM_ARMOR)
+            .build());
+    public static final Item STELLARIUM_LEGGINGS = addNewItem(GenericItems.builder("stellarium_leggings", ItemsType.LEGGINGS)
+            .translate("fr_fr", "Pantalon en stellarium")
+            .translate("en_us", "Stellarium leggings")
+            .tag(ModTags.Items.STELLARIUM_ARMOR)
+            .armorMaterial(CustomArmorMaterials.STELLARIUM_ARMOR)
+            .build());
+    public static final Item STELLARIUM_BOOTS = addNewItem(GenericItems.builder("stellarium_boots", ItemsType.BOOTS)
+            .translate("fr_fr", "Bottes en stellarium")
+            .translate("en_us", "Stellarium boots")
+            .tag(ModTags.Items.STELLARIUM_ARMOR)
+            .armorMaterial(CustomArmorMaterials.STELLARIUM_ARMOR)
+            .build());
 
     // ── ZIRCONIUM ─────────────────────────────────────────────────────────────
-    public static final Item ZIRCONIUM_INGOT = addNewItem(misc("zirconium_ingot", ItemsType.INGOT,
-            Map.of("fr_fr", "Lingot de zirconium", "en_us", "Zirconium ingot"), List.of(ModTags.Items.ITEMTAGS.get("zirconium_repair").getTag()), List.of(
-                    RecipeBuilder.builder("zirconium_block", RecipeType.SHAPE)
-                            .input(new MyIngredient("zirconium_ingot", InstanceType.ITEM, 1))
-                            .output(new MyIngredient("zirconium_block", InstanceType.BLOCK, 1))
-                            .pattern(List.of("000", "000", "000"))
-                            .unlock(new MyIngredient("zirconium_ingot", InstanceType.ITEM, 1))
-                            .build(),
-                    RecipeBuilder.builder("zirconium_tool", RecipeType.TOOLS)
-                            .input(new MyIngredient("zirconium_ingot", InstanceType.ITEM, 1))
-                            .output(new MyIngredient("zirconium_axe", InstanceType.ITEM, 1))
-                            .output(new MyIngredient("zirconium_hoe", InstanceType.ITEM, 1))
-                            .output(new MyIngredient("zirconium_pickaxe", InstanceType.ITEM, 1))
-                            .output(new MyIngredient("zirconium_shovel", InstanceType.ITEM, 1))
-                            .output(new MyIngredient("zirconium_sword", InstanceType.ITEM, 1))
-                            .build(),
-                    RecipeBuilder.builder("zirconium_armor", RecipeType.ARMOR)
-                            .input(new MyIngredient("zirconium_ingot", InstanceType.ITEM, 1))
-                            .output(new MyIngredient("zirconium_boots", InstanceType.ITEM, 1))
-                            .output(new MyIngredient("zirconium_chestplate", InstanceType.ITEM, 1))
-                            .output(new MyIngredient("zirconium_helmet", InstanceType.ITEM, 1))
-                            .output(new MyIngredient("zirconium_leggings", InstanceType.ITEM, 1))
-                            .build(),
-                    RecipeBuilder.builder("zirconium_ingot_to_zircaloy_ingot", RecipeType.FORGE)
-                            .input(new MyIngredient("zirconium_ingot", InstanceType.ITEM, 1))
-                            .fluid(new MyIngredient("solarium_fluid_still", InstanceType.FLUID, 200))
-                            .output(new MyIngredient("zircaloy_ingot", InstanceType.ITEM, 1))
-                            .build())));
-    public static final Item ZIRCONIUM_RAW = addNewItem(misc("zirconium_raw", ItemsType.RAW,
-            Map.of("fr_fr", "Zirconium brut", "en_us", "Zirconium raw"), List.of(ModTags.Items.ITEMTAGS.get("zirconium_repair").getTag()), List.of(
-                    RecipeBuilder.builder("raw_to_zirconium_ingot", RecipeType.ORE)
-                            .input(new MyIngredient("zirconium_raw", InstanceType.ITEM, 1))
-                            .output(new MyIngredient("zirconium_ingot", InstanceType.ITEM, 1))
-                            .build(),
-                    RecipeBuilder.builder("raw_to_zirconium_ingot", RecipeType.FORGE)
-                            .input(new MyIngredient("zirconium_raw", InstanceType.ITEM, 1))
-                            .fluid(new MyIngredient("solarium_fluid_still", InstanceType.FLUID, 200))
-                            .output(new MyIngredient("zirconium_ingot", InstanceType.ITEM, 2))
-                            .build())));
-    public static final Item ZIRCONIUM_AXE = addNewItem(tool("zirconium_axe", ItemsType.AXE, CustomItemTiers.ZIRCONIUM, Map.of("fr_fr", "Hache en zirconium", "en_us", "Zirconium axe"), List.of(ModTags.Items.ITEMTAGS.get("zirconium_tool").getTag()), null));
-    public static final Item ZIRCONIUM_HOE = addNewItem(tool("zirconium_hoe", ItemsType.HOE, CustomItemTiers.ZIRCONIUM, Map.of("fr_fr", "Houe en zirconium", "en_us", "Zirconium hoe"), List.of(ModTags.Items.ITEMTAGS.get("zirconium_tool").getTag()), null));
-    public static final Item ZIRCONIUM_PICKAXE = addNewItem(tool("zirconium_pickaxe", ItemsType.PICKAXE, CustomItemTiers.ZIRCONIUM, Map.of("fr_fr", "Pioche en zirconium", "en_us", "Zirconium pickaxe"), List.of(ModTags.Items.ITEMTAGS.get("zirconium_tool").getTag()), null));
-    public static final Item ZIRCONIUM_SHOVEL = addNewItem(tool("zirconium_shovel", ItemsType.SHOVEL, CustomItemTiers.ZIRCONIUM, Map.of("fr_fr", "Pelle en zirconium", "en_us", "Zirconium shovel"), List.of(ModTags.Items.ITEMTAGS.get("zirconium_tool").getTag()), null));
-    public static final Item ZIRCONIUM_SWORD = addNewItem(tool("zirconium_sword", ItemsType.SWORD, CustomItemTiers.ZIRCONIUM, Map.of("fr_fr", "Epée en zirconium", "en_us", "Zirconium sword"), List.of(ModTags.Items.ITEMTAGS.get("zirconium_weapon").getTag()), null));
-    public static final Item ZIRCONIUM_HELMET = addNewItem(armor("zirconium_helmet", ItemsType.HELMET, CustomArmorMaterials.ZIRCONIUM_ARMOR, Map.of("fr_fr", "Casque en zirconium", "en_us", "Zirconium helmet"), List.of(ModTags.Items.ITEMTAGS.get("zirconium_armor").getTag()), null));
-    public static final Item ZIRCONIUM_CHESTPLATE = addNewItem(armor("zirconium_chestplate", ItemsType.CHESTPLATE, CustomArmorMaterials.ZIRCONIUM_ARMOR, Map.of("fr_fr", "Plastron en zirconium", "en_us", "Zirconium chestplate"), List.of(ModTags.Items.ITEMTAGS.get("zirconium_armor").getTag()), null));
-    public static final Item ZIRCONIUM_LEGGINGS = addNewItem(armor("zirconium_leggings", ItemsType.LEGGINGS, CustomArmorMaterials.ZIRCONIUM_ARMOR, Map.of("fr_fr", "Pantalon en zirconium", "en_us", "Zirconium leggings"), List.of(ModTags.Items.ITEMTAGS.get("zirconium_armor").getTag()), null));
-    public static final Item ZIRCONIUM_BOOTS = addNewItem(armor("zirconium_boots", ItemsType.BOOTS, CustomArmorMaterials.ZIRCONIUM_ARMOR, Map.of("fr_fr", "Bottes en zirconium", "en_us", "Zirconium boots"), List.of(ModTags.Items.ITEMTAGS.get("zirconium_armor").getTag()), null));
+    public static final Item ZIRCONIUM_INGOT = addNewItem(GenericItems.builder("zirconium_ingot", ItemsType.INGOT)
+            .translate("fr_fr", "Lingot de zirconium")
+            .translate("en_us", "Zirconium ingot")
+            .tag(ModTags.Items.ZIRCONIUM_REPAIR)
+            .recipe(RecipeBuilder.builder("zirconium_block", RecipeType.SHAPE)
+                    .input(new MyIngredient("zirconium_ingot", InstanceType.ITEM, 1))
+                    .output(new MyIngredient("zirconium_block", InstanceType.BLOCK, 1))
+                    .pattern(List.of("000", "000", "000"))
+                    .unlock(new MyIngredient("zirconium_ingot", InstanceType.ITEM, 1))
+                    .build())
+            .recipe(RecipeBuilder.builder("zirconium_tool", RecipeType.TOOLS)
+                    .input(new MyIngredient("zirconium_ingot", InstanceType.ITEM, 1))
+                    .output(new MyIngredient("zirconium_axe", InstanceType.ITEM, 1))
+                    .output(new MyIngredient("zirconium_hoe", InstanceType.ITEM, 1))
+                    .output(new MyIngredient("zirconium_pickaxe", InstanceType.ITEM, 1))
+                    .output(new MyIngredient("zirconium_shovel", InstanceType.ITEM, 1))
+                    .output(new MyIngredient("zirconium_sword", InstanceType.ITEM, 1))
+                    .build())
+            .recipe(RecipeBuilder.builder("zirconium_armor", RecipeType.ARMOR)
+                    .input(new MyIngredient("zirconium_ingot", InstanceType.ITEM, 1))
+                    .output(new MyIngredient("zirconium_boots", InstanceType.ITEM, 1))
+                    .output(new MyIngredient("zirconium_chestplate", InstanceType.ITEM, 1))
+                    .output(new MyIngredient("zirconium_helmet", InstanceType.ITEM, 1))
+                    .output(new MyIngredient("zirconium_leggings", InstanceType.ITEM, 1))
+                    .build())
+            .recipe(RecipeBuilder.builder("zirconium_ingot_to_zircaloy_ingot", RecipeType.FORGE)
+                    .input(new MyIngredient("zirconium_ingot", InstanceType.ITEM, 1))
+                    .fluid(new MyIngredient("solarium_fluid_still", InstanceType.FLUID, 200))
+                    .output(new MyIngredient("zircaloy_ingot", InstanceType.ITEM, 1))
+                    .build())
+            .build());
+
+    public static final Item ZIRCONIUM_RAW = addNewItem(GenericItems.builder("zirconium_raw", ItemsType.RAW)
+            .translate("fr_fr", "Zirconium brut")
+            .translate("en_us", "Zirconium raw")
+            .tag(ModTags.Items.ZIRCONIUM_REPAIR)
+            .recipe(RecipeBuilder.builder("raw_to_zirconium_ingot", RecipeType.ORE)
+                    .input(new MyIngredient("zirconium_raw", InstanceType.ITEM, 1))
+                    .output(new MyIngredient("zirconium_ingot", InstanceType.ITEM, 1))
+                    .build())
+            .recipe(RecipeBuilder.builder("raw_to_zirconium_ingot", RecipeType.FORGE)
+                    .input(new MyIngredient("zirconium_raw", InstanceType.ITEM, 1))
+                    .fluid(new MyIngredient("solarium_fluid_still", InstanceType.FLUID, 200))
+                    .output(new MyIngredient("zirconium_ingot", InstanceType.ITEM, 2))
+                    .build())
+            .build());
+
+    public static final Item ZIRCONIUM_AXE = addNewItem(GenericItems.builder("zirconium_axe", ItemsType.AXE)
+            .translate("fr_fr", "Hache en zirconium")
+            .translate("en_us", "Zirconium axe")
+            .tag(ModTags.Items.ZIRCONIUM_TOOL)
+            .toolMaterial(CustomItemTiers.ZIRCONIUM)
+            .build());
+    public static final Item ZIRCONIUM_HOE = addNewItem(GenericItems.builder("zirconium_hoe", ItemsType.HOE)
+            .translate("fr_fr", "Houe en zirconium")
+            .translate("en_us", "Zirconium hoe")
+            .tag(ModTags.Items.ZIRCONIUM_TOOL)
+            .toolMaterial(CustomItemTiers.ZIRCONIUM)
+            .build());
+    public static final Item ZIRCONIUM_PICKAXE = addNewItem(GenericItems.builder("zirconium_pickaxe", ItemsType.PICKAXE)
+            .translate("fr_fr", "Pioche en zirconium")
+            .translate("en_us", "Zirconium pickaxe")
+            .tag(ModTags.Items.ZIRCONIUM_TOOL)
+            .toolMaterial(CustomItemTiers.ZIRCONIUM)
+            .build());
+    public static final Item ZIRCONIUM_SHOVEL = addNewItem(GenericItems.builder("zirconium_shovel", ItemsType.SHOVEL)
+            .translate("fr_fr", "Pelle en zirconium")
+            .translate("en_us", "Zirconium shovel")
+            .tag(ModTags.Items.ZIRCONIUM_TOOL)
+            .toolMaterial(CustomItemTiers.ZIRCONIUM)
+            .build());
+    public static final Item ZIRCONIUM_SWORD = addNewItem(GenericItems.builder("zirconium_sword", ItemsType.SWORD)
+            .translate("fr_fr", "Epée en zirconium")
+            .translate("en_us", "Zirconium sword")
+            .tag(ModTags.Items.ZIRCONIUM_WEAPON)
+            .toolMaterial(CustomItemTiers.ZIRCONIUM)
+            .build());
+    public static final Item ZIRCONIUM_HELMET = addNewItem(GenericItems.builder("zirconium_helmet", ItemsType.HELMET)
+            .translate("fr_fr", "Casque en zirconium")
+            .translate("en_us", "Zirconium helmet")
+            .tag(ModTags.Items.ZIRCONIUM_ARMOR)
+            .armorMaterial(CustomArmorMaterials.ZIRCONIUM_ARMOR)
+            .build());
+    public static final Item ZIRCONIUM_CHESTPLATE = addNewItem(GenericItems.builder("zirconium_chestplate", ItemsType.CHESTPLATE)
+            .translate("fr_fr", "Plastron en zirconium")
+            .translate("en_us", "Zirconium chestplate")
+            .tag(ModTags.Items.ZIRCONIUM_ARMOR)
+            .armorMaterial(CustomArmorMaterials.ZIRCONIUM_ARMOR)
+            .build());
+    public static final Item ZIRCONIUM_LEGGINGS = addNewItem(GenericItems.builder("zirconium_leggings", ItemsType.LEGGINGS)
+            .translate("fr_fr", "Pantalon en zirconium")
+            .translate("en_us", "Zirconium leggings")
+            .tag(ModTags.Items.ZIRCONIUM_ARMOR)
+            .armorMaterial(CustomArmorMaterials.ZIRCONIUM_ARMOR)
+            .build());
+    public static final Item ZIRCONIUM_BOOTS = addNewItem(GenericItems.builder("zirconium_boots", ItemsType.BOOTS)
+            .translate("fr_fr", "Bottes en zirconium")
+            .translate("en_us", "Zirconium boots")
+            .tag(ModTags.Items.ZIRCONIUM_ARMOR)
+            .armorMaterial(CustomArmorMaterials.ZIRCONIUM_ARMOR)
+            .build());
 
     // ── IRIDIUM ───────────────────────────────────────────────────────────────
-    public static final Item IRIDIUM_INGOT = addNewItem(misc("iridium_ingot", ItemsType.INGOT,
-            Map.of("fr_fr", "Lingot de iridium", "en_us", "Iridium ingot"), List.of(ModTags.Items.ITEMTAGS.get("iridium_repair").getTag()), List.of(
-                    RecipeBuilder.builder("iridium_block", RecipeType.SHAPE)
-                            .input(new MyIngredient("iridium_ingot", InstanceType.ITEM, 1))
-                            .output(new MyIngredient("iridium_block", InstanceType.BLOCK, 1))
-                            .pattern(List.of("000", "000", "000"))
-                            .unlock(new MyIngredient("iridium_ingot", InstanceType.ITEM, 1))
-                            .build(),
-                    RecipeBuilder.builder("iridium_tool", RecipeType.TOOLS)
-                            .input(new MyIngredient("iridium_ingot", InstanceType.ITEM, 1))
-                            .output(new MyIngredient("iridium_axe", InstanceType.ITEM, 1))
-                            .output(new MyIngredient("iridium_hoe", InstanceType.ITEM, 1))
-                            .output(new MyIngredient("iridium_pickaxe", InstanceType.ITEM, 1))
-                            .output(new MyIngredient("iridium_shovel", InstanceType.ITEM, 1))
-                            .output(new MyIngredient("iridium_sword", InstanceType.ITEM, 1))
-                            .build(),
-                    RecipeBuilder.builder("iridium_armor", RecipeType.ARMOR)
-                            .input(new MyIngredient("iridium_ingot", InstanceType.ITEM, 1))
-                            .output(new MyIngredient("iridium_boots", InstanceType.ITEM, 1))
-                            .output(new MyIngredient("iridium_chestplate", InstanceType.ITEM, 1))
-                            .output(new MyIngredient("iridium_helmet", InstanceType.ITEM, 1))
-                            .output(new MyIngredient("iridium_leggings", InstanceType.ITEM, 1))
-                            .build(),
-                    RecipeBuilder.builder("iridium_ingot_to_osmiridium_ingot", RecipeType.FORGE)
-                            .input(new MyIngredient("iridium_ingot", InstanceType.ITEM, 1))
-                            .fluid(new MyIngredient("solarium_fluid_still", InstanceType.FLUID, 200))
-                            .output(new MyIngredient("osmiridium_ingot", InstanceType.ITEM, 1))
-                            .build())));
-    public static final Item IRIDIUM_RAW = addNewItem(misc("iridium_raw", ItemsType.RAW,
-            Map.of("fr_fr", "Iridium brut", "en_us", "Iridium raw"), List.of(ModTags.Items.ITEMTAGS.get("iridium_repair").getTag()), List.of(
-                    RecipeBuilder.builder("raw_to_iridium_ingot", RecipeType.ORE)
-                            .input(new MyIngredient("iridium_raw", InstanceType.ITEM, 1))
-                            .output(new MyIngredient("iridium_ingot", InstanceType.ITEM, 1))
-                            .build(),
-                    RecipeBuilder.builder("raw_to_iridium_ingot", RecipeType.FORGE)
-                            .input(new MyIngredient("iridium_raw", InstanceType.ITEM, 1))
-                            .fluid(new MyIngredient("solarium_fluid_still", InstanceType.FLUID, 200))
-                            .output(new MyIngredient("iridium_ingot", InstanceType.ITEM, 2))
-                            .build())));
-    public static final Item IRIDIUM_AXE = addNewItem(tool("iridium_axe", ItemsType.AXE, CustomItemTiers.IRIDIUM, Map.of("fr_fr", "Hache en iridium", "en_us", "Iridium axe"), List.of(ModTags.Items.ITEMTAGS.get("iridium_tool").getTag()), null));
-    public static final Item IRIDIUM_HOE = addNewItem(tool("iridium_hoe", ItemsType.HOE, CustomItemTiers.IRIDIUM, Map.of("fr_fr", "Houe en iridium", "en_us", "Iridium hoe"), List.of(ModTags.Items.ITEMTAGS.get("iridium_tool").getTag()), null));
-    public static final Item IRIDIUM_PICKAXE = addNewItem(tool("iridium_pickaxe", ItemsType.PICKAXE, CustomItemTiers.IRIDIUM, Map.of("fr_fr", "Pioche en iridium", "en_us", "Iridium pickaxe"), List.of(ModTags.Items.ITEMTAGS.get("iridium_tool").getTag()), null));
-    public static final Item IRIDIUM_SHOVEL = addNewItem(tool("iridium_shovel", ItemsType.SHOVEL, CustomItemTiers.IRIDIUM, Map.of("fr_fr", "Pelle en iridium", "en_us", "Iridium shovel"), List.of(ModTags.Items.ITEMTAGS.get("iridium_tool").getTag()), null));
-    public static final Item IRIDIUM_SWORD = addNewItem(tool("iridium_sword", ItemsType.SWORD, CustomItemTiers.IRIDIUM, Map.of("fr_fr", "Epée en iridium", "en_us", "Iridium sword"), List.of(ModTags.Items.ITEMTAGS.get("iridium_weapon").getTag()), null));
-    public static final Item IRIDIUM_HELMET = addNewItem(armor("iridium_helmet", ItemsType.HELMET, CustomArmorMaterials.IRIDIUM_ARMOR, Map.of("fr_fr", "Casque en iridium", "en_us", "Iridium helmet"), List.of(ModTags.Items.ITEMTAGS.get("iridium_armor").getTag()), null));
-    public static final Item IRIDIUM_CHESTPLATE = addNewItem(armor("iridium_chestplate", ItemsType.CHESTPLATE, CustomArmorMaterials.IRIDIUM_ARMOR, Map.of("fr_fr", "Plastron en iridium", "en_us", "Iridium chestplate"), List.of(ModTags.Items.ITEMTAGS.get("iridium_armor").getTag()), null));
-    public static final Item IRIDIUM_LEGGINGS = addNewItem(armor("iridium_leggings", ItemsType.LEGGINGS, CustomArmorMaterials.IRIDIUM_ARMOR, Map.of("fr_fr", "Pantalon en iridium", "en_us", "Iridium leggings"), List.of(ModTags.Items.ITEMTAGS.get("iridium_armor").getTag()), null));
-    public static final Item IRIDIUM_BOOTS = addNewItem(armor("iridium_boots", ItemsType.BOOTS, CustomArmorMaterials.IRIDIUM_ARMOR, Map.of("fr_fr", "Bottes en iridium", "en_us", "Iridium boots"), List.of(ModTags.Items.ITEMTAGS.get("iridium_armor").getTag()), null));
+    public static final Item IRIDIUM_INGOT = addNewItem(GenericItems.builder("iridium_ingot", ItemsType.INGOT)
+            .translate("fr_fr", "Lingot de iridium")
+            .translate("en_us", "Iridium ingot")
+            .tag(ModTags.Items.IRIDIUM_REPAIR)
+            .recipe(RecipeBuilder.builder("iridium_block", RecipeType.SHAPE)
+                    .input(new MyIngredient("iridium_ingot", InstanceType.ITEM, 1))
+                    .output(new MyIngredient("iridium_block", InstanceType.BLOCK, 1))
+                    .pattern(List.of("000", "000", "000"))
+                    .unlock(new MyIngredient("iridium_ingot", InstanceType.ITEM, 1))
+                    .build())
+            .recipe(RecipeBuilder.builder("iridium_tool", RecipeType.TOOLS)
+                    .input(new MyIngredient("iridium_ingot", InstanceType.ITEM, 1))
+                    .output(new MyIngredient("iridium_axe", InstanceType.ITEM, 1))
+                    .output(new MyIngredient("iridium_hoe", InstanceType.ITEM, 1))
+                    .output(new MyIngredient("iridium_pickaxe", InstanceType.ITEM, 1))
+                    .output(new MyIngredient("iridium_shovel", InstanceType.ITEM, 1))
+                    .output(new MyIngredient("iridium_sword", InstanceType.ITEM, 1))
+                    .build())
+            .recipe(RecipeBuilder.builder("iridium_armor", RecipeType.ARMOR)
+                    .input(new MyIngredient("iridium_ingot", InstanceType.ITEM, 1))
+                    .output(new MyIngredient("iridium_boots", InstanceType.ITEM, 1))
+                    .output(new MyIngredient("iridium_chestplate", InstanceType.ITEM, 1))
+                    .output(new MyIngredient("iridium_helmet", InstanceType.ITEM, 1))
+                    .output(new MyIngredient("iridium_leggings", InstanceType.ITEM, 1))
+                    .build())
+            .recipe(RecipeBuilder.builder("iridium_ingot_to_osmiridium_ingot", RecipeType.FORGE)
+                    .input(new MyIngredient("iridium_ingot", InstanceType.ITEM, 1))
+                    .fluid(new MyIngredient("solarium_fluid_still", InstanceType.FLUID, 200))
+                    .output(new MyIngredient("osmiridium_ingot", InstanceType.ITEM, 1))
+                    .build())
+            .build());
+
+    public static final Item IRIDIUM_RAW = addNewItem(GenericItems.builder("iridium_raw", ItemsType.RAW)
+            .translate("fr_fr", "Iridium brut")
+            .translate("en_us", "Iridium raw")
+            .tag(ModTags.Items.IRIDIUM_REPAIR)
+            .recipe(RecipeBuilder.builder("raw_to_iridium_ingot", RecipeType.ORE)
+                    .input(new MyIngredient("iridium_raw", InstanceType.ITEM, 1))
+                    .output(new MyIngredient("iridium_ingot", InstanceType.ITEM, 1))
+                    .build())
+            .recipe(RecipeBuilder.builder("raw_to_iridium_ingot", RecipeType.FORGE)
+                    .input(new MyIngredient("iridium_raw", InstanceType.ITEM, 1))
+                    .fluid(new MyIngredient("solarium_fluid_still", InstanceType.FLUID, 200))
+                    .output(new MyIngredient("iridium_ingot", InstanceType.ITEM, 2))
+                    .build())
+            .build());
+
+    public static final Item IRIDIUM_AXE = addNewItem(GenericItems.builder("iridium_axe", ItemsType.AXE)
+            .translate("fr_fr", "Hache en iridium")
+            .translate("en_us", "Iridium axe")
+            .tag(ModTags.Items.IRIDIUM_TOOL)
+            .toolMaterial(CustomItemTiers.IRIDIUM).build());
+    public static final Item IRIDIUM_HOE = addNewItem(GenericItems.builder("iridium_hoe", ItemsType.HOE)
+            .translate("fr_fr", "Houe en iridium")
+            .translate("en_us", "Iridium hoe")
+            .tag(ModTags.Items.IRIDIUM_TOOL)
+            .toolMaterial(CustomItemTiers.IRIDIUM)
+            .build());
+    public static final Item IRIDIUM_PICKAXE = addNewItem(GenericItems.builder("iridium_pickaxe", ItemsType.PICKAXE)
+            .translate("fr_fr", "Pioche en iridium")
+            .translate("en_us", "Iridium pickaxe")
+            .tag(ModTags.Items.IRIDIUM_TOOL)
+            .toolMaterial(CustomItemTiers.IRIDIUM)
+            .build());
+    public static final Item IRIDIUM_SHOVEL = addNewItem(GenericItems.builder("iridium_shovel", ItemsType.SHOVEL)
+            .translate("fr_fr", "Pelle en iridium")
+            .translate("en_us", "Iridium shovel")
+            .tag(ModTags.Items.IRIDIUM_TOOL)
+            .toolMaterial(CustomItemTiers.IRIDIUM)
+            .build());
+    public static final Item IRIDIUM_SWORD = addNewItem(GenericItems.builder("iridium_sword", ItemsType.SWORD)
+            .translate("fr_fr", "Epée en iridium")
+            .translate("en_us", "Iridium sword")
+            .tag(ModTags.Items.IRIDIUM_WEAPON)
+            .toolMaterial(CustomItemTiers.IRIDIUM)
+            .build());
+    public static final Item IRIDIUM_HELMET = addNewItem(GenericItems.builder("iridium_helmet", ItemsType.HELMET)
+            .translate("fr_fr", "Casque en iridium")
+            .translate("en_us", "Iridium helmet")
+            .tag(ModTags.Items.IRIDIUM_ARMOR)
+            .armorMaterial(CustomArmorMaterials.IRIDIUM_ARMOR)
+            .build());
+    public static final Item IRIDIUM_CHESTPLATE = addNewItem(GenericItems.builder("iridium_chestplate", ItemsType.CHESTPLATE)
+            .translate("fr_fr", "Plastron en iridium")
+            .translate("en_us", "Iridium chestplate")
+            .tag(ModTags.Items.IRIDIUM_ARMOR)
+            .armorMaterial(CustomArmorMaterials.IRIDIUM_ARMOR)
+            .build());
+    public static final Item IRIDIUM_LEGGINGS = addNewItem(GenericItems.builder("iridium_leggings", ItemsType.LEGGINGS)
+            .translate("fr_fr", "Pantalon en iridium")
+            .translate("en_us", "Iridium leggings")
+            .tag(ModTags.Items.IRIDIUM_ARMOR)
+            .armorMaterial(CustomArmorMaterials.IRIDIUM_ARMOR)
+            .build());
+    public static final Item IRIDIUM_BOOTS = addNewItem(GenericItems.builder("iridium_boots", ItemsType.BOOTS)
+            .translate("fr_fr", "Bottes en iridium")
+            .translate("en_us", "Iridium boots")
+            .tag(ModTags.Items.IRIDIUM_ARMOR)
+            .armorMaterial(CustomArmorMaterials.IRIDIUM_ARMOR)
+            .build());
 
     // ── ZIRCALOY ──────────────────────────────────────────────────────────────
-    public static final Item ZIRCALOY_INGOT = addNewItem(misc("zircaloy_ingot", ItemsType.INGOT,
-            Map.of("fr_fr", "Lingot de zircaloy", "en_us", "Zircaloy ingot"), List.of(ModTags.Items.ITEMTAGS.get("zircaloy_repair").getTag()), List.of(
-                    RecipeBuilder.builder("zircaloy_block", RecipeType.SHAPE)
-                            .input(new MyIngredient("zircaloy_ingot", InstanceType.ITEM, 1))
-                            .output(new MyIngredient("zircaloy_block", InstanceType.BLOCK, 1))
-                            .pattern(List.of("000", "000", "000"))
-                            .unlock(new MyIngredient("zircaloy_ingot", InstanceType.ITEM, 1))
-                            .build(),
-                    RecipeBuilder.builder("zircaloy_tool", RecipeType.TOOLS)
-                            .input(new MyIngredient("zircaloy_ingot", InstanceType.ITEM, 1))
-                            .output(new MyIngredient("zircaloy_axe", InstanceType.ITEM, 1))
-                            .output(new MyIngredient("zircaloy_hoe", InstanceType.ITEM, 1))
-                            .output(new MyIngredient("zircaloy_pickaxe", InstanceType.ITEM, 1))
-                            .output(new MyIngredient("zircaloy_shovel", InstanceType.ITEM, 1))
-                            .output(new MyIngredient("zircaloy_sword", InstanceType.ITEM, 1))
-                            .build(),
-                    RecipeBuilder.builder("zircaloy_armor", RecipeType.ARMOR)
-                            .input(new MyIngredient("zircaloy_ingot", InstanceType.ITEM, 1))
-                            .output(new MyIngredient("zircaloy_boots", InstanceType.ITEM, 1))
-                            .output(new MyIngredient("zircaloy_chestplate", InstanceType.ITEM, 1))
-                            .output(new MyIngredient("zircaloy_helmet", InstanceType.ITEM, 1))
-                            .output(new MyIngredient("zircaloy_leggings", InstanceType.ITEM, 1))
-                            .build())));
-    public static final Item ZIRCALOY_AXE = addNewItem(tool("zircaloy_axe", ItemsType.AXE, CustomItemTiers.ZIRCALOY, Map.of("fr_fr", "Hache en zircaloy", "en_us", "Zircaloy axe"), List.of(ModTags.Items.ITEMTAGS.get("zircaloy_tool").getTag()), null));
-    public static final Item ZIRCALOY_HOE = addNewItem(tool("zircaloy_hoe", ItemsType.HOE, CustomItemTiers.ZIRCALOY, Map.of("fr_fr", "Houe en zircaloy", "en_us", "Zircaloy hoe"), List.of(ModTags.Items.ITEMTAGS.get("zircaloy_tool").getTag()), null));
-    public static final Item ZIRCALOY_PICKAXE = addNewItem(tool("zircaloy_pickaxe", ItemsType.PICKAXE, CustomItemTiers.ZIRCALOY, Map.of("fr_fr", "Pioche en zircaloy", "en_us", "Zircaloy pickaxe"), List.of(ModTags.Items.ITEMTAGS.get("zircaloy_tool").getTag()), null));
-    public static final Item ZIRCALOY_SHOVEL = addNewItem(tool("zircaloy_shovel", ItemsType.SHOVEL, CustomItemTiers.ZIRCALOY, Map.of("fr_fr", "Pelle en zircaloy", "en_us", "Zircaloy shovel"), List.of(ModTags.Items.ITEMTAGS.get("zircaloy_tool").getTag()), null));
-    public static final Item ZIRCALOY_SWORD = addNewItem(tool("zircaloy_sword", ItemsType.SWORD, CustomItemTiers.ZIRCALOY, Map.of("fr_fr", "Epée en zircaloy", "en_us", "Zircaloy sword"), List.of(ModTags.Items.ITEMTAGS.get("zircaloy_weapon").getTag()), null));
-    public static final Item ZIRCALOY_HELMET = addNewItem(armor("zircaloy_helmet", ItemsType.HELMET, CustomArmorMaterials.ZIRCALOY_ARMOR, Map.of("fr_fr", "Casque en zircaloy", "en_us", "Zircaloy helmet"), List.of(ModTags.Items.ITEMTAGS.get("zircaloy_armor").getTag()), null));
-    public static final Item ZIRCALOY_CHESTPLATE = addNewItem(armor("zircaloy_chestplate", ItemsType.CHESTPLATE, CustomArmorMaterials.ZIRCALOY_ARMOR, Map.of("fr_fr", "Plastron en zircaloy", "en_us", "Zircaloy chestplate"), List.of(ModTags.Items.ITEMTAGS.get("zircaloy_armor").getTag()), null));
-    public static final Item ZIRCALOY_LEGGINGS = addNewItem(armor("zircaloy_leggings", ItemsType.LEGGINGS, CustomArmorMaterials.ZIRCALOY_ARMOR, Map.of("fr_fr", "Pantalon en zircaloy", "en_us", "Zircaloy leggings"), List.of(ModTags.Items.ITEMTAGS.get("zircaloy_armor").getTag()), null));
-    public static final Item ZIRCALOY_BOOTS = addNewItem(armor("zircaloy_boots", ItemsType.BOOTS, CustomArmorMaterials.ZIRCALOY_ARMOR, Map.of("fr_fr", "Bottes en zircaloy", "en_us", "Zircaloy boots"), List.of(ModTags.Items.ITEMTAGS.get("zircaloy_armor").getTag()), null));
+    public static final Item ZIRCALOY_INGOT = addNewItem(GenericItems.builder("zircaloy_ingot", ItemsType.INGOT)
+            .translate("fr_fr", "Lingot de zircaloy")
+            .translate("en_us", "Zircaloy ingot")
+            .tag(ModTags.Items.ZIRCALOY_REPAIR)
+            .recipe(RecipeBuilder.builder("zircaloy_block", RecipeType.SHAPE)
+                    .input(new MyIngredient("zircaloy_ingot", InstanceType.ITEM, 1))
+                    .output(new MyIngredient("zircaloy_block", InstanceType.BLOCK, 1))
+                    .pattern(List.of("000", "000", "000"))
+                    .unlock(new MyIngredient("zircaloy_ingot", InstanceType.ITEM, 1))
+                    .build())
+            .recipe(RecipeBuilder.builder("zircaloy_tool", RecipeType.TOOLS)
+                    .input(new MyIngredient("zircaloy_ingot", InstanceType.ITEM, 1))
+                    .output(new MyIngredient("zircaloy_axe", InstanceType.ITEM, 1))
+                    .output(new MyIngredient("zircaloy_hoe", InstanceType.ITEM, 1))
+                    .output(new MyIngredient("zircaloy_pickaxe", InstanceType.ITEM, 1))
+                    .output(new MyIngredient("zircaloy_shovel", InstanceType.ITEM, 1))
+                    .output(new MyIngredient("zircaloy_sword", InstanceType.ITEM, 1))
+                    .build())
+            .recipe(RecipeBuilder.builder("zircaloy_armor", RecipeType.ARMOR)
+                    .input(new MyIngredient("zircaloy_ingot", InstanceType.ITEM, 1))
+                    .output(new MyIngredient("zircaloy_boots", InstanceType.ITEM, 1))
+                    .output(new MyIngredient("zircaloy_chestplate", InstanceType.ITEM, 1))
+                    .output(new MyIngredient("zircaloy_helmet", InstanceType.ITEM, 1))
+                    .output(new MyIngredient("zircaloy_leggings", InstanceType.ITEM, 1))
+                    .build())
+            .build());
+
+    public static final Item ZIRCALOY_AXE = addNewItem(GenericItems.builder("zircaloy_axe", ItemsType.AXE)
+            .translate("fr_fr", "Hache en zircaloy")
+            .translate("en_us", "Zircaloy axe")
+            .tag(ModTags.Items.ZIRCALOY_TOOL)
+            .toolMaterial(CustomItemTiers.ZIRCALOY)
+            .build());
+    public static final Item ZIRCALOY_HOE = addNewItem(GenericItems.builder("zircaloy_hoe", ItemsType.HOE)
+            .translate("fr_fr", "Houe en zircaloy")
+            .translate("en_us", "Zircaloy hoe")
+            .tag(ModTags.Items.ZIRCALOY_TOOL)
+            .toolMaterial(CustomItemTiers.ZIRCALOY)
+            .build());
+    public static final Item ZIRCALOY_PICKAXE = addNewItem(GenericItems.builder("zircaloy_pickaxe", ItemsType.PICKAXE)
+            .translate("fr_fr", "Pioche en zircaloy")
+            .translate("en_us", "Zircaloy pickaxe")
+            .tag(ModTags.Items.ZIRCALOY_TOOL)
+            .toolMaterial(CustomItemTiers.ZIRCALOY)
+            .build());
+    public static final Item ZIRCALOY_SHOVEL = addNewItem(GenericItems.builder("zircaloy_shovel", ItemsType.SHOVEL)
+            .translate("fr_fr", "Pelle en zircaloy")
+            .translate("en_us", "Zircaloy shovel")
+            .tag(ModTags.Items.ZIRCALOY_TOOL)
+            .toolMaterial(CustomItemTiers.ZIRCALOY)
+            .build());
+    public static final Item ZIRCALOY_SWORD = addNewItem(GenericItems.builder("zircaloy_sword", ItemsType.SWORD)
+            .translate("fr_fr", "Epée en zircaloy")
+            .translate("en_us", "Zircaloy sword")
+            .tag(ModTags.Items.ZIRCALOY_WEAPON)
+            .toolMaterial(CustomItemTiers.ZIRCALOY)
+            .build());
+    public static final Item ZIRCALOY_HELMET = addNewItem(GenericItems.builder("zircaloy_helmet", ItemsType.HELMET)
+            .translate("fr_fr", "Casque en zircaloy")
+            .translate("en_us", "Zircaloy helmet")
+            .tag(ModTags.Items.ZIRCALOY_ARMOR)
+            .armorMaterial(CustomArmorMaterials.ZIRCALOY_ARMOR)
+            .build());
+    public static final Item ZIRCALOY_CHESTPLATE = addNewItem(GenericItems.builder("zircaloy_chestplate", ItemsType.CHESTPLATE)
+            .translate("fr_fr", "Plastron en zircaloy")
+            .translate("en_us", "Zircaloy chestplate")
+            .tag(ModTags.Items.ZIRCALOY_ARMOR)
+            .armorMaterial(CustomArmorMaterials.ZIRCALOY_ARMOR)
+            .build());
+    public static final Item ZIRCALOY_LEGGINGS = addNewItem(GenericItems.builder("zircaloy_leggings", ItemsType.LEGGINGS)
+            .translate("fr_fr", "Pantalon en zircaloy")
+            .translate("en_us", "Zircaloy leggings")
+            .tag(ModTags.Items.ZIRCALOY_ARMOR)
+            .armorMaterial(CustomArmorMaterials.ZIRCALOY_ARMOR)
+            .build());
+    public static final Item ZIRCALOY_BOOTS = addNewItem(GenericItems.builder("zircaloy_boots", ItemsType.BOOTS)
+            .translate("fr_fr", "Bottes en zircaloy")
+            .translate("en_us", "Zircaloy boots")
+            .tag(ModTags.Items.ZIRCALOY_ARMOR)
+            .armorMaterial(CustomArmorMaterials.ZIRCALOY_ARMOR)
+            .build());
 
     // ── OSMIRIDIUM ────────────────────────────────────────────────────────────
-    public static final Item OSMIRIDIUM_INGOT = addNewItem(misc("osmiridium_ingot", ItemsType.INGOT,
-            Map.of("fr_fr", "Lingot de osmiridium", "en_us", "Osmiridium ingot"), List.of(ModTags.Items.ITEMTAGS.get("osmiridium_repair").getTag()), List.of(
-                    RecipeBuilder.builder("osmiridium_block", RecipeType.SHAPE)
-                            .input(new MyIngredient("osmiridium_ingot", InstanceType.ITEM, 1))
-                            .output(new MyIngredient("osmiridium_block", InstanceType.BLOCK, 1))
-                            .pattern(List.of("000", "000", "000"))
-                            .unlock(new MyIngredient("osmiridium_ingot", InstanceType.ITEM, 1))
-                            .build(),
-                    RecipeBuilder.builder("osmiridium_tool", RecipeType.TOOLS)
-                            .input(new MyIngredient("osmiridium_ingot", InstanceType.ITEM, 1))
-                            .output(new MyIngredient("osmiridium_axe", InstanceType.ITEM, 1))
-                            .output(new MyIngredient("osmiridium_hoe", InstanceType.ITEM, 1))
-                            .output(new MyIngredient("osmiridium_pickaxe", InstanceType.ITEM, 1))
-                            .output(new MyIngredient("osmiridium_shovel", InstanceType.ITEM, 1))
-                            .output(new MyIngredient("osmiridium_sword", InstanceType.ITEM, 1))
-                            .build(),
-                    RecipeBuilder.builder("osmiridium_armor", RecipeType.ARMOR)
-                            .input(new MyIngredient("osmiridium_ingot", InstanceType.ITEM, 1))
-                            .output(new MyIngredient("osmiridium_boots", InstanceType.ITEM, 1))
-                            .output(new MyIngredient("osmiridium_chestplate", InstanceType.ITEM, 1))
-                            .output(new MyIngredient("osmiridium_helmet", InstanceType.ITEM, 1))
-                            .output(new MyIngredient("osmiridium_leggings", InstanceType.ITEM, 1))
-                            .build())));
-    public static final Item OSMIRIDIUM_AXE = addNewItem(tool("osmiridium_axe", ItemsType.AXE, CustomItemTiers.OSMIRIDIUM, Map.of("fr_fr", "Hache en osmiridium","en_us", "Osmiridium axe"), List.of(ModTags.Items.ITEMTAGS.get("osmiridium_tool").getTag()),null));
-    public static final Item OSMIRIDIUM_HOE = addNewItem(tool("osmiridium_hoe", ItemsType.HOE, CustomItemTiers.OSMIRIDIUM, Map.of("fr_fr", "Houe en osmiridium","en_us", "Osmiridium hoe"), List.of(ModTags.Items.ITEMTAGS.get("osmiridium_tool").getTag()),null));
-    public static final Item OSMIRIDIUM_PICKAXE = addNewItem(tool("osmiridium_pickaxe", ItemsType.PICKAXE, CustomItemTiers.OSMIRIDIUM, Map.of("fr_fr", "Pioche en osmiridium","en_us", "Osmiridium pickaxe"), List.of(ModTags.Items.ITEMTAGS.get("osmiridium_tool").getTag()),null));
-    public static final Item OSMIRIDIUM_SHOVEL = addNewItem(tool("osmiridium_shovel", ItemsType.SHOVEL, CustomItemTiers.OSMIRIDIUM, Map.of("fr_fr", "Pelle en osmiridium", "en_us", "Osmiridium shovel"), List.of(ModTags.Items.ITEMTAGS.get("osmiridium_tool").getTag()),null));
-    public static final Item OSMIRIDIUM_SWORD = addNewItem(tool("osmiridium_sword", ItemsType.SWORD, CustomItemTiers.OSMIRIDIUM, Map.of("fr_fr", "Epée en osmiridium", "en_us", "Osmiridium sword"), List.of(ModTags.Items.ITEMTAGS.get("osmiridium_weapon").getTag()),null));
-    public static final Item OSMIRIDIUM_HELMET = addNewItem(armor("osmiridium_helmet", ItemsType.HELMET, CustomArmorMaterials.OSMIRIDIUM_ARMOR, Map.of("fr_fr", "Casque en osmiridium", "en_us", "Osmiridium helmet"), List.of(ModTags.Items.ITEMTAGS.get("osmiridium_armor").getTag()), null));
-    public static final Item OSMIRIDIUM_CHESTPLATE = addNewItem(armor("osmiridium_chestplate", ItemsType.CHESTPLATE, CustomArmorMaterials.OSMIRIDIUM_ARMOR, Map.of("fr_fr", "Plastron en osmiridium", "en_us", "Osmiridium chestplate"), List.of(ModTags.Items.ITEMTAGS.get("osmiridium_armor").getTag()), null));
-    public static final Item OSMIRIDIUM_LEGGINGS = addNewItem(armor("osmiridium_leggings", ItemsType.LEGGINGS, CustomArmorMaterials.OSMIRIDIUM_ARMOR, Map.of("fr_fr", "Pantalon en osmiridium","en_us", "Osmiridium leggings"),List.of(ModTags.Items.ITEMTAGS.get("osmiridium_armor").getTag()), null));
-    public static final Item OSMIRIDIUM_BOOTS = addNewItem(armor("osmiridium_boots", ItemsType.BOOTS, CustomArmorMaterials.OSMIRIDIUM_ARMOR, Map.of("fr_fr", "Bottes en osmiridium","en_us", "Osmiridium boots"),List.of(ModTags.Items.ITEMTAGS.get("osmiridium_armor").getTag()),null));
+    public static final Item OSMIRIDIUM_INGOT = addNewItem(GenericItems.builder("osmiridium_ingot", ItemsType.INGOT)
+            .translate("fr_fr", "Lingot de osmiridium")
+            .translate("en_us", "Osmiridium ingot")
+            .tag(ModTags.Items.OSMIRIDIUM_REPAIR)
+            .recipe(RecipeBuilder.builder("osmiridium_block", RecipeType.SHAPE)
+                    .input(new MyIngredient("osmiridium_ingot", InstanceType.ITEM, 1))
+                    .output(new MyIngredient("osmiridium_block", InstanceType.BLOCK, 1))
+                    .pattern(List.of("000", "000", "000"))
+                    .unlock(new MyIngredient("osmiridium_ingot", InstanceType.ITEM, 1))
+                    .build())
+            .recipe(RecipeBuilder.builder("osmiridium_tool", RecipeType.TOOLS)
+                    .input(new MyIngredient("osmiridium_ingot", InstanceType.ITEM, 1))
+                    .output(new MyIngredient("osmiridium_axe", InstanceType.ITEM, 1))
+                    .output(new MyIngredient("osmiridium_hoe", InstanceType.ITEM, 1))
+                    .output(new MyIngredient("osmiridium_pickaxe", InstanceType.ITEM, 1))
+                    .output(new MyIngredient("osmiridium_shovel", InstanceType.ITEM, 1))
+                    .output(new MyIngredient("osmiridium_sword", InstanceType.ITEM, 1))
+                    .build())
+            .recipe(RecipeBuilder.builder("osmiridium_armor", RecipeType.ARMOR)
+                    .input(new MyIngredient("osmiridium_ingot", InstanceType.ITEM, 1))
+                    .output(new MyIngredient("osmiridium_boots", InstanceType.ITEM, 1))
+                    .output(new MyIngredient("osmiridium_chestplate", InstanceType.ITEM, 1))
+                    .output(new MyIngredient("osmiridium_helmet", InstanceType.ITEM, 1))
+                    .output(new MyIngredient("osmiridium_leggings", InstanceType.ITEM, 1))
+                    .build())
+            .build());
 
-
-    // ── Factory methods ───────────────────────────────────────────────────────
-    public static GenericItems tool(String id, ItemsType type, ToolMaterial mat, Map<String, String> translate, List<TagKey<Item>> tags, List<RecipeBuilder> recipes) { return new GenericItems(id, type, mat,null, translate, tags, recipes); }
-    public static GenericItems armor(String id, ItemsType type, ArmorMaterial mat, Map<String, String> translate, List<TagKey<Item>> tags, List<RecipeBuilder> recipes) { return new GenericItems(id, type, null, mat, translate, tags, recipes); }
-    public static GenericItems misc(String id, ItemsType type, Map<String, String> translate, List<TagKey<Item>> tags, List<RecipeBuilder> recipes) { return new GenericItems(id, type, null, null, translate, tags, recipes); }
+    public static final Item OSMIRIDIUM_AXE = addNewItem(GenericItems.builder("osmiridium_axe", ItemsType.AXE)
+            .translate("fr_fr", "Hache en osmiridium")
+            .translate("en_us", "Osmiridium axe")
+            .tag(ModTags.Items.OSMIRIDIUM_TOOL)
+            .toolMaterial(CustomItemTiers.OSMIRIDIUM)
+            .build());
+    public static final Item OSMIRIDIUM_HOE = addNewItem(GenericItems.builder("osmiridium_hoe", ItemsType.HOE)
+            .translate("fr_fr", "Houe en osmiridium")
+            .translate("en_us", "Osmiridium hoe")
+            .tag(ModTags.Items.OSMIRIDIUM_TOOL)
+            .toolMaterial(CustomItemTiers.OSMIRIDIUM)
+            .build());
+    public static final Item OSMIRIDIUM_PICKAXE = addNewItem(GenericItems.builder("osmiridium_pickaxe", ItemsType.PICKAXE)
+            .translate("fr_fr", "Pioche en osmiridium")
+            .translate("en_us", "Osmiridium pickaxe")
+            .tag(ModTags.Items.OSMIRIDIUM_TOOL)
+            .toolMaterial(CustomItemTiers.OSMIRIDIUM)
+            .build());
+    public static final Item OSMIRIDIUM_SHOVEL = addNewItem(GenericItems.builder("osmiridium_shovel", ItemsType.SHOVEL)
+            .translate("fr_fr", "Pelle en osmiridium")
+            .translate("en_us", "Osmiridium shovel")
+            .tag(ModTags.Items.OSMIRIDIUM_TOOL)
+            .toolMaterial(CustomItemTiers.OSMIRIDIUM)
+            .build());
+    public static final Item OSMIRIDIUM_SWORD = addNewItem(GenericItems.builder("osmiridium_sword", ItemsType.SWORD)
+            .translate("fr_fr", "Epée en osmiridium")
+            .translate("en_us", "Osmiridium sword")
+            .tag(ModTags.Items.OSMIRIDIUM_WEAPON)
+            .toolMaterial(CustomItemTiers.OSMIRIDIUM)
+            .build());
+    public static final Item OSMIRIDIUM_HELMET = addNewItem(GenericItems.builder("osmiridium_helmet", ItemsType.HELMET)
+            .translate("fr_fr", "Casque en osmiridium")
+            .translate("en_us", "Osmiridium helmet")
+            .tag(ModTags.Items.OSMIRIDIUM_ARMOR)
+            .armorMaterial(CustomArmorMaterials.OSMIRIDIUM_ARMOR)
+            .build());
+    public static final Item OSMIRIDIUM_CHESTPLATE = addNewItem(GenericItems.builder("osmiridium_chestplate", ItemsType.CHESTPLATE)
+            .translate("fr_fr", "Plastron en osmiridium")
+            .translate("en_us", "Osmiridium chestplate")
+            .tag(ModTags.Items.OSMIRIDIUM_ARMOR)
+            .armorMaterial(CustomArmorMaterials.OSMIRIDIUM_ARMOR)
+            .build());
+    public static final Item OSMIRIDIUM_LEGGINGS = addNewItem(GenericItems.builder("osmiridium_leggings", ItemsType.LEGGINGS)
+            .translate("fr_fr", "Pantalon en osmiridium")
+            .translate("en_us", "Osmiridium leggings")
+            .tag(ModTags.Items.OSMIRIDIUM_ARMOR)
+            .armorMaterial(CustomArmorMaterials.OSMIRIDIUM_ARMOR)
+            .build());
+    public static final Item OSMIRIDIUM_BOOTS = addNewItem(GenericItems.builder("osmiridium_boots", ItemsType.BOOTS)
+            .translate("fr_fr", "Bottes en osmiridium")
+            .translate("en_us", "Osmiridium boots")
+            .tag(ModTags.Items.OSMIRIDIUM_ARMOR)
+            .armorMaterial(CustomArmorMaterials.OSMIRIDIUM_ARMOR)
+            .build());
 
 
     // ── Registration ──────────────────────────────────────────────────────────

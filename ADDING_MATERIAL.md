@@ -85,65 +85,62 @@ Ajouter dans l'ordre : lingot, brut, outils, armure.
 
 ```java
 // Lingot (avec ses recettes)
-public static final Item ADAMANTIUM_INGOT = addNewItem(misc("adamantium_ingot", ItemsType.INGOT,
-    Map.of("fr_fr", "Lingot d'adamantium", "en_us", "Adamantium ingot"),
-    List.of(ModTags.Items.ITEMTAGS.get("adamantium_repair").getTag()),
-    List.of(
-        // Bloc 9-en-1
-        RecipeBuilder.builder("adamantium_block", RecipeType.SHAPE)
-            .input(new MyIngredient("adamantium_ingot", InstanceType.ITEM, 1))
-            .output(new MyIngredient("adamantium_block", InstanceType.BLOCK, 1))
-            .pattern(List.of("000", "000", "000"))
-            .unlock(new MyIngredient("adamantium_ingot", InstanceType.ITEM, 1))
-            .build(),
-        // Outils
-        RecipeBuilder.builder("adamantium_tool", RecipeType.TOOLS)
-            .input(new MyIngredient("adamantium_ingot", InstanceType.ITEM, 1))
-            .output(new MyIngredient("adamantium_axe",     InstanceType.ITEM, 1))
-            .output(new MyIngredient("adamantium_hoe",     InstanceType.ITEM, 1))
-            .output(new MyIngredient("adamantium_pickaxe", InstanceType.ITEM, 1))
-            .output(new MyIngredient("adamantium_shovel",  InstanceType.ITEM, 1))
-            .output(new MyIngredient("adamantium_sword",   InstanceType.ITEM, 1))
-            .build(),
-        // Armure
-        RecipeBuilder.builder("adamantium_armor", RecipeType.ARMOR)
-            .input(new MyIngredient("adamantium_ingot", InstanceType.ITEM, 1))
-            .output(new MyIngredient("adamantium_boots",      InstanceType.ITEM, 1))
-            .output(new MyIngredient("adamantium_chestplate", InstanceType.ITEM, 1))
-            .output(new MyIngredient("adamantium_helmet",     InstanceType.ITEM, 1))
-            .output(new MyIngredient("adamantium_leggings",   InstanceType.ITEM, 1))
-            .build()
-    )));
+public static final Item ADAMANTIUM_INGOT = addNewItem(GenericItems.builder("adamantium_ingot", ItemsType.INGOT)
+    .translate("fr_fr", "Lingot d'adamantium")
+    .translate("en_us", "Adamantium ingot")
+    .tag(ModTags.Items.ADAMANTIUM_REPAIR)
+    .recipe(RecipeBuilder.builder("adamantium_block", RecipeType.SHAPE)
+        .input(new MyIngredient("adamantium_ingot", InstanceType.ITEM, 1))
+        .output(new MyIngredient("adamantium_block", InstanceType.BLOCK, 1))
+        .pattern(List.of("000", "000", "000"))
+        .unlock(new MyIngredient("adamantium_ingot", InstanceType.ITEM, 1))
+        .build())
+    .recipe(RecipeBuilder.builder("adamantium_tool", RecipeType.TOOLS)
+        .input(new MyIngredient("adamantium_ingot", InstanceType.ITEM, 1))
+        .output(new MyIngredient("adamantium_axe",     InstanceType.ITEM, 1))
+        .output(new MyIngredient("adamantium_hoe",     InstanceType.ITEM, 1))
+        .output(new MyIngredient("adamantium_pickaxe", InstanceType.ITEM, 1))
+        .output(new MyIngredient("adamantium_shovel",  InstanceType.ITEM, 1))
+        .output(new MyIngredient("adamantium_sword",   InstanceType.ITEM, 1))
+        .build())
+    .recipe(RecipeBuilder.builder("adamantium_armor", RecipeType.ARMOR)
+        .input(new MyIngredient("adamantium_ingot", InstanceType.ITEM, 1))
+        .output(new MyIngredient("adamantium_boots",      InstanceType.ITEM, 1))
+        .output(new MyIngredient("adamantium_chestplate", InstanceType.ITEM, 1))
+        .output(new MyIngredient("adamantium_helmet",     InstanceType.ITEM, 1))
+        .output(new MyIngredient("adamantium_leggings",   InstanceType.ITEM, 1))
+        .build())
+    .build());
 
 // Brut (avec fusion et recette forge)
-public static final Item ADAMANTIUM_RAW = addNewItem(misc("adamantium_raw", ItemsType.RAW,
-    Map.of("fr_fr", "Adamantium brut", "en_us", "Adamantium raw"),
-    List.of(ModTags.Items.ITEMTAGS.get("adamantium_repair").getTag()),
-    List.of(
-        RecipeBuilder.builder("raw_to_adamantium_ingot", RecipeType.ORE)
-            .input(new MyIngredient("adamantium_raw",   InstanceType.ITEM, 1))
-            .output(new MyIngredient("adamantium_ingot", InstanceType.ITEM, 1))
-            .build()
-        // Optionnel : recette FORGE pour doubler
-        // RecipeBuilder.builder("raw_to_adamantium_ingot", RecipeType.FORGE)
-        //     .input(new MyIngredient("adamantium_raw", InstanceType.ITEM, 1))
-        //     .fluid(new MyIngredient("..._fluid_still", InstanceType.FLUID, 200))
-        //     .output(new MyIngredient("adamantium_ingot", InstanceType.ITEM, 2))
-        //     .build()
-    )));
+public static final Item ADAMANTIUM_RAW = addNewItem(GenericItems.builder("adamantium_raw", ItemsType.RAW)
+    .translate("fr_fr", "Adamantium brut")
+    .translate("en_us", "Adamantium raw")
+    .tag(ModTags.Items.ADAMANTIUM_REPAIR)
+    .recipe(RecipeBuilder.builder("raw_to_adamantium_ingot", RecipeType.ORE)
+        .input(new MyIngredient("adamantium_raw",    InstanceType.ITEM, 1))
+        .output(new MyIngredient("adamantium_ingot", InstanceType.ITEM, 1))
+        .build())
+    // Optionnel : recette FORGE pour doubler
+    // .recipe(RecipeBuilder.builder("raw_to_adamantium_ingot", RecipeType.FORGE)
+    //     .input(new MyIngredient("adamantium_raw", InstanceType.ITEM, 1))
+    //     .fluid(new MyIngredient("..._fluid_still", InstanceType.FLUID, 200))
+    //     .output(new MyIngredient("adamantium_ingot", InstanceType.ITEM, 2))
+    //     .build())
+    .build());
 
 // Outils
-public static final Item ADAMANTIUM_AXE      = addNewItem(tool("adamantium_axe",      ItemsType.AXE,      CustomItemTiers.ADAMANTIUM, Map.of("fr_fr", "Hache en adamantium",   "en_us", "Adamantium axe"),      List.of(ModTags.Items.ITEMTAGS.get("adamantium_tool").getTag()),   null));
-public static final Item ADAMANTIUM_HOE      = addNewItem(tool("adamantium_hoe",      ItemsType.HOE,      CustomItemTiers.ADAMANTIUM, Map.of("fr_fr", "Houe en adamantium",    "en_us", "Adamantium hoe"),      List.of(ModTags.Items.ITEMTAGS.get("adamantium_tool").getTag()),   null));
-public static final Item ADAMANTIUM_PICKAXE  = addNewItem(tool("adamantium_pickaxe",  ItemsType.PICKAXE,  CustomItemTiers.ADAMANTIUM, Map.of("fr_fr", "Pioche en adamantium",  "en_us", "Adamantium pickaxe"),  List.of(ModTags.Items.ITEMTAGS.get("adamantium_tool").getTag()),   null));
-public static final Item ADAMANTIUM_SHOVEL   = addNewItem(tool("adamantium_shovel",   ItemsType.SHOVEL,   CustomItemTiers.ADAMANTIUM, Map.of("fr_fr", "Pelle en adamantium",   "en_us", "Adamantium shovel"),   List.of(ModTags.Items.ITEMTAGS.get("adamantium_tool").getTag()),   null));
-public static final Item ADAMANTIUM_SWORD    = addNewItem(tool("adamantium_sword",    ItemsType.SWORD,    CustomItemTiers.ADAMANTIUM, Map.of("fr_fr", "Épée en adamantium",    "en_us", "Adamantium sword"),    List.of(ModTags.Items.ITEMTAGS.get("adamantium_weapon").getTag()), null));
+public static final Item ADAMANTIUM_AXE     = addNewItem(GenericItems.builder("adamantium_axe",     ItemsType.AXE)     .translate("fr_fr", "Hache en adamantium")  .translate("en_us", "Adamantium axe")     .toolMaterial(CustomItemTiers.ADAMANTIUM) .tag(ModTags.Items.ADAMANTIUM_TOOL)   .build());
+public static final Item ADAMANTIUM_HOE     = addNewItem(GenericItems.builder("adamantium_hoe",     ItemsType.HOE)     .translate("fr_fr", "Houe en adamantium")   .translate("en_us", "Adamantium hoe")     .toolMaterial(CustomItemTiers.ADAMANTIUM) .tag(ModTags.Items.ADAMANTIUM_TOOL)   .build());
+public static final Item ADAMANTIUM_PICKAXE = addNewItem(GenericItems.builder("adamantium_pickaxe", ItemsType.PICKAXE) .translate("fr_fr", "Pioche en adamantium") .translate("en_us", "Adamantium pickaxe") .toolMaterial(CustomItemTiers.ADAMANTIUM) .tag(ModTags.Items.ADAMANTIUM_TOOL)   .build());
+public static final Item ADAMANTIUM_SHOVEL  = addNewItem(GenericItems.builder("adamantium_shovel",  ItemsType.SHOVEL)  .translate("fr_fr", "Pelle en adamantium")  .translate("en_us", "Adamantium shovel")  .toolMaterial(CustomItemTiers.ADAMANTIUM) .tag(ModTags.Items.ADAMANTIUM_TOOL)   .build());
+public static final Item ADAMANTIUM_SWORD   = addNewItem(GenericItems.builder("adamantium_sword",   ItemsType.SWORD)   .translate("fr_fr", "Épée en adamantium")   .translate("en_us", "Adamantium sword")   .toolMaterial(CustomItemTiers.ADAMANTIUM) .tag(ModTags.Items.ADAMANTIUM_WEAPON) .build());
 
 // Armure
-public static final Item ADAMANTIUM_HELMET     = addNewItem(armor("adamantium_helmet",     ItemsType.HELMET,     CustomArmorMaterials.ADAMANTIUM_ARMOR, Map.of("fr_fr", "Casque en adamantium",   "en_us", "Adamantium helmet"),     List.of(ModTags.Items.ITEMTAGS.get("adamantium_armor").getTag()), null));
-public static final Item ADAMANTIUM_CHESTPLATE = addNewItem(armor("adamantium_chestplate", ItemsType.CHESTPLATE, CustomArmorMaterials.ADAMANTIUM_ARMOR, Map.of("fr_fr", "Plastron en adamantium", "en_us", "Adamantium chestplate"), List.of(ModTags.Items.ITEMTAGS.get("adamantium_armor").getTag()), null));
-public static final Item ADAMANTIUM_LEGGINGS   = addNewItem(armor("adamantium_leggings",   ItemsType.LEGGINGS,   CustomArmorMaterials.ADAMANTIUM_ARMOR, Map.of("fr_fr", "Pantalon en adamantium", "en_us", "Adamantium leggings"),   List.of(ModTags.Items.ITEMTAGS.get("adamantium_armor").getTag()), null));
-public static final Item ADAMANTIUM_BOOTS      = addNewItem(armor("adamantium_boots",      ItemsType.BOOTS,      CustomArmorMaterials.ADAMANTIUM_ARMOR, Map.of("fr_fr", "Bottes en adamantium",  "en_us", "Adamantium boots"),      List.of(ModTags.Items.ITEMTAGS.get("adamantium_armor").getTag()), null));
+public static final Item ADAMANTIUM_HELMET     = addNewItem(GenericItems.builder("adamantium_helmet",     ItemsType.HELMET)     .translate("fr_fr", "Casque en adamantium")   .translate("en_us", "Adamantium helmet")     .armorMaterial(CustomArmorMaterials.ADAMANTIUM_ARMOR) .tag(ModTags.Items.ADAMANTIUM_ARMOR) .build());
+public static final Item ADAMANTIUM_CHESTPLATE = addNewItem(GenericItems.builder("adamantium_chestplate", ItemsType.CHESTPLATE) .translate("fr_fr", "Plastron en adamantium") .translate("en_us", "Adamantium chestplate") .armorMaterial(CustomArmorMaterials.ADAMANTIUM_ARMOR) .tag(ModTags.Items.ADAMANTIUM_ARMOR) .build());
+public static final Item ADAMANTIUM_LEGGINGS   = addNewItem(GenericItems.builder("adamantium_leggings",   ItemsType.LEGGINGS)   .translate("fr_fr", "Pantalon en adamantium") .translate("en_us", "Adamantium leggings")   .armorMaterial(CustomArmorMaterials.ADAMANTIUM_ARMOR) .tag(ModTags.Items.ADAMANTIUM_ARMOR) .build());
+public static final Item ADAMANTIUM_BOOTS      = addNewItem(GenericItems.builder("adamantium_boots",      ItemsType.BOOTS)      .translate("fr_fr", "Bottes en adamantium")   .translate("en_us", "Adamantium boots")      .armorMaterial(CustomArmorMaterials.ADAMANTIUM_ARMOR) .tag(ModTags.Items.ADAMANTIUM_ARMOR) .build());
 ```
 
 ---
@@ -183,29 +180,19 @@ public static final Block ADAMANTIUM_BLOCK = addNewBlock(
 Si le matériau nécessite un fluide propre (pour la Forge Stellaire par exemple) :
 
 ```java
-public static final FluidListType ADAMANTIUM_FLUID = addNewFluid(
-    GenericFluids.create(
-        Map.of(
-            FluidListTypeEnum.STILL,   "adamantium_fluid_still",
-            FluidListTypeEnum.FLOWING, "adamantium_fluid_flowing",
-            FluidListTypeEnum.BLOCK,   "adamantium_fluid_block",
-            FluidListTypeEnum.BUCKET,  "adamantium_fluid_bucket"
-        ),
-        Map.of(
-            FluidListTypeEnum.BLOCK,  Map.of("fr_fr", "Adamantium",          "en_us", "Adamantium"),
-            FluidListTypeEnum.BUCKET, Map.of("fr_fr", "Bucket d'adamantium",  "en_us", "Adamantium bucket")
-        ),
-        List.of(ConventionalItemTags.BUCKETS),
-        List.of(BlockTags.REPLACEABLE, BlockTags.INVALID_SPAWN_INSIDE, BlockTags.FIRE),
-        Map.of(
-            FluidListTypeEnum.STILL,   List.of(FluidTags.LAVA),
-            FluidListTypeEnum.FLOWING, List.of(FluidTags.LAVA)
-        ),
-        0xAAAAAA  // ← couleur hexadécimale du fluide (ARGB sans alpha)
-    ));
+public static final FluidListType ADAMANTIUM_FLUID = addNewFluid(GenericFluids.builder()
+        .still("adamantium_fluid_still")
+        .flowing("adamantium_fluid_flowing")
+        .block("adamantium_fluid_block",   Map.of("fr_fr", "Adamantium",          "en_us", "Adamantium"))
+        .bucket("adamantium_fluid_bucket", Map.of("fr_fr", "Bucket d'adamantium",  "en_us", "Adamantium bucket"))
+        .bucketTags(List.of(ConventionalItemTags.BUCKETS))
+        .blockTags(List.of(BlockTags.REPLACEABLE, BlockTags.INVALID_SPAWN_INSIDE, BlockTags.FIRE))
+        .fluidTags(List.of(FluidTags.LAVA))   // même tag still + flowing
+        .color(0xAAAAAA)                       // ← couleur hexadécimale du fluide (ARGB sans alpha)
+        .build());
 ```
 
-> Si ce fluide doit être utilisable dans la Forge Stellaire, ajoute-le au tag `forge_stellaire_fluid_input_left` ou `forge_stellaire_fluid_input_right` dans `ModTags.Fluids` et met à jour `ModFluids` en conséquence.
+> Si ce fluide doit être utilisable dans la Forge Stellaire, ajoute-le au tag `forge_stellaire_fluid_input_left` ou `forge_stellaire_fluid_input_right` dans `ModTags.Fluids` et utilise `.stillTags()` + `.flowingTags()` séparément à la place de `.fluidTags()` (voir Solarium et Lunarium dans `ModFluids` comme exemples).
 
 ---
 

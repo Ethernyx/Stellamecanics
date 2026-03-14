@@ -15,6 +15,8 @@ import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.Identifier;
 
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -69,4 +71,50 @@ public class GenericItems extends Item implements IMyItem {
             default      -> settings;
         };
     }
+
+    public static class Builder {
+        private final String id;
+        private final ItemsType itemsType;
+        private final Map<String, String> translate = new LinkedHashMap<>();
+        private final List<TagKey<Item>> tags = new ArrayList<>();
+        private final List<RecipeBuilder> recipes = new ArrayList<>();
+        private ToolMaterial toolMaterial;
+        private ArmorMaterial armorMaterial;
+
+
+        private Builder(String id, ItemsType itemsType) { this.id = id; this.itemsType = itemsType; }
+
+        public Builder translate(String key, String value) {
+            translate.put(key, value);
+            return this;
+        }
+
+        public Builder tag(TagKey<Item> tag) {
+            tags.add(tag);
+            return this;
+        }
+
+        public Builder recipe(RecipeBuilder recipe) {
+            recipes.add(recipe);
+            return this;
+        }
+
+        public Builder toolMaterial(ToolMaterial material) { this.toolMaterial = material; return this; }
+
+        public Builder armorMaterial(ArmorMaterial material) { this.armorMaterial = material; return this; }
+
+        public GenericItems build() {
+            if (id == null || id.isBlank()) throw new IllegalArgumentException("id must not be empty");
+            if (translate.isEmpty()) throw new IllegalStateException("au moins une traduction est requise");
+
+            switch (itemsType) {
+                case PICKAXE, AXE, SHOVEL, HOE, SWORD -> { if (toolMaterial == null) throw new IllegalStateException("tool material manquant"); }
+                case HELMET, CHESTPLATE, LEGGINGS, BOOTS ->  { if (armorMaterial == null) throw new IllegalStateException("armor material manquant"); }
+                default -> {}
+            }
+            return new GenericItems(id, itemsType, toolMaterial, armorMaterial ,translate, tags, recipes);
+        }
+    }
+
+    public static Builder builder(String id, ItemsType itemsType) { return new Builder(id, itemsType); }
 }
