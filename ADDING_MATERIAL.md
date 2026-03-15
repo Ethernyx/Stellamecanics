@@ -147,30 +147,50 @@ public static final Item ADAMANTIUM_BOOTS      = addNewItem(GenericItems.builder
 
 ## Étape 5 — Bloc dans `ModBlocks`
 
+Les blocs utilisent désormais le **Builder fluent** de `GenericBlocks`. Le constructeur direct (`new GenericBlocks(...)`) reste disponible uniquement pour les blocs custom (ex : `ForgeStellaire`).
+
 ```java
 // Minerai
-public static final Block ADAMANTIUM_ORE = addNewBlock(
-    new GenericBlocks("adamantium_ore",
-        new MyLootTable(LootType.ORE, new MyIngredient("adamantium_raw", InstanceType.ITEM, 1)),
-        Map.of("fr_fr", "Minerai d'adamantium", "en_us", "Adamantium ore"),
-        List.of(BlockTags.PICKAXE_MINEABLE, ModTags.Blocks.BLOCKTAGS.get("need_lvl_6").getTag()),
-        List.of(RecipeBuilder.builder("ore_to_adamantium_ingot", RecipeType.ORE)
-            .input(new MyIngredient("adamantium_ore",   InstanceType.BLOCK, 1))
-            .output(new MyIngredient("adamantium_ingot", InstanceType.ITEM,  1))
-            .build())
-    ));
+public static final Block ADAMANTIUM_ORE = addNewBlock(GenericBlocks.builder("adamantium_ore")
+        .lootTable(new MyLootTable(LootType.ORE, new MyIngredient("adamantium_raw", InstanceType.ITEM, 1)))
+        .addTranslate("fr_fr", "Minerai d'adamantium")
+        .addTranslate("en_us", "Adamantium ore")
+        .addTag(BlockTags.PICKAXE_MINEABLE)
+        .addTag(ModTags.Blocks.NEED_LVL_6)
+        .addRecipe(RecipeBuilder.builder("ore_to_adamantium_ingot", RecipeType.ORE)
+                .input(new MyIngredient("adamantium_ore", InstanceType.BLOCK, 1))
+                .output(new MyIngredient("adamantium_ingot", InstanceType.ITEM, 1))
+                .build())
+        .build());
 
 // Bloc de stockage (9 lingots → 1 bloc, 1 bloc → 9 lingots)
-public static final Block ADAMANTIUM_BLOCK = addNewBlock(
-    new GenericBlocks("adamantium_block",
-        new MyLootTable(LootType.NORMAL, new MyIngredient("adamantium_block", InstanceType.BLOCK, 1)),
-        Map.of("fr_fr", "Bloc d'adamantium", "en_us", "Adamantium block"),
-        List.of(BlockTags.PICKAXE_MINEABLE, ModTags.Blocks.BLOCKTAGS.get("need_lvl_6").getTag()),
-        List.of(RecipeBuilder.builder("adamantium_ingot", RecipeType.SHAPELLESS)
-            .input(new MyIngredient("adamantium_block", InstanceType.BLOCK, 1))
-            .output(new MyIngredient("adamantium_ingot", InstanceType.ITEM,  9))
-            .build())
-    ));
+public static final Block ADAMANTIUM_BLOCK = addNewBlock(GenericBlocks.builder("adamantium_block")
+        .lootTable(new MyLootTable(LootType.NORMAL, new MyIngredient("adamantium_block", InstanceType.BLOCK, 1)))
+        .addTranslate("fr_fr", "Bloc d'adamantium")
+        .addTranslate("en_us", "Adamantium block")
+        .addTag(BlockTags.PICKAXE_MINEABLE)
+        .addTag(ModTags.Blocks.NEED_LVL_6)
+        .addRecipe(RecipeBuilder.builder("adamantium_ingot", RecipeType.SHAPELLESS)
+                .input(new MyIngredient("adamantium_block", InstanceType.BLOCK, 1))
+                .output(new MyIngredient("adamantium_ingot", InstanceType.ITEM, 9))
+                .build())
+        .build());
+```
+
+### Options avancées du Builder
+
+Le Builder expose des méthodes supplémentaires pour les blocs qui sortent des valeurs par défaut (`hardness=3f`, `resistance=15f`, `requiresTool=true`) :
+
+```java
+GenericBlocks.builder("mon_bloc_fragile")
+        .lootTable(...)
+        .addTranslate("fr_fr", "Mon bloc fragile")
+        .addTranslate("en_us", "My fragile block")
+        .hardness(0.5f)         // résistance à la destruction
+        .resistance(1f)         // résistance aux explosions
+        .notrequiresTool()      // peut être cassé à la main
+        .addTag(BlockTags.PICKAXE_MINEABLE)
+        .build();
 ```
 
 ---

@@ -27,127 +27,159 @@ import java.util.Map;
 public class ModBlocks {
     public static Map<String, IMyBlock> BLOCKS = new LinkedHashMap<>();
 
-    public static final Block MAGNETITE_ORE = addNewBlock(
-            new GenericBlocks("magnetite_ore",
-                    new MyLootTable(LootType.LUCKY_ORE,
-                            new MyIngredient("magnetite_raw", InstanceType.ITEM, 1, 3)),
-                    Map.of("fr_fr", "Minerai de magnétite", "en_us", "Magnetite ore"),
-                    List.of(BlockTags.PICKAXE_MINEABLE, BlockTags.NEEDS_DIAMOND_TOOL),
-                    null
-            ));
-    public static final Block ZIRCONIUM_ORE = addNewBlock(
-            new GenericBlocks("zirconium_ore",
-                    new MyLootTable(LootType.ORE,
-                            new MyIngredient("zirconium_raw", InstanceType.ITEM, 1)),
-                    Map.of("fr_fr", "Minerai de zirconium", "en_us", "Zirconium ore"),
-                    List.of(BlockTags.PICKAXE_MINEABLE, ModTags.Blocks.BLOCKTAGS.get("need_lvl_4").getTag()),
-                    List.of(RecipeBuilder.builder("ore_to_zirconium_ingot", RecipeType.ORE)
-                                    .input(new MyIngredient("zirconium_ore", InstanceType.BLOCK, 1))
-                                    .output(new MyIngredient("zirconium_ingot", InstanceType.ITEM, 1))
-                                    .build())));
-    public static final Block IRIDIUM_ORE = addNewBlock(
-            new GenericBlocks("iridium_ore",
-                    new MyLootTable(LootType.ORE, new MyIngredient("iridium_raw", InstanceType.ITEM, 1)),
-                    Map.of("fr_fr", "Minerai d'iridium", "en_us", "Iridium ore"),
-                    List.of(BlockTags.PICKAXE_MINEABLE, BlockTags.NEEDS_DIAMOND_TOOL),
-                    List.of(RecipeBuilder.builder("ore_to_iridium_ingot", RecipeType.ORE)
-                                    .input(new MyIngredient("iridium_ore", InstanceType.BLOCK, 1))
-                                    .output(new MyIngredient("iridium_ingot", InstanceType.ITEM, 1))
-                                    .build())));
-    public static final Block SOLARIUM_ORE = addNewBlock(
-            new GenericBlocks("solarium_ore",
-                    new MyLootTable(LootType.ORE, new MyIngredient("solarium_raw", InstanceType.ITEM, 1)),
-                    Map.of("fr_fr", "Minerai de solarium", "en_us", "Solarium ore"),
-                    List.of(BlockTags.PICKAXE_MINEABLE, ModTags.Blocks.BLOCKTAGS.get("need_lvl_5").getTag()),
-                    List.of(RecipeBuilder.builder("ore_to_solarium_ingot", RecipeType.ORE)
-                                    .input(new MyIngredient("solarium_ore", InstanceType.BLOCK, 1))
-                                    .output(new MyIngredient("solarium_ingot", InstanceType.ITEM, 1))
-                                    .build())));
-    public static final Block LUNARIUM_ORE = addNewBlock(
-            new GenericBlocks("lunarium_ore",
-                    new MyLootTable(LootType.ORE, new MyIngredient("lunarium_raw", InstanceType.ITEM, 1)),
-                    Map.of("fr_fr", "Minerai de lunarium", "en_us", "Lunarium ore"),
-                    List.of(BlockTags.PICKAXE_MINEABLE, ModTags.Blocks.BLOCKTAGS.get("need_lvl_5").getTag()),
-                    List.of(RecipeBuilder.builder("ore_to_lunarium_ingot", RecipeType.ORE)
-                                    .input(new MyIngredient("lunarium_ore", InstanceType.BLOCK, 1))
-                                    .output(new MyIngredient("lunarium_ingot", InstanceType.ITEM, 1))
-                                    .build())));
-    public static final Block ZIRCONIUM_BLOCK = addNewBlock(
-            new GenericBlocks("zirconium_block",
-                    new MyLootTable(LootType.NORMAL, new MyIngredient("zirconium_block", InstanceType.BLOCK, 1)),
-                    Map.of("fr_fr", "Bloc de zirconium", "en_us", "Zirconium block"),
-                    List.of(BlockTags.PICKAXE_MINEABLE, ModTags.Blocks.BLOCKTAGS.get("need_lvl_4").getTag()),
-                    List.of(RecipeBuilder.builder("zirconium_ingot", RecipeType.SHAPELLESS)
-                                    .input(new MyIngredient("zirconium_block", InstanceType.BLOCK, 1))
-                                    .output(new MyIngredient("zirconium_ingot", InstanceType.ITEM, 9))
-                                    .build())));
-    public static final Block IRIDIUM_BLOCK = addNewBlock(
-            new GenericBlocks("iridium_block",
-                    new MyLootTable(LootType.NORMAL, new MyIngredient("iridium_block", InstanceType.BLOCK, 1)),
-                    Map.of("fr_fr", "Bloc d'iridium", "en_us", "Iridium block"),
-                    List.of(BlockTags.PICKAXE_MINEABLE, BlockTags.NEEDS_DIAMOND_TOOL),
-                    List.of(RecipeBuilder.builder("iridium_ingot", RecipeType.SHAPELLESS)
-                                    .input(new MyIngredient("iridium_block", InstanceType.BLOCK, 1))
-                                    .output(new MyIngredient("iridium_ingot", InstanceType.ITEM, 9))
-                                    .build())));
-    public static final Block ZIRCALOY_BLOCK = addNewBlock(
-            new GenericBlocks("zircaloy_block",
-                    new MyLootTable(LootType.NORMAL, new MyIngredient("zircaloy_block", InstanceType.BLOCK, 1)),
-                    Map.of("fr_fr", "Bloc de zircaloy", "en_us", "Zircaloy block"),
-                    List.of(BlockTags.PICKAXE_MINEABLE, ModTags.Blocks.BLOCKTAGS.get("need_lvl_6").getTag()),
-                    List.of(RecipeBuilder.builder("zircaloy_ingot", RecipeType.SHAPELLESS)
-                                    .input(new MyIngredient("zircaloy_block", InstanceType.BLOCK, 1))
-                                    .output(new MyIngredient("zircaloy_ingot", InstanceType.ITEM, 9))
-                                    .build())));
-    public static final Block OSMIRIDIUM_BLOCK = addNewBlock(
-            new GenericBlocks("osmiridium_block",
-                    new MyLootTable(LootType.NORMAL, new MyIngredient("osmiridium_block", InstanceType.BLOCK, 1)),
-                    Map.of("fr_fr", "Bloc d'osmiridium", "en_us", "Osmiridium block"),
-                    List.of(BlockTags.PICKAXE_MINEABLE, ModTags.Blocks.BLOCKTAGS.get("need_lvl_6").getTag()),
-                    List.of(RecipeBuilder.builder("osmiridium_ingot", RecipeType.SHAPELLESS)
-                                    .input(new MyIngredient("osmiridium_block", InstanceType.BLOCK, 1))
-                                    .output(new MyIngredient("osmiridium_ingot", InstanceType.ITEM, 9))
-                                    .build())));
-    public static final Block SOLARIUM_BLOCK = addNewBlock(
-            new GenericBlocks("solarium_block",
-                    new MyLootTable(LootType.NORMAL, new MyIngredient("solarium_block", InstanceType.BLOCK, 1)),
-                    Map.of("fr_fr", "Bloc de solarium", "en_us", "Solarium block"),
-                    List.of(BlockTags.PICKAXE_MINEABLE, ModTags.Blocks.BLOCKTAGS.get("need_lvl_5").getTag()),
-                    List.of(RecipeBuilder.builder("solarium_ingot", RecipeType.SHAPELLESS)
-                                    .input(new MyIngredient("solarium_block", InstanceType.BLOCK, 1))
-                                    .output(new MyIngredient("solarium_ingot", InstanceType.ITEM, 9))
-                                    .build())));
-    public static final Block LUNARIUM_BLOCK = addNewBlock(
-            new GenericBlocks("lunarium_block",
-                    new MyLootTable(LootType.NORMAL, new MyIngredient("lunarium_block", InstanceType.BLOCK, 1)),
-                    Map.of("fr_fr", "Bloc de lunarium", "en_us", "Lunarium block"),
-                    List.of(BlockTags.PICKAXE_MINEABLE, ModTags.Blocks.BLOCKTAGS.get("need_lvl_5").getTag()),
-                    List.of(RecipeBuilder.builder("lunarium_ingot", RecipeType.SHAPELLESS)
-                                    .input(new MyIngredient("lunarium_block", InstanceType.BLOCK, 1))
-                                    .output(new MyIngredient("lunarium_ingot", InstanceType.ITEM, 9))
-                                    .build())));
-    public static final Block STELLARIUM_BLOCK = addNewBlock(
-            new GenericBlocks("stellarium_block",
-                    new MyLootTable(LootType.NORMAL, new MyIngredient("stellarium_block", InstanceType.BLOCK, 1)),
-                    Map.of("fr_fr", "Bloc de stellarium", "en_us", "Stellarium block"),
-                    List.of(BlockTags.PICKAXE_MINEABLE, ModTags.Blocks.BLOCKTAGS.get("need_lvl_6").getTag()),
-                    List.of(RecipeBuilder.builder("stellarium_ingot", RecipeType.SHAPELLESS)
-                                    .input(new MyIngredient("stellarium_block", InstanceType.BLOCK, 1))
-                                    .output(new MyIngredient("stellarium_ingot", InstanceType.ITEM, 9))
-                                    .build())));
+    public static final Block MAGNETITE_ORE = addNewBlock(GenericBlocks.builder("magnetite_ore")
+            .lootTable(new MyLootTable(LootType.LUCKY_ORE, new MyIngredient("magnetite_raw", InstanceType.ITEM, 1, 3)))
+            .addTranslate("fr_fr", "Minerai de magnétite")
+            .addTranslate("en_us", "Magnetite ore")
+            .addTag(BlockTags.PICKAXE_MINEABLE)
+            .addTag(BlockTags.NEEDS_DIAMOND_TOOL)
+            .build());
+
+    public static final Block ZIRCONIUM_ORE = addNewBlock(GenericBlocks.builder("zirconium_ore")
+            .lootTable(new MyLootTable(LootType.ORE, new MyIngredient("zirconium_raw", InstanceType.ITEM, 1)))
+            .addTranslate("fr_fr", "Minerai de zirconium")
+            .addTranslate("en_us", "Zirconium ore")
+            .addTag(BlockTags.PICKAXE_MINEABLE)
+            .addTag(ModTags.Blocks.NEED_LVL_4)
+            .addRecipe(RecipeBuilder.builder("ore_to_zirconium_ingot", RecipeType.ORE)
+                    .input(new MyIngredient("zirconium_ore", InstanceType.BLOCK, 1))
+                    .output(new MyIngredient("zirconium_ingot", InstanceType.ITEM, 1))
+                    .build())
+            .build());
+
+    public static final Block IRIDIUM_ORE = addNewBlock(GenericBlocks.builder("iridium_ore")
+            .lootTable(new MyLootTable(LootType.ORE, new MyIngredient("iridium_raw", InstanceType.ITEM, 1)))
+            .addTranslate("fr_fr", "Minerai d'iridium")
+            .addTranslate("en_us", "Iridium ore")
+            .addTag(BlockTags.PICKAXE_MINEABLE)
+            .addTag(BlockTags.NEEDS_DIAMOND_TOOL)
+            .addRecipe(RecipeBuilder.builder("ore_to_iridium_ingot", RecipeType.ORE)
+                    .input(new MyIngredient("iridium_ore", InstanceType.BLOCK, 1))
+                    .output(new MyIngredient("iridium_ingot", InstanceType.ITEM, 1))
+                    .build())
+            .build());
+
+    public static final Block SOLARIUM_ORE = addNewBlock(GenericBlocks.builder("solarium_ore")
+            .lootTable(new MyLootTable(LootType.ORE, new MyIngredient("solarium_raw", InstanceType.ITEM, 1)))
+            .addTranslate("fr_fr", "Minerai de solarium")
+            .addTranslate("en_us", "Solarium ore")
+            .addTag(BlockTags.PICKAXE_MINEABLE)
+            .addTag(ModTags.Blocks.NEED_LVL_5)
+            .addRecipe(RecipeBuilder.builder("ore_to_solarium_ingot", RecipeType.ORE)
+                    .input(new MyIngredient("solarium_ore", InstanceType.BLOCK, 1))
+                    .output(new MyIngredient("solarium_ingot", InstanceType.ITEM, 1))
+                    .build())
+            .build());
+
+    public static final Block LUNARIUM_ORE = addNewBlock(GenericBlocks.builder("lunarium_ore")
+            .lootTable(new MyLootTable(LootType.ORE, new MyIngredient("lunarium_raw", InstanceType.ITEM, 1)))
+            .addTranslate("fr_fr", "Minerai de lunarium")
+            .addTranslate("en_us", "Lunarium ore")
+            .addTag(BlockTags.PICKAXE_MINEABLE)
+            .addTag(ModTags.Blocks.NEED_LVL_5)
+            .addRecipe(RecipeBuilder.builder("ore_to_lunarium_ingot", RecipeType.ORE)
+                    .input(new MyIngredient("lunarium_ore", InstanceType.BLOCK, 1))
+                    .output(new MyIngredient("lunarium_ingot", InstanceType.ITEM, 1))
+                    .build())
+            .build());
+
+    public static final Block ZIRCONIUM_BLOCK = addNewBlock(GenericBlocks.builder("zirconium_block")
+            .lootTable(new MyLootTable(LootType.NORMAL, new MyIngredient("zirconium_block", InstanceType.BLOCK, 1)))
+            .addTranslate("fr_fr", "Bloc de zirconium")
+            .addTranslate("en_us", "Zirconium block")
+            .addTag(BlockTags.PICKAXE_MINEABLE)
+            .addTag(ModTags.Blocks.NEED_LVL_4)
+            .addRecipe(RecipeBuilder.builder("zirconium_ingot", RecipeType.SHAPELLESS)
+                    .input(new MyIngredient("zirconium_block", InstanceType.BLOCK, 1))
+                    .output(new MyIngredient("zirconium_ingot", InstanceType.ITEM, 9))
+                    .build())
+            .build());
+
+    public static final Block IRIDIUM_BLOCK = addNewBlock(GenericBlocks.builder("iridium_block")
+            .lootTable(new MyLootTable(LootType.NORMAL, new MyIngredient("iridium_block", InstanceType.BLOCK, 1)))
+            .addTranslate("fr_fr", "Bloc d'iridium")
+            .addTranslate("en_us", "Iridium block")
+            .addTag(BlockTags.PICKAXE_MINEABLE)
+            .addTag(BlockTags.NEEDS_DIAMOND_TOOL)
+            .addRecipe(RecipeBuilder.builder("iridium_ingot", RecipeType.SHAPELLESS)
+                    .input(new MyIngredient("iridium_block", InstanceType.BLOCK, 1))
+                    .output(new MyIngredient("iridium_ingot", InstanceType.ITEM, 9))
+                    .build())
+            .build());
+
+    public static final Block ZIRCALOY_BLOCK = addNewBlock(GenericBlocks.builder("zircaloy_block")
+            .lootTable(new MyLootTable(LootType.NORMAL, new MyIngredient("zircaloy_block", InstanceType.BLOCK, 1)))
+            .addTranslate("fr_fr", "Bloc de zircaloy")
+            .addTranslate("en_us", "Zircaloy block")
+            .addTag(BlockTags.PICKAXE_MINEABLE)
+            .addTag(ModTags.Blocks.NEED_LVL_6)
+            .addRecipe(RecipeBuilder.builder("zircaloy_ingot", RecipeType.SHAPELLESS)
+                    .input(new MyIngredient("zircaloy_block", InstanceType.BLOCK, 1))
+                    .output(new MyIngredient("zircaloy_ingot", InstanceType.ITEM, 9))
+                    .build())
+            .build());
+
+    public static final Block OSMIRIDIUM_BLOCK = addNewBlock(GenericBlocks.builder("osmiridium_block")
+            .lootTable(new MyLootTable(LootType.NORMAL, new MyIngredient("osmiridium_block", InstanceType.BLOCK, 1)))
+            .addTranslate("fr_fr", "Bloc d'osmiridium")
+            .addTranslate("en_us", "Osmiridium block")
+            .addTag(BlockTags.PICKAXE_MINEABLE)
+            .addTag(ModTags.Blocks.NEED_LVL_6)
+            .addRecipe(RecipeBuilder.builder("osmiridium_ingot", RecipeType.SHAPELLESS)
+                    .input(new MyIngredient("osmiridium_block", InstanceType.BLOCK, 1))
+                    .output(new MyIngredient("osmiridium_ingot", InstanceType.ITEM, 9))
+                    .build())
+            .build());
+
+    public static final Block SOLARIUM_BLOCK = addNewBlock(GenericBlocks.builder("solarium_block")
+            .lootTable(new MyLootTable(LootType.NORMAL, new MyIngredient("solarium_block", InstanceType.BLOCK, 1)))
+            .addTranslate("fr_fr", "Bloc de solarium")
+            .addTranslate("en_us", "Solarium block")
+            .addTag(BlockTags.PICKAXE_MINEABLE)
+            .addTag(ModTags.Blocks.NEED_LVL_5)
+            .addRecipe(RecipeBuilder.builder("solarium_ingot", RecipeType.SHAPELLESS)
+                    .input(new MyIngredient("solarium_block", InstanceType.BLOCK, 1))
+                    .output(new MyIngredient("solarium_ingot", InstanceType.ITEM, 9))
+                    .build())
+            .build());
+
+    public static final Block LUNARIUM_BLOCK = addNewBlock(GenericBlocks.builder("lunarium_block")
+            .lootTable(new MyLootTable(LootType.NORMAL, new MyIngredient("lunarium_block", InstanceType.BLOCK, 1)))
+            .addTranslate("fr_fr", "Bloc de lunarium")
+            .addTranslate("en_us", "Lunarium block")
+            .addTag(BlockTags.PICKAXE_MINEABLE)
+            .addTag(ModTags.Blocks.NEED_LVL_5)
+            .addRecipe(RecipeBuilder.builder("lunarium_ingot", RecipeType.SHAPELLESS)
+                    .input(new MyIngredient("lunarium_block", InstanceType.BLOCK, 1))
+                    .output(new MyIngredient("lunarium_ingot", InstanceType.ITEM, 9))
+                    .build())
+            .build());
+
+    public static final Block STELLARIUM_BLOCK = addNewBlock(GenericBlocks.builder("stellarium_block")
+            .lootTable(new MyLootTable(LootType.NORMAL, new MyIngredient("stellarium_block", InstanceType.BLOCK, 1)))
+            .addTranslate("fr_fr", "Bloc de stellarium")
+            .addTranslate("en_us", "Stellarium block")
+            .addTag(BlockTags.PICKAXE_MINEABLE)
+            .addTag(ModTags.Blocks.NEED_LVL_6)
+            .addRecipe(RecipeBuilder.builder("stellarium_ingot", RecipeType.SHAPELLESS)
+                    .input(new MyIngredient("stellarium_block", InstanceType.BLOCK, 1))
+                    .output(new MyIngredient("stellarium_ingot", InstanceType.ITEM, 9))
+                    .build())
+            .build());
+
     public static final Block FORGE_STELLAIRE = addNewBlock(
             new ForgeStellaire("forge_stellaire",
                     new MyLootTable(LootType.NORMAL, new MyIngredient("forge_stellaire", InstanceType.BLOCK, 1)),
                     Map.of("fr_fr", "Forge Stellaire", "en_us", "Stellar forge"),
                     List.of(BlockTags.PICKAXE_MINEABLE),
                     List.of(RecipeBuilder.builder("forge_stellaire", RecipeType.SHAPE)
-                                    .input(new MyIngredient("iridium_block", InstanceType.BLOCK, 1))
-                                    .input(new MyIngredient("iridium_ingot", InstanceType.ITEM, 1))
-                                    .input(new MyIngredient("furnace", InstanceType.VANILLABLOCK, 1))
-                                    .output(new MyIngredient("forge_stellaire", InstanceType.BLOCK, 1))
-                                    .pattern(List.of("0 0", "121", "111"))
-                                    .unlock(new MyIngredient("forge_stellaire", InstanceType.BLOCK, 1))
-                                    .build())));
+                            .input(new MyIngredient("iridium_block", InstanceType.BLOCK, 1))
+                            .input(new MyIngredient("iridium_ingot", InstanceType.ITEM, 1))
+                            .input(new MyIngredient("furnace", InstanceType.VANILLABLOCK, 1))
+                            .output(new MyIngredient("forge_stellaire", InstanceType.BLOCK, 1))
+                            .pattern(List.of("0 0", "121", "111"))
+                            .unlock(new MyIngredient("forge_stellaire", InstanceType.BLOCK, 1))
+                            .build())));
 
     public static <T extends Block & IMyBlock> T addNewBlock(T block) {
         Registry.register(Registries.BLOCK, Identifier.of(Stellamecanics.MOD_ID, block.getId()), block);
