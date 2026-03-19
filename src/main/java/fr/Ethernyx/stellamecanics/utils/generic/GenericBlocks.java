@@ -88,7 +88,7 @@ public class GenericBlocks extends Block implements IMyBlock {
             return this;
         }
 
-        public Builder notrequiresTool() {
+        public Builder requiresNoTool() {
             this.requiresTool = false;
             return this;
         }

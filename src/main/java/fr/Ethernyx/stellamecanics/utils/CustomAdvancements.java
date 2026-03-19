@@ -75,12 +75,12 @@ public class CustomAdvancements {
             return this;
         }
 
-        public Builder title(String lang, String value) {
+        public Builder addTitle(String lang, String value) {
             this.title.put(lang, value);
             return this;
         }
 
-        public Builder description(String lang, String value) {
+        public Builder addDesc(String lang, String value) {
             this.description.put(lang, value);
             return this;
         }

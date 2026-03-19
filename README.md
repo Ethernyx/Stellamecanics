@@ -141,7 +141,7 @@ GenericBlocks.builder("mon_bloc")
     .build()
 ```
 
-Options avancées : `.hardness(float)`, `.resistance(float)`, `.notrequiresTool()`.
+Options avancées : `.hardness(float)`, `.resistance(float)`, `.requiresNoTool()`.
 
 ### GenericFluids.Builder
 
@@ -277,10 +277,10 @@ Les advancements sont déclarés dans `ModAdvancements` via un **Builder** et g�
 CustomAdvancements.builder("mon_advancement")
     .icon(ModItems.MON_ITEM)          // obligatoire
     .parent(MON_PARENT)               // null si root
-    .title("fr_fr", "Mon titre")      // obligatoire
-    .title("en_us", "My title")
-    .description("fr_fr", "...")      // obligatoire si parent != null
-    .description("en_us", "...")
+    .addTitle("fr_fr", "Mon titre")   // obligatoire
+    .addTitle("en_us", "My title")
+    .addDesc("fr_fr", "...")          // obligatoire si parent != null
+    .addDesc("en_us", "...")
     .frame(AdvancementFrame.TASK)     // défaut : TASK
     .condition(new HasItemCondition(...))
     .showToast(true)                  // défaut : true

@@ -171,7 +171,7 @@ Les méthodes du builder `GenericBlocks` à utiliser :
 | `.lootTable(MyLootTable)` | Définir la loot table |
 | `.hardness(float)` | Résistance à la destruction (défaut : `3f`) |
 | `.resistance(float)` | Résistance aux explosions (défaut : `15f`) |
-| `.notrequiresTool()` | Peut être cassé à la main |
+| `.requiresNoTool()` | Peut être cassé à la main |
 
 ```java
 // Minerai
@@ -242,10 +242,10 @@ public static final CustomAdvancements FIRST_ADAMANTIUM = addNewAdvancement(
     CustomAdvancements.builder("first_adamantium")
         .icon(ModItems.ADAMANTIUM_INGOT)
         .parent(CRAFTING_STELLAR_FORGE)
-        .title("fr_fr", "De l'adamantium !")
-        .title("en_us", "Adamantium!")
-        .description("fr_fr", "Obtenez votre premier lingot d'adamantium")
-        .description("en_us", "Get your first adamantium ingot")
+        .addTitle("fr_fr", "De l'adamantium !")
+        .addTitle("en_us", "Adamantium!")
+        .addDesc("fr_fr", "Obtenez votre premier lingot d'adamantium")
+        .addDesc("en_us", "Get your first adamantium ingot")
         .condition(new HasItemCondition(List.of(
             new MyIngredient("adamantium_ingot", InstanceType.ITEM, 1))))
         .build()
