@@ -42,8 +42,8 @@ public class ModBlocks {
             .addTag(BlockTags.PICKAXE_MINEABLE)
             .addTag(ModTags.Blocks.NEED_LVL_4)
             .addRecipe(RecipeBuilder.builder("ore_to_zirconium_ingot", RecipeType.ORE)
-                    .input(new MyIngredient("zirconium_ore", InstanceType.BLOCK, 1))
-                    .output(new MyIngredient("zirconium_ingot", InstanceType.ITEM, 1))
+                    .addInput(new MyIngredient("zirconium_ore", InstanceType.BLOCK, 1))
+                    .addOutput(new MyIngredient("zirconium_ingot", InstanceType.ITEM, 1))
                     .build())
             .build());
 
@@ -54,8 +54,8 @@ public class ModBlocks {
             .addTag(BlockTags.PICKAXE_MINEABLE)
             .addTag(BlockTags.NEEDS_DIAMOND_TOOL)
             .addRecipe(RecipeBuilder.builder("ore_to_iridium_ingot", RecipeType.ORE)
-                    .input(new MyIngredient("iridium_ore", InstanceType.BLOCK, 1))
-                    .output(new MyIngredient("iridium_ingot", InstanceType.ITEM, 1))
+                    .addInput(new MyIngredient("iridium_ore", InstanceType.BLOCK, 1))
+                    .addOutput(new MyIngredient("iridium_ingot", InstanceType.ITEM, 1))
                     .build())
             .build());
 
@@ -66,8 +66,8 @@ public class ModBlocks {
             .addTag(BlockTags.PICKAXE_MINEABLE)
             .addTag(ModTags.Blocks.NEED_LVL_5)
             .addRecipe(RecipeBuilder.builder("ore_to_solarium_ingot", RecipeType.ORE)
-                    .input(new MyIngredient("solarium_ore", InstanceType.BLOCK, 1))
-                    .output(new MyIngredient("solarium_ingot", InstanceType.ITEM, 1))
+                    .addInput(new MyIngredient("solarium_ore", InstanceType.BLOCK, 1))
+                    .addOutput(new MyIngredient("solarium_ingot", InstanceType.ITEM, 1))
                     .build())
             .build());
 
@@ -78,8 +78,8 @@ public class ModBlocks {
             .addTag(BlockTags.PICKAXE_MINEABLE)
             .addTag(ModTags.Blocks.NEED_LVL_5)
             .addRecipe(RecipeBuilder.builder("ore_to_lunarium_ingot", RecipeType.ORE)
-                    .input(new MyIngredient("lunarium_ore", InstanceType.BLOCK, 1))
-                    .output(new MyIngredient("lunarium_ingot", InstanceType.ITEM, 1))
+                    .addInput(new MyIngredient("lunarium_ore", InstanceType.BLOCK, 1))
+                    .addOutput(new MyIngredient("lunarium_ingot", InstanceType.ITEM, 1))
                     .build())
             .build());
 
@@ -90,8 +90,8 @@ public class ModBlocks {
             .addTag(BlockTags.PICKAXE_MINEABLE)
             .addTag(ModTags.Blocks.NEED_LVL_4)
             .addRecipe(RecipeBuilder.builder("zirconium_ingot", RecipeType.SHAPELLESS)
-                    .input(new MyIngredient("zirconium_block", InstanceType.BLOCK, 1))
-                    .output(new MyIngredient("zirconium_ingot", InstanceType.ITEM, 9))
+                    .addInput(new MyIngredient("zirconium_block", InstanceType.BLOCK, 1))
+                    .addOutput(new MyIngredient("zirconium_ingot", InstanceType.ITEM, 9))
                     .build())
             .build());
 
@@ -102,8 +102,8 @@ public class ModBlocks {
             .addTag(BlockTags.PICKAXE_MINEABLE)
             .addTag(BlockTags.NEEDS_DIAMOND_TOOL)
             .addRecipe(RecipeBuilder.builder("iridium_ingot", RecipeType.SHAPELLESS)
-                    .input(new MyIngredient("iridium_block", InstanceType.BLOCK, 1))
-                    .output(new MyIngredient("iridium_ingot", InstanceType.ITEM, 9))
+                    .addInput(new MyIngredient("iridium_block", InstanceType.BLOCK, 1))
+                    .addOutput(new MyIngredient("iridium_ingot", InstanceType.ITEM, 9))
                     .build())
             .build());
 
@@ -114,8 +114,8 @@ public class ModBlocks {
             .addTag(BlockTags.PICKAXE_MINEABLE)
             .addTag(ModTags.Blocks.NEED_LVL_6)
             .addRecipe(RecipeBuilder.builder("zircaloy_ingot", RecipeType.SHAPELLESS)
-                    .input(new MyIngredient("zircaloy_block", InstanceType.BLOCK, 1))
-                    .output(new MyIngredient("zircaloy_ingot", InstanceType.ITEM, 9))
+                    .addInput(new MyIngredient("zircaloy_block", InstanceType.BLOCK, 1))
+                    .addOutput(new MyIngredient("zircaloy_ingot", InstanceType.ITEM, 9))
                     .build())
             .build());
 
@@ -126,8 +126,8 @@ public class ModBlocks {
             .addTag(BlockTags.PICKAXE_MINEABLE)
             .addTag(ModTags.Blocks.NEED_LVL_6)
             .addRecipe(RecipeBuilder.builder("osmiridium_ingot", RecipeType.SHAPELLESS)
-                    .input(new MyIngredient("osmiridium_block", InstanceType.BLOCK, 1))
-                    .output(new MyIngredient("osmiridium_ingot", InstanceType.ITEM, 9))
+                    .addInput(new MyIngredient("osmiridium_block", InstanceType.BLOCK, 1))
+                    .addOutput(new MyIngredient("osmiridium_ingot", InstanceType.ITEM, 9))
                     .build())
             .build());
 
@@ -138,8 +138,8 @@ public class ModBlocks {
             .addTag(BlockTags.PICKAXE_MINEABLE)
             .addTag(ModTags.Blocks.NEED_LVL_5)
             .addRecipe(RecipeBuilder.builder("solarium_ingot", RecipeType.SHAPELLESS)
-                    .input(new MyIngredient("solarium_block", InstanceType.BLOCK, 1))
-                    .output(new MyIngredient("solarium_ingot", InstanceType.ITEM, 9))
+                    .addInput(new MyIngredient("solarium_block", InstanceType.BLOCK, 1))
+                    .addOutput(new MyIngredient("solarium_ingot", InstanceType.ITEM, 9))
                     .build())
             .build());
 
@@ -150,8 +150,8 @@ public class ModBlocks {
             .addTag(BlockTags.PICKAXE_MINEABLE)
             .addTag(ModTags.Blocks.NEED_LVL_5)
             .addRecipe(RecipeBuilder.builder("lunarium_ingot", RecipeType.SHAPELLESS)
-                    .input(new MyIngredient("lunarium_block", InstanceType.BLOCK, 1))
-                    .output(new MyIngredient("lunarium_ingot", InstanceType.ITEM, 9))
+                    .addInput(new MyIngredient("lunarium_block", InstanceType.BLOCK, 1))
+                    .addOutput(new MyIngredient("lunarium_ingot", InstanceType.ITEM, 9))
                     .build())
             .build());
 
@@ -162,8 +162,8 @@ public class ModBlocks {
             .addTag(BlockTags.PICKAXE_MINEABLE)
             .addTag(ModTags.Blocks.NEED_LVL_6)
             .addRecipe(RecipeBuilder.builder("stellarium_ingot", RecipeType.SHAPELLESS)
-                    .input(new MyIngredient("stellarium_block", InstanceType.BLOCK, 1))
-                    .output(new MyIngredient("stellarium_ingot", InstanceType.ITEM, 9))
+                    .addInput(new MyIngredient("stellarium_block", InstanceType.BLOCK, 1))
+                    .addOutput(new MyIngredient("stellarium_ingot", InstanceType.ITEM, 9))
                     .build())
             .build());
 
@@ -173,10 +173,11 @@ public class ModBlocks {
                     Map.of("fr_fr", "Forge Stellaire", "en_us", "Stellar forge"),
                     List.of(BlockTags.PICKAXE_MINEABLE),
                     List.of(RecipeBuilder.builder("forge_stellaire", RecipeType.SHAPE)
-                            .input(new MyIngredient("iridium_block", InstanceType.BLOCK, 1))
-                            .input(new MyIngredient("iridium_ingot", InstanceType.ITEM, 1))
-                            .input(new MyIngredient("furnace", InstanceType.VANILLABLOCK, 1))
-                            .output(new MyIngredient("forge_stellaire", InstanceType.BLOCK, 1))
+                            .inputs(List.of(
+                                    new MyIngredient("iridium_block", InstanceType.BLOCK, 1),
+                                    new MyIngredient("iridium_ingot", InstanceType.ITEM, 1),
+                                    new MyIngredient("furnace", InstanceType.VANILLABLOCK, 1)))
+                            .addOutput(new MyIngredient("forge_stellaire", InstanceType.BLOCK, 1))
                             .pattern(List.of("0 0", "121", "111"))
                             .unlock(new MyIngredient("forge_stellaire", InstanceType.BLOCK, 1))
                             .build())));

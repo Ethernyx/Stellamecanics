@@ -84,17 +84,17 @@ public class GenericItems extends Item implements IMyItem {
 
         private Builder(String id, ItemsType itemsType) { this.id = id; this.itemsType = itemsType; }
 
-        public Builder translate(String key, String value) {
+        public Builder addTranslate(String key, String value) {
             translate.put(key, value);
             return this;
         }
 
-        public Builder tag(TagKey<Item> tag) {
+        public Builder addTag(TagKey<Item> tag) {
             tags.add(tag);
             return this;
         }
 
-        public Builder recipe(RecipeBuilder recipe) {
+        public Builder addRecipe(RecipeBuilder recipe) {
             recipes.add(recipe);
             return this;
         }

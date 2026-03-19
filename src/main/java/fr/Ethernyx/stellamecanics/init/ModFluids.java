@@ -20,10 +20,9 @@ public class ModFluids {
             .flowing("solarium_fluid_flowing")
             .block("solarium_fluid_block", Map.of("fr_fr", "Solarium", "en_us", "Solarium"))
             .bucket("solarium_fluid_bucket", Map.of("fr_fr", "Bucket de solarium", "en_us", "Solarium bucket"))
-            .bucketTags(List.of(ConventionalItemTags.BUCKETS))
+            .addBucketTag(ConventionalItemTags.BUCKETS)
             .blockTags(List.of(BlockTags.REPLACEABLE, BlockTags.INVALID_SPAWN_INSIDE, BlockTags.FIRE))
-            .stillTags(List.of(FluidTags.WATER, ModTags.Fluids.FLUIDTAGS.get("forge_stellaire_fluid_input_left").getTag()))
-            .flowingTags(List.of(FluidTags.WATER, ModTags.Fluids.FLUIDTAGS.get("forge_stellaire_fluid_input_left").getTag()))
+            .fluidTags(List.of(FluidTags.WATER, ModTags.Fluids.FORGE_STELLAIRE_FLUID_INPUT_LEFT))
             .color(0xFFAA00)
             .build());
 
@@ -32,10 +31,9 @@ public class ModFluids {
             .flowing("lunarium_fluid_flowing")
             .block("lunarium_fluid_block", Map.of("fr_fr", "Lunarium", "en_us", "Lunarium"))
             .bucket("lunarium_fluid_bucket", Map.of("fr_fr", "Bucket de lunarium", "en_us", "Lunarium bucket"))
-            .bucketTags(List.of(ConventionalItemTags.BUCKETS))
+            .addBucketTag(ConventionalItemTags.BUCKETS)
             .blockTags(List.of(BlockTags.REPLACEABLE, BlockTags.INVALID_SPAWN_INSIDE, BlockTags.FIRE))
-            .stillTags(List.of(FluidTags.WATER, ModTags.Fluids.FLUIDTAGS.get("forge_stellaire_fluid_input_right").getTag()))
-            .flowingTags(List.of(FluidTags.WATER, ModTags.Fluids.FLUIDTAGS.get("forge_stellaire_fluid_input_right").getTag()))
+            .fluidTags(List.of(FluidTags.WATER, ModTags.Fluids.FORGE_STELLAIRE_FLUID_INPUT_RIGHT))
             .color(0xC8D8E8) // TODO : choisir la vraie couleur du lunarium
             .build());
 
@@ -44,9 +42,9 @@ public class ModFluids {
             .flowing("stellarium_fluid_flowing")
             .block("stellarium_fluid_block", Map.of("fr_fr", "Stellarium", "en_us", "Stellarium"))
             .bucket("stellarium_fluid_bucket", Map.of("fr_fr", "Bucket de stellarium", "en_us", "Stellarium bucket"))
-            .bucketTags(List.of(ConventionalItemTags.BUCKETS))
+            .addBucketTag(ConventionalItemTags.BUCKETS)
             .blockTags(List.of(BlockTags.REPLACEABLE, BlockTags.INVALID_SPAWN_INSIDE, BlockTags.FIRE))
-            .fluidTags(List.of(FluidTags.WATER))
+            .addFluidTag(FluidTags.WATER)
             .color(0xC8D8E8) // TODO : choisir la vraie couleur du stellarium
             .build());
 
@@ -55,9 +53,9 @@ public class ModFluids {
             .flowing("zirconium_fluid_flowing")
             .block("zirconium_fluid_block", Map.of("fr_fr", "Zirconium", "en_us", "Zirconium"))
             .bucket("zirconium_fluid_bucket", Map.of("fr_fr", "Bucket de zirconium", "en_us", "Zirconium bucket"))
-            .bucketTags(List.of(ConventionalItemTags.BUCKETS))
+            .addBucketTag(ConventionalItemTags.BUCKETS)
             .blockTags(List.of(BlockTags.REPLACEABLE, BlockTags.INVALID_SPAWN_INSIDE, BlockTags.FIRE))
-            .fluidTags(List.of(FluidTags.LAVA))
+            .addFluidTag(FluidTags.LAVA)
             .color(0xC8D8E8) // TODO : choisir la vraie couleur du zirconium
             .build());
 
@@ -66,9 +64,9 @@ public class ModFluids {
             .flowing("iridium_fluid_flowing")
             .block("iridium_fluid_block", Map.of("fr_fr", "Iridium", "en_us", "Iridium"))
             .bucket("iridium_fluid_bucket", Map.of("fr_fr", "Bucket d'iridium", "en_us", "Iridium bucket"))
-            .bucketTags(List.of(ConventionalItemTags.BUCKETS))
+            .addBucketTag(ConventionalItemTags.BUCKETS)
             .blockTags(List.of(BlockTags.REPLACEABLE, BlockTags.INVALID_SPAWN_INSIDE, BlockTags.FIRE))
-            .fluidTags(List.of(FluidTags.LAVA))
+            .addFluidTag(FluidTags.LAVA)
             .color(0xC8D8E8) // TODO : choisir la vraie couleur de l'iridium
             .build());
 
@@ -77,9 +75,9 @@ public class ModFluids {
             .flowing("zircaloy_fluid_flowing")
             .block("zircaloy_fluid_block", Map.of("fr_fr", "Zircaloy", "en_us", "Zircaloy"))
             .bucket("zircaloy_fluid_bucket", Map.of("fr_fr", "Bucket de zircaloy", "en_us", "Zircaloy bucket"))
-            .bucketTags(List.of(ConventionalItemTags.BUCKETS))
+            .addBucketTag(ConventionalItemTags.BUCKETS)
             .blockTags(List.of(BlockTags.REPLACEABLE, BlockTags.INVALID_SPAWN_INSIDE, BlockTags.FIRE))
-            .fluidTags(List.of(FluidTags.LAVA))
+            .addFluidTag(FluidTags.LAVA)
             .color(0xC8D8E8) // TODO : choisir la vraie couleur du zircaloy
             .build());
 
@@ -88,9 +86,9 @@ public class ModFluids {
             .flowing("osmiridium_fluid_flowing")
             .block("osmiridium_fluid_block", Map.of("fr_fr", "Osmiridium", "en_us", "Osmiridium"))
             .bucket("osmiridium_fluid_bucket", Map.of("fr_fr", "Bucket d'osmiridium", "en_us", "Osmiridium bucket"))
-            .bucketTags(List.of(ConventionalItemTags.BUCKETS))
+            .addBucketTag(ConventionalItemTags.BUCKETS)
             .blockTags(List.of(BlockTags.REPLACEABLE, BlockTags.INVALID_SPAWN_INSIDE, BlockTags.FIRE))
-            .fluidTags(List.of(FluidTags.LAVA))
+            .addFluidTag(FluidTags.LAVA)
             .color(0xC8D8E8) // TODO : choisir la vraie couleur de l'osmiridium
             .build());
 

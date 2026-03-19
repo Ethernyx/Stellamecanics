@@ -55,20 +55,132 @@ src/main/java/fr/ethernyx/stellamecanics/
 ### Principe clé : les classes génériques
 
 Le mod repose sur un pattern générique pour éviter la duplication de code.
-Chaque bloc, item ou fluide est défini en **une seule déclaration** dans son registre (`ModBlocks`, `ModItems`, `ModFluids`) en passant toutes ses propriétés (traductions, tags, recettes, loot table) directement au constructeur.
+Chaque bloc, item ou fluide est défini en **une seule déclaration** dans son registre (`ModBlocks`, `ModItems`, `ModFluids`) en passant toutes ses propriétés (traductions, tags, recettes, loot table) directement au builder.
 
 ```java
 // Exemple : ajouter un bloc simple
 public static final Block MON_BLOC = addNewBlock(
-    new GenericBlocks("mon_bloc",
-        new MyLootTable(LootType.NORMAL, ...),
-        Map.of("fr_fr", "Mon Bloc", "en_us", "My Block"),
-        List.of(BlockTags.PICKAXE_MINEABLE),
-        List.of(/* recettes */)
-    ));
+    GenericBlocks.builder("mon_bloc")
+        .lootTable(new MyLootTable(LootType.NORMAL, ...))
+        .addTranslate("fr_fr", "Mon Bloc")
+        .addTranslate("en_us", "My Block")
+        .addTag(BlockTags.PICKAXE_MINEABLE)
+        .build());
 ```
 
 Le datagen lit ensuite ces déclarations pour générer automatiquement modèles, traductions, tags et loot tables.
+
+---
+
+## Conventions des builders
+
+### RecipeBuilder
+
+Le builder de recettes expose deux styles de méthodes selon les besoins :
+
+| Méthode | Usage |
+|---|---|
+| `addInput(MyIngredient)` | Ajouter un ingrédient unitaire |
+| `inputs(List<MyIngredient>)` | Ajouter plusieurs ingrédients d'un coup |
+| `addOutput(MyIngredient)` | Ajouter une sortie unitaire |
+| `outputs(List<MyIngredient>)` | Ajouter plusieurs sorties d'un coup |
+| `addFluid(MyIngredient)` | Définir le fluide (recette FORGE) |
+| `unlock(MyIngredient)` | Définir l'item de déverrouillage (recette SHAPE) |
+| `pattern(List<String>)` | Définir le pattern (recette SHAPE) |
+
+```java
+// Exemple avec addInput / addOutput unitaires
+RecipeBuilder.builder("ore_to_iridium_ingot", RecipeType.ORE)
+    .addInput(new MyIngredient("iridium_ore", InstanceType.BLOCK, 1))
+    .addOutput(new MyIngredient("iridium_ingot", InstanceType.ITEM, 1))
+    .build()
+
+// Exemple avec outputs() en lot (recette TOOLS)
+RecipeBuilder.builder("iridium_tool", RecipeType.TOOLS)
+    .addInput(new MyIngredient("iridium_ingot", InstanceType.ITEM, 1))
+    .outputs(List.of(
+        new MyIngredient("iridium_axe",     InstanceType.ITEM, 1),
+        new MyIngredient("iridium_hoe",     InstanceType.ITEM, 1),
+        new MyIngredient("iridium_pickaxe", InstanceType.ITEM, 1),
+        new MyIngredient("iridium_shovel",  InstanceType.ITEM, 1),
+        new MyIngredient("iridium_sword",   InstanceType.ITEM, 1)))
+    .build()
+
+// Exemple avec inputs() en lot (recette SHAPE multi-ingrédients)
+RecipeBuilder.builder("forge_stellaire", RecipeType.SHAPE)
+    .inputs(List.of(
+        new MyIngredient("iridium_block",  InstanceType.BLOCK, 1),
+        new MyIngredient("iridium_ingot",  InstanceType.ITEM, 1),
+        new MyIngredient("furnace",        InstanceType.VANILLABLOCK, 1)))
+    .addOutput(new MyIngredient("forge_stellaire", InstanceType.BLOCK, 1))
+    .pattern(List.of("0 0", "121", "111"))
+    .unlock(new MyIngredient("forge_stellaire", InstanceType.BLOCK, 1))
+    .build()
+```
+
+### GenericItems.Builder
+
+```java
+GenericItems.builder("mon_item", ItemsType.INGOT)
+    .addTranslate("fr_fr", "Mon item")
+    .addTranslate("en_us", "My item")
+    .addTag(ModTags.Items.MON_TAG)
+    .addRecipe(RecipeBuilder.builder(...).build())
+    .build()
+```
+
+### GenericBlocks.Builder
+
+```java
+GenericBlocks.builder("mon_bloc")
+    .lootTable(new MyLootTable(LootType.NORMAL, ...))
+    .addTranslate("fr_fr", "Mon bloc")
+    .addTranslate("en_us", "My block")
+    .addTag(BlockTags.PICKAXE_MINEABLE)
+    .addRecipe(RecipeBuilder.builder(...).build())
+    .build()
+```
+
+Options avancées : `.hardness(float)`, `.resistance(float)`, `.notrequiresTool()`.
+
+### GenericFluids.Builder
+
+Le builder fluide expose deux styles de méthodes pour les tags :
+
+| Méthode | Usage |
+|---|---|
+| `addBucketTag(TagKey<Item>)` | Ajouter un tag bucket unitaire |
+| `bucketTags(List<TagKey<Item>>)` | Ajouter plusieurs tags bucket |
+| `addBlockTag(TagKey<Block>)` | Ajouter un tag bloc unitaire |
+| `blockTags(List<TagKey<Block>>)` | Ajouter plusieurs tags bloc |
+| `addFluidTag(TagKey<Fluid>)` | Ajouter un tag sur still **et** flowing |
+| `fluidTags(List<TagKey<Fluid>>)` | Ajouter plusieurs tags sur still **et** flowing |
+| `addStillTag(TagKey<Fluid>)` | Ajouter un tag sur still uniquement |
+| `stillTags(List<TagKey<Fluid>>)` | Ajouter plusieurs tags sur still uniquement |
+| `addFlowingTag(TagKey<Fluid>)` | Ajouter un tag sur flowing uniquement |
+| `flowingTags(List<TagKey<Fluid>>)` | Ajouter plusieurs tags sur flowing uniquement |
+
+```java
+// Fluide simple (même tags still + flowing)
+GenericFluids.builder()
+    .still("mon_fluid_still")
+    .flowing("mon_fluid_flowing")
+    .block("mon_fluid_block", Map.of("fr_fr", "Mon fluide", "en_us", "My fluid"))
+    .bucket("mon_fluid_bucket", Map.of("fr_fr", "Bucket de mon fluide", "en_us", "My fluid bucket"))
+    .addBucketTag(ConventionalItemTags.BUCKETS)
+    .blockTags(List.of(BlockTags.REPLACEABLE, BlockTags.INVALID_SPAWN_INSIDE, BlockTags.FIRE))
+    .addFluidTag(FluidTags.LAVA)
+    .color(0xAAAAAA)
+    .build()
+
+// Fluide avec tags still/flowing distincts (ex: Forge Stellaire)
+GenericFluids.builder()
+    ...
+    .fluidTags(List.of(FluidTags.WATER, ModTags.Fluids.FORGE_STELLAIRE_FLUID_INPUT_LEFT))
+    .build()
+```
+
+> Si le fluide doit être utilisable dans la Forge Stellaire côté gauche, utilise `ModTags.Fluids.FORGE_STELLAIRE_FLUID_INPUT_LEFT`. Pour le côté droit, utilise `ModTags.Fluids.FORGE_STELLAIRE_FLUID_INPUT_RIGHT`.
 
 ---
 
@@ -167,7 +279,7 @@ CustomAdvancements.builder("mon_advancement")
     .parent(MON_PARENT)               // null si root
     .title("fr_fr", "Mon titre")      // obligatoire
     .title("en_us", "My title")
-    .description("fr_fr", "...")      // optionnel
+    .description("fr_fr", "...")      // obligatoire si parent != null
     .description("en_us", "...")
     .frame(AdvancementFrame.TASK)     // défaut : TASK
     .condition(new HasItemCondition(...))

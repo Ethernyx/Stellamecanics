@@ -262,8 +262,18 @@ public abstract class GenericFluids extends FlowableFluid implements IMyFlowingF
             return this;
         }
 
+        public Builder addBucketTag(TagKey<Item> tag) {
+            this.bucketTags.add(tag);
+            return this;
+        }
+
         public Builder bucketTags(List<TagKey<Item>> tag) {
             this.bucketTags.addAll(tag);
+            return this;
+        }
+
+        public Builder addBlockTag(TagKey<Block> tag) {
+            this.blockTags.add(tag);
             return this;
         }
 
@@ -272,19 +282,35 @@ public abstract class GenericFluids extends FlowableFluid implements IMyFlowingF
             return this;
         }
 
+        public Builder addStillTag(TagKey<Fluid> tag) {
+            fluidTags.computeIfAbsent(FluidListTypeEnum.STILL, k -> new ArrayList<>()).add(tag);
+            return this;
+        }
+
         public Builder stillTags(List<TagKey<Fluid>> tags) {
-            fluidTags.put(FluidListTypeEnum.STILL, tags);
+            fluidTags.computeIfAbsent(FluidListTypeEnum.STILL, k -> new ArrayList<>()).addAll(tags);
+            return this;
+        }
+
+        public Builder addFlowingTag(TagKey<Fluid> tag) {
+            fluidTags.computeIfAbsent(FluidListTypeEnum.FLOWING, k -> new ArrayList<>()).add(tag);
             return this;
         }
 
         public Builder flowingTags(List<TagKey<Fluid>> tags) {
-            fluidTags.put(FluidListTypeEnum.FLOWING, tags);
+            fluidTags.computeIfAbsent(FluidListTypeEnum.FLOWING, k -> new ArrayList<>()).addAll(tags);
+            return this;
+        }
+
+        public Builder addFluidTag(TagKey<Fluid> tag) {
+            fluidTags.computeIfAbsent(FluidListTypeEnum.STILL, k -> new ArrayList<>()).add(tag);
+            fluidTags.computeIfAbsent(FluidListTypeEnum.FLOWING, k -> new ArrayList<>()).add(tag);
             return this;
         }
 
         public Builder fluidTags(List<TagKey<Fluid>> tags) {
-            fluidTags.put(FluidListTypeEnum.STILL, tags);
-            fluidTags.put(FluidListTypeEnum.FLOWING, tags);
+            fluidTags.computeIfAbsent(FluidListTypeEnum.STILL, k -> new ArrayList<>()).addAll(tags);
+            fluidTags.computeIfAbsent(FluidListTypeEnum.FLOWING, k -> new ArrayList<>()).addAll(tags);
             return this;
         }
 

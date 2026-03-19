@@ -61,13 +61,23 @@ public class RecipeBuilder {
             this.type = type;
         }
 
-        public Builder input(MyIngredient ingredient) {
+        public Builder addInput(MyIngredient ingredient) {
             this.input.add(ingredient);
             return this;
         }
 
-        public Builder output(MyIngredient ingredient) {
+        public Builder inputs(List<MyIngredient> ingredients) {
+            this.input.addAll(ingredients);
+            return this;
+        }
+
+        public Builder addOutput(MyIngredient ingredient) {
             this.output.add(ingredient);
+            return this;
+        }
+
+        public Builder outputs(List<MyIngredient> ingredients) {
+            this.output.addAll(ingredients);
             return this;
         }
 
@@ -76,7 +86,7 @@ public class RecipeBuilder {
             return this;
         }
 
-        public Builder fluid(MyIngredient ingredient) {
+        public Builder addFluid(MyIngredient ingredient) {
             this.fluid.add(ingredient);
             return this;
         }
