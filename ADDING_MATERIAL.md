@@ -252,13 +252,24 @@ public static final CustomAdvancements FIRST_ADAMANTIUM = addNewAdvancement(
 );
 ```
 
-Pour un advancement lié à une recette de Forge Stellaire, utilise `ForgedItemCondition` à la place :
+Pour un advancement lié à une ou plusieurs recettes (Forge Stellaire ou crafting table), utilise `ForgedItemCondition` :
 
 ```java
-.condition(new ForgedItemCondition(List.of("forge_stellaire_raw_to_adamantium_ingot")))
+// Recette Forge Stellaire unique
+.condition(new ForgedItemCondition(List.of(
+    ForgedItemCondition.addRecipe("forge_stellaire_raw_to_adamantium_ingot", RecipeType.FORGE))))
+
+// Plusieurs recettes crafting table, toutes obligatoires (all = true)
+.condition(new ForgedItemCondition(List.of(
+    ForgedItemCondition.addRecipe("adamantium_helmet",     RecipeType.SHAPELLESS),
+    ForgedItemCondition.addRecipe("adamantium_chestplate", RecipeType.SHAPELLESS),
+    ForgedItemCondition.addRecipe("adamantium_leggings",   RecipeType.SHAPELLESS),
+    ForgedItemCondition.addRecipe("adamantium_boots",      RecipeType.SHAPELLESS)
+), true))
 ```
 
-> Les IDs passés à `ForgedItemCondition` doivent inclure le préfixe `forge_stellaire_` puisqu'il fait partie de l'ID réel de la recette.
+> Les IDs des recettes `FORGE` doivent inclure le préfixe `forge_stellaire_` car il fait partie de l'ID réel généré. Pour `SHAPED` et `SHAPELLESS`, utilise directement l'ID de la recette vanilla.
+> Si la liste dépasse 10 entrées, utilise `List.of(...)` — contrairement à `Map.of()`, il n'y a pas de limite.
 
 ---
 

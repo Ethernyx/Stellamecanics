@@ -294,8 +294,38 @@ Les conditions disponibles (`IMyAdvancementCondition`) dans `builders/advancemen
 | Classe | Déclenchement |
 |---|---|
 | `HasItemCondition(List<MyIngredient>)` | Quand le joueur a les items listés dans son inventaire |
-| `ForgedItemCondition(List<String>)` | Quand le joueur craft une des recettes listées via la Forge Stellaire |
+| `ForgedItemCondition(List<RecipeCondition>, boolean all)` | Quand le joueur craft une ou toutes les recettes listées (Forge Stellaire ou crafting table) |
 | `NoneCondition()` | Tick criterion — à réserver au root uniquement |
+
+`ForgedItemCondition` supporte deux types de recettes via `RecipeType` :
+
+| `RecipeType` | Comportement |
+|---|---|
+| `FORGE` | Déclenché via la Forge Stellaire (critère custom) |
+| `SHAPED`, `SHAPELLESS` | Déclenché via la crafting table vanilla |
+
+Le paramètre `all` (défaut : `false`) contrôle si **toutes** les recettes doivent être craftées (`true`) ou **au moins une** (`false`).
+
+```java
+// Exemples
+
+// Une seule recette Forge Stellaire (anyOf implicite)
+.condition(new ForgedItemCondition(List.of(
+    ForgedItemCondition.addRecipe("forge_stellaire_raw_to_adamantium_ingot", RecipeType.FORGE))))
+
+// Plusieurs recettes crafting table, toutes obligatoires
+.condition(new ForgedItemCondition(List.of(
+    ForgedItemCondition.addRecipe("adamantium_helmet",     RecipeType.SHAPELLESS),
+    ForgedItemCondition.addRecipe("adamantium_chestplate", RecipeType.SHAPELLESS),
+    ForgedItemCondition.addRecipe("adamantium_leggings",   RecipeType.SHAPELLESS),
+    ForgedItemCondition.addRecipe("adamantium_boots",      RecipeType.SHAPELLESS)
+), true))
+
+// Mix Forge + crafting table, au moins une
+.condition(new ForgedItemCondition(List.of(
+    ForgedItemCondition.addRecipe("forge_stellaire_raw_to_adamantium_ingot", RecipeType.FORGE),
+    ForgedItemCondition.addRecipe("adamantium_helmet", RecipeType.SHAPELLESS))))
+```
 
 > ⚠️ `NoneCondition` se déclenche à chaque tick pour tous les joueurs. Ne l'utilise que pour le root.
 

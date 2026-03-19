@@ -9,9 +9,11 @@ import net.minecraft.advancement.criterion.InventoryChangedCriterion;
 import net.minecraft.item.Item;
 import net.minecraft.predicate.NumberRange;
 import net.minecraft.predicate.item.ItemPredicate;
+import net.minecraft.registry.Registries;
 import net.minecraft.registry.RegistryEntryLookup;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.RegistryWrapper;
+import net.minecraft.util.Identifier;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,6 +34,18 @@ public record HasItemCondition(List<MyIngredient> items) implements IMyAdvanceme
                 case BLOCK -> {
                     array.add(ItemPredicate.Builder.create()
                             .items(itemLookup, ModBlocks.BLOCKS.get(item.getItem()))
+                            .count(NumberRange.IntRange.atLeast(item.getNb()))
+                            .build());
+                }
+                case VANILLAITEM -> {
+                    array.add(ItemPredicate.Builder.create()
+                            .items(itemLookup, Registries.ITEM.get(Identifier.of("minecraft", item.getItem())))
+                            .count(NumberRange.IntRange.atLeast(item.getNb()))
+                            .build());
+                }
+                case VANILLABLOCK -> {
+                    array.add(ItemPredicate.Builder.create()
+                            .items(itemLookup, Registries.BLOCK.get(Identifier.of("minecraft", item.getItem())))
                             .count(NumberRange.IntRange.atLeast(item.getNb()))
                             .build());
                 }
